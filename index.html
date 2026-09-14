@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ISC Chemistry &mdash; Solved School Papers</title>
+<style>
+:root{
+  --ink:#1a1a1a; --mut:#666; --line:#e3e3e3; --bg:#ffffff; --soft:#f7f8f8;
+  --a:#16624a; --at:#e9f4f0; --gold:#8a5f1e; --goldbg:#fffaf0; --goldln:#e8d9b8;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"STIX Two Text","Liberation Serif",Georgia,serif;
+  color:var(--ink);background:var(--bg);font-size:16px;line-height:1.62}
+sub,sup{line-height:0;font-size:74%}
+sup{vertical-align:.42em}sub{vertical-align:-.22em}
+b,strong{font-weight:600}
+a{color:var(--a)}
+
+/* ---------- shell ---------- */
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:14px;padding:10px 20px}
+.top .home{font-weight:600;color:var(--a);text-decoration:none;font-size:15px}
+.top .ttl{font-size:14px;color:var(--mut);flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top .dl{font-size:13px;border:1px solid var(--a);color:var(--a);
+  text-decoration:none;border-radius:20px;padding:4px 13px;white-space:nowrap}
+.top .dl:hover{background:var(--at)}
+
+.wrap{display:flex;align-items:flex-start}
+.main{flex:1;min-width:0;padding:26px 22px 80px;max-width:900px;margin:0 auto}
+body.panel-open .main{margin:0}
+
+/* ---------- solution blocks ---------- */
+.partwrap{border-top:3px solid var(--a);padding-top:14px;margin:34px 0 18px}
+h2.part{font-size:25px;margin:0 0 4px;color:var(--a);font-weight:600}
+.partwrap .lede{color:var(--mut);font-size:15px;margin:0}
+h3.sec{font-size:18px;margin:28px 0 10px;padding-bottom:5px;
+  border-bottom:1px solid var(--line);font-weight:600}
+h3.sec span{float:right;font-weight:400;font-size:13px;color:#999}
+
+.qa{margin:0 0 20px;border:1px solid var(--line);border-radius:8px;
+  padding:14px 16px;background:var(--bg)}
+.qhead{display:flex;align-items:baseline;gap:9px;margin-bottom:5px;flex-wrap:wrap}
+.qno{background:var(--a);color:#fff;font-weight:600;font-size:12px;
+  padding:2px 9px;border-radius:4px;letter-spacing:.03em}
+.src{font-size:12.5px;color:#888;font-style:italic}
+.mk{margin-left:auto;font-size:12.5px;color:#888}
+.q{font-weight:500}
+.sol{border-left:2px solid var(--line);padding:4px 0 2px 13px;margin:9px 0 0 2px;
+  counter-reset:step}
+.sol ol.steps{list-style:none;padding-left:22px;margin:7px 0}
+.sol ol.steps>li{counter-increment:step;position:relative;margin-bottom:4px}
+.sol ol.steps>li::before{content:counter(step) ".";position:absolute;left:-20px;
+  color:#aaa;font-weight:600}
+ul.tight{margin:6px 0;padding-left:20px}
+
+.fml{background:var(--goldbg);border:1px solid var(--goldln);
+  border-left:3px solid var(--gold);border-radius:5px;padding:9px 13px;
+  margin:10px 0;font-size:15px}
+.fml>b:first-child{color:var(--gold)}
+.fml .ex{display:block;text-align:center;margin:7px 0 2px;font-size:17px}
+.answ{border:1px solid #cfe2da;background:var(--at);border-radius:5px;
+  padding:10px 13px;margin:10px 0}
+.answ>b:first-child{color:var(--a)}
+.expl{font-size:15px;margin:9px 0;padding-left:13px;border-left:2px solid var(--line);
+  color:#333}
+.expl>b:first-child{color:var(--mut)}
+.note{font-size:14.5px;color:var(--mut);font-style:italic;margin:7px 0}
+.trap{background:#fff6f2;border-left:3px solid #d4693c;padding:9px 13px;
+  margin:10px 0;font-size:15px;border-radius:5px}
+.trap b:first-child{color:#b34d20}
+.math,.eqn{display:block;text-align:center;margin:10px 0;line-height:2}
+.frac{display:inline-block;vertical-align:middle;text-align:center;margin:0 .2em;
+  line-height:1.25}
+.frac .n{display:block;padding:0 .35em;border-bottom:1px solid currentColor}
+.frac .d{display:block;padding:0 .35em}
+table.d{border-collapse:collapse;margin:10px 0;font-size:14.5px;width:100%}
+table.d th,table.d td{border:1px solid #d8d8d8;padding:5px 9px;text-align:center}
+table.d th{background:var(--at);font-weight:600}
+table.d td.l,table.d th.l{text-align:left}
+.why{background:var(--soft);border-radius:5px;padding:10px 13px;margin:10px 0;
+  font-size:15px}
+
+/* ---------- the NCERT link ---------- */
+.nref{font-size:14px;color:#555;margin-top:9px;padding-top:6px;
+  border-top:1px dotted #ccc}
+.nref>b{color:var(--a);letter-spacing:.04em}
+.nref .blank{color:#aaa;font-style:italic}
+.nref .why{background:none;padding:0;margin:0;display:inline;color:#999;
+  font-style:italic;font-size:13.5px}
+button.nlink{font:inherit;font-size:14px;color:var(--a);background:var(--at);
+  border:1px solid #bcd9cd;border-radius:14px;padding:2px 11px;cursor:pointer;
+  font-weight:600}
+button.nlink:hover{background:#d8ebe3}
+button.nlink::after{content:" \2197";font-weight:400}
+
+/* ---------- side panel ---------- */
+.panel{position:sticky;top:49px;height:calc(100vh - 49px);width:0;flex:0 0 0;
+  border-left:1px solid var(--line);background:var(--soft);overflow:hidden;
+  transition:width .18s ease,flex-basis .18s ease}
+body.panel-open .panel{width:46vw;flex:0 0 46vw}
+.panel .head{display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid var(--line);background:#fff}
+.panel .head .lbl{font-size:13.5px;color:var(--mut);flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.panel .head button{font:inherit;font-size:13px;border:1px solid var(--line);
+  background:#fff;border-radius:5px;padding:3px 10px;cursor:pointer}
+.panel iframe{width:100%;height:calc(100% - 38px);border:0;background:#525659}
+.panel .fallback{padding:16px;font-size:14.5px;color:var(--mut)}
+
+@media (max-width:900px){
+  body.panel-open .panel{position:fixed;inset:49px 0 0 0;width:100%;flex:none;
+    z-index:50}
+}
+@media print{
+  .top,.panel{display:none}
+  .qa{break-inside:avoid;border:0;padding:0}
+}
+
+/* ---------- index page ---------- */
+.hero{max-width:900px;margin:0 auto;padding:40px 22px 10px}
+.hero h1{font-size:34px;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero p.sub{font-size:17px;color:var(--mut);margin:0 0 6px}
+.cards{max-width:900px;margin:0 auto;padding:14px 22px 60px;display:grid;
+  gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{border:1px solid var(--line);border-radius:10px;padding:18px;
+  display:flex;flex-direction:column;gap:9px;background:#fff}
+.card h3{margin:0;font-size:19px}
+.card h3 a{text-decoration:none}
+.card .meta{font-size:13.5px;color:var(--mut)}
+.card p{margin:0;font-size:15px}
+.card .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.card .row a{font-size:13.5px;text-decoration:none;border:1px solid var(--line);
+  border-radius:16px;padding:4px 12px;color:var(--ink)}
+.card .row a.go{border-color:var(--a);color:var(--a);font-weight:600}
+.card .row a:hover{background:var(--soft)}
+.howto{max-width:900px;margin:0 auto;padding:0 22px 70px;font-size:15px;
+  color:#333}
+.howto h2{font-size:20px;margin:26px 0 8px}
+.howto li{margin-bottom:6px}
+.howto code{background:var(--soft);padding:1px 5px;border-radius:4px;
+  font-size:13.5px}
+</style></head><body>
+<section class="hero">
+  <h1>ISC Chemistry &mdash; Solved School Papers</h1>
+  <p class="sub">The Heritage School, Class XII. Every question answered, with a
+  short explanation, the formula used for each numerical, and a link straight to
+  the page in the NCERT textbook.</p>
+</section>
+
+<section class="cards">
+  <article class="card">
+    <h3><a href="heritage-2024-25.html">First Term 2024&ndash;25</a></h3>
+    <div class="meta">Paper 1 &middot; 70 marks &middot; 21 questions &middot;
+      38 worked answers</div>
+    <p>Solutions, Chemical Kinetics, Coordination Compounds, Haloalkanes,
+    Alcohols &amp; Phenols, Carbonyls, Biomolecules. On the current syllabus, so
+    almost every answer carries an NCERT page.</p>
+    <div class="row">
+      <a class="go" href="heritage-2024-25.html">Read the solutions &rarr;</a>
+      <a href="Heritage-2024-25-First-Term-Paper-1.pdf" target="_blank">Question paper</a>
+      <a href="Heritage-2024-25-First-Term-Paper-1-Solved.pdf" target="_blank">PDF</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3><a href="heritage-2016-17.html">Pre-Board 2016&ndash;17</a></h3>
+    <div class="meta">Paper 1 &middot; 70 marks &middot; Part I + Part II &middot;
+      50 worked answers</div>
+    <p>The <b>old syllabus</b>: it also covers Solid State, ionic equilibrium,
+    the p-Block, metallurgy and polymers, which the 2023 rationalisation removed
+    from the NCERT book. Those answers say so and carry no page reference.</p>
+    <div class="row">
+      <a class="go" href="heritage-2016-17.html">Read the solutions &rarr;</a>
+      <a href="Heritage-2016-17-Pre-Board-Paper-1.pdf" target="_blank">Question paper</a>
+      <a href="Heritage-2016-17-Pre-Board-Paper-1-Solved.pdf" target="_blank">PDF</a>
+    </div>
+  </article>
+</section>
+
+<section class="howto">
+  <h2>How to use it</h2>
+  <ul>
+    <li>Sit the question paper first, under the clock. Then mark yourself against
+      the solutions.</li>
+    <li>Each answer runs <b>Question &rarr; Formula used &rarr; Answer &rarr; Why
+      &rarr; NCERT</b>. In a numerical the method carries most of the marks, so
+      the formula is shown before any arithmetic.</li>
+    <li>Click any green <b>Ch&nbsp;N, p.&nbsp;NN</b> button to open the NCERT
+      chapter beside the answer, at that page.</li>
+  </ul>
+
+  <h2>The NCERT page numbers</h2>
+  <p>These are the pages printed in the NCERT Class&nbsp;XII Chemistry textbook
+  (Parts I and II, 2026&ndash;27 reprint). The units run:</p>
+  <table class='d'><thead><tr><th>Unit</th><th class='l'>Title</th><th>Printed pages</th><th class='l'>File</th></tr></thead><tbody><tr><td>Ch 1</td><td class='l'>Solutions</td><td>1&ndash;30</td><td class='l'><code>ncert/lech101.pdf</code></td></tr><tr><td>Ch 2</td><td class='l'>Electrochemistry</td><td>31&ndash;60</td><td class='l'><code>ncert/lech102.pdf</code></td></tr><tr><td>Ch 3</td><td class='l'>Chemical Kinetics</td><td>61&ndash;88</td><td class='l'><code>ncert/lech103.pdf</code></td></tr><tr><td>Ch 4</td><td class='l'>The d- and f-Block Elements</td><td>89&ndash;117</td><td class='l'><code>ncert/lech104.pdf</code></td></tr><tr><td>Ch 5</td><td class='l'>Coordination Compounds</td><td>118&ndash;140</td><td class='l'><code>ncert/lech105.pdf</code></td></tr><tr><td>Ch 6</td><td class='l'>Haloalkanes and Haloarenes</td><td>159&ndash;192</td><td class='l'><code>ncert/lech201.pdf</code></td></tr><tr><td>Ch 7</td><td class='l'>Alcohols, Phenols and Ethers</td><td>193&ndash;226</td><td class='l'><code>ncert/lech202.pdf</code></td></tr><tr><td>Ch 8</td><td class='l'>Aldehydes, Ketones and Carboxylic Acids</td><td>227&ndash;258</td><td class='l'><code>ncert/lech203.pdf</code></td></tr><tr><td>Ch 9</td><td class='l'>Amines</td><td>259&ndash;280</td><td class='l'><code>ncert/lech204.pdf</code></td></tr><tr><td>Ch 10</td><td class='l'>Biomolecules</td><td>281&ndash;302</td><td class='l'><code>ncert/lech205.pdf</code></td></tr></tbody></table>
+  <p>A reference is left blank only where the topic is genuinely not in the
+  Class&nbsp;XII book &mdash; the answer then says which chapter was removed.</p>
+
+  <h2>Serving this folder</h2>
+  <ul>
+    <li>Push the whole folder to a GitHub repository and turn on <b>GitHub
+      Pages</b>; everything is static and relative, so it works as-is.</li>
+    <li>To read it locally, serve it rather than opening the file directly:
+      <code>python3 -m http.server</code> in this folder, then visit
+      <code>localhost:8000</code>. Opening <code>index.html</code> straight from
+      disk works too, but some browsers refuse to draw a PDF inside the side
+      panel over <code>file://</code> &mdash; the <b>Open in new tab</b> button
+      in the panel covers that case.</li>
+  </ul>
+</section>
+</body></html>
