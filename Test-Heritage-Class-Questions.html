@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Chemistry &#8212; Test based on Heritage Class Questions (48 marks)</title>
+<style>
+:root{
+  --bg:#EFF2F0; --surface:#FFFFFF; --surface-2:#F6F9F8;
+  --ink:#16211E; --muted:#5C6B67; --rule:#D3DBD8; --rule-strong:#9FAEA9;
+  --accent:#0F6E63; --accent-soft:#DDEEEB; --accent-ink:#0B4F47;
+  --ok:#16794C; --ok-soft:#DEF0E6; --bad:#B0271C; --bad-soft:#FAE3E0;
+  --warn:#A86400; --warn-soft:#FBF0DC; --warn-ink:#6B4409;
+  --shadow:0 1px 2px rgba(22,33,30,.05), 0 10px 28px -20px rgba(22,33,30,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6}
+sub,sup{line-height:0;font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+b,strong{font-weight:650}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.15rem 4rem}
+.hide{display:none !important}
+
+header.mast{border-bottom:1px solid var(--rule);background:var(--surface);
+  margin-bottom:1.4rem}
+header.mast .inner{max-width:50rem;margin:0 auto;padding:1.9rem 1.15rem 1.5rem}
+.kicker{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .4rem}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.15rem);
+  line-height:1.14;margin:0 0 .4rem;letter-spacing:-.012em}
+header.mast p.sub{margin:0;color:var(--muted);font-size:.95rem;max-width:60ch}
+header.mast a.back{font-size:.78rem;color:var(--muted);text-decoration:none;
+  display:inline-block;margin-bottom:.6rem}
+header.mast a.back:hover{color:var(--accent)}
+
+/* ---------------- instructions gate ---------------- */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.5rem 1.6rem}
+.card h2{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:0 0 .8rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:.55rem;
+  margin:0 0 1.2rem}
+.fact{border:1px solid var(--rule);border-radius:3px;background:var(--surface-2);
+  padding:.55rem .7rem}
+.fact .k{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block}
+.fact .v{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+ol.rules{margin:0 0 1.2rem;padding-left:1.3rem;font-size:.95rem}
+ol.rules li{margin-bottom:.4rem}
+.lockwarn{background:var(--bad-soft);border-left:3px solid var(--bad);border-radius:3px;
+  padding:.8rem 1rem;margin:0 0 1.2rem;font-size:.95rem}
+.lockwarn b:first-child{color:var(--bad)}
+.startbtn{font-family:var(--sans);font-size:.95rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.7rem 1.6rem;cursor:pointer}
+.startbtn:hover{background:var(--accent-ink)}
+
+/* ---------------- the running paper ---------------- */
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);
+  border-bottom:1px solid var(--rule);margin-bottom:1rem;
+  box-shadow:0 2px 12px -8px rgba(22,33,30,.35)}
+.topbar .inner{max-width:50rem;margin:0 auto;padding:.55rem 1.15rem;display:flex;
+  align-items:center;gap:.8rem;flex-wrap:wrap}
+#clock{font-family:var(--mono);font-size:1.15rem;font-weight:700;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+#clock.warn{color:var(--warn)} #clock.crit{color:var(--bad)}
+.clocklab{font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block;line-height:1.2}
+#answered{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.topbar .spacer{flex:1 1 auto}
+#submitbtn{font-family:var(--sans);font-size:.82rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.42rem 1rem;cursor:pointer}
+#submitbtn:hover{background:var(--accent-ink)}
+.livewarn{background:var(--warn-soft);border-left:3px solid var(--warn);
+  border-radius:3px;padding:.55rem .85rem;margin:0 0 1.2rem;font-size:.86rem;
+  color:var(--warn-ink)}
+.livewarn b{color:var(--warn-ink)}
+
+.qcard{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.1rem 1.3rem 1.2rem;margin:0 0 .9rem}
+.qhead{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;
+  font-size:.72rem}
+.qno{background:var(--accent);color:#fff;font-weight:700;border-radius:2px;
+  padding:.14rem .45rem}
+.qch{border:1px solid var(--rule);border-radius:2px;padding:.11rem .45rem;
+  color:var(--muted);font-weight:600}
+.qmk{margin-left:auto;color:var(--muted);font-weight:600}
+.qtext{font-family:var(--serif);font-size:1.05rem;line-height:1.6;margin-bottom:.85rem}
+.opts{display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;border:1px solid var(--rule);
+  border-radius:3px;padding:.55rem .8rem;cursor:pointer;background:var(--surface-2);
+  transition:border-color .14s,background .14s}
+.opt:hover{border-color:var(--rule-strong)}
+.opt input{margin:.28rem 0 0;accent-color:var(--accent);flex:0 0 auto}
+.opt .lab{font-weight:700;color:var(--accent);flex:0 0 1.1rem}
+.opt .txt{flex:1 1 auto;font-size:.96rem}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.paper.locked .opt{cursor:default}
+
+/* ---------------- the marked paper ---------------- */
+.scorecard{background:var(--surface);border:1px solid var(--accent);
+  border-left:3px solid var(--accent);border-radius:3px;box-shadow:var(--shadow);
+  padding:1.4rem 1.5rem;margin:0 0 1.2rem}
+.scorecard h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 .2rem}
+.bigscore{font-family:var(--serif);font-size:2.8rem;font-weight:600;line-height:1.05;
+  color:var(--accent);margin:.4rem 0 .1rem}
+.bigscore span{font-size:1.3rem;color:var(--muted)}
+.pct{font-size:.95rem;color:var(--muted);margin-bottom:1rem}
+.why{background:var(--warn-soft);border-left:3px solid var(--warn);border-radius:3px;
+  padding:.6rem .9rem;margin:0 0 1rem;font-size:.9rem;color:var(--warn-ink)}
+.brk{width:100%;border-collapse:collapse;font-size:.9rem;margin-bottom:.4rem}
+.brk th,.brk td{border:1px solid var(--rule);padding:.35rem .6rem;text-align:center}
+.brk th{background:var(--surface-2);font-size:.72rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);font-weight:700}
+.brk td.l,.brk th.l{text-align:left}
+.brk tfoot td{font-weight:700;background:var(--surface-2)}
+.again{font-family:var(--sans);font-size:.8rem;font-weight:600;background:none;
+  border:1px solid var(--rule);border-radius:3px;padding:.4rem .9rem;
+  color:var(--muted);cursor:pointer;margin-top:.9rem}
+.again:hover{border-color:var(--bad);color:var(--bad)}
+
+.qcard.right{border-left:3px solid var(--ok)}
+.qcard.wrong{border-left:3px solid var(--bad)}
+.qcard.blank{border-left:3px solid var(--rule-strong)}
+.verdict{font-size:.76rem;font-weight:700;border-radius:2px;padding:.14rem .5rem}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.no{background:var(--bad-soft);color:var(--bad)}
+.verdict.bl{background:var(--surface-2);color:var(--muted)}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.chosen-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt .tag{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;align-self:center}
+.opt.correct .tag{color:var(--ok)}
+.opt.chosen-wrong .tag{color:var(--bad)}
+.expl{margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.95rem;line-height:1.62}
+.expl .lab{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:.25rem}
+
+footer.foot{max-width:50rem;margin:0 auto;padding:1.6rem 1.15rem 2.5rem;
+  font-size:.78rem;color:var(--muted);line-height:1.65}
+footer.foot .rule{height:1px;background:var(--rule);margin-bottom:1rem}
+@media print{ .topbar,.startbtn,#submitbtn,.again{display:none !important} }
+
+.srcline{display:block;margin-top:8px;font-size:.82rem;color:#7a7a7a;font-style:italic}
+.strikebanner{background:#fff3f0;border:1px solid #e9b8a8;border-left:4px solid #c0392b;
+  color:#7d2a1a;border-radius:6px;padding:10px 14px;margin:10px auto 0;
+  max-width:820px;font-size:.95rem}
+.strikebanner b{color:#a5301c}
+</style>
+
+<header class="mast"><div class="inner">
+  <a class="back" href="index.html">&#8249; ISC Chemistry</a>
+  <p class="kicker">ISC Class 12 &middot; Chemistry &middot; School worksheets</p>
+  <h1>Test based on Heritage Class Questions</h1>
+  <p class="sub">Every question from the seven class worksheets &mdash; Kinetics, Electrochemistry, Solutions, Haloalkanes, Alcohols, Carbonyls and Coordination Compounds &mdash; set as objective questions at two minutes each. 48 multiple-choice questions,
+  1 mark each, 48 marks in 96 minutes.</p>
+</div></header>
+
+<div class="wrap">
+
+<!-- ============================ instructions ============================ -->
+<div id="gate">
+  <div class="card">
+    <h2>Before you begin</h2>
+    <div class="facts">
+      <div class="fact"><span class="k">Marks</span><span class="v">48</span></div>
+      <div class="fact"><span class="k">Time</span><span class="v">96 min</span></div>
+      <div class="fact"><span class="k">Questions</span><span class="v">48</span></div>
+      <div class="fact"><span class="k">Each</span><span class="v">1 mark</span></div>
+    </div>
+
+    <div class="lockwarn"><b>The paper locks once you start.</b> If you close this
+      tab, reload the page or navigate away before submitting, <b>the paper is
+      submitted automatically</b> with the answers you have given so far. There is no
+      way back into a paper in progress &mdash; treat it as an examination hall.</div>
+
+    <ol class="rules">
+      <li>All 48 questions are compulsory. Each carries <b>1 mark</b>, and
+        there is <b>no negative marking</b> &mdash; a wrong answer scores zero, so
+        never leave a question blank.</li>
+      <li>Exactly one option is correct. You may change an answer freely until you
+        submit; nothing is marked before then.</li>
+      <li>The clock starts the moment you press <i>Start</i> and runs for
+        <b>96 minutes</b> (96 min). When it reaches zero the paper submits
+        itself.</li>
+      <li>Your answers are saved as you go, so a crash will not lose them &mdash; but
+        reopening the page will show you the marked paper, not the paper again.</li>
+      <li>After submitting you will see your marks, a chapter-by-chapter breakdown,
+        and a worked explanation for every question.</li>
+      <li>Coverage: Chemical Kinetics <b>5</b> &middot; Electrochemistry <b>9</b> &middot; Solutions <b>11</b> &middot; Haloalkanes &amp; Haloarenes <b>6</b> &middot; Alcohols, Phenols &amp; Ethers <b>5</b> &middot; Aldehydes, Ketones &amp; Acids <b>5</b> &middot; Coordination Compounds <b>7</b>.</li>
+    </ol>
+
+    <button class="startbtn" id="startbtn" type="button">Start the paper</button>
+  </div>
+</div>
+
+<!-- ============================ the paper ============================ -->
+<div id="paper" class="hide paper">
+  <div class="topbar"><div class="inner">
+    <div><span class="clocklab">Time left</span><span id="clock">--:--</span></div>
+    <span id="answered"></span>
+    <span class="spacer"></span>
+    <button id="submitbtn" type="button">Submit paper</button>
+  </div></div>
+  <div class="livewarn"><b>Do not close or reload this page.</b> Leaving it submits
+    your paper.</div>
+  <div id="strike" class="hide strikebanner"></div>
+</div>
+
+<!-- ============================ the marked paper ============================ -->
+<div id="result" class="hide">
+  <div class="scorecard">
+    <h2>Your result</h2>
+    <div class="bigscore" id="score"></div>
+    <div class="pct" id="pct"></div>
+    <div class="why hide" id="why"></div>
+    <table class="brk">
+      <thead><tr><th class="l">Chapter</th><th>Correct</th><th>Marks</th></tr></thead>
+      <tbody id="brkbody"></tbody>
+      <tfoot id="brkfoot"></tfoot>
+    </table>
+    <button class="again" id="again" type="button">Clear this attempt and sit the
+      paper again</button>
+  </div>
+  <p class="livewarn" style="background:var(--accent-soft);border-color:var(--accent);
+    color:var(--accent-ink)"><b>Every question is worked below</b> &mdash; your answer,
+    the correct one, and why.</p>
+</div>
+
+<!-- the questions themselves live once and are used by both states -->
+<div id="questions" class="hide">
+<section class="qcard" id="c0"><div class="qhead"><span class="qno">Q1</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v0"></span><span class="qmk">1 mark</span></div><div class="qtext">For A + B &rarr; products: doubling [A] at fixed [B] doubles the rate; raising [B] from 0&middot;15 to 0&middot;20 at fixed [A] raises the rate by the same factor of 1&middot;33. The rate law is:</div><div class="opts"><label class="opt" for="q0o0"><input type="radio" id="q0o0" name="q0" value="0"><span class="lab">A</span><span class="txt">rate = <i>k</i>[A][B]</span><span class="tag"></span></label><label class="opt" for="q0o1"><input type="radio" id="q0o1" name="q0" value="1"><span class="lab">B</span><span class="txt">rate = <i>k</i>[A]<sup>2</sup>[B]</span><span class="tag"></span></label><label class="opt" for="q0o2"><input type="radio" id="q0o2" name="q0" value="2"><span class="lab">C</span><span class="txt">rate = <i>k</i>[A][B]<sup>2</sup></span><span class="tag"></span></label><label class="opt" for="q0o3"><input type="radio" id="q0o3" name="q0" value="3"><span class="lab">D</span><span class="txt">rate = <i>k</i>[A]</span><span class="tag"></span></label></div><div class="expl hide" id="e0"><span class="lab">Explanation</span>Doubling [A] doubles the rate, so 2<sup><i>a</i></sup> = 2 and <i>a</i> = 1. Raising [B] by 1&middot;33 raises the rate by the same 1&middot;33, so <i>b</i> = 1 too. Overall order 2. <b>Note the worksheet's table misprints experiment 3 as [A] = 3</b>; with that value no order fits, and the answer key's own working uses [A] = 1.<span class="srcline">Source &middot; Kinetics worksheet Q1</span></div></section>
+<section class="qcard" id="c1"><div class="qhead"><span class="qno">Q2</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v1"></span><span class="qmk">1 mark</span></div><div class="qtext">The rate of a reaction becomes 4 times when the temperature rises from 293 K to 313 K. The activation energy is about:</div><div class="opts"><label class="opt" for="q1o0"><input type="radio" id="q1o0" name="q1" value="0"><span class="lab">A</span><span class="txt">4&middot;2 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q1o1"><input type="radio" id="q1o1" name="q1" value="1"><span class="lab">B</span><span class="txt">52&middot;9 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q1o2"><input type="radio" id="q1o2" name="q1" value="2"><span class="lab">C</span><span class="txt">26&middot;4 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q1o3"><input type="radio" id="q1o3" name="q1" value="3"><span class="lab">D</span><span class="txt">105&middot;7 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e1"><span class="lab">Explanation</span>log(k<sub>2</sub>/k<sub>1</sub>) = E<sub>a</sub>(T<sub>2</sub>&minus;T<sub>1</sub>)/(2&middot;303 R T<sub>1</sub>T<sub>2</sub>). With log 4 = 0&middot;6021, E<sub>a</sub> = 2&middot;303 &times; 8&middot;314 &times; 0&middot;6021 &times; (293&times;313)/20 = <b>52 863 J mol<sup>&minus;1</sup></b>. Note T<sub>1</sub>T<sub>2</sub> is a product, not a sum &mdash; using the sum is what gives the small wrong answer.<span class="srcline">Source &middot; Kinetics worksheet Q2</span></div></section>
+<section class="qcard" id="c2"><div class="qhead"><span class="qno">Q3</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v2"></span><span class="qmk">1 mark</span></div><div class="qtext">For the decomposition of ozone, O<sub>3</sub> &#8652; O<sub>2</sub> + [O] (fast) followed by O<sub>3</sub> + [O] &rarr; 2O<sub>2</sub> (slow), the rate law is:</div><div class="opts"><label class="opt" for="q2o0"><input type="radio" id="q2o0" name="q2" value="0"><span class="lab">A</span><span class="txt">rate = <i>k</i>[O<sub>3</sub>][O<sub>2</sub>]</span><span class="tag"></span></label><label class="opt" for="q2o1"><input type="radio" id="q2o1" name="q2" value="1"><span class="lab">B</span><span class="txt">rate = <i>k</i>[O<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q2o2"><input type="radio" id="q2o2" name="q2" value="2"><span class="lab">C</span><span class="txt">rate = <i>k</i>[O<sub>3</sub>]<sup>2</sup>[O<sub>2</sub>]<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q2o3"><input type="radio" id="q2o3" name="q2" value="3"><span class="lab">D</span><span class="txt">rate = <i>k</i>[O<sub>3</sub>]<sup>2</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e2"><span class="lab">Explanation</span>The slow step gives rate = <i>k</i><sub>2</sub>[O<sub>3</sub>][O]. From the fast pre-equilibrium [O] = <i>k</i><sub>1</sub>[O<sub>3</sub>]/[O<sub>2</sub>]. Substituting gives second order in ozone and <b>order &minus;1 in oxygen</b> &mdash; the reaction is slowed by its own product, which is the standard example of a negative order.<span class="srcline">Source &middot; Kinetics worksheet Q3</span></div></section>
+<section class="qcard" id="c3"><div class="qhead"><span class="qno">Q4</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v3"></span><span class="qmk">1 mark</span></div><div class="qtext">A first order reaction has <i>k</i> = 1&middot;15 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>. The time for 5 g of reactant to fall to 3 g is about:</div><div class="opts"><label class="opt" for="q3o0"><input type="radio" id="q3o0" name="q3" value="0"><span class="lab">A</span><span class="txt">267 s</span><span class="tag"></span></label><label class="opt" for="q3o1"><input type="radio" id="q3o1" name="q3" value="1"><span class="lab">B</span><span class="txt">1332 s</span><span class="tag"></span></label><label class="opt" for="q3o2"><input type="radio" id="q3o2" name="q3" value="2"><span class="lab">C</span><span class="txt">89 s</span><span class="tag"></span></label><label class="opt" for="q3o3"><input type="radio" id="q3o3" name="q3" value="3"><span class="lab">D</span><span class="txt">444 s</span><span class="tag"></span></label></div><div class="expl hide" id="e3"><span class="lab">Explanation</span><i>t</i> = (2&middot;303/<i>k</i>) log(<i>a</i>/(<i>a</i>&minus;<i>x</i>)) = (2&middot;303/1&middot;15&times;10<sup>&minus;3</sup>) log(5/3) = 2002&middot;6 &times; 0&middot;2218 = <b>444 s</b>. The masses can be used directly &mdash; only their ratio enters, so no conversion to moles is needed.<span class="srcline">Source &middot; Kinetics worksheet Q4</span></div></section>
+<section class="qcard" id="c4"><div class="qhead"><span class="qno">Q5</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v4"></span><span class="qmk">1 mark</span></div><div class="qtext">The slope of log&nbsp;<i>k</i> against 1/T is &minus;5841 K. The activation energy is:</div><div class="opts"><label class="opt" for="q4o0"><input type="radio" id="q4o0" name="q4" value="0"><span class="lab">A</span><span class="txt">111&middot;8 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q4o1"><input type="radio" id="q4o1" name="q4" value="1"><span class="lab">B</span><span class="txt">&minus;111&middot;8 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q4o2"><input type="radio" id="q4o2" name="q4" value="2"><span class="lab">C</span><span class="txt">48&middot;6 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q4o3"><input type="radio" id="q4o3" name="q4" value="3"><span class="lab">D</span><span class="txt">5841 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e4"><span class="lab">Explanation</span>slope = &minus;E<sub>a</sub>/2&middot;303R, so E<sub>a</sub> = &minus;2&middot;303 &times; 8&middot;314 &times; (&minus;5841) = <b>111 838 J mol<sup>&minus;1</sup></b>. The two minus signs cancel: a negative slope must give a positive activation energy, and reporting it negative is the usual slip.<span class="srcline">Source &middot; Kinetics worksheet Q5</span></div></section>
+<section class="qcard" id="c5"><div class="qhead"><span class="qno">Q6</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v5"></span><span class="qmk">1 mark</span></div><div class="qtext">Given E&#176;(Cu<sup>2+</sup>/Cu) = 0&middot;337 V and E&#176;(Cu<sup>2+</sup>/Cu<sup>+</sup>) = 0&middot;153 V, E&#176;(Cu<sup>+</sup>/Cu) is:</div><div class="opts"><label class="opt" for="q5o0"><input type="radio" id="q5o0" name="q5" value="0"><span class="lab">A</span><span class="txt">0&middot;245 V</span><span class="tag"></span></label><label class="opt" for="q5o1"><input type="radio" id="q5o1" name="q5" value="1"><span class="lab">B</span><span class="txt">0&middot;521 V</span><span class="tag"></span></label><label class="opt" for="q5o2"><input type="radio" id="q5o2" name="q5" value="2"><span class="lab">C</span><span class="txt">0&middot;490 V</span><span class="tag"></span></label><label class="opt" for="q5o3"><input type="radio" id="q5o3" name="q5" value="3"><span class="lab">D</span><span class="txt">0&middot;184 V</span><span class="tag"></span></label></div><div class="expl hide" id="e5"><span class="lab">Explanation</span>Potentials are <b>not</b> additive &mdash; free energies are. &Delta;G&#176;<sub>3</sub> = &Delta;G&#176;<sub>1</sub> + &Delta;G&#176;<sub>2</sub> gives &minus;1&middot;F&middot;E&#176; = &minus;2F(0&middot;337) + 0&middot;153F, so E&#176; = 2(0&middot;337) &minus; 0&middot;153 = <b>0&middot;521 V</b>. Simply adding the two potentials gives 0&middot;490 V, which is the trap.<span class="srcline">Source &middot; Electrochemistry worksheet Q1</span></div></section>
+<section class="qcard" id="c6"><div class="qhead"><span class="qno">Q7</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v6"></span><span class="qmk">1 mark</span></div><div class="qtext">&Lambda;&#176;<sub>m</sub> for Ba(OH)<sub>2</sub>, BaCl<sub>2</sub> and NH<sub>4</sub>Cl are 523&middot;28, 280&middot;0 and 129&middot;8. &Lambda;&#176;<sub>m</sub> for NH<sub>4</sub>OH is:</div><div class="opts"><label class="opt" for="q6o0"><input type="radio" id="q6o0" name="q6" value="0"><span class="lab">A</span><span class="txt">135&middot;74</span><span class="tag"></span></label><label class="opt" for="q6o1"><input type="radio" id="q6o1" name="q6" value="1"><span class="lab">B</span><span class="txt">673&middot;08</span><span class="tag"></span></label><label class="opt" for="q6o2"><input type="radio" id="q6o2" name="q6" value="2"><span class="lab">C</span><span class="txt">251&middot;44</span><span class="tag"></span></label><label class="opt" for="q6o3"><input type="radio" id="q6o3" name="q6" value="3"><span class="lab">D</span><span class="txt">373&middot;08</span><span class="tag"></span></label></div><div class="expl hide" id="e6"><span class="lab">Explanation</span>By Kohlrausch's law, &Lambda;&#176;(NH<sub>4</sub>OH) = &frac12;&Lambda;&#176;(Ba(OH)<sub>2</sub>) + &Lambda;&#176;(NH<sub>4</sub>Cl) &minus; &frac12;&Lambda;&#176;(BaCl<sub>2</sub>) = 261&middot;64 + 129&middot;8 &minus; 140&middot;0 = <b>251&middot;44</b>. The halving matters: Ba(OH)<sub>2</sub> and BaCl<sub>2</sub> each carry two anions.<span class="srcline">Source &middot; Electrochemistry worksheet Q2</span></div></section>
+<section class="qcard" id="c7"><div class="qhead"><span class="qno">Q8</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v7"></span><span class="qmk">1 mark</span></div><div class="qtext">0&middot;01 M CH<sub>3</sub>COOH has resistance 2220 &Omega; in a cell of cell constant 0&middot;366 cm<sup>&minus;1</sup>. With &Lambda;&#176;<sub>m</sub> = 390, the degree of dissociation is about:</div><div class="opts"><label class="opt" for="q7o0"><input type="radio" id="q7o0" name="q7" value="0"><span class="lab">A</span><span class="txt">42%</span><span class="tag"></span></label><label class="opt" for="q7o1"><input type="radio" id="q7o1" name="q7" value="1"><span class="lab">B</span><span class="txt">0&middot;42%</span><span class="tag"></span></label><label class="opt" for="q7o2"><input type="radio" id="q7o2" name="q7" value="2"><span class="lab">C</span><span class="txt">16&middot;5%</span><span class="tag"></span></label><label class="opt" for="q7o3"><input type="radio" id="q7o3" name="q7" value="3"><span class="lab">D</span><span class="txt">4&middot;2%</span><span class="tag"></span></label></div><div class="expl hide" id="e7"><span class="lab">Explanation</span>&kappa; = (1/R) &times; cell constant = 0&middot;366/2220 = 1&middot;65 &times; 10<sup>&minus;4</sup>. &Lambda;<sub>m</sub> = &kappa;&times;1000/M = 16&middot;5. &alpha; = &Lambda;<sub>m</sub>/&Lambda;&#176;<sub>m</sub> = 16&middot;5/390 = <b>0&middot;042</b>. A weak acid at this dilution being a few per cent dissociated is the expected size of answer.<span class="srcline">Source &middot; Electrochemistry worksheet Q3</span></div></section>
+<section class="qcard" id="c8"><div class="qhead"><span class="qno">Q9</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v8"></span><span class="qmk">1 mark</span></div><div class="qtext">For that same acetic acid solution (C = 0&middot;01 M, &alpha; = 0&middot;0423), the dissociation constant is:</div><div class="opts"><label class="opt" for="q8o0"><input type="radio" id="q8o0" name="q8" value="0"><span class="lab">A</span><span class="txt">1&middot;8 &times; 10<sup>&minus;5</sup></span><span class="tag"></span></label><label class="opt" for="q8o1"><input type="radio" id="q8o1" name="q8" value="1"><span class="lab">B</span><span class="txt">4&middot;2 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label><label class="opt" for="q8o2"><input type="radio" id="q8o2" name="q8" value="2"><span class="lab">C</span><span class="txt">1&middot;8 &times; 10<sup>&minus;3</sup></span><span class="tag"></span></label><label class="opt" for="q8o3"><input type="radio" id="q8o3" name="q8" value="3"><span class="lab">D</span><span class="txt">4&middot;2 &times; 10<sup>&minus;2</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e8"><span class="lab">Explanation</span>K<sub>a</sub> = C&alpha;<sup>2</sup>/(1&minus;&alpha;) &asymp; C&alpha;<sup>2</sup> = 0&middot;01 &times; (0&middot;0423)<sup>2</sup> = <b>1&middot;78 &times; 10<sup>&minus;5</sup></b>. This is the accepted K<sub>a</sub> of acetic acid, which is a useful check that the chain of steps has not gone astray.<span class="srcline">Source &middot; Electrochemistry worksheet Q3(d)</span></div></section>
+<section class="qcard" id="c9"><div class="qhead"><span class="qno">Q10</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v9"></span><span class="qmk">1 mark</span></div><div class="qtext">On dilution, the specific conductance of an electrolyte solution:</div><div class="opts"><label class="opt" for="q9o0"><input type="radio" id="q9o0" name="q9" value="0"><span class="lab">A</span><span class="txt">first increases then decreases</span><span class="tag"></span></label><label class="opt" for="q9o1"><input type="radio" id="q9o1" name="q9" value="1"><span class="lab">B</span><span class="txt">decreases, because there are fewer ions per unit volume</span><span class="tag"></span></label><label class="opt" for="q9o2"><input type="radio" id="q9o2" name="q9" value="2"><span class="lab">C</span><span class="txt">increases, because more of the electrolyte dissociates</span><span class="tag"></span></label><label class="opt" for="q9o3"><input type="radio" id="q9o3" name="q9" value="3"><span class="lab">D</span><span class="txt">stays constant, being a property of the electrolyte</span><span class="tag"></span></label></div><div class="expl hide" id="e9"><span class="lab">Explanation</span>Specific conductance is the conductance of <b>one unit volume</b>, and dilution puts fewer ions in that fixed volume. Molar conductivity does the opposite &mdash; it counts all the ions from one mole however much solvent they occupy, so it <b>rises</b> on dilution. Confusing the two is exactly what this question tests.<span class="srcline">Source &middot; Electrochemistry worksheet Q4</span></div></section>
+<section class="qcard" id="c10"><div class="qhead"><span class="qno">Q11</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v10"></span><span class="qmk">1 mark</span></div><div class="qtext">For Cu + 2Ag<sup>+</sup> &rarr; Cu<sup>2+</sup> + 2Ag with E&#176; = 0&middot;46 V at 298 K, the equilibrium constant is about:</div><div class="opts"><label class="opt" for="q10o0"><input type="radio" id="q10o0" name="q10" value="0"><span class="lab">A</span><span class="txt">2 &times; 10<sup>8</sup></span><span class="tag"></span></label><label class="opt" for="q10o1"><input type="radio" id="q10o1" name="q10" value="1"><span class="lab">B</span><span class="txt">1 &times; 10<sup>10</sup></span><span class="tag"></span></label><label class="opt" for="q10o2"><input type="radio" id="q10o2" name="q10" value="2"><span class="lab">C</span><span class="txt">4 &times; 10<sup>15</sup></span><span class="tag"></span></label><label class="opt" for="q10o3"><input type="radio" id="q10o3" name="q10" value="3"><span class="lab">D</span><span class="txt">4 &times; 10<sup>7</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e10"><span class="lab">Explanation</span>log K = <i>n</i>E&#176;/0&middot;0591 = 2(0&middot;46)/0&middot;0591 = 15&middot;57, so K = 10<sup>15&middot;57</sup> &asymp; <b>4 &times; 10<sup>15</sup></b>. Forgetting the factor <i>n</i> = 2 gives the 10<sup>7</sup>-sized answer.<span class="srcline">Source &middot; Electrochemistry worksheet Q5</span></div></section>
+<section class="qcard" id="c11"><div class="qhead"><span class="qno">Q12</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v11"></span><span class="qmk">1 mark</span></div><div class="qtext">A cell with <i>n</i> = 2 has E&#176; = 0&middot;295 V at 25 &#176;C. Its equilibrium constant is:</div><div class="opts"><label class="opt" for="q11o0"><input type="radio" id="q11o0" name="q11" value="0"><span class="lab">A</span><span class="txt">10<sup>5</sup></span><span class="tag"></span></label><label class="opt" for="q11o1"><input type="radio" id="q11o1" name="q11" value="1"><span class="lab">B</span><span class="txt">10<sup>20</sup></span><span class="tag"></span></label><label class="opt" for="q11o2"><input type="radio" id="q11o2" name="q11" value="2"><span class="lab">C</span><span class="txt">10<sup>2</sup></span><span class="tag"></span></label><label class="opt" for="q11o3"><input type="radio" id="q11o3" name="q11" value="3"><span class="lab">D</span><span class="txt">10<sup>10</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e11"><span class="lab">Explanation</span>At equilibrium E<sub>cell</sub> = 0, so E&#176; = (0&middot;059/<i>n</i>) log K. Then log K = 0&middot;295 &times; 2/0&middot;059 = 10, giving K = <b>10<sup>10</sup></b>.<span class="srcline">Source &middot; Electrochemistry worksheet Q6</span></div></section>
+<section class="qcard" id="c12"><div class="qhead"><span class="qno">Q13</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v12"></span><span class="qmk">1 mark</span></div><div class="qtext">4&middot;5 g of Al (atomic mass 27) is deposited from Al<sup>3+</sup>. The same charge liberates a volume of H<sub>2</sub> at STP of:</div><div class="opts"><label class="opt" for="q12o0"><input type="radio" id="q12o0" name="q12" value="0"><span class="lab">A</span><span class="txt">5&middot;6 L</span><span class="tag"></span></label><label class="opt" for="q12o1"><input type="radio" id="q12o1" name="q12" value="1"><span class="lab">B</span><span class="txt">11&middot;2 L</span><span class="tag"></span></label><label class="opt" for="q12o2"><input type="radio" id="q12o2" name="q12" value="2"><span class="lab">C</span><span class="txt">2&middot;8 L</span><span class="tag"></span></label><label class="opt" for="q12o3"><input type="radio" id="q12o3" name="q12" value="3"><span class="lab">D</span><span class="txt">22&middot;4 L</span><span class="tag"></span></label></div><div class="expl hide" id="e12"><span class="lab">Explanation</span>By Faraday's second law w<sub>Al</sub>/w<sub>H</sub> = E<sub>Al</sub>/E<sub>H</sub> = (27/3)/1 = 9, so w<sub>H</sub> = 0&middot;5 g. Since 2 g of H<sub>2</sub> occupies 22&middot;4 L at STP, 0&middot;5 g occupies <b>5&middot;6 L</b>. The equivalent mass of aluminium is 9, not 27 &mdash; that is the step usually missed.<span class="srcline">Source &middot; Electrochemistry worksheet Q7</span></div></section>
+<section class="qcard" id="c13"><div class="qhead"><span class="qno">Q14</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v13"></span><span class="qmk">1 mark</span></div><div class="qtext">A hydrogen electrode dips in a solution of pH = 10 with H<sub>2</sub> at 1 atm. Its <b>oxidation</b> potential is:</div><div class="opts"><label class="opt" for="q13o0"><input type="radio" id="q13o0" name="q13" value="0"><span class="lab">A</span><span class="txt">0&middot;000 V</span><span class="tag"></span></label><label class="opt" for="q13o1"><input type="radio" id="q13o1" name="q13" value="1"><span class="lab">B</span><span class="txt">+0&middot;591 V</span><span class="tag"></span></label><label class="opt" for="q13o2"><input type="radio" id="q13o2" name="q13" value="2"><span class="lab">C</span><span class="txt">&minus;0&middot;591 V</span><span class="tag"></span></label><label class="opt" for="q13o3"><input type="radio" id="q13o3" name="q13" value="3"><span class="lab">D</span><span class="txt">+0&middot;059 V</span><span class="tag"></span></label></div><div class="expl hide" id="e13"><span class="lab">Explanation</span>For the oxidation &frac12;H<sub>2</sub> &minus; e<sup>&minus;</sup> &rarr; H<sup>+</sup>, E = &minus;0&middot;059 log[H<sup>+</sup>] = &minus;0&middot;059(&minus;10) = <b>+0&middot;591 V</b>. The reduction potential is the negative of this. <b>Note the worksheet says a solution of HCl at pH 10</b>, which is impossible &mdash; HCl is a strong acid. Read it as simply a solution of pH 10.<span class="srcline">Source &middot; Electrochemistry worksheet Q8</span></div></section>
+<section class="qcard" id="c14"><div class="qhead"><span class="qno">Q15</span><span class="qch">Solutions</span><span class="verdict hide" id="v14"></span><span class="qmk">1 mark</span></div><div class="qtext">12&middot;48 g of BaCl<sub>2</sub> (M = 208&middot;34) in 1 kg of water boils at 373&middot;0832 K (K<sub>b</sub> = 0&middot;52). The degree of dissociation is about:</div><div class="opts"><label class="opt" for="q14o0"><input type="radio" id="q14o0" name="q14" value="0"><span class="lab">A</span><span class="txt">89&middot;0%</span><span class="tag"></span></label><label class="opt" for="q14o1"><input type="radio" id="q14o1" name="q14" value="1"><span class="lab">B</span><span class="txt">42&middot;0%</span><span class="tag"></span></label><label class="opt" for="q14o2"><input type="radio" id="q14o2" name="q14" value="2"><span class="lab">C</span><span class="txt">83&middot;5%</span><span class="tag"></span></label><label class="opt" for="q14o3"><input type="radio" id="q14o3" name="q14" value="3"><span class="lab">D</span><span class="txt">66&middot;8%</span><span class="tag"></span></label></div><div class="expl hide" id="e14"><span class="lab">Explanation</span>&Delta;T<sub>b</sub> = 0&middot;0832 K gives M<sub>obs</sub> = 0&middot;52&times;12&middot;48&times;1000/(1000&times;0&middot;0832) = 78. Then <i>i</i> = 208&middot;34/78 = 2&middot;67, and for <i>n</i> = 3, &alpha; = (<i>i</i>&minus;1)/(<i>n</i>&minus;1) = 1&middot;67/2 = <b>0&middot;835</b>. Dividing by <i>n</i> instead of <i>n</i>&minus;1 gives the 66&middot;8% distractor.<span class="srcline">Source &middot; Solutions worksheet Q1</span></div></section>
+<section class="qcard" id="c15"><div class="qhead"><span class="qno">Q16</span><span class="qch">Solutions</span><span class="verdict hide" id="v15"></span><span class="qmk">1 mark</span></div><div class="qtext">20 g of phenol (M = 94) in 1 kg of benzene lowers the freezing point by 0&middot;69 K (K<sub>f</sub> = 5&middot;1). The fraction dimerised is:</div><div class="opts"><label class="opt" for="q15o0"><input type="radio" id="q15o0" name="q15" value="0"><span class="lab">A</span><span class="txt">0&middot;37</span><span class="tag"></span></label><label class="opt" for="q15o1"><input type="radio" id="q15o1" name="q15" value="1"><span class="lab">B</span><span class="txt">0&middot;64</span><span class="tag"></span></label><label class="opt" for="q15o2"><input type="radio" id="q15o2" name="q15" value="2"><span class="lab">C</span><span class="txt">0&middot;27</span><span class="tag"></span></label><label class="opt" for="q15o3"><input type="radio" id="q15o3" name="q15" value="3"><span class="lab">D</span><span class="txt">0&middot;73</span><span class="tag"></span></label></div><div class="expl hide" id="e15"><span class="lab">Explanation</span>M<sub>obs</sub> = 5&middot;1&times;1000&times;20/(0&middot;69&times;1000) = 147&middot;8, so <i>i</i> = 94/147&middot;8 = 0&middot;635. For 2A &rarr; A<sub>2</sub>, &alpha; = (<i>i</i>&minus;1)/(&frac12;&minus;1) = <b>0&middot;73</b>. <i>i</i> &lt; 1 is the signature of association; using the dissociation formula gives a negative &alpha;, which is the signal you have picked the wrong one.<span class="srcline">Source &middot; Solutions worksheet Q2</span></div></section>
+<section class="qcard" id="c16"><div class="qhead"><span class="qno">Q17</span><span class="qch">Solutions</span><span class="verdict hide" id="v16"></span><span class="qmk">1 mark</span></div><div class="qtext">Which has the higher boiling point, 1 M glucose or 2 M glucose, and why?</div><div class="opts"><label class="opt" for="q16o0"><input type="radio" id="q16o0" name="q16" value="0"><span class="lab">A</span><span class="txt">2 M, because elevation of boiling point rises with concentration</span><span class="tag"></span></label><label class="opt" for="q16o1"><input type="radio" id="q16o1" name="q16" value="1"><span class="lab">B</span><span class="txt">1 M, because it is more dilute and so boils sooner</span><span class="tag"></span></label><label class="opt" for="q16o2"><input type="radio" id="q16o2" name="q16" value="2"><span class="lab">C</span><span class="txt">both the same, since glucose is a non-electrolyte</span><span class="tag"></span></label><label class="opt" for="q16o3"><input type="radio" id="q16o3" name="q16" value="3"><span class="lab">D</span><span class="txt">2 M, because glucose dissociates into two particles</span><span class="tag"></span></label></div><div class="expl hide" id="e16"><span class="lab">Explanation</span>&Delta;T<sub>b</sub> = <i>i</i>K<sub>b</sub><i>m</i> is colligative, so the more concentrated solution has the greater elevation. Glucose is a <b>non-electrolyte</b> (<i>i</i> = 1) so the comparison turns on concentration alone &mdash; it does not dissociate, which rules out the last option.<span class="srcline">Source &middot; Solutions worksheet Q3</span></div></section>
+<section class="qcard" id="c17"><div class="qhead"><span class="qno">Q18</span><span class="qch">Solutions</span><span class="verdict hide" id="v17"></span><span class="qmk">1 mark</span></div><div class="qtext">Molecular masses of polymers are found by osmotic pressure rather than by other colligative properties mainly because:</div><div class="opts"><label class="opt" for="q17o0"><input type="radio" id="q17o0" name="q17" value="0"><span class="lab">A</span><span class="txt">polymers dissociate in solution, so the other methods fail</span><span class="tag"></span></label><label class="opt" for="q17o1"><input type="radio" id="q17o1" name="q17" value="1"><span class="lab">B</span><span class="txt">osmotic pressure is large even for very dilute solutions, and is measured near room temperature</span><span class="tag"></span></label><label class="opt" for="q17o2"><input type="radio" id="q17o2" name="q17" value="2"><span class="lab">C</span><span class="txt">osmotic pressure is the only colligative property that depends on molar mass</span><span class="tag"></span></label><label class="opt" for="q17o3"><input type="radio" id="q17o3" name="q17" value="3"><span class="lab">D</span><span class="txt">polymers do not lower the vapour pressure of a solvent</span><span class="tag"></span></label></div><div class="expl hide" id="e17"><span class="lab">Explanation</span>A polymer solution is necessarily dilute <b>in moles</b>, because the molar mass is enormous. Its freezing-point depression might be a thousandth of a degree &mdash; unmeasurable &mdash; while its osmotic pressure is easily read. It is also measured at room temperature, so the polymer is not heated and degraded.<span class="srcline">Source &middot; Solutions worksheet Q4</span></div></section>
+<section class="qcard" id="c18"><div class="qhead"><span class="qno">Q19</span><span class="qch">Solutions</span><span class="verdict hide" id="v18"></span><span class="qmk">1 mark</span></div><div class="qtext">What mass of a solute of molar mass 60 must dissolve in 180 g of water to reduce the vapour pressure to 4/5 of that of pure water? (exact treatment)</div><div class="opts"><label class="opt" for="q18o0"><input type="radio" id="q18o0" name="q18" value="0"><span class="lab">A</span><span class="txt">60 g</span><span class="tag"></span></label><label class="opt" for="q18o1"><input type="radio" id="q18o1" name="q18" value="1"><span class="lab">B</span><span class="txt">300 g</span><span class="tag"></span></label><label class="opt" for="q18o2"><input type="radio" id="q18o2" name="q18" value="2"><span class="lab">C</span><span class="txt">150 g</span><span class="tag"></span></label><label class="opt" for="q18o3"><input type="radio" id="q18o3" name="q18" value="3"><span class="lab">D</span><span class="txt">120 g</span><span class="tag"></span></label></div><div class="expl hide" id="e18"><span class="lab">Explanation</span>Relative lowering = 1/5. With n<sub>1</sub> = 10 mol of water, the <b>exact</b> relation 1/5 = n<sub>2</sub>/(n<sub>1</sub>+n<sub>2</sub>) gives n<sub>2</sub> = 2&middot;5 and <b>150 g</b>. <b>The school key answers 120 g</b>, which is what the dilute approximation n<sub>2</sub>/n<sub>1</sub> yields &mdash; but the solution is not dilute here, the solute being a fifth of all molecules present.<span class="srcline">Source &middot; Solutions worksheet Q5</span></div></section>
+<section class="qcard" id="c19"><div class="qhead"><span class="qno">Q20</span><span class="qch">Solutions</span><span class="verdict hide" id="v19"></span><span class="qmk">1 mark</span></div><div class="qtext">K<sub>H</sub> for N<sub>2</sub> in water at 298 K is 10<sup>5</sup> atm and the mole fraction of N<sub>2</sub> in air is 0&middot;8. At 5 atm, the moles of N<sub>2</sub> dissolved in 10 mol of water is:</div><div class="opts"><label class="opt" for="q19o0"><input type="radio" id="q19o0" name="q19" value="0"><span class="lab">A</span><span class="txt">4 &times; 10<sup>&minus;5</sup></span><span class="tag"></span></label><label class="opt" for="q19o1"><input type="radio" id="q19o1" name="q19" value="1"><span class="lab">B</span><span class="txt">5 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label><label class="opt" for="q19o2"><input type="radio" id="q19o2" name="q19" value="2"><span class="lab">C</span><span class="txt">8 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label><label class="opt" for="q19o3"><input type="radio" id="q19o3" name="q19" value="3"><span class="lab">D</span><span class="txt">4 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e19"><span class="lab">Explanation</span>Partial pressure of N<sub>2</sub> = 0&middot;8 &times; 5 = 4 atm. x<sub>2</sub> = p/K<sub>H</sub> = 4 &times; 10<sup>&minus;5</sup>. Since x<sub>2</sub> is tiny, n<sub>2</sub> &asymp; 10 &times; x<sub>2</sub> = <b>4 &times; 10<sup>&minus;4</sup> mol</b>. Note the mole fraction itself is the 10<sup>&minus;5</sup> distractor.<span class="srcline">Source &middot; Solutions worksheet Q6</span></div></section>
+<section class="qcard" id="c20"><div class="qhead"><span class="qno">Q21</span><span class="qch">Solutions</span><span class="verdict hide" id="v20"></span><span class="qmk">1 mark</span></div><div class="qtext">50 g of ethylene glycol (M = 62) in 200 g of water is cooled to &minus;9&middot;3 &#176;C (K<sub>f</sub> = 1&middot;86). The mass of ice separating is about:</div><div class="opts"><label class="opt" for="q20o0"><input type="radio" id="q20o0" name="q20" value="0"><span class="lab">A</span><span class="txt">38&middot;7 g</span><span class="tag"></span></label><label class="opt" for="q20o1"><input type="radio" id="q20o1" name="q20" value="1"><span class="lab">B</span><span class="txt">161&middot;3 g</span><span class="tag"></span></label><label class="opt" for="q20o2"><input type="radio" id="q20o2" name="q20" value="2"><span class="lab">C</span><span class="txt">50&middot;0 g</span><span class="tag"></span></label><label class="opt" for="q20o3"><input type="radio" id="q20o3" name="q20" value="3"><span class="lab">D</span><span class="txt">18&middot;6 g</span><span class="tag"></span></label></div><div class="expl hide" id="e20"><span class="lab">Explanation</span>At that temperature the solution still liquid must have &Delta;T<sub>f</sub> = 9&middot;3, which fixes w<sub>1</sub> = 1&middot;86&times;1000&times;50/(62&times;9&middot;3) = 161&middot;3 g of water remaining. Ice = 200 &minus; 161&middot;3 = <b>38&middot;7 g</b>. 161&middot;3 g is the water left, not the ice &mdash; the commonest slip.<span class="srcline">Source &middot; Solutions worksheet Q7</span></div></section>
+<section class="qcard" id="c21"><div class="qhead"><span class="qno">Q22</span><span class="qch">Solutions</span><span class="verdict hide" id="v21"></span><span class="qmk">1 mark</span></div><div class="qtext">An aqueous solution is 5% urea (M = 60) and 10% glucose (M = 180) by weight. Its freezing point (K<sub>f</sub> = 1&middot;86) is about:</div><div class="opts"><label class="opt" for="q21o0"><input type="radio" id="q21o0" name="q21" value="0"><span class="lab">A</span><span class="txt">&minus;2&middot;58 &#176;C</span><span class="tag"></span></label><label class="opt" for="q21o1"><input type="radio" id="q21o1" name="q21" value="1"><span class="lab">B</span><span class="txt">&minus;3&middot;04 &#176;C</span><span class="tag"></span></label><label class="opt" for="q21o2"><input type="radio" id="q21o2" name="q21" value="2"><span class="lab">C</span><span class="txt">&minus;1&middot;82 &#176;C</span><span class="tag"></span></label><label class="opt" for="q21o3"><input type="radio" id="q21o3" name="q21" value="3"><span class="lab">D</span><span class="txt">&minus;1&middot;22 &#176;C</span><span class="tag"></span></label></div><div class="expl hide" id="e21"><span class="lab">Explanation</span>In 100 g of solution there are 5 g urea, 10 g glucose and <b>85 g of water</b>. Depressions add: 1&middot;824 (urea) + 1&middot;216 (glucose) = 3&middot;04 K, so T<sub>f</sub> = <b>&minus;3&middot;04 &#176;C</b>. Taking the water as 100 g rather than 85 g gives the wrong answer.<span class="srcline">Source &middot; Solutions worksheet Q8</span></div></section>
+<section class="qcard" id="c22"><div class="qhead"><span class="qno">Q23</span><span class="qch">Solutions</span><span class="verdict hide" id="v22"></span><span class="qmk">1 mark</span></div><div class="qtext">Adding mercuric iodide to aqueous KI <b>raises</b> the freezing point because:</div><div class="opts"><label class="opt" for="q22o0"><input type="radio" id="q22o0" name="q22" value="0"><span class="lab">A</span><span class="txt">the complex formed dissociates into more particles</span><span class="tag"></span></label><label class="opt" for="q22o1"><input type="radio" id="q22o1" name="q22" value="1"><span class="lab">B</span><span class="txt">mercury(II) raises the boiling point of the solvent</span><span class="tag"></span></label><label class="opt" for="q22o2"><input type="radio" id="q22o2" name="q22" value="2"><span class="lab">C</span><span class="txt">the complex K<sub>2</sub>[HgI<sub>4</sub>] forms, reducing the number of particles</span><span class="tag"></span></label><label class="opt" for="q22o3"><input type="radio" id="q22o3" name="q22" value="3"><span class="lab">D</span><span class="txt">HgI<sub>2</sub> is insoluble and removes water</span><span class="tag"></span></label></div><div class="expl hide" id="e22"><span class="lab">Explanation</span>HgI<sub>2</sub> + 2KI &rarr; K<sub>2</sub>[HgI<sub>4</sub>]: four particles (2K<sup>+</sup> + 2I<sup>&minus;</sup>) become three (2K<sup>+</sup> + one complex anion). Depression of freezing point is colligative, so <b>fewer particles means less depression</b> and the freezing point rises.<span class="srcline">Source &middot; Solutions worksheet Q9(i)</span></div></section>
+<section class="qcard" id="c23"><div class="qhead"><span class="qno">Q24</span><span class="qch">Solutions</span><span class="verdict hide" id="v23"></span><span class="qmk">1 mark</span></div><div class="qtext">A person with high blood pressure is advised to take little common salt. The osmotic reason is that the extra salt:</div><div class="opts"><label class="opt" for="q23o0"><input type="radio" id="q23o0" name="q23" value="0"><span class="lab">A</span><span class="txt">makes the plasma hypotonic, so red cells swell and burst</span><span class="tag"></span></label><label class="opt" for="q23o1"><input type="radio" id="q23o1" name="q23" value="1"><span class="lab">B</span><span class="txt">lowers the osmotic pressure of the blood</span><span class="tag"></span></label><label class="opt" for="q23o2"><input type="radio" id="q23o2" name="q23" value="2"><span class="lab">C</span><span class="txt">precipitates proteins in the plasma</span><span class="tag"></span></label><label class="opt" for="q23o3"><input type="radio" id="q23o3" name="q23" value="3"><span class="lab">D</span><span class="txt">raises the solute concentration of body fluid, so water is retained and the blood volume and pressure rise</span><span class="tag"></span></label></div><div class="expl hide" id="e23"><span class="lab">Explanation</span>&pi; = <i>i</i>CRT, so salt raises the osmotic pressure of the body fluid and water is retained to balance it &mdash; raising blood volume and pressure. <b>The school key ends &lsquo;causing rupture of blood cells&rsquo;, which is the wrong way round</b>: a salty plasma is <b>hypertonic</b>, so cells <b>shrink</b>. Rupture needs a hypotonic medium.<span class="srcline">Source &middot; Solutions worksheet Q9(ii)</span></div></section>
+<section class="qcard" id="c24"><div class="qhead"><span class="qno">Q25</span><span class="qch">Solutions</span><span class="verdict hide" id="v24"></span><span class="qmk">1 mark</span></div><div class="qtext">Dissolution of NH<sub>4</sub>Cl in water is endothermic, yet it dissolves readily, because:</div><div class="opts"><label class="opt" for="q24o0"><input type="radio" id="q24o0" name="q24" value="0"><span class="lab">A</span><span class="txt">T&Delta;S exceeds &Delta;H, so &Delta;G is negative</span><span class="tag"></span></label><label class="opt" for="q24o1"><input type="radio" id="q24o1" name="q24" value="1"><span class="lab">B</span><span class="txt">&Delta;H is negative once the lattice breaks</span><span class="tag"></span></label><label class="opt" for="q24o2"><input type="radio" id="q24o2" name="q24" value="2"><span class="lab">C</span><span class="txt">the entropy change is negative but small</span><span class="tag"></span></label><label class="opt" for="q24o3"><input type="radio" id="q24o3" name="q24" value="3"><span class="lab">D</span><span class="txt">water lowers the activation energy of dissolution</span><span class="tag"></span></label></div><div class="expl hide" id="e24"><span class="lab">Explanation</span>The ions held in the lattice become free to move in all directions, so &Delta;S is large and positive. Since &Delta;G = &Delta;H &minus; T&Delta;S, when <b>T&Delta;S &gt; &Delta;H</b> the free energy change is negative and dissolution is spontaneous despite absorbing heat &mdash; which is why the solution feels cold.<span class="srcline">Source &middot; Solutions worksheet Q10</span></div></section>
+<section class="qcard" id="c25"><div class="qhead"><span class="qno">Q26</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v25"></span><span class="qmk">1 mark</span></div><div class="qtext">Two isomers of C<sub>4</sub>H<sub>9</sub>Br are hydrolysed by aqueous KOH. For A the rate depends on [A] only; for B, which is optically active, it depends on both. A and B are:</div><div class="opts"><label class="opt" for="q25o0"><input type="radio" id="q25o0" name="q25" value="0"><span class="lab">A</span><span class="txt">A = (CH<sub>3</sub>)<sub>3</sub>CBr, B = 1-bromobutane</span><span class="tag"></span></label><label class="opt" for="q25o1"><input type="radio" id="q25o1" name="q25" value="1"><span class="lab">B</span><span class="txt">A = (CH<sub>3</sub>)<sub>3</sub>CBr, B = 2-bromobutane</span><span class="tag"></span></label><label class="opt" for="q25o2"><input type="radio" id="q25o2" name="q25" value="2"><span class="lab">C</span><span class="txt">A = 2-bromobutane, B = (CH<sub>3</sub>)<sub>3</sub>CBr</span><span class="tag"></span></label><label class="opt" for="q25o3"><input type="radio" id="q25o3" name="q25" value="3"><span class="lab">D</span><span class="txt">A = 1-bromobutane, B = 2-bromobutane</span><span class="tag"></span></label></div><div class="expl hide" id="e25"><span class="lab">Explanation</span>First-order kinetics means S<sub>N</sub>1, which needs a <b>tertiary</b> halide, so A is <i>tert</i>-butyl bromide. Second-order means S<sub>N</sub>2, and B must also be <b>chiral</b> &mdash; 2-bromobutane has four different groups on C-2, while 1-bromobutane has two hydrogens there and is achiral. B is the one that gives inversion.<span class="srcline">Source &middot; Halides worksheet Q1</span></div></section>
+<section class="qcard" id="c26"><div class="qhead"><span class="qno">Q27</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v26"></span><span class="qmk">1 mark</span></div><div class="qtext">Toluene derivatives with Br<sub>2</sub> in the presence of <b>heat or UV light</b> give:</div><div class="opts"><label class="opt" for="q26o0"><input type="radio" id="q26o0" name="q26" value="0"><span class="lab">A</span><span class="txt">addition across the ring</span><span class="tag"></span></label><label class="opt" for="q26o1"><input type="radio" id="q26o1" name="q26" value="1"><span class="lab">B</span><span class="txt">no reaction without a Lewis acid</span><span class="tag"></span></label><label class="opt" for="q26o2"><input type="radio" id="q26o2" name="q26" value="2"><span class="lab">C</span><span class="txt">substitution in the side chain, by a free-radical path</span><span class="tag"></span></label><label class="opt" for="q26o3"><input type="radio" id="q26o3" name="q26" value="3"><span class="lab">D</span><span class="txt">substitution on the ring, ortho and para</span><span class="tag"></span></label></div><div class="expl hide" id="e26"><span class="lab">Explanation</span>Heat or light homolyses Br<sub>2</sub> into radicals, and a radical attacks the weakest C&ndash;H &mdash; the <b>benzylic</b> one. A Lewis acid such as Fe or AlCl<sub>3</sub> would instead polarise Br<sub>2</sub> into an electrophile and give ring substitution. Light means side chain; a Lewis acid means the ring.<span class="srcline">Source &middot; Halides worksheet Q2(i)/(vi)</span></div></section>
+<section class="qcard" id="c27"><div class="qhead"><span class="qno">Q28</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v27"></span><span class="qmk">1 mark</span></div><div class="qtext">3-Methylbut-1-ene + HBr in the presence of peroxide gives mainly:</div><div class="opts"><label class="opt" for="q27o0"><input type="radio" id="q27o0" name="q27" value="0"><span class="lab">A</span><span class="txt">2-bromo-3-methylbutane</span><span class="tag"></span></label><label class="opt" for="q27o1"><input type="radio" id="q27o1" name="q27" value="1"><span class="lab">B</span><span class="txt">2-bromo-2-methylbutane</span><span class="tag"></span></label><label class="opt" for="q27o2"><input type="radio" id="q27o2" name="q27" value="2"><span class="lab">C</span><span class="txt">1-bromo-2-methylbutane</span><span class="tag"></span></label><label class="opt" for="q27o3"><input type="radio" id="q27o3" name="q27" value="3"><span class="lab">D</span><span class="txt">1-bromo-3-methylbutane</span><span class="tag"></span></label></div><div class="expl hide" id="e27"><span class="lab">Explanation</span>Peroxide switches the addition to a <b>free-radical</b> mechanism, so HBr adds <b>anti</b>-Markovnikov and the bromine goes to the <i>less</i> substituted carbon &mdash; the terminal one. Note the peroxide effect is shown by HBr only, not by HCl or HI.<span class="srcline">Source &middot; Halides worksheet Q2(iii)</span></div></section>
+<section class="qcard" id="c28"><div class="qhead"><span class="qno">Q29</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v28"></span><span class="qmk">1 mark</span></div><div class="qtext">Benzene with 1-chloropropane and anhydrous AlCl<sub>3</sub> gives mainly:</div><div class="opts"><label class="opt" for="q28o0"><input type="radio" id="q28o0" name="q28" value="0"><span class="lab">A</span><span class="txt">isopropylbenzene</span><span class="tag"></span></label><label class="opt" for="q28o1"><input type="radio" id="q28o1" name="q28" value="1"><span class="lab">B</span><span class="txt">propylbenzene</span><span class="tag"></span></label><label class="opt" for="q28o2"><input type="radio" id="q28o2" name="q28" value="2"><span class="lab">C</span><span class="txt">1,2-dipropylbenzene</span><span class="tag"></span></label><label class="opt" for="q28o3"><input type="radio" id="q28o3" name="q28" value="3"><span class="lab">D</span><span class="txt">chlorobenzene</span><span class="tag"></span></label></div><div class="expl hide" id="e28"><span class="lab">Explanation</span>The primary carbocation formed first <b>rearranges</b> by a 1,2-hydride shift to the more stable secondary one before it attacks the ring, so the product is <b>isopropyl</b>benzene (cumene), not propylbenzene. Carbocation rearrangement is the classic limitation of Friedel&ndash;Crafts alkylation.<span class="srcline">Source &middot; Halides worksheet Q2(viii)</span></div></section>
+<section class="qcard" id="c29"><div class="qhead"><span class="qno">Q30</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v29"></span><span class="qmk">1 mark</span></div><div class="qtext">C<sub>2</sub>H<sub>5</sub>Br gives one product with KCN and a different one with AgCN. They are respectively:</div><div class="opts"><label class="opt" for="q29o0"><input type="radio" id="q29o0" name="q29" value="0"><span class="lab">A</span><span class="txt">ethene and ethyl isocyanide</span><span class="tag"></span></label><label class="opt" for="q29o1"><input type="radio" id="q29o1" name="q29" value="1"><span class="lab">B</span><span class="txt">ethyl cyanide and ethyl isocyanide</span><span class="tag"></span></label><label class="opt" for="q29o2"><input type="radio" id="q29o2" name="q29" value="2"><span class="lab">C</span><span class="txt">ethyl isocyanide and ethyl cyanide</span><span class="tag"></span></label><label class="opt" for="q29o3"><input type="radio" id="q29o3" name="q29" value="3"><span class="lab">D</span><span class="txt">ethanol and ethyl cyanide</span><span class="tag"></span></label></div><div class="expl hide" id="e29"><span class="lab">Explanation</span>CN<sup>&minus;</sup> is <b>ambident</b>. KCN is largely ionic, so the free ion attacks through <b>carbon</b> and gives the cyanide (nitrile). AgCN is largely covalent, so only the nitrogen lone pair is available and the product is the <b>isocyanide</b>. The names are treacherously similar &mdash; read the cation, not the anion.<span class="srcline">Source &middot; Halides worksheet Q4(i)/(ii)</span></div></section>
+<section class="qcard" id="c30"><div class="qhead"><span class="qno">Q31</span><span class="qch">Haloalkanes &amp; Haloarenes</span><span class="verdict hide" id="v30"></span><span class="qmk">1 mark</span></div><div class="qtext">Arrange in <b>increasing</b> order of S<sub>N</sub>2 reactivity: CH<sub>3</sub>Cl, CH<sub>3</sub>CH<sub>2</sub>Cl, (CH<sub>3</sub>)<sub>2</sub>CHCl.</div><div class="opts"><label class="opt" for="q30o0"><input type="radio" id="q30o0" name="q30" value="0"><span class="lab">A</span><span class="txt">CH<sub>3</sub>CH<sub>2</sub>Cl &lt; CH<sub>3</sub>Cl &lt; (CH<sub>3</sub>)<sub>2</sub>CHCl</span><span class="tag"></span></label><label class="opt" for="q30o1"><input type="radio" id="q30o1" name="q30" value="1"><span class="lab">B</span><span class="txt">all three react at the same rate</span><span class="tag"></span></label><label class="opt" for="q30o2"><input type="radio" id="q30o2" name="q30" value="2"><span class="lab">C</span><span class="txt">(CH<sub>3</sub>)<sub>2</sub>CHCl &lt; CH<sub>3</sub>CH<sub>2</sub>Cl &lt; CH<sub>3</sub>Cl</span><span class="tag"></span></label><label class="opt" for="q30o3"><input type="radio" id="q30o3" name="q30" value="3"><span class="lab">D</span><span class="txt">CH<sub>3</sub>Cl &lt; CH<sub>3</sub>CH<sub>2</sub>Cl &lt; (CH<sub>3</sub>)<sub>2</sub>CHCl</span><span class="tag"></span></label></div><div class="expl hide" id="e30"><span class="lab">Explanation</span>S<sub>N</sub>2 needs the nucleophile to reach the carbon from behind, so the <b>less crowded</b> that carbon the faster: methyl &gt; 1&#176; &gt; 2&#176;. This is the exact <b>reverse</b> of the S<sub>N</sub>1 order, which depends on carbocation stability &mdash; always check which mechanism is named.<span class="srcline">Source &middot; Halides worksheet Q5(i)</span></div></section>
+<section class="qcard" id="c31"><div class="qhead"><span class="qno">Q32</span><span class="qch">Alcohols, Phenols &amp; Ethers</span><span class="verdict hide" id="v31"></span><span class="qmk">1 mark</span></div><div class="qtext">CH<sub>3</sub>CH<sub>2</sub>Cl &rarr;<sub>NaCN</sub> X &rarr;<sub>Ni/H<sub>2</sub></sub> Y &rarr;<sub>(CH<sub>3</sub>CO)<sub>2</sub>O</sub> Z. Z is:</div><div class="opts"><label class="opt" for="q31o0"><input type="radio" id="q31o0" name="q31" value="0"><span class="lab">A</span><span class="txt">CH<sub>3</sub>CH<sub>2</sub>NHCOCH<sub>3</sub></span><span class="tag"></span></label><label class="opt" for="q31o1"><input type="radio" id="q31o1" name="q31" value="1"><span class="lab">B</span><span class="txt">CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>OH</span><span class="tag"></span></label><label class="opt" for="q31o2"><input type="radio" id="q31o2" name="q31" value="2"><span class="lab">C</span><span class="txt">CH<sub>3</sub>CH<sub>2</sub>CONH<sub>2</sub></span><span class="tag"></span></label><label class="opt" for="q31o3"><input type="radio" id="q31o3" name="q31" value="3"><span class="lab">D</span><span class="txt">CH<sub>3</sub>CH<sub>2</sub>CH<sub>2</sub>NHCOCH<sub>3</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e31"><span class="lab">Explanation</span>NaCN is ionic, so CN<sup>&minus;</sup> attacks through carbon and the chain <b>gains a carbon</b>: X = propanenitrile. Catalytic hydrogenation reduces the nitrile to the <b>primary amine</b> Y = propan-1-amine, and acetic anhydride acetylates it. Note the product has three carbons in the chain, not two.<span class="srcline">Source &middot; Alcohols worksheet Q1</span></div></section>
+<section class="qcard" id="c32"><div class="qhead"><span class="qno">Q33</span><span class="qch">Alcohols, Phenols &amp; Ethers</span><span class="verdict hide" id="v32"></span><span class="qmk">1 mark</span></div><div class="qtext">(CH<sub>3</sub>)<sub>3</sub>C&ndash;O&ndash;C<sub>2</sub>H<sub>5</sub> with HI gives mainly:</div><div class="opts"><label class="opt" for="q32o0"><input type="radio" id="q32o0" name="q32" value="0"><span class="lab">A</span><span class="txt">(CH<sub>3</sub>)<sub>3</sub>C&ndash;I and ethanol</span><span class="tag"></span></label><label class="opt" for="q32o1"><input type="radio" id="q32o1" name="q32" value="1"><span class="lab">B</span><span class="txt">(CH<sub>3</sub>)<sub>3</sub>C&ndash;OH and C<sub>2</sub>H<sub>5</sub>I</span><span class="tag"></span></label><label class="opt" for="q32o2"><input type="radio" id="q32o2" name="q32" value="2"><span class="lab">C</span><span class="txt">two molecules of C<sub>2</sub>H<sub>5</sub>I</span><span class="tag"></span></label><label class="opt" for="q32o3"><input type="radio" id="q32o3" name="q32" value="3"><span class="lab">D</span><span class="txt">no reaction</span><span class="tag"></span></label></div><div class="expl hide" id="e32"><span class="lab">Explanation</span>HI protonates the ether oxygen; the question is then which C&ndash;O bond breaks. The <i>tert</i>-butyl side ionises on its own because it gives a <b>stable tertiary carbocation</b>, which iodide captures. Attack at the ethyl carbon by S<sub>N</sub>2 is possible in principle but far slower, so it does not compete.<span class="srcline">Source &middot; Alcohols worksheet Q4</span></div></section>
+<section class="qcard" id="c33"><div class="qhead"><span class="qno">Q34</span><span class="qch">Alcohols, Phenols &amp; Ethers</span><span class="verdict hide" id="v33"></span><span class="qmk">1 mark</span></div><div class="qtext">C<sub>6</sub>H<sub>5</sub>&ndash;O&ndash;C<sub>2</sub>H<sub>5</sub> with HBr gives:</div><div class="opts"><label class="opt" for="q33o0"><input type="radio" id="q33o0" name="q33" value="0"><span class="lab">A</span><span class="txt">bromobenzene and C<sub>2</sub>H<sub>5</sub>Br</span><span class="tag"></span></label><label class="opt" for="q33o1"><input type="radio" id="q33o1" name="q33" value="1"><span class="lab">B</span><span class="txt">phenol and C<sub>2</sub>H<sub>5</sub>Br</span><span class="tag"></span></label><label class="opt" for="q33o2"><input type="radio" id="q33o2" name="q33" value="2"><span class="lab">C</span><span class="txt">bromobenzene and ethanol</span><span class="tag"></span></label><label class="opt" for="q33o3"><input type="radio" id="q33o3" name="q33" value="3"><span class="lab">D</span><span class="txt">phenol and ethanol</span><span class="tag"></span></label></div><div class="expl hide" id="e33"><span class="lab">Explanation</span>The aryl C&ndash;O bond has <b>partial double-bond character</b> from delocalisation of the oxygen lone pair into the ring, so it never breaks. Bromide therefore attacks the ethyl carbon, giving phenol and ethyl bromide. Bromobenzene is never a product of ether cleavage.<span class="srcline">Source &middot; Alcohols worksheet Q4(ii)</span></div></section>
+<section class="qcard" id="c34"><div class="qhead"><span class="qno">Q35</span><span class="qch">Alcohols, Phenols &amp; Ethers</span><span class="verdict hide" id="v34"></span><span class="qmk">1 mark</span></div><div class="qtext">Which reagent oxidises a primary alcohol to the <b>aldehyde</b> and no further?</div><div class="opts"><label class="opt" for="q34o0"><input type="radio" id="q34o0" name="q34" value="0"><span class="lab">A</span><span class="txt">alkaline KMnO<sub>4</sub> then H<sub>3</sub>O<sup>+</sup></span><span class="tag"></span></label><label class="opt" for="q34o1"><input type="radio" id="q34o1" name="q34" value="1"><span class="lab">B</span><span class="txt">NaBH<sub>4</sub></span><span class="tag"></span></label><label class="opt" for="q34o2"><input type="radio" id="q34o2" name="q34" value="2"><span class="lab">C</span><span class="txt">PCC in dichloromethane</span><span class="tag"></span></label><label class="opt" for="q34o3"><input type="radio" id="q34o3" name="q34" value="3"><span class="lab">D</span><span class="txt">acidified K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e34"><span class="lab">Explanation</span>Pyridinium chlorochromate is the standard <b>mild</b> oxidant, and having no water present means the aldehyde is never hydrated and so cannot be oxidised on. The two strong acidic oxidants carry through to the carboxylic acid; NaBH<sub>4</sub> runs the reaction the wrong way &mdash; it reduces.<span class="srcline">Source &middot; Alcohols worksheet Q5(i)</span></div></section>
+<section class="qcard" id="c35"><div class="qhead"><span class="qno">Q36</span><span class="qch">Alcohols, Phenols &amp; Ethers</span><span class="verdict hide" id="v35"></span><span class="qmk">1 mark</span></div><div class="qtext">An optically active compound A on mild oxidation gives B, which with I<sub>2</sub>/NaOH gives iodoform and an acid C. Vigorous oxidation of A gives the same C. A is:</div><div class="opts"><label class="opt" for="q35o0"><input type="radio" id="q35o0" name="q35" value="0"><span class="lab">A</span><span class="txt">butan-1-ol</span><span class="tag"></span></label><label class="opt" for="q35o1"><input type="radio" id="q35o1" name="q35" value="1"><span class="lab">B</span><span class="txt">propan-2-ol</span><span class="tag"></span></label><label class="opt" for="q35o2"><input type="radio" id="q35o2" name="q35" value="2"><span class="lab">C</span><span class="txt">2-methylpropan-2-ol</span><span class="tag"></span></label><label class="opt" for="q35o3"><input type="radio" id="q35o3" name="q35" value="3"><span class="lab">D</span><span class="txt">butan-2-ol</span><span class="tag"></span></label></div><div class="expl hide" id="e35"><span class="lab">Explanation</span>A is optically active, so it has a chiral carbon; it oxidises to a compound giving <b>iodoform</b>, so that product is a methyl ketone and A is a secondary alcohol with a CH<sub>3</sub>&ndash;CH(OH)&ndash; group. The smallest such alcohol that is chiral is <b>butan-2-ol</b>. Propan-2-ol gives iodoform but is achiral; the tertiary alcohol cannot be oxidised at all.<span class="srcline">Source &middot; Alcohols worksheet Q6</span></div></section>
+<section class="qcard" id="c36"><div class="qhead"><span class="qno">Q37</span><span class="qch">Aldehydes, Ketones &amp; Acids</span><span class="verdict hide" id="v36"></span><span class="qmk">1 mark</span></div><div class="qtext">Benzophenone oxime, Ph<sub>2</sub>C=NOH, with concentrated H<sub>2</sub>SO<sub>4</sub> gives:</div><div class="opts"><label class="opt" for="q36o0"><input type="radio" id="q36o0" name="q36" value="0"><span class="lab">A</span><span class="txt">N-phenylbenzamide, PhCONHPh</span><span class="tag"></span></label><label class="opt" for="q36o1"><input type="radio" id="q36o1" name="q36" value="1"><span class="lab">B</span><span class="txt">benzophenone</span><span class="tag"></span></label><label class="opt" for="q36o2"><input type="radio" id="q36o2" name="q36" value="2"><span class="lab">C</span><span class="txt">benzanilide hydrolysed to aniline</span><span class="tag"></span></label><label class="opt" for="q36o3"><input type="radio" id="q36o3" name="q36" value="3"><span class="lab">D</span><span class="txt">diphenylamine</span><span class="tag"></span></label></div><div class="expl hide" id="e36"><span class="lab">Explanation</span>This is the <b>Beckmann rearrangement</b>: a strong acid removes the &ndash;OH and the group <i>anti</i> to it migrates from carbon to nitrogen, turning a ketoxime into a substituted amide. It is how cyclohexanone oxime is converted industrially to caprolactam.<span class="srcline">Source &middot; Carbonyls worksheet Q1(ii)</span></div></section>
+<section class="qcard" id="c37"><div class="qhead"><span class="qno">Q38</span><span class="qch">Aldehydes, Ketones &amp; Acids</span><span class="verdict hide" id="v37"></span><span class="qmk">1 mark</span></div><div class="qtext">Formaldehyde with ammonia gives:</div><div class="opts"><label class="opt" for="q37o0"><input type="radio" id="q37o0" name="q37" value="0"><span class="lab">A</span><span class="txt">an aldol product</span><span class="tag"></span></label><label class="opt" for="q37o1"><input type="radio" id="q37o1" name="q37" value="1"><span class="lab">B</span><span class="txt">urotropine, (CH<sub>2</sub>)<sub>6</sub>N<sub>4</sub></span><span class="tag"></span></label><label class="opt" for="q37o2"><input type="radio" id="q37o2" name="q37" value="2"><span class="lab">C</span><span class="txt">formamide, HCONH<sub>2</sub></span><span class="tag"></span></label><label class="opt" for="q37o3"><input type="radio" id="q37o3" name="q37" value="3"><span class="lab">D</span><span class="txt">methylamine</span><span class="tag"></span></label></div><div class="expl hide" id="e37"><span class="lab">Explanation</span>6HCHO + 4NH<sub>3</sub> &rarr; (CH<sub>2</sub>)<sub>6</sub>N<sub>4</sub> + 6H<sub>2</sub>O. Hexamethylenetetramine (urotropine) is a cage molecule used as a urinary antiseptic. Formaldehyde is special here because it has <b>no &alpha;-hydrogen</b>, so it cannot instead undergo the aldol reaction.<span class="srcline">Source &middot; Carbonyls worksheet Q2(i)</span></div></section>
+<section class="qcard" id="c38"><div class="qhead"><span class="qno">Q39</span><span class="qch">Aldehydes, Ketones &amp; Acids</span><span class="verdict hide" id="v38"></span><span class="qmk">1 mark</span></div><div class="qtext">Phenol with bromine in <b>CS<sub>2</sub> at low temperature</b> gives:</div><div class="opts"><label class="opt" for="q38o0"><input type="radio" id="q38o0" name="q38" value="0"><span class="lab">A</span><span class="txt">no reaction without a catalyst</span><span class="tag"></span></label><label class="opt" for="q38o1"><input type="radio" id="q38o1" name="q38" value="1"><span class="lab">B</span><span class="txt">benzene-1,2-diol</span><span class="tag"></span></label><label class="opt" for="q38o2"><input type="radio" id="q38o2" name="q38" value="2"><span class="lab">C</span><span class="txt">a mixture of o- and p-bromophenol</span><span class="tag"></span></label><label class="opt" for="q38o3"><input type="radio" id="q38o3" name="q38" value="3"><span class="lab">D</span><span class="txt">2,4,6-tribromophenol as a white precipitate</span><span class="tag"></span></label></div><div class="expl hide" id="e38"><span class="lab">Explanation</span>In a <b>non-polar</b> solvent at low temperature the reaction stops at <b>mono</b>bromination. In <b>water</b> the same reagents give the white precipitate of 2,4,6-tribromophenol, because the highly ionised phenoxide is far more activated. The solvent decides how far it goes &mdash; that is the whole point of the question.<span class="srcline">Source &middot; Carbonyls worksheet Q2(ii)</span></div></section>
+<section class="qcard" id="c39"><div class="qhead"><span class="qno">Q40</span><span class="qch">Aldehydes, Ketones &amp; Acids</span><span class="verdict hide" id="v39"></span><span class="qmk">1 mark</span></div><div class="qtext">Arrange in <b>decreasing</b> order of acid strength: benzoic acid, p-methoxybenzoic acid, p-toluic acid, o-nitrobenzoic acid.</div><div class="opts"><label class="opt" for="q39o0"><input type="radio" id="q39o0" name="q39" value="0"><span class="lab">A</span><span class="txt">p-methoxy &gt; p-toluic &gt; benzoic &gt; o-nitro</span><span class="tag"></span></label><label class="opt" for="q39o1"><input type="radio" id="q39o1" name="q39" value="1"><span class="lab">B</span><span class="txt">benzoic &gt; o-nitro &gt; p-methoxy &gt; p-toluic</span><span class="tag"></span></label><label class="opt" for="q39o2"><input type="radio" id="q39o2" name="q39" value="2"><span class="lab">C</span><span class="txt">p-toluic &gt; benzoic &gt; o-nitro &gt; p-methoxy</span><span class="tag"></span></label><label class="opt" for="q39o3"><input type="radio" id="q39o3" name="q39" value="3"><span class="lab">D</span><span class="txt">o-nitro &gt; benzoic &gt; p-toluic &gt; p-methoxy</span><span class="tag"></span></label></div><div class="expl hide" id="e39"><span class="lab">Explanation</span>Acidity tracks the stability of the <b>carboxylate</b>. &ndash;NO<sub>2</sub> withdraws electrons strongly and stabilises it; &ndash;CH<sub>3</sub> and &ndash;OCH<sub>3</sub> donate and destabilise it. &ndash;OCH<sub>3</sub> is weakest because from the <i>para</i> position it donates by resonance as well as induction.<span class="srcline">Source &middot; Carbonyls worksheet Q3</span></div></section>
+<section class="qcard" id="c40"><div class="qhead"><span class="qno">Q41</span><span class="qch">Aldehydes, Ketones &amp; Acids</span><span class="verdict hide" id="v40"></span><span class="qmk">1 mark</span></div><div class="qtext">Formaldehyde with concentrated NaOH gives methanol and sodium formate. This reaction is possible because formaldehyde:</div><div class="opts"><label class="opt" for="q40o0"><input type="radio" id="q40o0" name="q40" value="0"><span class="lab">A</span><span class="txt">has no &alpha;-hydrogen, so it disproportionates (Cannizzaro)</span><span class="tag"></span></label><label class="opt" for="q40o1"><input type="radio" id="q40o1" name="q40" value="1"><span class="lab">B</span><span class="txt">has an &alpha;-hydrogen, so it undergoes the aldol reaction</span><span class="tag"></span></label><label class="opt" for="q40o2"><input type="radio" id="q40o2" name="q40" value="2"><span class="lab">C</span><span class="txt">is oxidised by sodium hydroxide</span><span class="tag"></span></label><label class="opt" for="q40o3"><input type="radio" id="q40o3" name="q40" value="3"><span class="lab">D</span><span class="txt">polymerises in alkali</span><span class="tag"></span></label></div><div class="expl hide" id="e40"><span class="lab">Explanation</span>The Cannizzaro reaction is a <b>disproportionation</b>: one molecule is reduced to the alcohol and another oxidised to the acid salt. It is available only to aldehydes with <b>no &alpha;-hydrogen</b> &mdash; formaldehyde and benzaldehyde &mdash; because otherwise the aldol reaction takes over.<span class="srcline">Source &middot; Carbonyls worksheet Q4(iii)</span></div></section>
+<section class="qcard" id="c41"><div class="qhead"><span class="qno">Q42</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v41"></span><span class="qmk">1 mark</span></div><div class="qtext">[Cu(NH<sub>3</sub>)<sub>4</sub>][PtCl<sub>4</sub>] and [Pt(NH<sub>3</sub>)<sub>4</sub>][CuCl<sub>4</sub>] are:</div><div class="opts"><label class="opt" for="q41o0"><input type="radio" id="q41o0" name="q41" value="0"><span class="lab">A</span><span class="txt">hydrate isomers</span><span class="tag"></span></label><label class="opt" for="q41o1"><input type="radio" id="q41o1" name="q41" value="1"><span class="lab">B</span><span class="txt">coordination isomers</span><span class="tag"></span></label><label class="opt" for="q41o2"><input type="radio" id="q41o2" name="q41" value="2"><span class="lab">C</span><span class="txt">ionisation isomers</span><span class="tag"></span></label><label class="opt" for="q41o3"><input type="radio" id="q41o3" name="q41" value="3"><span class="lab">D</span><span class="txt">linkage isomers</span><span class="tag"></span></label></div><div class="expl hide" id="e41"><span class="lab">Explanation</span>Both the cation and the anion are complexes, and the <b>ligands have been exchanged between the two metal centres</b>. That is coordination isomerism, and it can only arise when both ions of a salt are complexes.<span class="srcline">Source &middot; Coordination worksheet Q1(i)</span></div></section>
+<section class="qcard" id="c42"><div class="qhead"><span class="qno">Q43</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v42"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(pn)<sub>2</sub>Cl<sub>2</sub>]<sup>+</sup> and [Co(tn)<sub>2</sub>Cl<sub>2</sub>]<sup>+</sup>, where pn is propane-1,2-diamine and tn is propane-1,3-diamine, are:</div><div class="opts"><label class="opt" for="q42o0"><input type="radio" id="q42o0" name="q42" value="0"><span class="lab">A</span><span class="txt">ionisation isomers</span><span class="tag"></span></label><label class="opt" for="q42o1"><input type="radio" id="q42o1" name="q42" value="1"><span class="lab">B</span><span class="txt">geometrical isomers</span><span class="tag"></span></label><label class="opt" for="q42o2"><input type="radio" id="q42o2" name="q42" value="2"><span class="lab">C</span><span class="txt">ligand isomers</span><span class="tag"></span></label><label class="opt" for="q42o3"><input type="radio" id="q42o3" name="q42" value="3"><span class="lab">D</span><span class="txt">linkage isomers</span><span class="tag"></span></label></div><div class="expl hide" id="e42"><span class="lab">Explanation</span>pn and tn are <b>different ligands that are isomers of each other</b>, both C<sub>3</sub>H<sub>10</sub>N<sub>2</sub> &mdash; that is ligand isomerism. <b>The school key answers &lsquo;linkage&rsquo;, which is wrong</b>: linkage isomerism needs one <b>ambidentate</b> ligand binding through different atoms, and neither pn nor tn is ambidentate &mdash; each binds through its two nitrogens and nothing else.<span class="srcline">Source &middot; Coordination worksheet Q1(ii)</span></div></section>
+<section class="qcard" id="c43"><div class="qhead"><span class="qno">Q44</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v43"></span><span class="qmk">1 mark</span></div><div class="qtext">For [Cr(H<sub>2</sub>O)<sub>2</sub>(C<sub>2</sub>O<sub>4</sub>)<sub>2</sub>]<sup>&minus;</sup>, the hybridisation and magnetism are:</div><div class="opts"><label class="opt" for="q43o0"><input type="radio" id="q43o0" name="q43" value="0"><span class="lab">A</span><span class="txt">d<sup>2</sup>sp<sup>3</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q43o1"><input type="radio" id="q43o1" name="q43" value="1"><span class="lab">B</span><span class="txt">sp<sup>3</sup>d<sup>2</sup>, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q43o2"><input type="radio" id="q43o2" name="q43" value="2"><span class="lab">C</span><span class="txt">dsp<sup>2</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q43o3"><input type="radio" id="q43o3" name="q43" value="3"><span class="lab">D</span><span class="txt">d<sup>2</sup>sp<sup>3</sup>, paramagnetic</span><span class="tag"></span></label></div><div class="expl hide" id="e43"><span class="lab">Explanation</span>Charge balance <i>x</i> + 2(0) + 2(&minus;2) = &minus;1 gives Cr(III), which is <b>d<sup>3</sup></b>. Three electrons singly occupy t<sub>2g</sub> whatever the ligand strength, so two inner 3d orbitals are <b>always</b> vacant and the complex is d<sup>2</sup>sp<sup>3</sup> with three unpaired electrons. d<sup>3</sup> is the case where high and low spin coincide.<span class="srcline">Source &middot; Coordination worksheet Q2(i)</span></div></section>
+<section class="qcard" id="c44"><div class="qhead"><span class="qno">Q45</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v44"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(NH<sub>3</sub>)<sub>5</sub>NO<sub>2</sub>]Cl<sub>2</sub> exists in a nitro form and a nitrito form. These are:</div><div class="opts"><label class="opt" for="q44o0"><input type="radio" id="q44o0" name="q44" value="0"><span class="lab">A</span><span class="txt">linkage isomers</span><span class="tag"></span></label><label class="opt" for="q44o1"><input type="radio" id="q44o1" name="q44" value="1"><span class="lab">B</span><span class="txt">ionisation isomers</span><span class="tag"></span></label><label class="opt" for="q44o2"><input type="radio" id="q44o2" name="q44" value="2"><span class="lab">C</span><span class="txt">coordination isomers</span><span class="tag"></span></label><label class="opt" for="q44o3"><input type="radio" id="q44o3" name="q44" value="3"><span class="lab">D</span><span class="txt">optical isomers</span><span class="tag"></span></label></div><div class="expl hide" id="e44"><span class="lab">Explanation</span>NO<sub>2</sub><sup>&minus;</sup> is <b>ambidentate</b>: bound through nitrogen it is nitrito-&kappa;N (the nitro form), through oxygen nitrito-&kappa;O. Two compounds differing only in which donor atom is used are <b>linkage isomers</b> &mdash; and they differ in colour, which is how they were first told apart.<span class="srcline">Source &middot; Coordination worksheet Q3</span></div></section>
+<section class="qcard" id="c45"><div class="qhead"><span class="qno">Q46</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v45"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>] shows two geometrical isomers called:</div><div class="opts"><label class="opt" for="q45o0"><input type="radio" id="q45o0" name="q45" value="0"><span class="lab">A</span><span class="txt">inner and outer orbital</span><span class="tag"></span></label><label class="opt" for="q45o1"><input type="radio" id="q45o1" name="q45" value="1"><span class="lab">B</span><span class="txt">facial and meridional</span><span class="tag"></span></label><label class="opt" for="q45o2"><input type="radio" id="q45o2" name="q45" value="2"><span class="lab">C</span><span class="txt">cis and trans</span><span class="tag"></span></label><label class="opt" for="q45o3"><input type="radio" id="q45o3" name="q45" value="3"><span class="lab">D</span><span class="txt">dextro and laevo</span><span class="tag"></span></label></div><div class="expl hide" id="e45"><span class="lab">Explanation</span>For an MA<sub>3</sub>B<sub>3</sub> octahedral complex the three like ligands either occupy one triangular <b>face</b> (<i>fac</i>) or lie around a <b>meridian</b> (<i>mer</i>). <i>cis</i> and <i>trans</i> is the naming for MA<sub>4</sub>B<sub>2</sub> and square planar MA<sub>2</sub>B<sub>2</sub> instead.<span class="srcline">Source &middot; Coordination worksheet Q4</span></div></section>
+<section class="qcard" id="c46"><div class="qhead"><span class="qno">Q47</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v46"></span><span class="qmk">1 mark</span></div><div class="qtext">For [Co(NH<sub>3</sub>)<sub>6</sub>]<sup>3+</sup>, the oxidation number, hybridisation and magnetic behaviour are:</div><div class="opts"><label class="opt" for="q46o0"><input type="radio" id="q46o0" name="q46" value="0"><span class="lab">A</span><span class="txt">+2, d<sup>2</sup>sp<sup>3</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q46o1"><input type="radio" id="q46o1" name="q46" value="1"><span class="lab">B</span><span class="txt">+3, dsp<sup>2</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q46o2"><input type="radio" id="q46o2" name="q46" value="2"><span class="lab">C</span><span class="txt">+3, d<sup>2</sup>sp<sup>3</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q46o3"><input type="radio" id="q46o3" name="q46" value="3"><span class="lab">D</span><span class="txt">+3, sp<sup>3</sup>d<sup>2</sup>, paramagnetic</span><span class="tag"></span></label></div><div class="expl hide" id="e46"><span class="lab">Explanation</span>Six neutral ammine ligands on a +3 ion means Co is <b>+3</b>, which is d<sup>6</sup>. NH<sub>3</sub> is a strong-field ligand for cobalt(III), so all six electrons pair into t<sub>2g</sub>: none unpaired, hence <b>diamagnetic</b>, with two inner 3d orbitals freed for <b>d<sup>2</sup>sp<sup>3</sup></b>.<span class="srcline">Source &middot; Coordination worksheet Q5</span></div></section>
+<section class="qcard" id="c47"><div class="qhead"><span class="qno">Q48</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v47"></span><span class="qmk">1 mark</span></div><div class="qtext">The formula of potassium trioxalatoaluminate(III) is:</div><div class="opts"><label class="opt" for="q47o0"><input type="radio" id="q47o0" name="q47" value="0"><span class="lab">A</span><span class="txt">K[Al(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q47o1"><input type="radio" id="q47o1" name="q47" value="1"><span class="lab">B</span><span class="txt">Al[K(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q47o2"><input type="radio" id="q47o2" name="q47" value="2"><span class="lab">C</span><span class="txt">K<sub>3</sub>[Al(C<sub>2</sub>O<sub>4</sub>)<sub>2</sub>]</span><span class="tag"></span></label><label class="opt" for="q47o3"><input type="radio" id="q47o3" name="q47" value="3"><span class="lab">D</span><span class="txt">K<sub>3</sub>[Al(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label></div><div class="expl hide" id="e47"><span class="lab">Explanation</span>The <i>-ate</i> ending means the complex is the <b>anion</b>, so potassium sits outside and is written first. Al is +3 and three oxalates give 3 &times; (&minus;2) = &minus;6, so the ion is &minus;3 overall and needs <b>three</b> K<sup>+</sup>.<span class="srcline">Source &middot; Coordination worksheet Q6(i)</span></div></section>
+</div>
+
+</div>
+
+<footer class="foot"><div class="rule"></div>
+  <p>Questions are set to the standard of Section A of the ISC Chemistry Paper 1
+  board and CISCE specimen papers &mdash; a mixture of quick numericals, applied
+  concepts and the recall items the board sets at one mark.</p>
+</footer>
+<script>
+(function(){
+  var KEY = 'isc-chem-heritage-class-v1';
+  var MINUTES = 96, MARKS = 1, N = 48;
+  var ANS = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3];          // correct option index per question
+  var CH  = ["kin", "kin", "kin", "kin", "kin", "echem", "echem", "echem", "echem", "echem", "echem", "echem", "echem", "echem", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "halo", "halo", "halo", "halo", "halo", "halo", "alc", "alc", "alc", "alc", "alc", "carb", "carb", "carb", "carb", "carb", "coord", "coord", "coord", "coord", "coord", "coord", "coord"];           // chapter key per question
+  var CHN = {"kin": "Chemical Kinetics", "echem": "Electrochemistry", "sol": "Solutions", "halo": "Haloalkanes &amp; Haloarenes", "alc": "Alcohols, Phenols &amp; Ethers", "carb": "Aldehydes, Ketones &amp; Acids", "coord": "Coordination Compounds"};          // chapter key -> printed name
+  var LETTERS = ['A','B','C','D'];
+
+  var gate = document.getElementById('gate');
+  var paper = document.getElementById('paper');
+  var result = document.getElementById('result');
+  var qs = document.getElementById('questions');
+  var clockEl = document.getElementById('clock');
+  var answeredEl = document.getElementById('answered');
+  var tick = null, warned = false;
+
+  /* ---------------- strict mode: leaving the page is a strike ----------------
+     A web page cannot actually stop someone minimising a window -- no page can.
+     What it can do is notice and act, which is what this does: every time the
+     document becomes hidden while the paper is running (tab switch, minimise,
+     app switch on a phone) a strike is recorded in the stored attempt, so it
+     survives a reload. The first strikes warn on return; the last one submits
+     the paper. The count is shown on the marked paper. */
+  var STRIKE_LIMIT = 3;
+  var banner = document.getElementById('strike');
+
+  function strikeNow(){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    s.answers = collect();
+    s.strikes = (s.strikes || 0) + 1;
+    save(s);
+    if (s.strikes >= STRIKE_LIMIT) submit('strikes');
+  }
+  function showStrikeBanner(){
+    var s = load();
+    if (!s || s.state !== 'running' || !s.strikes || !banner) return;
+    var left = STRIKE_LIMIT - s.strikes;
+    banner.innerHTML = '<b>You left the paper.</b> That is warning ' + s.strikes +
+      ' of ' + STRIKE_LIMIT + '. ' + (left > 0
+        ? 'Leaving ' + left + ' more time' + (left === 1 ? '' : 's') +
+          ' will submit the paper automatically.'
+        : '');
+    banner.classList.remove('hide');
+  }
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) strikeNow();
+    else showStrikeBanner();
+  });
+  window.addEventListener('blur', function(){
+    /* blur without the document being hidden is an alt-tab on some platforms */
+    setTimeout(function(){ if (!document.hasFocus() && !document.hidden) strikeNow(); }, 120);
+  });
+
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+    catch(e){ return null; }
+  }
+  function save(s){
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){}
+  }
+  function clear(){ try { localStorage.removeItem(KEY); } catch(e){} }
+
+  /* ------------------------------------------------ starting */
+  function start(){
+    var s = { state:'running', endAt: Date.now() + MINUTES*60*1000, answers:{} };
+    save(s);
+    show(s);
+  }
+
+  function show(s){
+    if (!s) { gate.classList.remove('hide'); paper.classList.add('hide');
+              result.classList.add('hide'); qs.classList.add('hide'); return; }
+    if (s.state === 'submitted') { render(s); return; }
+    gate.classList.add('hide'); result.classList.add('hide');
+    paper.classList.remove('hide'); qs.classList.remove('hide');
+    restore(s);
+    armGuards();
+    tick = setInterval(clockTick, 250);
+    clockTick();
+  }
+
+  function restore(s){
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      if (pick === undefined) continue;
+      var input = document.getElementById('q'+i+'o'+pick);
+      if (input){ input.checked = true; input.closest('.opt').classList.add('sel'); }
+    }
+    countAnswered(s);
+  }
+
+  function countAnswered(s){
+    var n = Object.keys(s.answers).length;
+    answeredEl.textContent = n + ' of ' + N + ' answered';
+  }
+
+  /* ------------------------------------------------ the clock */
+  /* The deadline is read from storage on every tick rather than captured once,
+     so the clock always reflects the stored attempt -- and stops if the attempt
+     was finalised elsewhere (another tab, or the load-path recovery). */
+  function clockTick(){
+    var s = load();
+    if (!s || s.state !== 'running'){
+      if (tick) { clearInterval(tick); tick = null; }
+      return;
+    }
+    var left = Math.max(0, s.endAt - Date.now());
+    var m = Math.floor(left/60000), sec = Math.floor((left%60000)/1000);
+    clockEl.textContent = (m<10?'0':'') + m + ':' + (sec<10?'0':'') + sec;
+    clockEl.className = left <= 120000 ? 'crit' : (left <= 600000 ? 'warn' : '');
+    if (left <= 0) submit('time');
+  }
+
+  /* ------------------------------------- leaving the paper */
+  function armGuards(){
+    window.addEventListener('beforeunload', onBeforeUnload);
+    document.addEventListener('visibilitychange', persist);
+    window.addEventListener('pagehide', persist);
+  }
+  function disarmGuards(){
+    window.removeEventListener('beforeunload', onBeforeUnload);
+    document.removeEventListener('visibilitychange', persist);
+    window.removeEventListener('pagehide', persist);
+  }
+  function onBeforeUnload(e){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    persist();
+    e.preventDefault();
+    e.returnValue = '';        /* required by older browsers to raise the dialog */
+    return '';
+  }
+  /* Write the answers out whenever the page might be going away. This does NOT
+     submit: the submission is finalised on the next load, because pagehide and
+     beforeunload are both unreliable (mobile in particular) whereas the load path
+     always runs. */
+  function persist(){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    s.answers = collect();
+    s.leftAt = Date.now();
+    save(s);
+  }
+
+  function collect(){
+    var out = {};
+    for (var i = 0; i < N; i++){
+      var el = document.querySelector('input[name="q'+i+'"]:checked');
+      if (el) out[i] = parseInt(el.value, 10);
+    }
+    return out;
+  }
+
+  /* ------------------------------------------------ submitting */
+  function submit(reason){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    if (tick) { clearInterval(tick); tick = null; }
+    disarmGuards();
+    s.answers = (reason === 'left') ? (s.answers || {}) : collect();
+    s.state = 'submitted';
+    s.submittedAt = Date.now();
+    s.reason = reason;
+    save(s);
+    render(s);
+  }
+
+  /* ------------------------------------------------ the marked paper */
+  function render(s){
+    gate.classList.add('hide');
+    paper.classList.add('hide');
+    result.classList.remove('hide');
+    qs.classList.remove('hide');
+
+    var got = 0, right = 0, wrong = 0, blank = 0;
+    var per = {};
+    for (var k in CHN) per[k] = {n:0, r:0};
+
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      var ok = (pick === ANS[i]);
+      per[CH[i]].n++;
+      if (pick === undefined) blank++;
+      else if (ok) { right++; got += MARKS; per[CH[i]].r++; }
+      else wrong++;
+
+      var card = document.getElementById('c'+i);
+      card.className = 'qcard ' + (pick === undefined ? 'blank' : (ok ? 'right':'wrong'));
+      var v = document.getElementById('v'+i);
+      v.className = 'verdict ' + (pick === undefined ? 'bl' : (ok ? 'ok':'no'));
+      v.textContent = pick === undefined ? 'Not attempted'
+                    : (ok ? '+' + MARKS + ' mark' : '0 marks');
+      v.classList.remove('hide');
+
+      for (var j = 0; j < 4; j++){
+        var o = document.getElementById('q'+i+'o'+j);
+        var row = o.closest('.opt');
+        o.disabled = true;
+        row.classList.remove('sel');
+        var tag = row.querySelector('.tag');
+        if (j === ANS[i]) { row.classList.add('correct'); tag.textContent = 'Correct answer'; }
+        if (pick === j && j !== ANS[i]) {
+          row.classList.add('chosen-wrong'); tag.textContent = 'Your answer';
+        }
+        if (pick === j && j === ANS[i]) { tag.textContent = 'Your answer — correct'; }
+      }
+      document.getElementById('e'+i).classList.remove('hide');
+    }
+
+    document.getElementById('score').innerHTML =
+      got + '<span> / ' + (N*MARKS) + '</span>';
+    document.getElementById('pct').textContent =
+      Math.round(got/(N*MARKS)*1000)/10 + '%  ·  ' + right + ' correct, ' +
+      wrong + ' wrong, ' + blank + ' not attempted';
+
+    var why = document.getElementById('why');
+    if (s.reason === 'time') {
+      why.innerHTML = '<b>Time was up.</b> The paper submitted itself at the end of ' +
+        'the ' + MINUTES + ' minutes.';
+      why.classList.remove('hide');
+    } else if (s.reason === 'left') {
+      why.innerHTML = '<b>You left the paper.</b> Closing, reloading or navigating ' +
+        'away from a paper in progress submits it, so this was marked with the ' +
+        'answers you had given at that point.';
+      why.classList.remove('hide');
+    } else { why.classList.add('hide'); }
+
+    var rows = '';
+    for (var key in CHN){
+      rows += '<tr><td class="l">' + CHN[key] + '</td><td>' + per[key].r + ' / ' +
+              per[key].n + '</td><td>' + (per[key].r*MARKS) + ' / ' +
+              (per[key].n*MARKS) + '</td></tr>';
+    }
+    document.getElementById('brkbody').innerHTML = rows;
+    document.getElementById('brkfoot').innerHTML =
+      '<tr><td class="l">Total</td><td>' + right + ' / ' + N + '</td><td>' +
+      got + ' / ' + (N*MARKS) + '</td></tr>';
+    window.scrollTo(0,0);
+  }
+
+  /* ------------------------------------------------ wiring */
+  document.getElementById('startbtn').addEventListener('click', start);
+
+  document.getElementById('submitbtn').addEventListener('click', function(){
+    var a = collect(), n = Object.keys(a).length;
+    if (n < N && !confirm((N-n) + ' question' + (N-n===1?' is':'s are') +
+        ' still unanswered. Submit anyway?')) return;
+    submit('manual');
+  });
+
+  document.querySelectorAll('.opt input').forEach(function(inp){
+    inp.addEventListener('change', function(){
+      var s = load();
+      if (!s || s.state !== 'running') return;
+      inp.closest('.opts').querySelectorAll('.opt')
+         .forEach(function(o){ o.classList.remove('sel'); });
+      inp.closest('.opt').classList.add('sel');
+      s.answers = collect();
+      save(s);
+      countAnswered(s);
+    });
+  });
+
+  var again = document.getElementById('again');
+  if (again) again.addEventListener('click', function(){
+    if (!confirm('Clear this attempt and start the paper again from the beginning?'))
+      return;
+    clear();
+    location.reload();
+  });
+
+  /* ---- the load path, which is where a lock-in is actually enforced ---- */
+  var s0 = load();
+  if (s0 && s0.state === 'running'){
+    /* The student closed, reloaded or navigated away without submitting. Finalise
+       now with whatever was stored, and say which of the two reasons it was. */
+    var expired = Date.now() >= s0.endAt;
+    s0.state = 'submitted';
+    s0.submittedAt = Date.now();
+    s0.reason = expired ? 'time' : 'left';
+    save(s0);
+    render(s0);
+  } else {
+    show(s0);
+  }
+})();
+</script>
