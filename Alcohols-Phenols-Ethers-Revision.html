@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alcohols, Phenols and Ethers &#8212; concepts behind the MCQs</title>
+<style>
+:root{
+  --bg:#EFF2F0; --surface:#FFFFFF; --surface-2:#F7F9F8;
+  --ink:#16211E; --muted:#5C6B67; --rule:#D3DBD8; --rule-strong:#9FAEA9;
+  --accent:#0F6E63; --accent-soft:#DDEEEB; --accent-ink:#0B4F47;
+  --ok:#16794C; --ok-soft:#DEF0E6; --bad:#B0271C; --bad-soft:#FAE3E0;
+  --warn:#A86400; --warn-soft:#FBF0DC;
+  --shadow:0 1px 2px rgba(22,33,30,.05), 0 8px 24px -18px rgba(22,33,30,.35);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1413; --surface:#141D1B; --surface-2:#1A2422;
+    --ink:#E4EDEA; --muted:#93A49F; --rule:#26332F; --rule-strong:#4A5C57;
+    --accent:#4FC2B0; --accent-soft:#12302C; --accent-ink:#8FDCCE;
+    --ok:#5BCB90; --ok-soft:#11301F; --bad:#F0897C; --bad-soft:#331A17;
+    --warn:#E0A94A; --warn-soft:#2C2413;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1413; --surface:#141D1B; --surface-2:#1A2422;
+  --ink:#E4EDEA; --muted:#93A49F; --rule:#26332F; --rule-strong:#4A5C57;
+  --accent:#4FC2B0; --accent-soft:#12302C; --accent-ink:#8FDCCE;
+  --ok:#5BCB90; --ok-soft:#11301F; --bad:#F0897C; --bad-soft:#331A17;
+  --warn:#E0A94A; --warn-soft:#2C2413;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.62}
+sub,sup{line-height:0; font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+a{color:var(--accent)}
+b,strong{font-weight:650}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--rule); background:var(--surface)}
+.masthead .inner{max-width:54rem; margin:0 auto; padding:2.4rem 1.25rem 1.9rem;
+  display:flex; flex-direction:column; gap:.7rem}
+.eyebrow{font-family:var(--sans); font-size:.7rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+h1{font-family:var(--serif); font-weight:600; font-size:clamp(1.9rem,4.5vw,2.6rem);
+  line-height:1.12; margin:0; letter-spacing:-.012em; text-wrap:balance}
+.standfirst{margin:0; color:var(--muted); max-width:56ch; font-size:1.03rem}
+.masthead .back{font-family:var(--sans); font-size:.78rem; color:var(--muted);
+  text-decoration:none; align-self:flex-start}
+.masthead .back:hover{color:var(--accent)}
+.railbar{position:sticky; top:0; z-index:20; border-bottom:1px solid var(--rule);
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(10px); backdrop-filter:saturate(180%) blur(10px)}
+.railbar .inner{max-width:54rem; margin:0 auto; padding:.55rem 1.25rem;
+  display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; font-family:var(--sans)}
+.railbar .spacer{flex:1 1 auto}
+.btn{font-family:var(--sans); font-size:.78rem; font-weight:550; text-decoration:none;
+  background:var(--surface); border:1px solid var(--rule); border-radius:2px;
+  padding:.36rem .8rem; color:var(--muted); cursor:pointer}
+.btn:hover{border-color:var(--rule-strong); color:var(--ink)}
+
+/* ---------- contents ---------- */
+main{max-width:54rem; margin:0 auto; padding:1.8rem 1.25rem 3rem}
+.toc{background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  box-shadow:var(--shadow); padding:1.1rem 1.3rem; margin-bottom:2rem}
+.toc h2{font-size:.7rem; font-family:var(--sans); font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 .7rem}
+.toc ol{margin:0; padding-left:1.3rem; columns:2; column-gap:1.6rem; font-size:.95rem}
+.toc li{margin-bottom:.28rem; break-inside:avoid}
+.toc a{text-decoration:none} .toc a:hover{text-decoration:underline}
+@media (max-width:620px){ .toc ol{columns:1} }
+
+/* ---------- sections ---------- */
+section{margin:0 0 2.6rem; scroll-margin-top:4rem}
+h2.sec{font-family:var(--serif); font-weight:600; font-size:1.5rem; line-height:1.2;
+  margin:0 0 .2rem; letter-spacing:-.012em;
+  display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+h2.sec .num{font-family:var(--sans); font-size:.78rem; font-weight:700; color:var(--accent);
+  border:1px solid var(--accent); border-radius:2px; padding:.05rem .4rem}
+.lede{margin:.3rem 0 1.1rem; color:var(--muted); font-size:1rem; max-width:62ch}
+p{margin:0 0 .9rem} p:last-child{margin-bottom:0}
+h3{font-family:var(--serif); font-size:1.12rem; font-weight:600; margin:1.5rem 0 .5rem}
+
+/* ---------- diagrams ---------- */
+svg.dia{display:block; width:100%; max-width:640px; height:auto; margin:1.1rem auto .4rem;
+  color:var(--ink)}
+svg.struct{vertical-align:middle; margin:0 .2em}
+.cap{font-family:var(--sans); font-size:.8rem; color:var(--muted); text-align:center;
+  margin:0 auto 1.2rem; max-width:52ch}
+.figwrap{background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  padding:.6rem .8rem .2rem; margin:1.1rem 0}
+
+/* ---------- key box ---------- */
+.key{background:var(--accent-soft); border-left:3px solid var(--accent); border-radius:3px;
+  padding:.75rem 1rem; margin:1.1rem 0; font-size:.98rem}
+.key b:first-child{color:var(--accent-ink)}
+.trap{background:var(--bad-soft); border-left:3px solid var(--bad); border-radius:3px;
+  padding:.75rem 1rem; margin:1.1rem 0; font-size:.98rem}
+.trap b:first-child{color:var(--bad)}
+.hook{background:var(--warn-soft); border-left:3px solid var(--warn); border-radius:3px;
+  padding:.75rem 1rem; margin:1.1rem 0; font-size:.98rem}
+.hook b:first-child{color:var(--warn)}
+
+/* ---------- ladder ---------- */
+.ladder{display:flex; flex-direction:column; gap:.55rem; margin:1.1rem 0;
+  font-family:var(--sans); font-size:.9rem}
+.ladder .row{display:grid; grid-template-columns:1fr auto; gap:.12rem .9rem;
+  align-items:baseline}
+.ladder .nm b{font-weight:650}
+.ladder .val{font-variant-numeric:tabular-nums; color:var(--muted); font-size:.84rem;
+  text-align:right; white-space:nowrap}
+.ladder .gauge{grid-column:1 / -1; height:.32rem; border-radius:2px;
+  background:var(--rule); overflow:hidden}
+.ladder .gauge i{display:block; height:100%; background:var(--accent)}
+.ladder .hd{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); font-weight:600; margin-bottom:-.2rem}
+
+/* ---------- flow / decision ---------- */
+.flow{display:flex; flex-direction:column; gap:.45rem; margin:1.1rem 0;
+  font-family:var(--sans); font-size:.9rem}
+.flow .q{background:var(--surface); border:1px solid var(--rule-strong); border-radius:3px;
+  padding:.5rem .8rem; font-weight:600}
+.flow .opts{display:grid; grid-template-columns:1fr 1fr; gap:.45rem}
+.flow .o{border:1px solid var(--rule); border-radius:3px; padding:.5rem .8rem;
+  background:var(--surface-2)}
+.flow .o .t{font-weight:650; display:block; margin-bottom:.15rem}
+.flow .o.yes{border-color:var(--ok)} .flow .o.yes .t{color:var(--ok)}
+.flow .o.no{border-color:var(--bad)} .flow .o.no .t{color:var(--bad)}
+.flow .o small{color:var(--muted); font-size:.82rem}
+@media (max-width:560px){ .flow .opts{grid-template-columns:1fr} }
+
+/* ---------- two-column compare ---------- */
+.pair{display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin:1.1rem 0}
+.pair .col{border:1px solid var(--rule); border-radius:3px; background:var(--surface);
+  padding:.8rem .95rem}
+.pair .col h4{margin:0 0 .45rem; font-family:var(--sans); font-size:.76rem; font-weight:700;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--accent)}
+.pair .col.b h4{color:var(--bad)}
+.pair ul{margin:0; padding-left:1.05rem; font-size:.93rem}
+.pair li{margin-bottom:.25rem}
+@media (max-width:560px){ .pair{grid-template-columns:1fr} }
+
+/* ---------- hub map ---------- */
+.hub{display:grid; grid-template-columns:repeat(auto-fit,minmax(13rem,1fr)); gap:.55rem;
+  margin:1.1rem 0}
+.hub .n{border:1px solid var(--rule); border-radius:3px; background:var(--surface-2);
+  padding:.55rem .75rem; font-size:.9rem}
+.hub .n .r{font-family:var(--mono); font-size:.78rem; color:var(--accent-ink);
+  display:block; margin-bottom:.15rem}
+.hub .n .p{font-weight:650}
+.hub .n small{color:var(--muted); display:block; font-size:.8rem; margin-top:.1rem}
+
+/* ---------- tables ---------- */
+.ref{font-family:var(--sans); font-size:.74rem; color:var(--accent); font-weight:600; white-space:nowrap; margin-left:.35rem}
+table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem}
+th,td{border:1px solid var(--rule); padding:.42rem .6rem; text-align:left; vertical-align:top}
+th{background:var(--surface-2); font-family:var(--sans); font-size:.76rem; font-weight:650;
+  letter-spacing:.04em; color:var(--muted)}
+td.c{text-align:center}
+
+/* ---------- drill link ---------- */
+.covers{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+  border-top:1px solid var(--rule); margin-top:1.4rem; padding-top:.7rem;
+  font-family:var(--sans); font-size:.82rem; color:var(--muted)}
+.covers b{color:var(--ink); font-variant-numeric:tabular-nums}
+.covers .chip{background:var(--accent-soft); color:var(--accent-ink); border-radius:2px;
+  padding:.12rem .45rem; font-size:.76rem; font-weight:600}
+.covers a{margin-left:auto; text-decoration:none; font-weight:600}
+.covers a:hover{text-decoration:underline}
+
+footer{max-width:54rem; margin:0 auto; padding:0 1.25rem 3rem;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); line-height:1.65}
+footer .rule{height:1px; background:var(--rule); margin-bottom:1rem}
+@media print{
+  .railbar,.toc{display:none}
+  body{background:#fff; font-size:11pt}
+  section{page-break-inside:auto} .figwrap,.key,.trap,.hook{page-break-inside:avoid}
+}
+</style>
+<header class="masthead"><div class="inner">
+  <a class="back" href="index.html">&#8249; ISC Chemistry drills</a>
+  <div class="eyebrow">ISC Class 12 &#183; Unit 7 &#183; Revision notes</div>
+  <h1>Alcohols, Phenols and Ethers</h1>
+  <p class="standfirst">The concepts behind the 107 organic questions in the
+  drills, in the order they build on each other &#8212; explained with diagrams rather
+  than lists. Read a section, then answer its questions in the Learn paper.</p>
+</div></header>
+
+<nav class="railbar"><div class="inner">
+  <a class="btn" href="index.html">All drills</a>
+  <a class="btn" href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Paper 3 &#183; Learn</a>
+  <span class="spacer"></span>
+  <button class="btn" id="theme" type="button">Dark</button>
+</div></nav>
+
+<main>
+  <div class="toc"><h2>What is in here</h2><ol><li><a href="#s1">Three families, one oxygen</a></li><li><a href="#s2">Hydrogen bonding, boiling point and solubility</a></li><li><a href="#s3">Counting isomers without missing any</a></li><li><a href="#s4">Acidity &#8212; the one idea worth most marks</a></li><li><a href="#s5">The four handles on an alcohol</a></li><li><a href="#s6">Carbocations decide almost everything</a></li><li><a href="#s7">Phenol has two faces</a></li><li><a href="#s8">Ethers &#8212; making them and breaking them</a></li><li><a href="#s9">Telling them apart in one test tube</a></li><li><a href="#s10">Making an alcohol, and choosing the route</a></li><li><a href="#s11">The ten-minute recall</a></li></ol></div>
+  
+<section id="s1">
+<h2 class="sec"><span class="num">1</span>Three families, one oxygen</h2>
+<p class="lede">Every question in this chapter starts by asking, silently, <i>what
+class is this?</i> Get that wrong and nothing downstream works.</p>
+
+<p>All three families are water with a hydrogen replaced by carbon. That single
+substitution is the whole chapter:</p>
+
+<div class="hub">
+  <div class="n"><span class="r">H&#8212;O&#8212;H</span><span class="p">Water</span>
+    <small>the parent</small></div>
+  <div class="n"><span class="r">R&#8212;O&#8212;H</span><span class="p">Alcohol</span>
+    <small>one H replaced by an <b>alkyl</b> group</small></div>
+  <div class="n"><span class="r">Ar&#8212;O&#8212;H</span><span class="p">Phenol</span>
+    <small>one H replaced by an <b>aryl</b> group &#8212; OH <i>on</i> the ring</small></div>
+  <div class="n"><span class="r">R&#8212;O&#8212;R&#8242;</span><span class="p">Ether</span>
+    <small><b>both</b> H atoms replaced</small></div>
+</div>
+
+<div class="trap"><b>The commonest classification trap.</b> Benzyl alcohol
+C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>OH is <b>not</b> a phenol. The OH sits on a
+CH<sub>2</sub> that happens to be attached to a ring, not on the ring carbon itself.
+It is a primary alcohol and behaves like one &#8212; it gives no colour with
+FeCl<sub>3</sub>, it does not dissolve in NaOH, and it oxidises to benzaldehyde.
+A phenol needs the oxygen bonded <i>directly</i> to an sp<sup>2</sup> ring carbon.</div>
+
+<h3>Then: how many carbons touch the carbinol carbon?</h3>
+<p>The carbinol carbon is the one carrying the OH. Count the <i>other carbons</i>
+bonded to it &#8212; nothing else matters, not the size of the molecule, not the
+total carbon count.</p>
+
+<div class="flow">
+  <div class="q">How many carbon atoms are attached to the C&#8211;OH carbon?</div>
+  <div class="opts">
+    <div class="o"><span class="t">0 or 1 &#8594; primary (1&#176;)</span>
+      <small>CH<sub>3</sub>OH, CH<sub>3</sub>CH<sub>2</sub>OH,
+      (CH<sub>3</sub>)<sub>2</sub>CHCH<sub>2</sub>OH &#8212; note the last one is 1&#176;
+      even though it is branched, because the branch is one carbon <i>further along</i></small></div>
+    <div class="o"><span class="t">2 &#8594; secondary (2&#176;)</span>
+      <small>(CH<sub>3</sub>)<sub>2</sub>CHOH, cyclohexanol</small></div>
+  </div>
+  <div class="opts">
+    <div class="o"><span class="t">3 &#8594; tertiary (3&#176;)</span>
+      <small>(CH<sub>3</sub>)<sub>3</sub>COH, 2-methylbutan-2-ol</small></div>
+    <div class="o"><span class="t">Also worth naming</span>
+      <small><b>allylic</b> CH<sub>2</sub>=CH&#8211;CH<sub>2</sub>OH and <b>benzylic</b>
+      C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>OH &#8212; formally 1&#176;, but their
+      carbocations are resonance stabilised, so they react like 3&#176; in
+      S<sub>N</sub>1 and in the Lucas test</small></div>
+  </div>
+</div>
+
+<div class="key"><b>Why this matters.</b> The class fixes the answer to almost every
+later question: which product oxidation gives, how fast the Lucas test turns
+cloudy, whether dehydration is easy or hard, whether S<sub>N</sub>1 or S<sub>N</sub>2
+runs, and which Grignard you need to make it. Classify first, every time.</div>
+
+<h3>Degree of unsaturation &#8212; a 10-second sanity check</h3>
+<p>For C<sub>n</sub>H<sub>2n+2</sub>O the molecule is saturated and acyclic: it can only
+be an alcohol or an ether, never a phenol. C<sub>4</sub>H<sub>10</sub>O fits, so no
+ring is possible. But C<sub>7</sub>H<sub>8</sub>O has four degrees of unsaturation
+&#8212; a benzene ring &#8212; so cresol and anisole are candidates and butanol is not.</p>
+</section>
+
+
+<section id="s2">
+<h2 class="sec"><span class="num">2</span>Hydrogen bonding &#8212; boiling point and solubility</h2>
+<p class="lede">Almost every physical-property question is this one picture applied
+twice: once to boiling point, once to solubility.</p>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 300" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><text x="320" y="26" text-anchor="middle" font-size="16" font-weight="600" fill="var(--accent)">Alcohol &#8212; it has an O&#8211;H to donate</text><text x="78" y="80" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="104" y1="74" x2="130" y2="74" stroke="currentColor" stroke-width="1.6"/><text x="142" y="80" text-anchor="middle" font-size="18" font-weight="600" fill="currentColor">O</text><line x1="154" y1="74" x2="180" y2="74" stroke="currentColor" stroke-width="1.6"/><text x="204" y="80" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">H</text><text x="388" y="80" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="414" y1="74" x2="440" y2="74" stroke="currentColor" stroke-width="1.6"/><text x="452" y="80" text-anchor="middle" font-size="18" font-weight="600" fill="currentColor">O</text><line x1="464" y1="74" x2="490" y2="74" stroke="currentColor" stroke-width="1.6"/><text x="514" y="80" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">H</text><line x1="206" y1="74" x2="372" y2="74" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 4"/><text x="289" y="58" text-anchor="middle" font-size="13" font-weight="normal" fill="var(--accent)">hydrogen bond</text><text x="289" y="104" text-anchor="middle" font-size="13" font-weight="normal" fill="var(--muted)">strong &#8212; a lot of energy is needed to pull the molecules apart</text><text x="320" y="156" text-anchor="middle" font-size="16" font-weight="600" fill="var(--bad)">Ether &#8212; no O&#8211;H, so nothing to donate</text><text x="78" y="208" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="104" y1="202" x2="130" y2="202" stroke="currentColor" stroke-width="1.6"/><text x="142" y="208" text-anchor="middle" font-size="18" font-weight="600" fill="currentColor">O</text><line x1="154" y1="202" x2="180" y2="202" stroke="currentColor" stroke-width="1.6"/><text x="204" y="208" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><text x="388" y="208" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="414" y1="202" x2="440" y2="202" stroke="currentColor" stroke-width="1.6"/><text x="452" y="208" text-anchor="middle" font-size="18" font-weight="600" fill="currentColor">O</text><line x1="464" y1="202" x2="490" y2="202" stroke="currentColor" stroke-width="1.6"/><text x="514" y="208" text-anchor="middle" font-size="17" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><text x="289" y="236" text-anchor="middle" font-size="13" font-weight="normal" fill="var(--muted)">&#10007; no bond forms between them &#8212; only weak dipole&#8211;dipole attraction</text><line x1="40" y1="262" x2="600" y2="262" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 3"/><text x="320" y="286" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">ethanol 351 K&#160;&#160;&#160;vs&#160;&#160;&#160;methoxymethane 249 K &#8212; both are C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>6</tspan>O</text></svg>
+<p class="cap">The same molecular formula, a 102 K difference in boiling point. Only
+the alcohol can donate a hydrogen bond, so only the alcohol forms an extended
+network that has to be broken before it boils.</p></div>
+
+<div class="key"><b>The two-part rule.</b> To hydrogen bond with <i>itself</i> a molecule
+must both <b>donate</b> (needs H on O, N or F) and <b>accept</b> (needs a lone pair).
+An ether can only accept. That is why ethers boil near the alkane of the same mass
+&#8212; but still dissolve in water, because water supplies the H and the ether
+supplies the lone pair.</div>
+
+<h3>Ordering boiling points</h3>
+<p>Compare in this order and stop at the first difference:</p>
+
+<div class="ladder"><div class="hd">Falling boiling point, C<sub>4</sub>H<sub>10</sub>O and relatives</div><div class="row"><div class="nm"><b>Butan-1-ol</b> &#8212; 1&#176;, straight chain, unhindered OH</div><div class="val">391 K</div><div class="gauge"><i style="width:96%"></i></div></div><div class="row"><div class="nm"><b>Butan-2-ol</b> &#8212; 2&#176;, OH slightly shielded</div><div class="val">373 K</div><div class="gauge"><i style="width:88%"></i></div></div><div class="row"><div class="nm"><b>2-Methylpropan-2-ol</b> &#8212; 3&#176;, OH buried in branches</div><div class="val">355 K</div><div class="gauge"><i style="width:79%"></i></div></div><div class="row"><div class="nm"><b>Diethyl ether</b> &#8212; no O&#8211;H at all</div><div class="val">308 K</div><div class="gauge"><i style="width:36%"></i></div></div><div class="row"><div class="nm"><b>Butane</b> &#8212; no oxygen at all</div><div class="val">273 K</div><div class="gauge"><i style="width:26%"></i></div></div></div>
+
+<ol>
+<li><b>Can it hydrogen bond to itself?</b> Alcohol &#8250; ether &#8776; alkane of
+similar mass. This dominates everything else.</li>
+<li><b>Among alcohols, is the chain branched?</b> Branching makes the molecule more
+spherical: less surface contact, weaker van der Waals forces, and the OH is
+partly shielded. So 1&#176; &#8250; 2&#176; &#8250; 3&#176; for isomers.</li>
+<li><b>How many OH groups?</b> Each one adds a hydrogen-bonding site. Ethane-1,2-diol
+boils at 470 K, glycerol at 563 K.</li>
+<li><b>Only then, molecular mass.</b></li>
+</ol>
+
+<div class="trap"><b>Ortho-nitrophenol boils lower than para-nitrophenol.</b> This looks
+backwards until you see where the hydrogen bond goes. In the ortho isomer the OH and
+the NO<sub>2</sub> are next to each other, so the hydrogen bonds <i>inside the same
+molecule</i> &#8212; chelation. That H is used up and unavailable to neighbours. In the
+para isomer the groups are too far apart to reach, so the bonding is intermolecular
+and the molecules cling to each other. Consequences: <i>o</i>-nitrophenol is more
+volatile (it steam-distils, which is how the two are separated) and less soluble in
+water; <i>p</i>-nitrophenol is the higher-boiling, more soluble solid.</div>
+
+<h3>Solubility in water</h3>
+<p>The OH end is hydrophilic and hydrogen bonds to water; the hydrocarbon tail is
+hydrophobic and gets in the way. Solubility is a tug of war between the two, and the
+tail wins as it grows:</p>
+
+<table>
+<tr><th>Alcohol</th><th>Carbons</th><th>Solubility in water</th></tr>
+<tr><td>Methanol, ethanol, propan-1-ol</td><td class="c">1&#8211;3</td>
+  <td>completely miscible</td></tr>
+<tr><td>Butanol</td><td class="c">4</td><td>partly soluble (~8 g/100 mL)</td></tr>
+<tr><td>Hexanol and beyond</td><td class="c">&#8805;6</td><td>essentially insoluble</td></tr>
+</table>
+
+<p>For isomers of the <i>same</i> formula the order flips relative to boiling point:
+<b>3&#176; is the most soluble</b>, because a compact branched tail disrupts water's
+own structure less than a long straight one. So butan-1-ol boils highest but
+2-methylpropan-2-ol dissolves best.</p>
+
+<div class="covers"><span class="chip">Structure & properties</span>
+  <span><b>27</b> questions in the drill turn on this section and the next</span>
+  <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Open the Learn paper &#8250;</a></div>
+</section>
+
+
+<section id="s3">
+<h2 class="sec"><span class="num">3</span>Counting isomers without missing any</h2>
+<p class="lede">"How many isomers of C<sub>4</sub>H<sub>10</sub>O?" is a counting
+question, not a chemistry one &#8212; but only if you count systematically.</p>
+
+<p>Work down a fixed list. Skeletons first, then position, then function.</p>
+
+<div class="pair">
+  <div class="col"><h4>Alcohols &#8212; 4</h4>
+  <ul>
+    <li>Straight chain C&#8211;C&#8211;C&#8211;C, OH at position 1 &#8594;
+      <b>butan-1-ol</b> (1&#176;)</li>
+    <li>Straight chain, OH at position 2 &#8594; <b>butan-2-ol</b> (2&#176;)</li>
+    <li>Branched skeleton, OH on the end &#8594;
+      <b>2-methylpropan-1-ol</b> (1&#176;)</li>
+    <li>Branched skeleton, OH on the branch point &#8594;
+      <b>2-methylpropan-2-ol</b> (3&#176;)</li>
+  </ul></div>
+  <div class="col b"><h4>Ethers &#8212; 3</h4>
+  <ul>
+    <li>1 + 3 split &#8594; <b>methoxypropane</b>
+      (CH<sub>3</sub>OC<sub>3</sub>H<sub>7</sub>, <i>n</i>-propyl)</li>
+    <li>1 + 3 split, branched &#8594; <b>2-methoxypropane</b> (isopropyl)</li>
+    <li>2 + 2 split &#8594; <b>ethoxyethane</b></li>
+  </ul></div>
+</div>
+
+<div class="key"><b>Answer: 7 in total</b> &#8212; 4 alcohols + 3 ethers. Chain and
+position isomerism live inside each family; alcohol&#8211;ether is
+<b>functional isomerism</b> across them. A question that says "structural isomers"
+wants all 7; one that says "isomeric alcohols" wants 4.</div>
+
+<h3>The chirality check</h3>
+<p>A carbon is a stereocentre when it carries <b>four different groups</b>. Butan-2-ol
+qualifies &#8212; C2 holds H, OH, CH<sub>3</sub> and C<sub>2</sub>H<sub>5</sub> &#8212;
+so it is the only one of the seven that is optically active, and it exists as a pair of
+enantiomers. Butan-1-ol fails (two H on C1), and 2-methylpropan-2-ol fails (two
+identical CH<sub>3</sub> groups). This is why S<sub>N</sub>1 versus S<sub>N</sub>2
+questions so often use butan-2-ol: it is the smallest alcohol whose stereochemistry
+you can watch.</p>
+
+<div class="hook"><b>Worth memorising.</b> C<sub>3</sub>H<sub>8</sub>O has 3 isomers
+(2 alcohols + 1 ether); C<sub>4</sub>H<sub>10</sub>O has 7 (4 + 3);
+C<sub>5</sub>H<sub>12</sub>O has 14 (8 + 6). C<sub>7</sub>H<sub>8</sub>O has 5 aromatic
+isomers: <i>o</i>-, <i>m</i>- and <i>p</i>-cresol, benzyl alcohol and anisole &#8212;
+of which only the three cresols are phenols.</div>
+</section>
+
+
+<section id="s4">
+<h2 class="sec"><span class="num">4</span>Acidity &#8212; the one idea worth most marks</h2>
+<p class="lede">More questions hang on this than on anything else in the chapter. The
+whole of it is: <b>whatever stabilises the anion after the H<sup>+</sup> leaves makes
+the acid stronger.</b></p>
+
+<p>Acidity is never about the O&#8211;H bond you start with. It is about the
+<b>conjugate base</b> you end with. Spread the negative charge over more atoms and the
+anion is lower in energy, so the equilibrium sits further to the right.</p>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 224" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><polygon points="96.0,64.0 134.1,86.0 134.1,130.0 96.0,152.0 57.9,130.0 57.9,86.0" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="98.09681884264245" y1="74.44820323027551" x2="124.00829892387287" y2="89.40820323027552" stroke="currentColor" stroke-width="1.3"/><line x1="124.00829892387287" y1="126.59179676972448" x2="98.09681884264245" y2="141.5517967697245" stroke="currentColor" stroke-width="1.3"/><line x1="65.8948822334847" y1="122.96" x2="65.89488223348471" y2="93.04" stroke="currentColor" stroke-width="1.3"/><line x1="96.0" y1="64.0" x2="96.0" y2="42.0" stroke="currentColor" stroke-width="1.6"/><text x="96" y="36" text-anchor="middle" font-size="16" font-weight="600" fill="currentColor">O<tspan baseline-shift='30%' font-size='75%'>&#8722;</tspan></text><circle cx="134.1" cy="86.0" r="11" fill="var(--accent)" opacity=".22"/><text x="154.88972745734185" y="78.0" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-ink)">&#948;<tspan baseline-shift='30%' font-size='75%'>&#8722;</tspan></text><text x="179.13843876330617" y="64.0" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">ortho</text><circle cx="57.9" cy="86.0" r="11" fill="var(--accent)" opacity=".22"/><text x="37.11027254265817" y="78.0" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-ink)">&#948;<tspan baseline-shift='30%' font-size='75%'>&#8722;</tspan></text><text x="12.861561236693895" y="64.0" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">ortho</text><circle cx="96.0" cy="152.0" r="11" fill="var(--accent)" opacity=".22"/><text x="96.0" y="180.0" text-anchor="middle" font-size="13" font-weight="600" fill="var(--accent-ink)">&#948;<tspan baseline-shift='30%' font-size='75%'>&#8722;</tspan></text><text x="96.0" y="208.0" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">para</text><text x="300" y="52" text-anchor="start" font-size="12.5" font-weight="600" fill="currentColor">The charge does not stay on the oxygen.</text><text x="300" y="74" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">It is delocalised on to the two <tspan font-weight='600'>ortho</tspan></text><text x="300" y="92" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">carbons and the <tspan font-weight='600'>para</tspan> carbon &#8212; four atoms</text><text x="300" y="110" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">share it instead of one.</text><text x="300" y="140" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">Spread charge = lower energy = a more</text><text x="300" y="158" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">stable anion = a <tspan font-weight='600' fill='var(--accent)'>stronger acid</tspan>.</text><text x="300" y="186" text-anchor="start" font-size="11.5" font-weight="normal" fill="var(--muted)">An alkoxide RO<tspan baseline-shift='30%' font-size='75%'>&#8722;</tspan> has nowhere to put it, so</text><text x="300" y="204" text-anchor="start" font-size="11.5" font-weight="normal" fill="var(--muted)">alcohols are ~10<tspan baseline-shift='30%' font-size='75%'>6</tspan> times weaker acids.</text></svg>
+<p class="cap">Phenoxide: the lone pair on oxygen overlaps the ring &#960; system, so the
+charge is shared with three ring carbons. This is resonance delocalisation, and it is
+the entire reason phenol is acidic while ethanol is not.</p></div>
+
+<h3>The ladder, and the two reagents that read it</h3>
+
+<div class="ladder"><div class="hd">Increasing acid strength &#8594; (pK<sub>a</sub> falling)</div><div class="row"><div class="nm"><b>Ethanol</b> C<sub>2</sub>H<sub>5</sub>OH &#8212; no delocalisation at all</div><div class="val">pK<sub>a</sub> 15&#183;9</div><div class="gauge"><i style="width:14%"></i></div></div><div class="row"><div class="nm"><b>Water</b> H<sub>2</sub>O &#8212; the reference</div><div class="val">15&#183;7</div><div class="gauge"><i style="width:20%"></i></div></div><div class="row"><div class="nm"><b>Phenol</b> C<sub>6</sub>H<sub>5</sub>OH &#8212; charge over 4 atoms</div><div class="val">10&#183;0</div><div class="gauge"><i style="width:46%"></i></div></div><div class="row"><div class="nm"><b>p-Nitrophenol</b> &#8212; NO<sub>2</sub> pulls extra charge away</div><div class="val">7&#183;2</div><div class="gauge"><i style="width:60%"></i></div></div><div class="row"><div class="nm"><b>Carbonic acid</b> H<sub>2</sub>CO<sub>3</sub> &#8212; the line NaHCO<sub>3</sub> draws</div><div class="val">6&#183;4</div><div class="gauge"><i style="width:66%"></i></div></div><div class="row"><div class="nm"><b>Acetic acid</b> CH<sub>3</sub>COOH &#8212; two equivalent oxygens</div><div class="val">4&#183;8</div><div class="gauge"><i style="width:78%"></i></div></div><div class="row"><div class="nm"><b>Picric acid</b> 2,4,6-trinitrophenol &#8212; three NO<sub>2</sub></div><div class="val">0&#183;4</div><div class="gauge"><i style="width:96%"></i></div></div></div>
+
+<div class="key"><b>The two-reagent test, and why it works.</b>
+<b>NaOH</b> (conjugate acid: water, pK<sub>a</sub> 15&#183;7) deprotonates anything more
+acidic than water &#8212; so phenol dissolves in NaOH, ethanol does not.
+<b>NaHCO<sub>3</sub></b> (conjugate acid: H<sub>2</sub>CO<sub>3</sub>, pK<sub>a</sub>
+6&#183;4) deprotonates only acids stronger than that &#8212; so a carboxylic acid fizzes
+with CO<sub>2</sub>, but ordinary phenol does <b>not</b>. That gap between pK<sub>a</sub>
+10 and 6&#183;4 is what lets you tell a phenol from a carboxylic acid in one test tube.
+Picric acid is the exception that proves the rule: at pK<sub>a</sub> 0&#183;4 it <i>does</i>
+fizz with bicarbonate, and it is stronger than acetic acid.</div>
+
+<h3>Substituents: which way does the group push?</h3>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 228" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><text x="160" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent)">&#8722;NO<tspan baseline-shift='-25%' font-size='75%'>2</tspan> <tspan font-weight='400'>pulls electrons away</tspan></text><polygon points="160.0,62.0 186.0,77.0 186.0,107.0 160.0,122.0 134.0,107.0 134.0,77.0" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="161.67653718043596" y1="69.89615242270663" x2="178.3042249330972" y2="79.49615242270663" stroke="currentColor" stroke-width="1.1"/><line x1="178.3042249330972" y1="104.50384757729337" x2="161.67653718043596" y2="114.10384757729337" stroke="currentColor" stroke-width="1.1"/><line x1="140.01923788646684" y1="101.6" x2="140.01923788646684" y2="82.4" stroke="currentColor" stroke-width="1.1"/><line x1="160.0" y1="62.0" x2="160.0" y2="48.0" stroke="currentColor" stroke-width="1.4"/><text x="160" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">OH</text><line x1="160.0" y1="122.0" x2="160.0" y2="136.0" stroke="currentColor" stroke-width="1.4"/><text x="160" y="152" text-anchor="middle" font-size="12" font-weight="600" fill="var(--accent)">NO<tspan baseline-shift='-25%' font-size='75%'>2</tspan></text><line x1="160" y1="96" x2="160" y2="130" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah)"/><text x="160" y="174" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">helps carry the charge</text><text x="160" y="196" text-anchor="middle" font-size="11.5" font-weight="normal" fill="currentColor">anion stabilised &#8594; <tspan font-weight='600'>stronger acid</tspan></text><text x="160" y="214" text-anchor="middle" font-size="11" font-weight="normal" fill="var(--muted)">p-nitrophenol&#160;&#160;pK<tspan baseline-shift='-25%' font-size='75%'>a</tspan> 7&#183;15</text><text x="480" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--bad)">&#8722;OCH<tspan baseline-shift='-25%' font-size='75%'>3</tspan> <tspan font-weight='400'>pushes electrons in</tspan></text><polygon points="480.0,62.0 506.0,77.0 506.0,107.0 480.0,122.0 454.0,107.0 454.0,77.0" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="481.67653718043596" y1="69.89615242270663" x2="498.3042249330972" y2="79.49615242270663" stroke="currentColor" stroke-width="1.1"/><line x1="498.3042249330972" y1="104.50384757729337" x2="481.67653718043596" y2="114.10384757729337" stroke="currentColor" stroke-width="1.1"/><line x1="460.01923788646684" y1="101.6" x2="460.01923788646684" y2="82.4" stroke="currentColor" stroke-width="1.1"/><line x1="480.0" y1="62.0" x2="480.0" y2="48.0" stroke="currentColor" stroke-width="1.4"/><text x="480" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="currentColor">OH</text><line x1="480.0" y1="122.0" x2="480.0" y2="136.0" stroke="currentColor" stroke-width="1.4"/><text x="480" y="152" text-anchor="middle" font-size="12" font-weight="600" fill="var(--bad)">OCH<tspan baseline-shift='-25%' font-size='75%'>3</tspan></text><line x1="480" y1="130" x2="480" y2="96" stroke="var(--bad)" stroke-width="1.6" marker-end="url(#ah)"/><text x="480" y="174" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">adds to the charge</text><text x="480" y="196" text-anchor="middle" font-size="11.5" font-weight="normal" fill="currentColor">anion destabilised &#8594; <tspan font-weight='600'>weaker acid</tspan></text><text x="480" y="214" text-anchor="middle" font-size="11" font-weight="normal" fill="var(--muted)">p-methoxyphenol&#160;&#160;pK<tspan baseline-shift='-25%' font-size='75%'>a</tspan> 10&#183;2</text><line x1="320" y1="40" x2="320" y2="220" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 3"/><text x="320" y="108" text-anchor="middle" font-size="11.5" font-weight="600" fill="currentColor">phenol</text><text x="320" y="126" text-anchor="middle" font-size="11" font-weight="normal" fill="var(--muted)">pK<tspan baseline-shift='-25%' font-size='75%'>a</tspan> 9&#183;98</text></svg>
+<p class="cap">Electron-withdrawing groups help the ring carry the negative charge, so
+they raise acidity. Electron-donating groups add charge to an already negative ion, so
+they lower it.</p></div>
+
+<table>
+<tr><th>Group</th><th>Effect</th><th>On acidity of the phenol</th></tr>
+<tr><td>&#8211;NO<sub>2</sub>, &#8211;CN, &#8211;CHO, &#8211;COOH</td>
+  <td>&#8722;I and &#8722;R, strongly withdrawing</td><td><b>increases</b> &#8212;
+  strongest at <i>ortho</i> and <i>para</i>, where resonance can reach</td></tr>
+<tr><td>&#8211;X (F, Cl, Br, I)</td><td>&#8722;I dominates over its weak +R</td>
+  <td><b>increases</b>, but only mildly</td></tr>
+<tr><td>&#8211;CH<sub>3</sub>, &#8211;C<sub>2</sub>H<sub>5</sub></td>
+  <td>+I, weakly donating</td><td><b>decreases</b> &#8212; cresols are weaker than phenol</td></tr>
+<tr><td>&#8211;OH, &#8211;OCH<sub>3</sub>, &#8211;NH<sub>2</sub></td>
+  <td>+R dominates, strongly donating</td><td><b>decreases</b> most</td></tr>
+</table>
+
+<div class="trap"><b>Two traps in one topic.</b>
+(i) <b>Resonance only reaches ortho and para.</b> <i>m</i>-Nitrophenol (pK<sub>a</sub>
+8&#183;4) is a weaker acid than <i>o</i>- or <i>p</i>-nitrophenol (~7&#183;2) because from
+the meta position NO<sub>2</sub> can only work through the inductive effect &#8212;
+which is real but far weaker. Always check the position, not just the group.
+(ii) <b>Alcohols run the other way.</b> Alkyl groups are +I, so more of them means a less
+stable alkoxide: acidity falls CH<sub>3</sub>OH &#8250; 1&#176; &#8250; 2&#176; &#8250;
+3&#176;. That is the <i>reverse</i> of the reactivity order you will meet in
+&#167;6, and mixing the two up is the single commonest slip in this chapter.</div>
+
+<div class="covers"><span class="chip">Acidity & trends</span>
+  <span><b>21</b> questions in the drill are tagged acidity and trends</span>
+  <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Open the Learn paper &#8250;</a></div>
+</section>
+
+
+<section id="s5">
+<h2 class="sec"><span class="num">5</span>The four handles on an alcohol</h2>
+<p class="lede">An alcohol has exactly four bonds that reagents attack. Learn the
+reactions grouped by <i>which bond breaks</i> and the list stops being a list.</p>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 252" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><text x="212" y="145" text-anchor="middle" font-size="20" font-weight="normal" fill="currentColor">H<tspan baseline-shift='-25%' font-size='75%'>3</tspan>C</text><line x1="238" y1="138" x2="280" y2="138" stroke="currentColor" stroke-width="1.8"/><text x="306" y="145" text-anchor="middle" font-size="20" font-weight="normal" fill="currentColor">CH<tspan baseline-shift='-25%' font-size='75%'>2</tspan></text><line x1="334" y1="138" x2="376" y2="138" stroke="currentColor" stroke-width="1.8"/><text x="390" y="145" text-anchor="middle" font-size="21" font-weight="600" fill="currentColor">O</text><line x1="402" y1="138" x2="444" y2="138" stroke="currentColor" stroke-width="1.8"/><text x="456" y="145" text-anchor="middle" font-size="20" font-weight="normal" fill="currentColor">H</text><circle cx="33" cy="36" r="10" fill="var(--accent)"/><text x="33" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">3</text><text x="48" y="40" text-anchor="start" font-size="14" font-weight="600" fill="currentColor">The &#946; C&#8211;H</text><text x="48" y="57" text-anchor="start" font-size="12" font-weight="normal" fill="var(--muted)">dehydration to an alkene</text><line x1="150" y1="62" x2="206" y2="118" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#aha)"/><circle cx="607" cy="36" r="10" fill="var(--accent)"/><text x="607" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">1</text><text x="592" y="40" text-anchor="end" font-size="14" font-weight="600" fill="currentColor">The O&#8211;H bond</text><text x="592" y="57" text-anchor="end" font-size="12" font-weight="normal" fill="var(--muted)">Na, acylation &#8212; the acidic hydrogen</text><line x1="500" y1="62" x2="432" y2="120" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#aha)"/><circle cx="33" cy="222" r="10" fill="var(--accent)"/><text x="33" y="226" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">4</text><text x="48" y="226" text-anchor="start" font-size="14" font-weight="600" fill="currentColor">The carbinol C&#8211;H</text><text x="48" y="243" text-anchor="start" font-size="12" font-weight="normal" fill="var(--muted)">oxidation, dehydrogenation</text><line x1="178" y1="206" x2="304" y2="158" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#aha)"/><circle cx="607" cy="222" r="10" fill="var(--accent)"/><text x="607" y="226" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">2</text><text x="592" y="226" text-anchor="end" font-size="14" font-weight="600" fill="currentColor">The C&#8211;O bond</text><text x="592" y="243" text-anchor="end" font-size="12" font-weight="normal" fill="var(--muted)">HX, PCl<tspan baseline-shift='-25%' font-size='75%'>3/5</tspan>, SOCl<tspan baseline-shift='-25%' font-size='75%'>2</tspan></text><line x1="500" y1="208" x2="358" y2="158" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#aha)"/></svg>
+<p class="cap">Every reaction of an alcohol in the syllabus breaks one of these four
+bonds. Identify which one a reagent goes for and the product follows.</p></div>
+
+<h3>Handle 1 &#8212; the O&#8211;H bond breaks</h3>
+<p>The alcohol acts as an acid or a nucleophile through its oxygen; the carbon skeleton
+is untouched.</p>
+<div class="hub">
+  <div class="n"><span class="r">2R&#8211;OH + 2Na &#8594; 2R&#8211;ONa + H<sub>2</sub></span>
+    <span class="p">Sodium metal</span><small>effervescence of H<sub>2</sub>; the
+    general test for an active hydrogen. Rate falls 1&#176; &#8250; 2&#176; &#8250;
+    3&#176;, matching acidity</small></div>
+  <div class="n"><span class="r">R&#8211;OH + CH<sub>3</sub>COCl &#8594;
+    CH<sub>3</sub>COOR + HCl</span><span class="p">Acylation</span>
+    <small>an ester. Use pyridine to mop up the HCl</small></div>
+  <div class="n"><span class="r">R&#8211;OH + R&#8242;COOH &#8652; ester +
+    H<sub>2</sub>O</span><span class="p">Esterification</span>
+    <small>conc. H<sub>2</sub>SO<sub>4</sub>; reversible, so drive it by removing water</small></div>
+</div>
+
+<h3>Handle 2 &#8212; the C&#8211;O bond breaks</h3>
+<p>Now the OH leaves and something takes its place. This is substitution, and it is
+where carbocations and &#167;6 come in.</p>
+<div class="hub">
+  <div class="n"><span class="r">R&#8211;OH + HX &#8594; R&#8211;X + H<sub>2</sub>O</span>
+    <span class="p">Hydrogen halide</span><small>the basis of the Lucas test.
+    Reactivity of HX: HI &#8250; HBr &#8250; HCl</small></div>
+  <div class="n"><span class="r">3R&#8211;OH + PCl<sub>3</sub> &#8594; 3R&#8211;Cl +
+    H<sub>3</sub>PO<sub>3</sub></span><span class="p">Phosphorus halides</span>
+    <small>PBr<sub>3</sub> and PI<sub>3</sub> are generated in situ from red P +
+    Br<sub>2</sub>/I<sub>2</sub></small></div>
+  <div class="n"><span class="r">R&#8211;OH + SOCl<sub>2</sub> &#8594; R&#8211;Cl +
+    SO<sub>2</sub>&#8593; + HCl&#8593;</span><span class="p">Thionyl chloride &#8212;
+    the best</span><small>both by-products are gases and leave the flask, so the
+    product needs no purification. Darzens' procedure</small></div>
+</div>
+
+<h3>Handle 3 &#8212; a &#946; C&#8211;H breaks, taking the OH with it</h3>
+<p>Elimination, giving an alkene. Conc. H<sub>2</sub>SO<sub>4</sub> at 443 K, or
+Al<sub>2</sub>O<sub>3</sub> at 623 K. Ease of dehydration is
+<b>3&#176; &#8250; 2&#176; &#8250; 1&#176;</b>, because the intermediate is a
+carbocation.</p>
+<div class="key"><b>Saytzeff's rule.</b> When more than one alkene is possible, the
+major product is the <b>more substituted</b> one &#8212; it has more hyperconjugative
+structures and so is more stable. Butan-2-ol therefore gives but-2-ene, not but-1-ene.</div>
+
+<h3>Handle 4 &#8212; the carbinol C&#8211;H breaks</h3>
+<p>Oxidation. The number of hydrogens on the carbinol carbon decides how far it can go
+&#8212; and a tertiary alcohol has none, which is why it resists.</p>
+
+<table>
+<tr><th>Class</th><th>H on carbinol C</th><th>Mild oxidant (PCC, Cu/573 K)</th>
+  <th>Strong oxidant (KMnO<sub>4</sub>, K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>)</th></tr>
+<tr><td><b>1&#176;</b></td><td class="c">2</td><td>aldehyde &#8212; <b>stops there</b></td>
+  <td>carboxylic acid, <b>same</b> number of carbons</td></tr>
+<tr><td><b>2&#176;</b></td><td class="c">1</td><td>ketone</td>
+  <td>ketone &#8212; further oxidation needs the C&#8211;C bond to break</td></tr>
+<tr><td><b>3&#176;</b></td><td class="c">0</td><td>no reaction</td>
+  <td>only under drastic conditions, with chain cleavage &#8212; <b>fewer</b> carbons</td></tr>
+</table>
+
+<div class="key"><b>PCC is the reagent that stops.</b> Pyridinium chlorochromate in
+CH<sub>2</sub>Cl<sub>2</sub> is anhydrous, so a 1&#176; alcohol gives the aldehyde and
+goes no further. Aqueous KMnO<sub>4</sub> hydrates the aldehyde and takes it straight
+through to the acid. If a question wants "1&#176; alcohol &#8594; aldehyde", the answer
+is PCC (or Cu at 573 K, which <i>dehydrogenates</i>). Note that Cu/573 K on a
+3&#176; alcohol gives an <b>alkene</b> by dehydration, not a carbonyl &#8212; there is no
+H to remove from the carbinol carbon.</div>
+
+<div class="covers"><span class="chip">Reactions & conversions</span>
+  <span><b>32</b> questions in the drill are tagged reactions and conversions</span>
+  <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Open the Learn paper &#8250;</a></div>
+</section>
+
+
+<section id="s6">
+<h2 class="sec"><span class="num">6</span>Carbocations decide almost everything</h2>
+<p class="lede">Lucas test, S<sub>N</sub>1 versus S<sub>N</sub>2, dehydration, ether
+cleavage &#8212; four separate topics, one underlying idea.</p>
+
+<p>Carbocation stability runs</p>
+<div class="ladder"><div class="hd">Increasing carbocation stability &#8594;</div><div class="row"><div class="nm">CH<sub>3</sub><sup>+</sup> methyl</div><div class="val">worst</div><div class="gauge"><i style="width:8%"></i></div></div><div class="row"><div class="nm">1&#176; &#8212; two hyperconjugating C&#8211;H</div><div class="val"></div><div class="gauge"><i style="width:26%"></i></div></div><div class="row"><div class="nm">2&#176;</div><div class="val"></div><div class="gauge"><i style="width:55%"></i></div></div><div class="row"><div class="nm">3&#176; &#8212; three alkyl groups pushing in (+I and hyperconjugation)</div><div class="val"></div><div class="gauge"><i style="width:82%"></i></div></div><div class="row"><div class="nm">Allyl and benzyl &#8212; <b>resonance</b> stabilised, beats even 3&#176;</div><div class="val">best</div><div class="gauge"><i style="width:94%"></i></div></div></div>
+
+<h3>The Lucas test reads that ladder directly</h3>
+<p>Lucas reagent is conc. HCl + anhydrous ZnCl<sub>2</sub>. The zinc chloride is a Lewis
+acid: it grips the oxygen and turns the terrible leaving group OH<sup>&#8722;</sup> into
+a good one, water. Then the C&#8211;O bond breaks to a carbocation, and Cl<sup>&#8722;</sup>
+grabs it. The chloride is insoluble in the reagent, so <b>turbidity</b> is the signal.</p>
+
+<div class="flow">
+  <div class="q">Add Lucas reagent at room temperature. When does it go cloudy?</div>
+  <div class="opts">
+    <div class="o yes"><span class="t">Immediately</span>
+      <small><b>3&#176;</b> &#8212; and also allylic or benzylic, because their cations are
+      resonance stabilised too</small></div>
+    <div class="o"><span class="t">In about 5 minutes</span>
+      <small><b>2&#176;</b></small></div>
+  </div>
+  <div class="opts">
+    <div class="o no"><span class="t">Not at room temperature</span>
+      <small><b>1&#176;</b> &#8212; needs heating</small></div>
+    <div class="o"><span class="t">Why the test is limited</span>
+      <small>only works for alcohols with <b>up to about 6 carbons</b> &#8212; larger ones
+      are not soluble in the reagent to begin with, so there is nothing to observe</small></div>
+  </div>
+</div>
+
+<h3>The two orders that point opposite ways</h3>
+<div class="pair">
+  <div class="col"><h4>Reactivity towards HX, dehydration, S<sub>N</sub>1</h4>
+  <ul><li><b>3&#176; &#8250; 2&#176; &#8250; 1&#176; &#8250; CH<sub>3</sub></b></li>
+  <li>Because the C&#8211;O bond breaks <i>first</i> and the carbocation's stability sets
+  the rate</li>
+  <li>Rate depends only on the substrate: <b>rate = k[R&#8211;OH]</b>, first order</li>
+  <li>Planar cation &#8594; attack from both faces &#8594; <b>racemisation</b></li></ul></div>
+  <div class="col b"><h4>Acidity, and reactivity in S<sub>N</sub>2</h4>
+  <ul><li><b>CH<sub>3</sub> &#8250; 1&#176; &#8250; 2&#176; &#8250; 3&#176;</b></li>
+  <li>Because the nucleophile has to reach the carbon, and alkyl groups are in the way
+  (steric hindrance)</li>
+  <li>One step, both species in the rate law: <b>rate = k[R&#8211;X][Nu]</b></li>
+  <li>Backside attack &#8594; <b>inversion</b> of configuration</li></ul></div>
+</div>
+
+<div class="trap"><b>Rearrangement gives it away.</b> If a reaction produces a skeleton
+that is not the one you started with &#8212; a methyl or hydride has shifted &#8212; a
+carbocation existed, so the mechanism was S<sub>N</sub>1. For example
+3,3-dimethylbutan-2-ol dehydrates to 2,3-dimethylbut-2-ene: the 2&#176; cation shifts a
+methyl to become 3&#176;. S<sub>N</sub>2 has no intermediate and therefore never
+rearranges.</div>
+
+<h3>The 413 K / 443 K fork &#8212; one reagent, two products</h3>
+<p>Ethanol with conc. H<sub>2</sub>SO<sub>4</sub> gives different products depending on
+the temperature and the ratio, and questions exploit this constantly:</p>
+<div class="flow">
+  <div class="q">C<sub>2</sub>H<sub>5</sub>OH + conc. H<sub>2</sub>SO<sub>4</sub>. What
+    comes out?</div>
+  <div class="opts">
+    <div class="o"><span class="t">413 K, excess alcohol</span>
+      <small>the protonated alcohol is attacked by a <i>second</i> alcohol molecule &#8212;
+      <b>substitution</b>, giving ethoxyethane C<sub>2</sub>H<sub>5</sub>OC<sub>2</sub>H<sub>5</sub></small></div>
+    <div class="o"><span class="t">443 K, excess acid</span>
+      <small>a &#946;-hydrogen leaves instead &#8212; <b>elimination</b>, giving ethene
+      CH<sub>2</sub>=CH<sub>2</sub></small></div>
+  </div>
+</div>
+<p>Higher temperature favours elimination in general, because elimination has the larger
+&#8710;S (two molecules from one) and so gains more from the T&#8710;S term.</p>
+</section>
+
+
+<section id="s7">
+<h2 class="sec"><span class="num">7</span>Phenol has two faces</h2>
+<p class="lede">Reagents attack phenol either at the <b>O&#8211;H</b> or on the
+<b>ring</b>. Sorting a reaction into one of those two boxes is most of the work.</p>
+
+<div class="pair">
+  <div class="col"><h4>Face 1 &#8212; the O&#8211;H (acidic)</h4>
+  <ul>
+    <li><b>NaOH</b> &#8594; sodium phenoxide, dissolves. Ethanol does not react.</li>
+    <li><b>Na</b> &#8594; phenoxide + H<sub>2</sub></li>
+    <li><b>Zn dust, distil</b> &#8594; benzene + ZnO &#8212; the C&#8211;O bond itself is
+      removed</li>
+    <li><b>(CH<sub>3</sub>CO)<sub>2</sub>O</b> &#8594; phenyl acetate</li>
+    <li><b>NaHCO<sub>3</sub></b> &#8594; <b>no</b> reaction, no CO<sub>2</sub> &#8212;
+      this is the test that separates phenol from a carboxylic acid</li>
+  </ul></div>
+  <div class="col b"><h4>Face 2 &#8212; the ring (activated)</h4>
+  <ul>
+    <li><b>Br<sub>2</sub>/water</b> &#8594; white ppt of 2,4,6-tribromophenol</li>
+    <li><b>Br<sub>2</sub>/CS<sub>2</sub>, 273 K</b> &#8594; mostly
+      <i>p</i>-bromophenol only</li>
+    <li><b>dil. HNO<sub>3</sub></b> &#8594; <i>o</i>- and <i>p</i>-nitrophenol;
+      <b>conc. HNO<sub>3</sub></b> &#8594; picric acid</li>
+    <li><b>CO<sub>2</sub>, NaOH, 400 K, pressure</b> &#8594; salicylic acid
+      (Kolbe)</li>
+    <li><b>CHCl<sub>3</sub> + NaOH</b> &#8594; salicylaldehyde (Reimer&#8211;Tiemann)</li>
+    <li><b>benzene diazonium chloride, 273 K</b> &#8594; orange <i>p</i>-hydroxyazobenzene</li>
+  </ul></div>
+</div>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 214" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><polygon points="110.0,60.0 149.8,83.0 149.8,129.0 110.0,152.0 70.2,129.0 70.2,83.0" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="110.0" y1="60.0" x2="110.0" y2="40.0" stroke="currentColor" stroke-width="1.6"/><text x="110" y="34" text-anchor="middle" font-size="15" font-weight="600" fill="currentColor">O&#8212;H</text><line x1="110" y1="46" x2="110" y2="66" stroke="var(--accent)" stroke-width="1.8" marker-end="url(#ah)"/><circle cx="149.8" cy="83.0" r="11" fill="var(--accent)" opacity=".24"/><text x="175.81793068761735" y="72.0" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-ink)">ortho</text><circle cx="70.2" cy="83.0" r="11" fill="var(--accent)" opacity=".24"/><text x="44.182069312382666" y="72.0" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-ink)">ortho</text><circle cx="110.0" cy="152.0" r="11" fill="var(--accent)" opacity=".24"/><text x="110.0" y="186.0" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-ink)">para</text><text x="174.08587988004848" y="147.0" text-anchor="middle" font-size="10" font-weight="normal" fill="var(--muted)">meta</text><text x="45.91412011995152" y="147.0" text-anchor="middle" font-size="10" font-weight="normal" fill="var(--muted)">meta</text><text x="240" y="46" text-anchor="start" font-size="12.5" font-weight="600" fill="currentColor">The oxygen lone pair is pushed into the ring.</text><text x="240" y="70" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">That extra electron density arrives specifically at</text><text x="240" y="88" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">the two <tspan font-weight='600'>ortho</tspan> and the <tspan font-weight='600'>para</tspan> carbons &#8212; the shaded</text><text x="240" y="106" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">ones &#8212; and not at the meta positions.</text><text x="240" y="136" text-anchor="start" font-size="11.5" font-weight="600" fill="currentColor">So an electrophile attacks there:</text><text x="240" y="158" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">&#8226; Br<tspan baseline-shift='-25%' font-size='75%'>2</tspan> &#8594; 2,4,6-tribromophenol</text><text x="240" y="176" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">&#8226; HNO<tspan baseline-shift='-25%' font-size='75%'>3</tspan> &#8594; o- and p-nitrophenol, then picric acid</text><text x="240" y="194" text-anchor="start" font-size="11.5" font-weight="normal" fill="currentColor">&#8226; CO<tspan baseline-shift='-25%' font-size='75%'>2</tspan> &#8594; salicylic acid &#160;&#8226; CHCl<tspan baseline-shift='-25%' font-size='75%'>3</tspan> &#8594; salicylaldehyde</text></svg>
+<p class="cap">Why the ring reactions all land ortho and para, and why phenol is far more
+reactive than benzene: the oxygen lone pair feeds electron density specifically into
+those three positions.</p></div>
+
+<div class="key"><b>Why bromine water gives the tri-substituted product but
+Br<sub>2</sub>/CS<sub>2</sub> does not.</b> Water is polar, so it ionises phenol slightly
+to <b>phenoxide</b> &#8212; which carries a full negative charge and activates the ring far
+more strongly than neutral phenol. All three available positions are then brominated at
+once, and no Lewis-acid catalyst is needed. CS<sub>2</sub> is non-polar, there is no
+phenoxide, the ring is less activated, and at 273 K substitution stops after one.
+<b>Solvent polarity is the variable being tested here</b>, not the bromine.</div>
+
+<div class="trap"><b>Both Kolbe and Reimer&#8211;Tiemann start by making phenoxide.</b>
+Neutral phenol is not nucleophilic enough to attack CO<sub>2</sub> or dichlorocarbene.
+That is why NaOH appears in both. Reimer&#8211;Tiemann's actual electrophile is
+<b>:CCl<sub>2</sub></b>, dichlorocarbene, made from CHCl<sub>3</sub> + OH<sup>&#8722;</sup>;
+the intermediate is an <i>o</i>-benzal chloride, which hydrolyses to the aldehyde. Both
+reactions favour the ortho product, because the sodium ion chelates the phenoxide oxygen
+and holds the incoming electrophile next to it.</div>
+
+<div class="hook"><b>The FeCl<sub>3</sub> colour.</b> Phenol gives a violet colour with
+neutral FeCl<sub>3</sub> &#8212; a coloured iron&#8211;phenoxide complex,
+[Fe(OC<sub>6</sub>H<sub>5</sub>)<sub>6</sub>]<sup>3&#8722;</sup>. Alcohols, ethers and
+benzyl alcohol give nothing. It is the single fastest way to identify a phenol.</div>
+
+<h3>The four routes to phenol</h3>
+<div class="hub">
+  <div class="n"><span class="r">C<sub>6</sub>H<sub>5</sub>Cl &#8594;[NaOH, 623 K, 300 atm]
+    &#8594; C<sub>6</sub>H<sub>5</sub>ONa &#8594;[H<sup>+</sup>] phenol</span>
+    <span class="p">Dow process</span><small>the forcing conditions are the point:
+    the C&#8211;Cl bond in chlorobenzene has partial double-bond character</small></div>
+  <div class="n"><span class="r">C<sub>6</sub>H<sub>5</sub>N<sub>2</sub>Cl +
+    H<sub>2</sub>O &#8594;[warm] phenol + N<sub>2</sub> + HCl</span>
+    <span class="p">From a diazonium salt</span><small>the mildest lab route; comes
+    from aniline + NaNO<sub>2</sub>/HCl at 273&#8211;278 K</small></div>
+  <div class="n"><span class="r">cumene &#8594;[O<sub>2</sub>] hydroperoxide
+    &#8594;[H<sup>+</sup>] phenol + acetone</span><span class="p">Cumene process</span>
+    <small>the industrial route. <b>Acetone is the by-product</b> &#8212; a favourite
+    one-mark question</small></div>
+  <div class="n"><span class="r">C<sub>6</sub>H<sub>5</sub>SO<sub>3</sub>H &#8594;[NaOH
+    fusion] &#8594;[H<sup>+</sup>] phenol</span><span class="p">From benzene sulphonic
+    acid</span><small>molten NaOH, 573 K</small></div>
+</div>
+</section>
+
+
+<section id="s8">
+<h2 class="sec"><span class="num">8</span>Ethers &#8212; making them and breaking them</h2>
+<p class="lede">Ethers are unreactive, which is why they are used as solvents. Only two
+things happen to them, and both are heavily examined.</p>
+
+<h3>Making them: Williamson synthesis</h3>
+<p>An alkoxide attacks an alkyl halide. It is a clean <b>S<sub>N</sub>2</b>, and that
+single fact settles every "which pair should you use?" question:</p>
+
+<div class="pair">
+  <div class="col"><h4>&#10003; Right pairing</h4>
+  <ul>
+    <li><b>(CH<sub>3</sub>)<sub>3</sub>C&#8211;ONa + CH<sub>3</sub>I</b></li>
+    <li>The bulky group is on the <b>alkoxide</b>; the halide is small, so
+      S<sub>N</sub>2 is unhindered</li>
+    <li>Gives <i>tert</i>-butyl methyl ether in good yield</li>
+  </ul></div>
+  <div class="col b"><h4>&#10007; Wrong pairing</h4>
+  <ul>
+    <li><b>CH<sub>3</sub>ONa + (CH<sub>3</sub>)<sub>3</sub>C&#8211;Br</b></li>
+    <li>The bulky group is on the <b>halide</b>, so S<sub>N</sub>2 cannot reach the
+      carbon</li>
+    <li>The alkoxide acts as a <b>base</b> instead and eliminates &#8594;
+      <b>2-methylpropene</b>, not an ether</li>
+  </ul></div>
+</div>
+
+<div class="key"><b>The rule in one line.</b> In Williamson synthesis, put the bulk on
+the oxygen and keep the halide primary (methyl best). Aryl ethers such as anisole are
+made from <b>sodium phenoxide + CH<sub>3</sub>I</b> &#8212; never from phenol +
+chlorobenzene, because an aryl halide will not do S<sub>N</sub>2 at all.</div>
+
+<h3>Breaking them: cleavage by HI</h3>
+<p>Ethers are inert to bases, oxidants and reductants, but concentrated HI or HBr cleaves
+them on heating. The oxygen is protonated first &#8212; that is the only way to make the
+alkoxide a viable leaving group &#8212; and then I<sup>&#8722;</sup> attacks. Which side it
+attacks is the whole question.</p>
+
+<div class="figwrap"><svg class="dia" viewBox="0 0 640 150" role="img" xmlns="http://www.w3.org/2000/svg" font-family="STIX Two Text, Liberation Serif, serif"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="currentColor"/></marker><marker id="aha" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,1 L9,4.5 L0,8 Z" fill="var(--accent)"/></marker></defs><text x="100" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent)">Two small groups &#8212; S<tspan baseline-shift='-25%' font-size='75%'>N</tspan>2</text><text x="30" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan></text><line x1="52" y1="62" x2="74" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="84" y="67" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">O</text><line x1="94" y1="62" x2="116" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="146" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="63" y1="40" x2="75" y2="80" stroke="var(--accent)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="89" y="44" text-anchor="start" font-size="10" font-weight="normal" fill="var(--accent)">cut</text><text x="100" y="108" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan>I + C<tspan baseline-shift='-25%' font-size='75%'>2</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan>OH</text><text x="100" y="132" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">the SMALL one gets the iodine</text><text x="315" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--accent)">One group tertiary &#8212; S<tspan baseline-shift='-25%' font-size='75%'>N</tspan>1</text><text x="245" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">(CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan>)<tspan baseline-shift='-25%' font-size='75%'>3</tspan>C</text><line x1="267" y1="62" x2="289" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="299" y="67" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">O</text><line x1="309" y1="62" x2="331" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="361" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan></text><line x1="278" y1="40" x2="290" y2="80" stroke="var(--accent)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="304" y="44" text-anchor="start" font-size="10" font-weight="normal" fill="var(--accent)">cut</text><text x="315" y="108" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">(CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan>)<tspan baseline-shift='-25%' font-size='75%'>3</tspan>CI + CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan>OH</text><text x="315" y="132" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">the BIG one gets the iodine</text><text x="530" y="22" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--bad)">Aryl alkyl &#8212; never on the ring side</text><text x="460" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>6</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan></text><line x1="482" y1="62" x2="504" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="514" y="67" text-anchor="middle" font-size="14" font-weight="600" fill="currentColor">O</text><line x1="524" y1="62" x2="546" y2="62" stroke="currentColor" stroke-width="1.5"/><text x="576" y="67" text-anchor="middle" font-size="14" font-weight="normal" fill="currentColor">CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan></text><line x1="535" y1="40" x2="547" y2="80" stroke="var(--bad)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="561" y="44" text-anchor="start" font-size="10" font-weight="normal" fill="var(--bad)">cut</text><text x="530" y="108" text-anchor="middle" font-size="12.5" font-weight="600" fill="currentColor">C<tspan baseline-shift='-25%' font-size='75%'>6</tspan>H<tspan baseline-shift='-25%' font-size='75%'>5</tspan>OH + CH<tspan baseline-shift='-25%' font-size='75%'>3</tspan>I</text><text x="530" y="132" text-anchor="middle" font-size="10.5" font-weight="normal" fill="var(--muted)">phenol, never iodobenzene</text><line x1="207" y1="34" x2="207" y2="140" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 3"/><line x1="422" y1="34" x2="422" y2="140" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 3"/></svg>
+<p class="cap">Three cases, one decision: does the iodide attack directly
+(S<sub>N</sub>2, so it takes the <i>less</i> hindered side) or does a stable carbocation
+form first (S<sub>N</sub>1, so the <i>more</i> substituted side becomes the halide)?</p></div>
+
+<table>
+<tr><th>Ether</th><th>Mechanism</th><th>Products with 1 mol HI</th><th>Reason</th></tr>
+<tr><td>CH<sub>3</sub>&#8211;O&#8211;C<sub>2</sub>H<sub>5</sub></td>
+  <td>S<sub>N</sub>2</td><td>CH<sub>3</sub>I + C<sub>2</sub>H<sub>5</sub>OH</td>
+  <td>attack at the less hindered carbon &#8212; the methyl</td></tr>
+<tr><td>(CH<sub>3</sub>)<sub>3</sub>C&#8211;O&#8211;CH<sub>3</sub></td>
+  <td>S<sub>N</sub>1</td><td>(CH<sub>3</sub>)<sub>3</sub>CI + CH<sub>3</sub>OH</td>
+  <td>a stable 3&#176; carbocation forms and is captured</td></tr>
+<tr><td>C<sub>6</sub>H<sub>5</sub>&#8211;O&#8211;CH<sub>3</sub> (anisole)</td>
+  <td>S<sub>N</sub>2 at the alkyl side</td>
+  <td>C<sub>6</sub>H<sub>5</sub>OH + CH<sub>3</sub>I</td>
+  <td>the C(aryl)&#8211;O bond has partial double-bond character and never breaks</td></tr>
+</table>
+
+<div class="trap"><b>Iodobenzene is never a product.</b> Whatever the aryl alkyl ether,
+the ring keeps the oxygen and you get a <b>phenol</b>. With <i>excess</i> HI the alcohol
+formed in the first two rows goes on to its own iodide, so ethoxyethane + excess HI gives
+2 C<sub>2</sub>H<sub>5</sub>I &#8212; but anisole still stops at phenol, because phenol
+does not react further with HI.</div>
+
+<div class="hook"><b>Why an ether dissolves in cold conc. H<sub>2</sub>SO<sub>4</sub>.</b>
+The oxygen lone pair accepts a proton to form an oxonium salt &#8212; ethers are Lewis
+bases. This is used to <i>separate</i> an ether from an alkane, which is untouched. It is
+also why ethers form peroxides on standing in air, a genuine laboratory hazard: always
+test an old bottle of ether before distilling it.</div>
+
+<div class="covers"><span class="chip">Mechanisms & ethers</span>
+  <span><b>13</b> questions in the drill are tagged mechanisms and ethers</span>
+  <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Open the Learn paper &#8250;</a></div>
+</section>
+
+
+<section id="s9">
+<h2 class="sec"><span class="num">9</span>Telling them apart in one test tube</h2>
+<p class="lede">"How would you distinguish X from Y?" is worth a mark every year. Choose
+the test that gives an <b>observation</b>, not just a reaction.</p>
+
+<div class="flow">
+  <div class="q">Step 1 &#8212; add neutral FeCl<sub>3</sub></div>
+  <div class="opts">
+    <div class="o yes"><span class="t">Violet colour &#8594; a PHENOL</span>
+      <small>the iron&#8211;phenoxide complex. Nothing else in this chapter does it</small></div>
+    <div class="o no"><span class="t">No colour &#8594; go to step 2</span>
+      <small>alcohol, ether, or benzyl alcohol</small></div>
+  </div>
+  <div class="q">Step 2 &#8212; add sodium metal</div>
+  <div class="opts">
+    <div class="o yes"><span class="t">H<sub>2</sub> effervescence &#8594; an ALCOHOL</span>
+      <small>it has an active hydrogen</small></div>
+    <div class="o no"><span class="t">Nothing &#8594; an ETHER</span>
+      <small>no O&#8211;H to lose</small></div>
+  </div>
+  <div class="q">Step 3 &#8212; which alcohol? Add Lucas reagent</div>
+  <div class="opts">
+    <div class="o"><span class="t">Turbid at once / in 5 min / on heating</span>
+      <small>3&#176; / 2&#176; / 1&#176; &#8212; see &#167;6</small></div>
+    <div class="o"><span class="t">Or oxidise with PCC and test the product</span>
+      <small>aldehyde (Tollens' positive) &#8594; 1&#176;; ketone (Tollens' negative)
+      &#8594; 2&#176;; no reaction &#8594; 3&#176;</small></div>
+  </div>
+</div>
+
+<h3>Two more tests that carry their own structural condition</h3>
+
+<div class="pair">
+  <div class="col"><h4>Iodoform test &#8212; I<sub>2</sub> + NaOH</h4>
+  <ul>
+    <li><b>Yellow crystals of CHI<sub>3</sub></b>, antiseptic smell</li>
+    <li>Needs the fragment <b>CH<sub>3</sub>&#8211;CH(OH)&#8211;</b> (or
+      CH<sub>3</sub>CO&#8211;)</li>
+    <li><b>Positive:</b> ethanol, propan-2-ol, butan-2-ol</li>
+    <li><b>Negative:</b> methanol (no CH<sub>3</sub> next to the carbinol carbon),
+      propan-1-ol, all 3&#176; alcohols except those fitting the pattern</li>
+    <li>So it distinguishes <b>ethanol from methanol</b>, and <b>propan-2-ol from
+      propan-1-ol</b></li>
+  </ul></div>
+  <div class="col b"><h4>Bromine water &#8212; for phenol</h4>
+  <ul>
+    <li><b>White precipitate</b> of 2,4,6-tribromophenol; the bromine colour is
+      discharged</li>
+    <li>Distinguishes phenol from benzyl alcohol and from anisole under these
+      conditions</li>
+    <li>Aniline also gives a white precipitate &#8212; use FeCl<sub>3</sub> if you need
+      to separate those two</li>
+  </ul></div>
+</div>
+
+<table>
+<tr><th>To distinguish</th><th>Use</th><th>Positive result</th></tr>
+<tr><td>Phenol / ethanol</td><td>neutral FeCl<sub>3</sub>, or NaOH</td>
+  <td>violet colour; dissolves in NaOH &#8212; phenol</td></tr>
+<tr><td>Phenol / benzoic acid</td><td>NaHCO<sub>3</sub></td>
+  <td>brisk CO<sub>2</sub> &#8212; the acid. Phenol gives none</td></tr>
+<tr><td>Phenol / benzyl alcohol</td><td>FeCl<sub>3</sub>, or bromine water</td>
+  <td>violet / white ppt &#8212; phenol</td></tr>
+<tr><td>Ethanol / methanol</td><td>iodoform</td>
+  <td>yellow CHI<sub>3</sub> &#8212; ethanol</td></tr>
+<tr><td>Propan-1-ol / propan-2-ol</td><td>iodoform, or Lucas</td>
+  <td>yellow ppt / turbid in 5 min &#8212; propan-2-ol</td></tr>
+<tr><td>Ethanol / ethoxyethane</td><td>sodium metal</td>
+  <td>H<sub>2</sub> effervescence &#8212; ethanol</td></tr>
+<tr><td>1&#176; / 2&#176; / 3&#176; alcohol</td><td>Lucas reagent</td>
+  <td>speed of turbidity</td></tr>
+</table>
+
+<div class="covers"><span class="chip">Tests & identification</span>
+  <span><b>14</b> questions in the drill are tagged tests and identification</span>
+  <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-3-Complete-Learn.html">Open the Learn paper &#8250;</a></div>
+</section>
+
+
+<section id="s10">
+<h2 class="sec"><span class="num">10</span>Making an alcohol &#8212; and choosing the route</h2>
+<p class="lede">Preparation questions usually ask which route gives which
+<b>regiochemistry</b>, or which Grignard builds a named alcohol.</p>
+
+<h3>From an alkene &#8212; two routes, opposite orientations</h3>
+<div class="pair">
+  <div class="col"><h4>Acid-catalysed hydration &#8212; Markovnikov</h4>
+  <ul>
+    <li>CH<sub>3</sub>CH=CH<sub>2</sub> + H<sub>2</sub>O/H<sup>+</sup> &#8594;
+      <b>propan-2-ol</b></li>
+    <li>Goes through a carbocation, which forms at the <b>more substituted</b> carbon</li>
+    <li>So the OH ends up on the more substituted carbon</li>
+    <li>Rearrangement is possible &#8212; a warning sign of a cation</li>
+  </ul></div>
+  <div class="col b"><h4>Hydroboration&#8211;oxidation &#8212; anti-Markovnikov</h4>
+  <ul>
+    <li>(i) B<sub>2</sub>H<sub>6</sub> &nbsp;(ii) H<sub>2</sub>O<sub>2</sub>/OH<sup>&#8722;</sup>
+      &#8594; <b>propan-1-ol</b></li>
+    <li>Boron adds to the <b>less</b> hindered carbon; the H goes to the other</li>
+    <li>One concerted step, <b>no carbocation</b>, so no rearrangement</li>
+    <li>Syn addition &#8212; H and OH add to the same face</li>
+  </ul></div>
+</div>
+
+<h3>From a carbonyl compound &#8212; the Grignard method</h3>
+<p>The Grignard carbon is nucleophilic: it attacks the carbonyl carbon, and hydrolysis of
+the alkoxide intermediate then gives the alcohol. <b>Which class of alcohol you get is
+fixed by the carbonyl you start with</b>, and this is the question that gets asked:</p>
+
+<table>
+<tr><th>Carbonyl</th><th>+ RMgX, then H<sub>3</sub>O<sup>+</sup></th><th>Note</th></tr>
+<tr><td>Methanal HCHO</td><td><b>1&#176;</b> alcohol</td><td>adds one carbon to R</td></tr>
+<tr><td>Any other aldehyde RCHO</td><td><b>2&#176;</b> alcohol</td><td></td></tr>
+<tr><td>Ketone R<sub>2</sub>C=O</td><td><b>3&#176;</b> alcohol</td><td></td></tr>
+<tr><td>Ester / acid chloride (2 mol RMgX)</td><td><b>3&#176;</b> alcohol</td>
+  <td>with two identical R groups</td></tr>
+<tr><td>Epoxide (ethylene oxide)</td><td><b>1&#176;</b> alcohol</td>
+  <td>adds <b>two</b> carbons &#8212; RCH<sub>2</sub>CH<sub>2</sub>OH</td></tr>
+</table>
+
+<div class="trap"><b>Grignards must be bone dry.</b> R&#8211;MgX is destroyed by any
+compound with an active hydrogen &#8212; water, alcohols, phenols, acids, amines &#8212;
+giving the alkane R&#8211;H and Mg(OH)X. That is why you cannot use a Grignard on a
+substrate that also carries an OH group, and why the reaction is run in dry ether. It
+also means RMgX + D<sub>2</sub>O is a clean way to make R&#8211;D.</div>
+
+<h3>Reduction routes</h3>
+<div class="hub">
+  <div class="n"><span class="r">RCHO / RCOR&#8242; &#8594;[NaBH<sub>4</sub> or
+    LiAlH<sub>4</sub>] alcohol</span><span class="p">Carbonyl reduction</span>
+    <small>NaBH<sub>4</sub> is mild and leaves esters and acids alone;
+    LiAlH<sub>4</sub> reduces everything</small></div>
+  <div class="n"><span class="r">RCOOH &#8594;[LiAlH<sub>4</sub>] RCH<sub>2</sub>OH</span>
+    <span class="p">Acid to 1&#176; alcohol</span><small>NaBH<sub>4</sub> will
+    <b>not</b> do this &#8212; a standard distractor</small></div>
+  <div class="n"><span class="r">RCOOR&#8242; &#8594;[H<sub>2</sub>/catalyst or
+    LiAlH<sub>4</sub>] RCH<sub>2</sub>OH + R&#8242;OH</span>
+    <span class="p">Ester reduction</span><small>gives two alcohols</small></div>
+</div>
+
+<div class="key"><b>Anhydrous ZnCl<sub>2</sub>, PCC, SOCl<sub>2</sub>, NaBH<sub>4</sub>,
+LiAlH<sub>4</sub>, B<sub>2</sub>H<sub>6</sub>.</b> Reagent-recognition questions are
+free marks. Learn what each one does and, just as important, what it <i>refuses</i> to
+do &#8212; NaBH<sub>4</sub> not touching a carboxylic acid, PCC not going past the
+aldehyde, HI not making iodobenzene.</div>
+</section>
+
+
+<section id="s11">
+<h2 class="sec"><span class="num">11</span>The ten-minute recall</h2>
+<p class="lede">Read only this on the morning of the paper. If any line does not make
+sense, go back to the section it came from.</p>
+
+<table>
+<tr><th>Ask</th><th>Answer</th></tr>
+<tr><td>Is the OH on the ring carbon itself?</td>
+  <td>Yes &#8594; phenol. On a CH<sub>2</sub> attached to the ring &#8594; benzyl
+  <b>alcohol</b>. <span class="ref">&#167;1</span></td></tr>
+<tr><td>Why does an alcohol boil above its isomeric ether?</td>
+  <td>Only the alcohol can <b>donate</b> a hydrogen bond. <span class="ref">&#167;2</span></td></tr>
+<tr><td>Why is <i>o</i>-nitrophenol more volatile than the para isomer?</td>
+  <td><b>Intra</b>molecular chelation ties up the O&#8211;H. <span class="ref">&#167;2</span></td></tr>
+<tr><td>C<sub>4</sub>H<sub>10</sub>O isomers?</td>
+  <td>7 &#8212; four alcohols, three ethers. <span class="ref">&#167;3</span></td></tr>
+<tr><td>Why is phenol acidic and ethanol not?</td>
+  <td>Phenoxide delocalises the charge over three ring carbons; ethoxide cannot.
+  <span class="ref">&#167;4</span></td></tr>
+<tr><td>Which dissolves in NaHCO<sub>3</sub> with fizzing?</td>
+  <td>A carboxylic acid, not a phenol &#8212; unless it is picric acid.
+  <span class="ref">&#167;4</span></td></tr>
+<tr><td>Acidity of alcohols?</td>
+  <td>CH<sub>3</sub>OH &#8250; 1&#176; &#8250; 2&#176; &#8250; 3&#176; &#8212; the
+  <b>opposite</b> of the reactivity order. <span class="ref">&#167;4, &#167;6</span></td></tr>
+<tr><td>1&#176; alcohol &#8594; aldehyde, without going further?</td>
+  <td>PCC in CH<sub>2</sub>Cl<sub>2</sub>, or Cu at 573 K. <span class="ref">&#167;5</span></td></tr>
+<tr><td>Best reagent for R&#8211;OH &#8594; R&#8211;Cl?</td>
+  <td>SOCl<sub>2</sub> &#8212; both by-products escape as gas. <span class="ref">&#167;5</span></td></tr>
+<tr><td>Lucas: immediate turbidity?</td>
+  <td>3&#176; (also allylic and benzylic). 5 min &#8594; 2&#176;. Heat &#8594; 1&#176;.
+  <span class="ref">&#167;6</span></td></tr>
+<tr><td>Ethanol + conc. H<sub>2</sub>SO<sub>4</sub> at 413 K vs 443 K?</td>
+  <td>Ethoxyethane vs ethene. <span class="ref">&#167;6</span></td></tr>
+<tr><td>Phenol + bromine water?</td>
+  <td>White ppt, 2,4,6-tribromophenol &#8212; because water makes phenoxide.
+  <span class="ref">&#167;7</span></td></tr>
+<tr><td>Kolbe gives? Reimer&#8211;Tiemann gives?</td>
+  <td>Salicylic acid; salicylaldehyde. Both need NaOH first. <span class="ref">&#167;7</span></td></tr>
+<tr><td>Cumene process by-product?</td>
+  <td>Acetone. <span class="ref">&#167;7</span></td></tr>
+<tr><td>Williamson for <i>tert</i>-butyl methyl ether?</td>
+  <td>(CH<sub>3</sub>)<sub>3</sub>CONa + CH<sub>3</sub>I. The reverse gives an alkene.
+  <span class="ref">&#167;8</span></td></tr>
+<tr><td>Anisole + HI?</td>
+  <td>Phenol + CH<sub>3</sub>I. <b>Never</b> iodobenzene. <span class="ref">&#167;8</span></td></tr>
+<tr><td>Violet with FeCl<sub>3</sub>?</td><td>Phenol. <span class="ref">&#167;9</span></td></tr>
+<tr><td>Yellow ppt with I<sub>2</sub>/NaOH?</td>
+  <td>Needs CH<sub>3</sub>CH(OH)&#8211;. Ethanol yes, methanol no.
+  <span class="ref">&#167;9</span></td></tr>
+<tr><td>Anti-Markovnikov alcohol from an alkene?</td>
+  <td>Hydroboration&#8211;oxidation. <span class="ref">&#167;10</span></td></tr>
+<tr><td>Grignard + methanal / aldehyde / ketone?</td>
+  <td>1&#176; / 2&#176; / 3&#176; alcohol. <span class="ref">&#167;10</span></td></tr>
+</table>
+</section>
+
+</main>
+
+<footer><div class="rule"></div>
+  Built for the ISC 2027 syllabus, Unit 7. The section numbers referenced in the
+  ten-minute recall point back into this page. Every diagram is drawn in the page
+  itself, so this file works offline and prints as it appears.
+</footer>
+<script>
+(function(){
+  var K='isc-chem-theme', r=document.documentElement, b=document.getElementById('theme');
+  function cur(){ return r.getAttribute('data-theme')
+    || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); }
+  function paint(){ b.textContent = cur()==='dark' ? 'Light' : 'Dark'; }
+  try{ var s=localStorage.getItem(K); if(s) r.setAttribute('data-theme',s); }catch(e){}
+  paint();
+  b.addEventListener('click', function(){
+    var n = cur()==='dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', n);
+    try{ localStorage.setItem(K, n); }catch(e){}
+    paint();
+  });
+})();
+</script>

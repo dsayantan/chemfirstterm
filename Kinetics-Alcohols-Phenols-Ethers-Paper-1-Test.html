@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Chemistry &mdash; Kinetics, Alcohols, Phenols &amp; Ethers, Paper 1 &middot; Timed test</title>
+<style>
+:root{
+  --bg:#EFF2F0; --surface:#FFFFFF; --surface-2:#F7F9F8;
+  --ink:#16211E; --muted:#5C6B67; --rule:#D3DBD8; --rule-strong:#9FAEA9;
+  --accent:#0F6E63; --accent-soft:#DDEEEB; --accent-ink:#0B4F47;
+  --ok:#16794C; --ok-soft:#DEF0E6; --bad:#B0271C; --bad-soft:#FAE3E0;
+  --shadow:0 1px 2px rgba(22,33,30,.05), 0 8px 24px -18px rgba(22,33,30,.35);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","JetBrains Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1413; --surface:#141D1B; --surface-2:#1A2422;
+    --ink:#E4EDEA; --muted:#93A49F; --rule:#26332F; --rule-strong:#4A5C57;
+    --accent:#4FC2B0; --accent-soft:#12302C; --accent-ink:#8FDCCE;
+    --ok:#5BCB90; --ok-soft:#11301F; --bad:#F0897C; --bad-soft:#331A17;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1413; --surface:#141D1B; --surface-2:#1A2422;
+  --ink:#E4EDEA; --muted:#93A49F; --rule:#26332F; --rule-strong:#4A5C57;
+  --accent:#4FC2B0; --accent-soft:#12302C; --accent-ink:#8FDCCE;
+  --ok:#5BCB90; --ok-soft:#11301F; --bad:#F0897C; --bad-soft:#331A17;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.6;
+}
+sub,sup{line-height:0; font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+code,.mono{font-family:var(--mono); font-size:.92em}
+code{
+  background:var(--surface-2); border:1px solid var(--rule); border-radius:3px;
+  padding:.08em .34em; overflow-wrap:anywhere;
+}
+/* inline benzene rings; they inherit the ink colour, so they follow the theme */
+svg.struct{vertical-align:middle; margin:0 .15em}
+.fig{
+  display:block; margin:.55rem 0 .1rem; text-align:center;
+  line-height:1.2; overflow-x:auto;
+}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--rule); background:var(--surface)}
+.masthead .inner{
+  max-width:56rem; margin:0 auto; padding:2.4rem 1.25rem 1.9rem;
+  display:flex; flex-direction:column; gap:.7rem;
+}
+.eyebrow{
+  font-family:var(--sans); font-size:.7rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+}
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(1.9rem,4.5vw,2.6rem);
+  line-height:1.12; margin:0; text-wrap:balance; letter-spacing:-.012em;
+}
+.standfirst{margin:0; color:var(--muted); max-width:52ch; font-size:1.02rem}
+h1 .paper{
+  font-family:var(--sans); font-size:.85rem; font-weight:600; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--muted);
+}
+.sources{
+  font-family:var(--sans); font-size:.78rem; color:var(--muted);
+  border-top:1px solid var(--rule); padding-top:.85rem; margin-top:.35rem;
+}
+.masthead .back{
+  font-family:var(--sans); font-size:.78rem; color:var(--muted);
+  text-decoration:none; align-self:flex-start;
+}
+.masthead .back:hover{color:var(--accent)}
+
+/* ---------- score rail ---------- */
+.rail{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter:saturate(180%) blur(10px); backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.rail .inner{
+  max-width:56rem; margin:0 auto; padding:.6rem 1.25rem .55rem;
+  display:flex; align-items:center; gap:1rem; flex-wrap:wrap; font-family:var(--sans);
+}
+.tally{display:flex; gap:1.15rem; align-items:baseline; font-size:.82rem; color:var(--muted)}
+.tally b{
+  font-size:1.05rem; color:var(--ink); font-weight:650;
+  font-variant-numeric:tabular-nums; margin-right:.22rem;
+}
+.tally .hit b{color:var(--ok)}
+.tally .miss b{color:var(--bad)}
+.rail .spacer{flex:1 1 auto}
+.bar{height:2px; background:var(--rule); position:relative}
+.bar span{
+  position:absolute; inset:0 auto 0 0; width:0%;
+  background:var(--accent); transition:width .3s ease;
+}
+
+/* ---------- buttons ---------- */
+button{font:inherit; color:inherit; cursor:pointer}
+.btn{
+  font-family:var(--sans); font-size:.78rem; font-weight:550;
+  background:var(--surface); border:1px solid var(--rule); border-radius:2px;
+  padding:.38rem .8rem; color:var(--muted); transition:border-color .15s, color .15s;
+}
+.btn:hover{border-color:var(--rule-strong); color:var(--ink)}
+.btn[aria-pressed="true"]{
+  background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink);
+}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- filters ---------- */
+.filters{max-width:56rem; margin:0 auto; padding:1.6rem 1.25rem .2rem}
+.filters .label{
+  font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.6rem;
+}
+.filters .label + .label{margin-top:1rem}
+.chips{display:flex; flex-wrap:wrap; gap:.4rem}
+.hint{
+  font-family:var(--sans); font-size:.76rem; color:var(--muted);
+  max-width:56rem; margin:.9rem auto 0; padding:0 1.25rem;
+}
+
+/* ---------- questions ---------- */
+main{
+  max-width:56rem; margin:0 auto; padding:1.6rem 1.25rem 2rem;
+  display:flex; flex-direction:column; gap:1.1rem;
+}
+.q{
+  background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  box-shadow:var(--shadow); padding:1.35rem 1.4rem 1.4rem;
+  display:flex; flex-direction:column; gap:.95rem;
+}
+.q[hidden]{display:none}
+.q-head{display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap; font-family:var(--sans)}
+.q-num{
+  font-size:.72rem; font-weight:700; letter-spacing:.06em; color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.q-topic{
+  font-size:.66rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); border:1px solid var(--rule); border-radius:2px; padding:.1rem .42rem;
+}
+.q-src{font-size:.72rem; color:var(--muted); margin-left:auto}
+.stem{margin:0; font-size:1.04rem; line-height:1.55; text-wrap:pretty}
+.stem b{font-weight:650}
+
+/* data tables inside a stem */
+table.data{
+  border-collapse:collapse; margin:.85rem 0 .1rem; font-family:var(--sans);
+  font-size:.84rem; width:100%;
+}
+table.data th, table.data td{
+  border:1px solid var(--rule); padding:.34rem .5rem; text-align:center;
+}
+table.data th{background:var(--surface-2); font-weight:600; color:var(--muted)}
+table.data td{font-variant-numeric:tabular-nums}
+
+/* ---------- options ----------
+   flex-wrap plus a flexible .txt lets an option run to several lines without
+   the "your answer" badge squeezing the text into a column. */
+.opts{display:flex; flex-direction:column; gap:.45rem}
+.opt{
+  display:flex; flex-wrap:wrap; gap:.35rem .7rem; align-items:flex-start;
+  text-align:left; width:100%;
+  background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  padding:.65rem .8rem; font-family:var(--serif); font-size:.98rem; line-height:1.5;
+  transition:border-color .14s, background .14s;
+}
+.opt:hover:not(:disabled){border-color:var(--rule-strong); background:var(--surface-2)}
+.opt:disabled{cursor:default}
+.opt .key{
+  flex:0 0 auto; font-family:var(--mono); font-size:.78rem; font-weight:600;
+  color:var(--muted); border:1px solid var(--rule); border-radius:2px;
+  width:1.55rem; height:1.55rem; display:grid; place-items:center; margin-top:.08rem;
+}
+.opt .txt{flex:1 1 14rem; min-width:0}
+.opt code{white-space:normal; overflow-wrap:anywhere}
+.opt .mark{
+  margin-left:auto; flex:0 0 auto; font-family:var(--sans); font-size:.7rem;
+  font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding-top:.25rem;
+}
+.opt.correct{border-color:var(--ok); background:var(--ok-soft)}
+.opt.correct .key{border-color:var(--ok); color:var(--ok)}
+.opt.correct .mark{color:var(--ok)}
+.opt.wrong{border-color:var(--bad); background:var(--bad-soft)}
+.opt.wrong .key{border-color:var(--bad); color:var(--bad)}
+.opt.wrong .mark{color:var(--bad)}
+
+/* ---------- explanation ---------- */
+.why{
+  border-left:2px solid var(--accent); background:var(--surface-2);
+  padding:.8rem 1rem; display:flex; flex-direction:column; gap:.5rem;
+}
+.why[hidden]{display:none}
+.why .verdict{
+  font-family:var(--sans); font-size:.7rem; font-weight:700;
+  letter-spacing:.11em; text-transform:uppercase;
+}
+.why .verdict.hit{color:var(--ok)}
+.why .verdict.miss{color:var(--bad)}
+.why p{margin:0; font-size:.95rem; line-height:1.58}
+.why .owhy{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-direction:column; gap:.42rem;
+}
+.why .owhy li{
+  display:grid; grid-template-columns:1.35rem 1fr; gap:.55rem;
+  font-size:.92rem; line-height:1.52; color:var(--muted);
+}
+.why .owhy .k{
+  font-family:var(--sans); font-size:.68rem; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; text-align:center; color:var(--muted);
+  border:1px solid var(--rule); border-radius:2px; height:1.15rem; line-height:1.05rem;
+}
+.why .owhy li.is-correct{color:var(--ink)}
+.why .owhy li.is-correct .k{
+  color:var(--ok); border-color:var(--ok); background:var(--ok-soft); font-weight:800;
+}
+.why .owhy li.is-chosen .k{color:var(--bad); border-color:var(--bad); background:var(--bad-soft)}
+.why .owhy li.is-correct.is-chosen .k{
+  color:var(--ok); border-color:var(--ok); background:var(--ok-soft);
+}
+.why .owhy b.tag{
+  font-family:var(--sans); font-size:.66rem; font-weight:700; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ok); margin-right:.3rem;
+}
+.why .owhy li:not(.is-correct) b.tag{color:var(--bad)}
+.why code{white-space:normal; overflow-wrap:anywhere}
+.why .steps{
+  margin:0; padding:.1rem 0; list-style:none; display:flex; flex-direction:column; gap:.25rem;
+  font-family:var(--mono); font-size:.85rem; color:var(--muted);
+}
+/* pre-wrap, not pre: chemistry working lines are long and should wrap rather
+   than force the card to scroll sideways. */
+.why .steps li{white-space:pre-wrap; overflow-wrap:anywhere}
+.why .steps li::before{content:"→ "; color:var(--accent)}
+
+/* ---------- result ---------- */
+.result{max-width:56rem; margin:0 auto 4rem; padding:0 1.25rem}
+.result .card{
+  border:1px solid var(--rule); border-radius:3px; background:var(--surface);
+  box-shadow:var(--shadow); padding:1.6rem 1.4rem;
+  display:flex; flex-direction:column; gap:1.2rem;
+}
+.result h2{
+  font-family:var(--serif); font-weight:600; font-size:1.3rem; margin:0; letter-spacing:-.01em;
+}
+.big{display:flex; align-items:baseline; gap:.6rem; font-variant-numeric:tabular-nums}
+.big .score{font-family:var(--serif); font-size:3rem; line-height:1; font-weight:600}
+.big .of{font-family:var(--sans); font-size:.95rem; color:var(--muted)}
+.big .pct{
+  margin-left:auto; font-family:var(--sans); font-size:.8rem; font-weight:650;
+  border:1px solid var(--rule); border-radius:2px; padding:.25rem .6rem; color:var(--muted);
+}
+table.br{width:100%; border-collapse:collapse; font-family:var(--sans); font-size:.85rem}
+table.br th, table.br td{
+  text-align:left; padding:.45rem .3rem; border-bottom:1px solid var(--rule);
+}
+table.br th{
+  font-size:.66rem; font-weight:600; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--muted);
+}
+table.br td.n{text-align:right; font-variant-numeric:tabular-nums}
+table.br tr.chap td{
+  font-weight:650; color:var(--accent-ink); background:var(--accent-soft);
+  border-bottom-color:var(--accent-soft);
+}
+table.br td .meter{
+  display:block; height:3px; max-width:11rem; background:var(--rule);
+  border-radius:2px; margin-top:.3rem;
+}
+table.br td .meter i{display:block; height:100%; background:var(--accent); border-radius:2px}
+.result .actions{display:flex; gap:.5rem; flex-wrap:wrap}
+.result .note{font-family:var(--sans); font-size:.78rem; color:var(--muted); margin:0}
+
+footer{
+  max-width:56rem; margin:0 auto; padding:0 1.25rem 3rem;
+  font-family:var(--sans); font-size:.75rem; color:var(--muted); line-height:1.6;
+}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+@media (max-width:560px){
+  body{font-size:16px}
+  .q{padding:1.1rem 1rem 1.15rem}
+  .q-src{margin-left:0; flex-basis:100%}
+  .opt .mark{margin-left:2.25rem; flex-basis:100%; padding-top:0}
+  table.data{font-size:.76rem}
+}
+
+
+/* ---------- start gate ---------- */
+.gate{max-width:56rem; margin:2rem auto 0; padding:0 1.25rem}
+.gate .card{
+  border:1px solid var(--rule); border-left:3px solid var(--accent); border-radius:3px;
+  background:var(--surface); box-shadow:var(--shadow); padding:1.6rem 1.5rem;
+}
+.gate h2{
+  font-family:var(--serif); font-weight:600; font-size:1.35rem; margin:0 0 .8rem;
+  letter-spacing:-.01em;
+}
+.gate ol{margin:0 0 1.1rem; padding-left:1.2rem; font-size:.98rem}
+.gate ol li{margin-bottom:.35rem}
+.gate .startBtn{
+  font-family:var(--sans); font-size:.92rem; font-weight:650;
+  background:var(--accent); color:#fff; border:1px solid var(--accent);
+  border-radius:3px; padding:.6rem 1.6rem;
+}
+.gate .startBtn:hover{filter:brightness(1.08)}
+.gate .facts{
+  display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1rem;
+  font-family:var(--sans); font-size:.78rem;
+}
+.gate .facts span{
+  border:1px solid var(--accent-soft); background:var(--accent-soft);
+  color:var(--accent-ink); border-radius:2px; padding:.2rem .55rem;
+}
+.gate .facts b{font-variant-numeric:tabular-nums; font-weight:700}
+
+/* ---------- clock ---------- */
+.clock{
+  font-family:var(--mono); font-variant-numeric:tabular-nums;
+  font-size:1.15rem; font-weight:650; color:var(--ink);
+  border:1px solid var(--rule); border-radius:3px; padding:.14rem .6rem;
+  background:var(--surface);
+}
+.clock.warn{color:#a86400; border-color:#a86400}
+.clock.crit{color:var(--bad); border-color:var(--bad)}
+.clock .lab{
+  font-family:var(--sans); font-size:.62rem; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin-right:.4rem;
+}
+.submitBtn{
+  font-family:var(--sans); font-size:.78rem; font-weight:650;
+  background:var(--accent); color:#fff; border:1px solid var(--accent);
+  border-radius:2px; padding:.38rem 1rem;
+}
+.submitBtn:hover{filter:brightness(1.08)}
+.submitBtn:disabled{opacity:.45; cursor:default; filter:none}
+
+/* ---------- navigator ---------- */
+.nav{max-width:56rem; margin:1.4rem auto 0; padding:0 1.25rem}
+.nav .label{
+  font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:.55rem;
+}
+.nav .grid{display:flex; flex-wrap:wrap; gap:.3rem}
+.nav .grid button{
+  font-family:var(--mono); font-size:.72rem; width:1.9rem; height:1.9rem;
+  border:1px solid var(--rule); background:var(--surface); color:var(--muted);
+  border-radius:2px; font-variant-numeric:tabular-nums;
+}
+.nav .grid button:hover{border-color:var(--rule-strong); color:var(--ink)}
+.nav .grid button.done{
+  background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink);
+  font-weight:650;
+}
+.nav .grid button.hit{background:var(--ok-soft); border-color:var(--ok); color:var(--ok)}
+.nav .grid button.miss{background:var(--bad-soft); border-color:var(--bad); color:var(--bad)}
+
+/* selected, but not yet marked */
+.opt.picked{border-color:var(--accent); background:var(--accent-soft)}
+.opt.picked .key{border-color:var(--accent); color:var(--accent-ink)}
+
+.unans{
+  font-family:var(--sans); font-size:.78rem; color:var(--bad); margin:.2rem 0 0;
+}
+.result .taken{
+  font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+</style>
+<script>
+/* Apply the remembered theme before first paint, so there is no flash of the
+   wrong palette. Shares its storage key with index.html. */
+try {
+  var t = localStorage.getItem("isc-chem-theme");
+  if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+} catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="inner">
+    <a class="back" href="index.html">&larr; ISC Chemistry Practice</a>
+    <div class="eyebrow">ISC Chemistry &middot; Paper 1 (Theory) &middot; Timed test</div>
+    <h1>Kinetics, Alcohols, Phenols &amp; Ethers<br><span class="paper">Paper 1
+      &middot; Timed test</span></h1>
+    <p class="standfirst">The same 68 questions as the Learn version, sat as a paper.
+    90 minutes, one mark each, nothing marked until you submit. Read the
+    instructions, then start the clock.</p>
+    <p class="sources">Built from the ISC Chemistry Paper 1 board papers for 2018&ndash;2026, the 2025 Improvement paper, the CISCE specimen papers for 2018 and 2022&ndash;2027, and Heritage School papers. Syllabus units 3 and 7. If you would rather work
+    through the same questions with the answers on show and no clock running, use the
+    <a href="Kinetics-Alcohols-Phenols-Ethers-Paper-1-Learn.html">Learn version</a>.</p>
+  </div>
+</header>
+
+<div class="rail">
+  <div class="inner">
+    <span id="railLive" hidden>
+      <span class="clock" id="clock"><span class="lab" id="clockLab">Time left</span><span
+        id="clockT">00:00</span></span>
+      <span class="tally" style="margin-left:1rem">
+        <span><b id="tDone">0</b>of <span id="tTotal">0</span> answered</span>
+      </span>
+    </span>
+    <span class="spacer"></span>
+    <button class="btn" id="themeBtn" type="button">Dark</button>
+    <button class="submitBtn" id="submitBtn" type="button" disabled>Submit paper</button>
+  </div>
+  <div class="bar"><span id="barFill"></span></div>
+</div>
+
+<section class="gate" id="gate">
+  <div class="card">
+    <h2>Before you start</h2>
+    <div class="facts">
+      <span><b>68</b> questions</span>
+      <span><b>68</b> marks</span>
+      <span><b>90</b> minutes</span>
+      <span>no negative marking</span>
+    </div>
+    <ol>
+      <li>All 68 questions are multiple choice and carry <b>one mark</b> each. There is
+        no negative marking, so an informed guess costs nothing.</li>
+      <li>The clock starts when you press the button below and runs for
+        <b>90 minutes</b>. The paper is <b>submitted automatically</b> when the
+        time is up.</li>
+      <li>You may answer in any order, change an answer as often as you like, and click a
+        chosen option again to clear it. <b>Nothing is marked until you submit.</b></li>
+      <li>Use the numbered grid under the clock to jump to a question. A filled square
+        means you have answered it.</li>
+      <li>After submission every question shows the correct answer and the full
+        explanation, so the marked paper doubles as your review.</li>
+      <li>Nothing is saved. You can retake the paper as often as you like &mdash; the
+        questions and their order never change.</li>
+    </ol>
+    <button class="startBtn" id="startBtn" type="button">Start the test</button>
+  </div>
+</section>
+
+<section class="nav" id="navBox" hidden>
+  <div class="label">Questions</div>
+  <div class="grid" id="navGrid"></div>
+</section>
+
+<main id="quiz" hidden></main>
+
+<section class="result" id="resultBox" hidden>
+  <div class="card">
+    <h2 id="resTitle">Paper submitted</h2>
+    <div class="big">
+      <span class="score" id="resScore">0</span>
+      <span class="of">correct out of <span id="resOf">0</span></span>
+      <span class="pct" id="resPct">&mdash;</span>
+    </div>
+    <p class="taken" id="resTaken"></p>
+    <table class="br">
+      <thead><tr><th>Chapter / topic</th><th class="n">Correct</th><th class="n">Answered</th>
+      <th class="n">Total</th></tr></thead>
+      <tbody id="resRows"></tbody>
+    </table>
+    <p class="note">Every question above now shows its worked solution. Any row where
+    <i>Correct</i> is well below <i>Answered</i> is a topic to revise before retaking.</p>
+    <div class="actions">
+      <button class="btn" id="retakeBtn" type="button">Retake the paper</button>
+      <button class="btn" id="topBtn" type="button">Back to question 1</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Timed paper for ISC Class 12 Chemistry, syllabus unit 3 <em>Chemical Kinetics</em>
+  (33 questions) and unit 7 <em>Alcohols, Phenols and Ethers</em> (35 questions).
+  Every numerical answer was recomputed independently rather than copied. Check the
+  current syllabus before working through the older papers &mdash; it decides what is
+  still examinable.
+</footer>
+
+<script>
+var TOPICS = {"rate": "Rate &amp; rate law", "order": "Order &amp; units of k", "first": "First order &amp; half-life", "arr": "Arrhenius &amp; E<sub>a</sub>", "kcon": "Kinetics theory", "phys": "Structure &amp; properties", "acid": "Acidity &amp; trends", "rxn": "Reactions &amp; conversions", "ident": "Tests &amp; identification", "mech": "Mechanisms &amp; ethers"};
+var CHAPTER = {"rate": "Chemical Kinetics", "order": "Chemical Kinetics", "first": "Chemical Kinetics", "arr": "Chemical Kinetics", "kcon": "Chemical Kinetics", "phys": "Alcohols, Phenols &amp; Ethers", "acid": "Alcohols, Phenols &amp; Ethers", "rxn": "Alcohols, Phenols &amp; Ethers", "ident": "Alcohols, Phenols &amp; Ethers", "mech": "Alcohols, Phenols &amp; Ethers"};
+var THEME_KEY = "isc-chem-theme";
+var MINUTES = 90;
+var Q = [
+ {
+  "t": "rate",
+  "src": "Problem type T1",
+  "q": "For the reaction 2N<sub>2</sub>O<sub>5</sub> &rarr; 4NO<sub>2</sub> + O<sub>2</sub>, the rate of formation of O<sub>2</sub> is 2&middot;5 &times; 10<sup>&minus;4</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>. What is the rate of disappearance of N<sub>2</sub>O<sub>5</sub>?",
+  "o": [
+   "1&middot;25 &times; 10<sup>&minus;4</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "2&middot;5 &times; 10<sup>&minus;4</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "5&middot;0 &times; 10<sup>&minus;4</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "1&middot;0 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "rate = −½ d[N₂O₅]/dt = + d[O₂]/dt",
+   "rate of reaction = 2·5 × 10⁻⁴ mol L⁻¹ s⁻¹",
+   "− d[N₂O₅]/dt = 2 × rate = 5·0 × 10⁻⁴"
+  ],
+  "e": "Divide each term by its own stoichiometric coefficient to get the single &ldquo;rate of reaction&rdquo;, then multiply back by the coefficient of the species you want. N<sub>2</sub>O<sub>5</sub> has a coefficient of 2 and O<sub>2</sub> of 1, so N<sub>2</sub>O<sub>5</sub> is consumed <b>twice as fast</b> as O<sub>2</sub> is formed. Halving instead of doubling is the standard slip."
+ },
+ {
+  "t": "rate",
+  "src": "Problem type T1",
+  "q": "For 4NH<sub>3</sub> + 5O<sub>2</sub> &rarr; 4NO + 6H<sub>2</sub>O, the rate of formation of NO is 3&middot;6 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>. What is the rate of consumption of O<sub>2</sub>?",
+  "o": [
+   "9&middot;0 &times; 10<sup>&minus;4</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "2&middot;88 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "3&middot;6 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>",
+   "4&middot;5 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>"
+  ],
+  "a": 3,
+  "steps": [
+   "rate = ¼ d[NO]/dt = 3·6 × 10⁻³ / 4 = 9·0 × 10⁻⁴",
+   "− d[O₂]/dt = 5 × rate = 5 × 9·0 × 10⁻⁴",
+   "= 4·5 × 10⁻³ mol L⁻¹ s⁻¹"
+  ],
+  "e": "Two steps, and both are needed. First divide by the coefficient of the species you were <i>given</i> (4 for NO) to reach the rate of reaction; then multiply by the coefficient of the species you <i>want</i> (5 for O<sub>2</sub>). Going straight from one to the other by the ratio 5/4 works too &mdash; 3&middot;6 &times; 10<sup>&minus;3</sup> &times; 5/4 = 4&middot;5 &times; 10<sup>&minus;3</sup> &mdash; but only if you get the ratio the right way up."
+ },
+ {
+  "t": "rate",
+  "src": "Problem type T2",
+  "q": "A reaction has the rate law rate = k[A]<sup>3/2</sup>[B]<sup>&minus;1</sup>. If [A] is quadrupled and [B] is doubled at the same time, the rate becomes:",
+  "o": [
+   "2 times the original",
+   "4 times the original",
+   "8 times the original",
+   "16 times the original"
+  ],
+  "a": 1,
+  "steps": [
+   "rate′ / rate = (4)^(3/2) × (2)^(−1)",
+   "(4)^(3/2) = 8 ,  (2)^(−1) = ½",
+   "8 × ½ = 4"
+  ],
+  "e": "Raise each concentration factor to <b>that reactant's own order</b>, then multiply the results. Fractional and negative orders behave exactly like whole ones. A <b>negative</b> order is not a misprint &mdash; it means B <i>retards</i> the reaction, so doubling [B] <i>divides</i> the rate by two. Taking the modulus of the &minus;1 would give 16, which is the trap."
+ },
+ {
+  "t": "rate",
+  "src": "Concept C5",
+  "q": "Which statement about the rate constant k of a reaction is correct?",
+  "o": [
+   "k depends on the concentration of the reactants, but not on the temperature.",
+   "k is numerically the rate of reaction when the concentration of every reactant is unity. It is independent of concentration, but depends on the temperature and on the catalyst.",
+   "k has the same units for every reaction, namely mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>, because it is a rate.",
+   "k increases as the reaction proceeds, because the reactants are steadily used up."
+  ],
+  "a": 1,
+  "e": "k is also called the <b>specific reaction rate</b>, precisely because it is the rate at unit concentration. Everything else in the list is a common confusion: k is <i>independent</i> of concentration (that is what makes it a constant); its units depend on the order, mol<sup>1&minus;n</sup>L<sup>n&minus;1</sup>s<sup>&minus;1</sup>, and coincide with those of the rate only when n = 0; and k is fixed at a given temperature throughout the reaction &mdash; it is the <b>rate</b>, not k, that falls as the reaction proceeds."
+ },
+ {
+  "t": "rate",
+  "src": "Problem type T20",
+  "q": "A reaction has rate = k[A]<sup>2</sup>[B]. If B is taken in large excess, the <b>observed</b> order of the reaction becomes:",
+  "o": [
+   "zero",
+   "one",
+   "two",
+   "three"
+  ],
+  "a": 2,
+  "steps": [
+   "[B] is effectively constant, so absorb it into the constant",
+   "rate = (k[B]) [A]² = k′[A]²",
+   "observed order = 2 ; true order is still 3"
+  ],
+  "e": "A reactant in large excess barely changes in concentration during the run, so it cannot be seen to affect the rate and drops out of the observed rate law. This is exactly what <b>pseudo order</b> means: the acid hydrolysis of an ester is second order in principle but pseudo <i>first</i> order in practice, because water is the solvent."
+ },
+ {
+  "t": "rate",
+  "src": "Problem type T19",
+  "q": "For a gaseous reaction with rate = k[A][B]<sup>2</sup>, the volume of the reaction vessel is doubled at constant temperature. The rate of reaction becomes:",
+  "o": [
+   "one-half of the original",
+   "one-quarter of the original",
+   "one-eighth of the original",
+   "eight times the original"
+  ],
+  "a": 2,
+  "steps": [
+   "concentration = moles / volume, so doubling V halves every concentration",
+   "rate′ / rate = (½)¹ × (½)² = 1/8"
+  ],
+  "e": "The link the question is testing is <b>volume &rarr; concentration</b>. Doubling the volume halves every concentration; then it is an ordinary T2 calculation. Note that <i>halving</i> the volume would instead multiply the rate by 2<sup>1</sup> &times; 2<sup>2</sup> = 8 &mdash; the same arithmetic run the other way."
+ },
+ {
+  "t": "order",
+  "src": "Specimen 2018 &middot; type T4",
+  "q": "The rate constant of a reaction has the unit L mol<sup>&minus;1</sup> s<sup>&minus;1</sup>. The order of the reaction is:",
+  "o": [
+   "zero",
+   "one",
+   "two",
+   "three"
+  ],
+  "a": 2,
+  "steps": [
+   "unit of k = mol^(1−n) L^(n−1) s⁻¹",
+   "given L¹ mol⁻¹ s⁻¹, so n − 1 = 1",
+   "n = 2"
+  ],
+  "e": "The unit of k is a fingerprint of the order. Since rate = k[R]<sup>n</sup>, k = rate/[R]<sup>n</sup>, which gives unit of k = <b>mol<sup>1&minus;n</sup>L<sup>n&minus;1</sup>s<sup>&minus;1</sup></b>. Read off either the power of L (which is n&nbsp;&minus;&nbsp;1) or the power of mol (which is 1&nbsp;&minus;&nbsp;n). This works in both directions, and both directions are set."
+ },
+ {
+  "t": "order",
+  "src": "Specimen 2026 &middot; ISC 2026",
+  "q": "The unit of the rate constant of a reaction is found to be the same as the unit of its rate of reaction. The order of the reaction is:",
+  "o": [
+   "zero",
+   "one",
+   "two",
+   "fractional"
+  ],
+  "a": 0,
+  "steps": [
+   "rate has the unit mol L⁻¹ s⁻¹",
+   "mol^(1−n) L^(n−1) s⁻¹ = mol¹ L⁻¹ s⁻¹",
+   "1 − n = 1 , so n = 0"
+  ],
+  "e": "Only for a <b>zero order</b> reaction is rate = k[R]<sup>0</sup> = k, so the two are numerically and dimensionally the same thing. This has been set in both the 2026 specimen paper and the 2026 board paper, which is a fair indication of how much CISCE likes it."
+ },
+ {
+  "t": "order",
+  "src": "Problem type T4",
+  "q": "For a certain reaction k = 5&middot;2 &times; 10<sup>&minus;2</sup> mol<sup>&minus;&frac12;</sup> L<sup>&frac12;</sup> s<sup>&minus;1</sup>. The order of the reaction is:",
+  "o": [
+   "&frac12;",
+   "1",
+   "3/2",
+   "2"
+  ],
+  "a": 2,
+  "steps": [
+   "mol^(1−n) L^(n−1) s⁻¹ = mol^(−½) L^(½) s⁻¹",
+   "n − 1 = ½  ⇒  n = 3/2",
+   "check: 1 − n = −½ ✓"
+  ],
+  "e": "Fractional orders are perfectly legitimate &mdash; order is an experimental quantity, under no obligation to be a whole number. A fractional order is usually a sign that the reaction has a chain or multi-step mechanism. Always confirm with the second exponent, as in the third line above."
+ },
+ {
+  "t": "order",
+  "src": "Problem type T3",
+  "q": "The following initial rates were measured for A + B &rarr; C at 298 K. What is the rate law?<table class='data'><thead><tr><th>Expt.</th><th>[A] / mol L<sup>&minus;1</sup></th><th>[B] / mol L<sup>&minus;1</sup></th><th>Rate / mol L<sup>&minus;1</sup> s<sup>&minus;1</sup></th></tr></thead><tbody><tr><td>1</td><td>0&middot;2</td><td>0&middot;2</td><td>4&middot;0 &times; 10<sup>&minus;3</sup></td></tr><tr><td>2</td><td>0&middot;4</td><td>0&middot;2</td><td>1&middot;6 &times; 10<sup>&minus;2</sup></td></tr><tr><td>3</td><td>0&middot;2</td><td>0&middot;4</td><td>8&middot;0 &times; 10<sup>&minus;3</sup></td></tr></tbody></table>",
+  "o": [
+   "rate = k[A][B]",
+   "rate = k[A][B]<sup>2</sup>",
+   "rate = k[A]<sup>2</sup>[B]",
+   "rate = k[A]<sup>2</sup>[B]<sup>2</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "expts. 1→2: [B] fixed, [A] ×2, rate ×4  ⇒  2ˣ = 4, x = 2",
+   "expts. 1→3: [A] fixed, [B] ×2, rate ×2  ⇒  2ʸ = 2, y = 1",
+   "rate = k[A]²[B] ,  overall order 3"
+  ],
+  "e": "The whole method is <b>change one thing at a time</b>. Pick two experiments in which one concentration is held fixed; the ratio of the rates then isolates the order of the other reactant. In general, if concentration is multiplied by <i>c</i> and the rate by <i>r</i>, then <i>c</i><sup>x</sup> = <i>r</i>, so x = log&nbsp;<i>r</i> / log&nbsp;<i>c</i> &mdash; which handles the cases where the concentration is not simply doubled."
+ },
+ {
+  "t": "order",
+  "src": "Problem type T3",
+  "q": "Using the same data as the previous question (rate = k[A]<sup>2</sup>[B], with rate = 4&middot;0 &times; 10<sup>&minus;3</sup> mol L<sup>&minus;1</sup> s<sup>&minus;1</sup> when [A] = [B] = 0&middot;2 mol L<sup>&minus;1</sup>), the value of the rate constant is:",
+  "o": [
+   "0&middot;1 L<sup>2</sup> mol<sup>&minus;2</sup> s<sup>&minus;1</sup>",
+   "0&middot;5 L<sup>2</sup> mol<sup>&minus;2</sup> s<sup>&minus;1</sup>",
+   "2&middot;0 L<sup>2</sup> mol<sup>&minus;2</sup> s<sup>&minus;1</sup>",
+   "0&middot;5 L mol<sup>&minus;1</sup> s<sup>&minus;1</sup>"
+  ],
+  "a": 1,
+  "steps": [
+   "k = rate / ([A]²[B])",
+   "= 4·0 × 10⁻³ / ((0·2)² × 0·2)",
+   "= 4·0 × 10⁻³ / 8·0 × 10⁻³ = 0·5"
+  ],
+  "e": "Substitute any one experiment into the rate law you have just established. The mark that is routinely lost here is the <b>unit</b>: for n = 3 it is mol<sup>1&minus;3</sup>L<sup>3&minus;1</sup>s<sup>&minus;1</sup> = <b>L<sup>2</sup>mol<sup>&minus;2</sup>s<sup>&minus;1</sup></b>. Note the last option has the right number but the unit for a second order reaction."
+ },
+ {
+  "t": "order",
+  "src": "Specimen 2027 &middot; Specimen 2022 Sem 2",
+  "q": "The overall order of a reaction with the rate law rate = k[A]<sup>2</sup>[B]<sup>&frac12;</sup>[C]<sup>&minus;1</sup> is:",
+  "o": [
+   "1",
+   "1&middot;5",
+   "2&middot;5",
+   "3&middot;5"
+  ],
+  "a": 1,
+  "steps": [
+   "overall order = sum of the exponents",
+   "2 + ½ − 1 = 1·5"
+  ],
+  "e": "Add the exponents <b>algebraically</b> &mdash; fractions count as they stand and negative exponents subtract. The commonest error is to ignore the sign of the &minus;1 and answer 3&middot;5, or to drop the C term altogether because it looks odd."
+ },
+ {
+  "t": "first",
+  "src": "ISC 2018 &middot; Heritage 2024&ndash;25",
+  "q": "40% of a first order reaction is completed in 50 minutes. How long will 80% of the reaction take?",
+  "o": [
+   "100 minutes",
+   "125 minutes",
+   "157&middot;5 minutes",
+   "200 minutes"
+  ],
+  "a": 2,
+  "steps": [
+   "divide the two equations so that k cancels",
+   "t / 50 = log(100/20) ÷ log(100/60)",
+   "= 0·6990 / 0·2218 = 3·151",
+   "t = 50 × 3·151 = 157·5 min"
+  ],
+  "e": "Because k is not asked for, do not calculate it. Write k = (2&middot;303/t)&nbsp;log[a/(a&nbsp;&minus;&nbsp;x)] twice and divide, and both 2&middot;303 and k vanish. Take a = 100: 40% complete leaves <b>60</b> unreacted, and 80% complete leaves <b>20</b>. Answering 100 minutes assumes the reaction is linear in time, which is what a <i>zero</i> order reaction does, not a first order one."
+ },
+ {
+  "t": "first",
+  "src": "ISC 2019",
+  "q": "25% of a first order reaction is completed in 30 minutes. The time taken for the reaction to go to 90% completion is:",
+  "o": [
+   "108 minutes",
+   "120 minutes",
+   "240 minutes",
+   "300 minutes"
+  ],
+  "a": 2,
+  "steps": [
+   "t / 30 = log(100/10) ÷ log(100/75)",
+   "= 1·0000 / 0·1249 = 8·004",
+   "t = 30 × 8·004 = 240·1 min"
+  ],
+  "e": "Same ratio method: 25% done leaves 75, and 90% done leaves 10. The arithmetic is unusually clean here because log(100/10) = 1 exactly. About four hours to go from a quarter finished to nine-tenths finished &mdash; first order reactions have a long tail, because each equal interval removes an equal <i>fraction</i> rather than an equal amount."
+ },
+ {
+  "t": "first",
+  "src": "Problem type T6",
+  "q": "60% of a first order reaction is complete in 40 minutes. The rate constant is:",
+  "o": [
+   "1&middot;15 &times; 10<sup>&minus;2</sup> min<sup>&minus;1</sup>",
+   "2&middot;29 &times; 10<sup>&minus;2</sup> min<sup>&minus;1</sup>",
+   "4&middot;58 &times; 10<sup>&minus;2</sup> min<sup>&minus;1</sup>",
+   "6&middot;93 &times; 10<sup>&minus;2</sup> min<sup>&minus;1</sup>"
+  ],
+  "a": 1,
+  "steps": [
+   "k = (2·303 / t) log[a / (a − x)]",
+   "= (2·303 / 40) log(100 / 40)",
+   "= 0·05758 × 0·3979",
+   "= 2·29 × 10⁻² min⁻¹"
+  ],
+  "e": "Here k <i>is</i> what is asked for, so the ratio shortcut does not apply and you must evaluate it. Note the unit: the data are in minutes, so k comes out in min<sup>&minus;1</sup>, not s<sup>&minus;1</sup>. Once you have k, the half-life follows immediately as 0&middot;693/k = 30&middot;2 minutes."
+ },
+ {
+  "t": "first",
+  "src": "Problem type T8",
+  "q": "For a first order reaction k = 2&middot;0 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>. How long will it take for the concentration of the reactant to fall from 0&middot;50 M to 0&middot;125 M?",
+  "o": [
+   "346&middot;5 s",
+   "693 s",
+   "1040 s",
+   "1386 s"
+  ],
+  "a": 1,
+  "steps": [
+   "0·50 → 0·25 → 0·125 is exactly 2 half-lives",
+   "t½ = 0·693 / 2·0 × 10⁻³ = 346·5 s",
+   "t = 2 × 346·5 = 693 s"
+  ],
+  "e": "Always check first whether the concentration ratio is a <b>power of 2</b>. Here 0&middot;50/0&middot;125 = 4 = 2<sup>2</sup>, so it is two half-lives and no logarithm is needed at all. The long route agrees: t = (2&middot;303/2&middot;0 &times; 10<sup>&minus;3</sup>) log&nbsp;4 = 1151&middot;5 &times; 0&middot;6021 = 693&middot;3&nbsp;s."
+ },
+ {
+  "t": "first",
+  "src": "Problem type T9",
+  "q": "A first order reaction has a half-life of 5 minutes. The time required for it to be 87&middot;5% complete is:",
+  "o": [
+   "10 minutes",
+   "15 minutes",
+   "20 minutes",
+   "40 minutes"
+  ],
+  "a": 1,
+  "steps": [
+   "87·5% complete leaves 12·5% = 1/8 = (½)³",
+   "so 3 half-lives",
+   "t = 3 × 5 = 15 min"
+  ],
+  "e": "Recognise 12&middot;5% as (&frac12;)<sup>3</sup> and the question becomes counting, not calculating. This is the general result <b>t<sub>50%</sub> : t<sub>75%</sub> : t<sub>87&middot;5%</sub> = 1 : 2 : 3</b>, worth memorising because it turns several three-mark questions into one line."
+ },
+ {
+  "t": "first",
+  "src": "Problem type T10",
+  "q": "A radioactive sample decays to 1/32 of its initial amount in 100 days. Its half-life is:",
+  "o": [
+   "10 days",
+   "20 days",
+   "25 days",
+   "50 days"
+  ],
+  "a": 1,
+  "steps": [
+   "(½)ⁿ = 1/32 = (½)⁵  ⇒  n = 5 half-lives",
+   "t½ = 100 / 5 = 20 days"
+  ],
+  "e": "This is the counting method run <b>backwards</b>: the question gives you the fraction and asks for the half-life. Express the fraction as a power of &frac12; to get the number of half-lives, then divide the total time by it. Answering 50 days comes from reading 1/32 as two half-lives rather than five."
+ },
+ {
+  "t": "first",
+  "src": "Specimen 2024 &middot; type T11",
+  "q": "The half-life of <sup>14</sup>C is 5730 years. A piece of ancient wood is found to have 60% of the <sup>14</sup>C content of living wood. The age of the wood is approximately:",
+  "o": [
+   "1845 years",
+   "2865 years",
+   "4224 years",
+   "11 460 years"
+  ],
+  "a": 2,
+  "steps": [
+   "k = 0·693 / 5730 = 1·209 × 10⁻⁴ year⁻¹",
+   "t = (2·303 / k) log(100 / 60)",
+   "= 19 042 × 0·2218",
+   "= 4224 years"
+  ],
+  "e": "60% is not a power of &frac12;, so the logarithmic route is unavoidable: get k from the half-life first, then solve for t. The figure quoted is what <b>remains</b>, so (a&nbsp;&minus;&nbsp;x) = 60 and a = 100 &mdash; reversing these is the classic error and gives a badly wrong age. 2865 years is one <i>half</i> of a half-life, and 11&nbsp;460 is two full half-lives; neither matches 60% remaining."
+ },
+ {
+  "t": "first",
+  "src": "Concept C11",
+  "q": "Which statement about a first order reaction is correct?",
+  "o": [
+   "The half-life is directly proportional to the initial concentration, so a more concentrated sample takes longer to half-empty.",
+   "The half-life is 0&middot;693/k and is independent of the initial concentration, so every successive halving takes the same time.",
+   "The reaction reaches completion at a definite time given by t = [R]<sub>0</sub>/k.",
+   "A plot of [R] against time is a straight line whose slope is &minus;k."
+  ],
+  "a": 1,
+  "e": "The independence of t<sub>&frac12;</sub> from concentration is the <b>signature of first order kinetics</b>, and follows from t<sub>&frac12;</sub> = 0&middot;693/k containing no concentration term. Every other option here is a true statement about a <b>zero</b> order reaction: for zero order t<sub>&frac12;</sub> = [R]<sub>0</sub>/2k, the reaction genuinely finishes at t = [R]<sub>0</sub>/k, and [R] against t is linear with slope &minus;k. For first order it is <b>log[R]</b> against t that is linear, with slope &minus;k/2&middot;303."
+ },
+ {
+  "t": "arr",
+  "src": "Problem type T13",
+  "q": "The rate constant of a reaction is 1&middot;0 &times; 10<sup>&minus;4</sup> s<sup>&minus;1</sup> at 300 K and 8&middot;0 &times; 10<sup>&minus;4</sup> s<sup>&minus;1</sup> at 330 K. The activation energy is approximately: (R = 8&middot;314 J K<sup>&minus;1</sup> mol<sup>&minus;1</sup>)",
+  "o": [
+   "19&middot;0 kJ mol<sup>&minus;1</sup>",
+   "38&middot;0 kJ mol<sup>&minus;1</sup>",
+   "57&middot;1 kJ mol<sup>&minus;1</sup>",
+   "114&middot;1 kJ mol<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "log(k₂/k₁) = [Ea / 2·303R] × (T₂−T₁)/T₁T₂",
+   "k₂/k₁ = 8 , log 8 = 0·9031",
+   "(330−300)/(300×330) = 3·030 × 10⁻⁴",
+   "Ea = 0·9031 × 19·147 / 3·030 × 10⁻⁴",
+   "= 57 060 J mol⁻¹ ≈ 57·1 kJ mol⁻¹"
+  ],
+  "e": "Keep <b>2&middot;303 &times; R = 19&middot;147</b> as a single number &mdash; it shortens every Arrhenius calculation. The temperature factor is (T<sub>2</sub>&nbsp;&minus;&nbsp;T<sub>1</sub>)&nbsp;/&nbsp;T<sub>1</sub>T<sub>2</sub>, with the <b>product</b> of the temperatures in the denominator; using the sum, or using (1/T<sub>2</sub>&nbsp;&minus;&nbsp;1/T<sub>1</sub>) with the sign the wrong way round, are the usual failures."
+ },
+ {
+  "t": "arr",
+  "src": "Problem type T14",
+  "q": "A first order reaction has a half-life of 100 s at 300 K and 25 s at 320 K. Its activation energy is approximately:",
+  "o": [
+   "27&middot;7 kJ mol<sup>&minus;1</sup>",
+   "43&middot;9 kJ mol<sup>&minus;1</sup>",
+   "55&middot;3 kJ mol<sup>&minus;1</sup>",
+   "110&middot;7 kJ mol<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "k ∝ 1/t½ , so k₂/k₁ = t₁/t₂ = 100/25 = 4",
+   "log 4 = 0·6021",
+   "(320−300)/(300×320) = 2·083 × 10⁻⁴",
+   "Ea = 0·6021 × 19·147 / 2·083 × 10⁻⁴",
+   "= 55 330 J mol⁻¹ ≈ 55·3 kJ mol⁻¹"
+  ],
+  "e": "The data are <b>times</b>, not rate constants. Since t<sub>&frac12;</sub> = 0&middot;693/k, the rate constants are in the <b>inverse</b> ratio of the times: the <i>shorter</i> half-life belongs to the <i>larger</i> k. Forgetting to invert is the single commonest error in this chapter, and it gives 0&middot;25 in place of 4 &mdash; a negative activation energy, which should tell you at once that something has gone wrong."
+ },
+ {
+  "t": "arr",
+  "src": "Problem type T15",
+  "q": "The rate of a reaction becomes three times when the temperature is raised from 300 K to 310 K. The activation energy is approximately:",
+  "o": [
+   "42&middot;5 kJ mol<sup>&minus;1</sup>",
+   "53&middot;6 kJ mol<sup>&minus;1</sup>",
+   "85&middot;0 kJ mol<sup>&minus;1</sup>",
+   "169&middot;9 kJ mol<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "at fixed concentrations rate ∝ k, so k₂/k₁ = 3",
+   "log 3 = 0·4771",
+   "(310−300)/(300×310) = 1·0753 × 10⁻⁴",
+   "Ea = 0·4771 × 19·147 / 1·0753 × 10⁻⁴",
+   "= 84 960 J mol⁻¹ ≈ 85·0 kJ mol⁻¹"
+  ],
+  "e": "&ldquo;The rate becomes n times&rdquo; at fixed concentrations means k itself becomes n times, so k<sub>2</sub>/k<sub>1</sub> = 3 directly. Notice how large E<sub>a</sub> turns out to be: a 10 K rise tripling the rate implies a substantial energy barrier, because k depends <i>exponentially</i> on temperature."
+ },
+ {
+  "t": "arr",
+  "src": "Heritage 2016&ndash;17",
+  "q": "The temperature coefficient for the hydrolysis of ethyl acetate by sodium hydroxide solution is 1&middot;75. The activation energy of the reaction is approximately:",
+  "o": [
+   "24&middot;3 kJ mol<sup>&minus;1</sup>",
+   "42&middot;7 kJ mol<sup>&minus;1</sup>",
+   "52&middot;9 kJ mol<sup>&minus;1</sup>",
+   "85&middot;4 kJ mol<sup>&minus;1</sup>"
+  ],
+  "a": 1,
+  "steps": [
+   "temperature coefficient = k₃₀₈ / k₂₉₈ = 1·75",
+   "so T₁ = 298 K and T₂ = 308 K",
+   "log 1·75 = 0·2430",
+   "(308−298)/(298×308) = 1·0895 × 10⁻⁴",
+   "Ea = 0·2430 × 19·147 / 1·0895 × 10⁻⁴",
+   "= 42 710 J mol⁻¹ ≈ 42·7 kJ mol⁻¹"
+  ],
+  "e": "The whole question turns on knowing the definition. The <b>temperature coefficient</b> is k<sub>308</sub>/k<sub>298</sub> &mdash; the factor by which the rate constant rises for a 10 K rise, conventionally from 298 K to 308 K. So being told it is 1&middot;75 hands you k<sub>2</sub>/k<sub>1</sub> <i>and</i> both temperatures at once. The familiar &ldquo;rate doubles per 10 K&rdquo; question is simply the case where the temperature coefficient is 2, which gives 52&middot;9 kJ mol<sup>&minus;1</sup> &mdash; option (c) here, and a tempting one if you assume the coefficient is always 2."
+ },
+ {
+  "t": "arr",
+  "src": "Problem type T16",
+  "q": "For a reaction E<sub>a</sub> = 50 kJ mol<sup>&minus;1</sup> and k = 2&middot;0 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup> at 300 K. The value of k at 320 K is approximately:",
+  "o": [
+   "3&middot;5 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>",
+   "5&middot;0 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>",
+   "7&middot;0 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>",
+   "1&middot;4 &times; 10<sup>&minus;2</sup> s<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "log(k₂/k₁) = (50 000 / 19·147) × (20 / (300×320))",
+   "= 2611 × 2·083 × 10⁻⁴ = 0·5440",
+   "k₂/k₁ = antilog 0·5440 = 3·50",
+   "k₂ = 2·0 × 10⁻³ × 3·50 = 7·0 × 10⁻³"
+  ],
+  "e": "The same equation, run in the other direction: compute the right-hand side, take the <b>antilogarithm</b> to get the ratio, then multiply by k<sub>1</sub>. Two things to watch &mdash; convert E<sub>a</sub> to <b>J</b> mol<sup>&minus;1</sup> before substituting, and remember that the answer is k<sub>1</sub> &times; ratio, not the ratio itself (3&middot;5 &times; 10<sup>&minus;3</sup> is what you get by mistaking the ratio 3&middot;50 for a factor of 1&middot;75)."
+ },
+ {
+  "t": "arr",
+  "src": "Problem type T17",
+  "q": "For a reaction, the plot of log k against 1/T is a straight line of slope &minus;5000 K. The activation energy of the reaction is:",
+  "o": [
+   "41&middot;6 kJ mol<sup>&minus;1</sup>",
+   "47&middot;9 kJ mol<sup>&minus;1</sup>",
+   "95&middot;7 kJ mol<sup>&minus;1</sup>",
+   "191&middot;5 kJ mol<sup>&minus;1</sup>"
+  ],
+  "a": 2,
+  "steps": [
+   "log k = log A − Ea / (2·303 R T)",
+   "comparing with y = mx + c : slope = − Ea / 2·303R",
+   "Ea = − 2·303 R × slope = −19·147 × (−5000)",
+   "= 95 735 J mol⁻¹ ≈ 95·7 kJ mol⁻¹"
+  ],
+  "e": "Take logarithms of k = Ae<sup>&minus;E<sub>a</sub>/RT</sup> and compare with the equation of a straight line. The slope is <b>&minus;E<sub>a</sub>/2&middot;303R</b> and the intercept is <b>log A</b>. Because the slope is negative, E<sub>a</sub> comes out positive, as it must. Dividing by 2&middot;303 instead of multiplying gives 41&middot;6."
+ },
+ {
+  "t": "arr",
+  "src": "Heritage 2024&ndash;25 &middot; concept C17",
+  "q": "In the Arrhenius equation k = Ae<sup>&minus;E<sub>a</sub>/RT</sup>, as the temperature tends to infinity the rate constant k tends to:",
+  "o": [
+   "zero",
+   "A, the frequency factor",
+   "E<sub>a</sub>/R",
+   "infinity"
+  ],
+  "a": 1,
+  "steps": [
+   "as T → ∞ , the quotient Ea/RT → 0",
+   "e⁰ = 1",
+   "k = A × 1 = A"
+  ],
+  "e": "Push the limit inside the exponential rather than juggling the numbers. The physical meaning matters: <b>A is the rate constant a reaction would have if every collision were effective</b> &mdash; the ceiling set by collision frequency and orientation alone. The same limit is reached if E<sub>a</sub> &rarr; 0, and it is why A has the same unit as k."
+ },
+ {
+  "t": "kcon",
+  "src": "Specimen 2026 &middot; concept C12",
+  "q": "Which of the following is a pseudo first order reaction?",
+  "o": [
+   "Decomposition of ammonia on a hot platinum surface",
+   "Acid hydrolysis of ethyl acetate",
+   "2HI &rarr; H<sub>2</sub> + I<sub>2</sub>",
+   "N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>"
+  ],
+  "a": 1,
+  "e": "The hydrolysis of an ester is genuinely bimolecular &mdash; rate = k[ester][H<sub>2</sub>O] &mdash; but water is the solvent and present in such vast excess that its concentration hardly changes. The observed rate then depends on the ester alone, so the <b>observed order is 1 while the true order is 2</b>. The inversion of cane sugar is the other standard example. Decomposition of ammonia on hot platinum is the standard example of a <b>zero</b> order reaction, because the catalyst surface is saturated."
+ },
+ {
+  "t": "kcon",
+  "src": "Board favourite &middot; concept C7",
+  "q": "Which statement correctly distinguishes the order of a reaction from its molecularity?",
+  "o": [
+   "Both are determined experimentally and are always numerically equal to each other.",
+   "Order is determined experimentally and may be zero, fractional or negative; molecularity is obtained theoretically for an elementary step and is always a small whole number &mdash; 1, 2 or rarely 3.",
+   "Molecularity may be fractional or zero, whereas the order of a reaction must always be a whole number.",
+   "Order is defined only for a single elementary step, while molecularity describes the overall reaction however complex it is."
+  ],
+  "a": 1,
+  "e": "The cleanest way to hold these apart: <b>molecularity is a molecule count; order is a stopwatch reading.</b> You cannot count half a molecule, which is why molecularity is never fractional &mdash; but a stopwatch can certainly report a fractional power. Options (c) and (d) are the two statements with the properties swapped over, which is exactly how this is set as a distractor. Order and molecularity coincide only for an elementary reaction."
+ },
+ {
+  "t": "kcon",
+  "src": "Concept C14",
+  "q": "A catalyst increases the rate of a reaction. Which of the following does a catalyst <b>not</b> do?",
+  "o": [
+   "It provides an alternative reaction path of lower activation energy.",
+   "It increases the value of the rate constant k.",
+   "It lowers the activation energy of the forward and the backward reaction equally.",
+   "It shifts the position of equilibrium towards the products and so increases the yield."
+  ],
+  "a": 3,
+  "e": "A catalyst lowers the barrier in <b>both</b> directions by the same amount, so it speeds the forward and backward reactions equally and leaves K<sub>c</sub>, &Delta;H and the position of equilibrium completely unchanged &mdash; only the <i>speed of reaching</i> equilibrium alters. Three sentences that lose marks in the examination: &ldquo;a catalyst supplies energy to the reactants&rdquo;, &ldquo;a catalyst increases the yield&rdquo;, and &ldquo;a catalyst changes &Delta;H&rdquo;."
+ },
+ {
+  "t": "kcon",
+  "src": "Concept C13",
+  "q": "Which relation between the threshold energy E<sub>T</sub>, the activation energy E<sub>a</sub> and the average energy of the reactants is correct?",
+  "o": [
+   "E<sub>a</sub> = E<sub>T</sub> + E<sub>average</sub>",
+   "E<sub>a</sub> = E<sub>T</sub> &minus; E<sub>average</sub>",
+   "E<sub>T</sub> = E<sub>a</sub> &minus; E<sub>average</sub>",
+   "E<sub>a</sub> = E<sub>average</sub> &minus; E<sub>T</sub>"
+  ],
+  "a": 1,
+  "e": "<b>Threshold energy</b> is the minimum <i>total</i> energy the colliding molecules must possess for reaction. <b>Activation energy</b> is the <i>extra</i> energy they must absorb over and above the energy they already have on average. So E<sub>a</sub> is the gap between the two: E<sub>a</sub> = E<sub>T</sub> &minus; E<sub>average</sub>. A high E<sub>a</sub> means a slow reaction, because only a small fraction of molecules can clear the barrier."
+ },
+ {
+  "t": "kcon",
+  "src": "Heritage 2024&ndash;25 &middot; type T21",
+  "q": "The iodide-catalysed decomposition of hydrogen peroxide, 2H<sub>2</sub>O<sub>2</sub> &rarr; 2H<sub>2</sub>O + O<sub>2</sub>, proceeds by two steps: <br><b>Step 1 (slow):</b> H<sub>2</sub>O<sub>2</sub> + I<sup>&minus;</sup> &rarr; H<sub>2</sub>O + IO<sup>&minus;</sup><br><b>Step 2 (fast):</b> H<sub>2</sub>O<sub>2</sub> + IO<sup>&minus;</sup> &rarr; H<sub>2</sub>O + O<sub>2</sub> + I<sup>&minus;</sup><br>The rate law for the overall reaction is:",
+  "o": [
+   "rate = k[H<sub>2</sub>O<sub>2</sub>]<sup>2</sup>",
+   "rate = k[H<sub>2</sub>O<sub>2</sub>]",
+   "rate = k[H<sub>2</sub>O<sub>2</sub>][I<sup>&minus;</sup>]",
+   "rate = k[H<sub>2</sub>O<sub>2</sub>]<sup>2</sup>[I<sup>&minus;</sup>]"
+  ],
+  "a": 2,
+  "e": "The rate law comes from the <b>slow step alone</b>, and that step involves one molecule of H<sub>2</sub>O<sub>2</sub> and one iodide ion. Two lessons in one question: the overall equation shows a coefficient of 2 for H<sub>2</sub>O<sub>2</sub> yet the order in it is 1; and I<sup>&minus;</sup>, a <b>catalyst that is absent from the overall equation</b>, still appears in the rate law because it takes part in the rate-determining step. This is precisely why a rate law cannot be read off the stoichiometry."
+ },
+ {
+  "t": "kcon",
+  "src": "Problem type T22",
+  "q": "Which set of observations identifies a reaction as <b>zero</b> order?",
+  "o": [
+   "A plot of log[R] against time is a straight line, and successive half-lives are equal.",
+   "A plot of [R] against time is a straight line, and the half-life is directly proportional to the initial concentration.",
+   "A plot of rate against [R] is a straight line through the origin, and the half-life is independent of the initial concentration.",
+   "The rate doubles whenever the concentration of the reactant is doubled."
+  ],
+  "a": 1,
+  "e": "For zero order, rate = k is constant, so the concentration falls <b>linearly</b> with time and t<sub>&frac12;</sub> = [R]<sub>0</sub>/2k depends on where you started. A zero order reaction therefore has a genuine finishing time, t = [R]<sub>0</sub>/k. Every other option describes <b>first</b> order behaviour: log[R] linear in t, equal successive half-lives, rate proportional to [R], and a rate that doubles when the concentration doubles."
+ },
+ {
+  "t": "phys",
+  "src": "Problem type T2 (organic)",
+  "q": "How many isomers &mdash; alcohols and ethers taken together &mdash; are possible for the molecular formula C<sub>4</sub>H<sub>10</sub>O?",
+  "o": [
+   "four",
+   "five",
+   "seven",
+   "eight"
+  ],
+  "a": 2,
+  "steps": [
+   "alcohols: butan-1-ol, butan-2-ol, 2-methylpropan-1-ol, 2-methylpropan-2-ol  → 4",
+   "ethers: ethoxyethane, 1-methoxypropane, 2-methoxypropane  → 3",
+   "total = 7"
+  ],
+  "e": "Work systematically: <b>first all the alcohols</b> (draw each carbon skeleton, then move the &ndash;OH along it), <b>then all the ethers</b> (split the four carbons about the oxygen in every possible way, 1+3 and 2+2). Answering four means you stopped at the alcohols. The alcohols and ethers are <b>functional</b> isomers of one another; the three ethers are <b>metamers</b>."
+ },
+ {
+  "t": "phys",
+  "src": "Problem type T3 (organic)",
+  "q": "Which of the following has the <b>highest</b> boiling point?",
+  "o": [
+   "Butan-1-ol",
+   "Butan-2-ol",
+   "2-Methylpropan-2-ol",
+   "Diethyl ether"
+  ],
+  "a": 0,
+  "e": "Ask two questions in order. <b>Can it hydrogen bond?</b> The ether has no O&ndash;H hydrogen, so it is out at once (308 K). <b>How branched is it?</b> Among the three alcohols, branching makes the molecule compact, reduces the surface available for van der Waals contact and crowds the &ndash;OH group, so the boiling point falls as branching rises: butan-1-ol 391 K &gt; butan-2-ol 371 K &gt; 2-methylpropan-2-ol 356 K. Hence the general rule <b>1&deg; &gt; 2&deg; &gt; 3&deg;</b> for isomeric alcohols."
+ },
+ {
+  "t": "phys",
+  "src": "ISC 2025",
+  "q": "Arrange in <b>increasing</b> order of boiling point: CH<sub>3</sub>CH<sub>2</sub>OH, HOCH<sub>2</sub>CH<sub>2</sub>OH (ethylene glycol), CH<sub>3</sub>CH<sub>2</sub>Cl.",
+  "o": [
+   "HOCH<sub>2</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>Cl",
+   "CH<sub>3</sub>CH<sub>2</sub>Cl &lt; CH<sub>3</sub>CH<sub>2</sub>OH &lt; HOCH<sub>2</sub>CH<sub>2</sub>OH",
+   "CH<sub>3</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>Cl &lt; HOCH<sub>2</sub>CH<sub>2</sub>OH",
+   "CH<sub>3</sub>CH<sub>2</sub>Cl &lt; HOCH<sub>2</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>OH"
+  ],
+  "a": 1,
+  "e": "Count the hydrogen bonds each molecule can form: none, one, two. <b>CH<sub>3</sub>CH<sub>2</sub>Cl</b> has no O&ndash;H at all, only dipole&ndash;dipole forces (285 K). <b>Ethanol</b> has one &ndash;OH and one set of hydrogen bonds (351 K). <b>Ethylene glycol</b> has two &ndash;OH groups and can hydrogen bond at both ends, producing an extensively associated liquid (470 K)."
+ },
+ {
+  "t": "phys",
+  "src": "Specimen 2027 &middot; Specimen 2024",
+  "q": "Ethanol boils at 351 K but methoxymethane, which has the same molecular formula C<sub>2</sub>H<sub>6</sub>O, boils at 249 K. The best explanation is:",
+  "o": [
+   "Ethanol has a higher molecular mass than methoxymethane.",
+   "Ethanol molecules associate with one another through intermolecular hydrogen bonding, which the ether cannot do because it has no hydrogen attached to oxygen.",
+   "Methoxymethane is more polar than ethanol and so its molecules repel one another.",
+   "Ethanol has a larger surface area and therefore stronger van der Waals forces."
+  ],
+  "a": 1,
+  "e": "The two are <b>functional isomers</b>, so they have identical molecular masses &mdash; which rules out the first option immediately, and is the point of choosing an isomeric pair for this question. Ethanol has a polar O&ndash;H bond whose hydrogen can bond to the oxygen of a neighbouring molecule; a great deal of energy is needed to break that network. The ether's oxygen can <i>accept</i> a hydrogen bond but the molecule has no O&ndash;H hydrogen to <i>donate</i>, so it cannot self-associate."
+ },
+ {
+  "t": "phys",
+  "src": "Specimen 2022 Sem 1",
+  "q": "Which of the following is optically active?",
+  "o": [
+   "Butan-1-ol",
+   "Butan-2-ol",
+   "Propan-1-ol",
+   "2-Methylpropan-1-ol"
+  ],
+  "a": 1,
+  "e": "Look for a carbon carrying <b>four different groups</b> &mdash; a chiral centre. In butan-2-ol, C-2 bears &ndash;H, &ndash;OH, &ndash;CH<sub>3</sub> and &ndash;C<sub>2</sub>H<sub>5</sub>: four different groups, so the molecule is chiral and rotates the plane of polarised light. In each of the others the corresponding carbon carries two identical groups (two hydrogens in the primary alcohols), so the molecule has a plane of symmetry."
+ },
+ {
+  "t": "phys",
+  "src": "Concept C3",
+  "q": "Which of the following pairs are <b>functional</b> isomers of each other?",
+  "o": [
+   "Propan-1-ol and propan-2-ol",
+   "Ethanol and methoxymethane",
+   "Ethoxyethane and 1-methoxypropane",
+   "Butan-1-ol and 2-methylpropan-1-ol"
+  ],
+  "a": 1,
+  "e": "Functional isomers share a molecular formula but belong to <b>different homologous series</b> &mdash; here an alcohol and an ether, both C<sub>2</sub>H<sub>6</sub>O. The others are all isomers, but of other kinds: propan-1-ol and propan-2-ol are <b>position</b> isomers, butan-1-ol and 2-methylpropan-1-ol are <b>chain</b> isomers, and the two ethers are <b>metamers</b> &mdash; the same functional group with the carbons unequally distributed about the oxygen."
+ },
+ {
+  "t": "phys",
+  "src": "Concept C1",
+  "q": "Benzyl alcohol, C<sub>6</sub>H<sub>5</sub>CH<sub>2</sub>OH, is shaken with neutral ferric chloride solution. What is observed?",
+  "o": [
+   "An intense violet colouration",
+   "No colour change",
+   "A white precipitate",
+   "Brisk effervescence of a colourless gas"
+  ],
+  "a": 1,
+  "e": "Benzyl alcohol is <b>not a phenol</b>. Its &ndash;OH is on the side chain, attached to an sp<sup>3</sup> carbon, not directly to the ring &mdash; so it behaves as an ordinary primary alcohol. It gives no violet colour with FeCl<sub>3</sub> and does not dissolve in NaOH. The violet colour is a test for a genuine <b>phenolic</b> group, where the &ndash;OH is bonded to the aromatic ring itself."
+ },
+ {
+  "t": "acid",
+  "src": "Problem type T4 (organic)",
+  "q": "Which of the following is the <b>most acidic</b>?",
+  "o": [
+   "Phenol",
+   "Ethanol",
+   "p-Nitrophenol",
+   "p-Cresol"
+  ],
+  "a": 2,
+  "e": "Judge the <b>stability of the anion</b>. The &ndash;NO<sub>2</sub> group is strongly electron withdrawing by both &minus;I and &minus;R, and from the <b>para</b> position its resonance withdrawal reaches the phenoxide oxygen directly, delocalising the negative charge on to the nitro group's own oxygens. That extra stabilisation makes p-nitrophenol (pK<sub>a</sub> 7&middot;15) markedly more acidic than phenol (9&middot;98). p-Cresol is <i>less</i> acidic than phenol (10&middot;26) because &ndash;CH<sub>3</sub> releases electrons, and ethanol is far the weakest of the four."
+ },
+ {
+  "t": "acid",
+  "src": "ISC 2025",
+  "q": "Arrange in <b>increasing</b> order of acidic strength: CH<sub>3</sub>CH<sub>2</sub>OH, CF<sub>3</sub>CH<sub>2</sub>OH, CCl<sub>3</sub>CH<sub>2</sub>OH.",
+  "o": [
+   "CH<sub>3</sub>CH<sub>2</sub>OH &lt; CCl<sub>3</sub>CH<sub>2</sub>OH &lt; CF<sub>3</sub>CH<sub>2</sub>OH",
+   "CH<sub>3</sub>CH<sub>2</sub>OH &lt; CF<sub>3</sub>CH<sub>2</sub>OH &lt; CCl<sub>3</sub>CH<sub>2</sub>OH",
+   "CF<sub>3</sub>CH<sub>2</sub>OH &lt; CCl<sub>3</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>OH",
+   "CCl<sub>3</sub>CH<sub>2</sub>OH &lt; CF<sub>3</sub>CH<sub>2</sub>OH &lt; CH<sub>3</sub>CH<sub>2</sub>OH"
+  ],
+  "a": 0,
+  "e": "Electron-<b>withdrawing</b> groups disperse the negative charge of the alkoxide ion by the &minus;I effect, stabilising it and strengthening the acid. So the question reduces to: which halogen withdraws harder? <b>Fluorine</b> (electronegativity 4&middot;0) pulls more strongly than chlorine (3&middot;0), so CF<sub>3</sub>&ndash; stabilises the anion best. CH<sub>3</sub>&ndash; does the opposite &mdash; it is electron <i>releasing</i> (+I), intensifies the charge on the oxygen and makes ethanol the weakest acid of the three."
+ },
+ {
+  "t": "acid",
+  "src": "Heritage 2024&ndash;25",
+  "q": "Arrange in <b>decreasing</b> order of acid strength: ethanol, isopropyl alcohol, tertiary butyl alcohol.",
+  "o": [
+   "ethanol &gt; isopropyl alcohol &gt; tert-butyl alcohol",
+   "tert-butyl alcohol &gt; isopropyl alcohol &gt; ethanol",
+   "isopropyl alcohol &gt; ethanol &gt; tert-butyl alcohol",
+   "ethanol &gt; tert-butyl alcohol &gt; isopropyl alcohol"
+  ],
+  "a": 0,
+  "e": "Count the alkyl groups on the carbon bearing the &ndash;OH: one for ethanol (1&deg;), two for isopropyl alcohol (2&deg;), three for tert-butyl alcohol (3&deg;). Each alkyl group pushes electron density towards the oxygen by the <b>+I effect</b>, intensifying the negative charge on the alkoxide ion and <b>destabilising</b> it. More alkyl groups therefore mean a weaker acid, giving <b>1&deg; &gt; 2&deg; &gt; 3&deg;</b> &mdash; note this is the <i>opposite</i> of the Lucas and dehydration order."
+ },
+ {
+  "t": "acid",
+  "src": "ISC 2023 &middot; Specimen 2027",
+  "q": "Phenol is a much stronger acid than ethanol. The correct explanation is:",
+  "o": [
+   "Phenol has a higher molecular mass and so ionises more readily.",
+   "The phenoxide ion is stabilised by resonance, its negative charge being delocalised on to the two ortho and the para carbons of the ring; in the ethoxide ion the charge stays on one oxygen and is intensified by the +I effect of the ethyl group.",
+   "The benzene ring withdraws electrons from the oxygen purely by a strong inductive effect, there being no resonance involved.",
+   "Phenol forms stronger intermolecular hydrogen bonds than ethanol, which helps the O&ndash;H bond to break."
+  ],
+  "a": 1,
+  "e": "Compare the <b>stability of the two conjugate bases</b> &mdash; whichever anion is more stable is released more readily, and its parent is the stronger acid. Resonance spreads the phenoxide charge over four atoms, and spread charge means lower energy. A second, smaller effect points the same way: the &ndash;OH oxygen in phenol is attached to an <b>sp<sup>2</sup></b> carbon, which is more electronegative than an sp<sup>3</sup> carbon and so weakens the O&ndash;H bond. Phenol (K<sub>a</sub> &asymp; 10<sup>&minus;10</sup>) is about a million times more acidic than ethanol (&asymp; 10<sup>&minus;16</sup>)."
+ },
+ {
+  "t": "acid",
+  "src": "Concept C5",
+  "q": "Phenol dissolves in sodium hydroxide solution but does not liberate carbon dioxide from sodium bicarbonate solution. This is because:",
+  "o": [
+   "phenol is a stronger acid than carbonic acid but weaker than sodium hydroxide",
+   "phenol is a weaker acid than carbonic acid, but a stronger acid than water",
+   "phenol is completely neutral and reacts with neither reagent",
+   "sodium phenoxide is insoluble in water and precipitates out"
+  ],
+  "a": 1,
+  "e": "An acid can only be displaced from the salt of a <b>weaker</b> acid. Phenol (K<sub>a</sub> &asymp; 10<sup>&minus;10</sup>) sits between water (10<sup>&minus;14</sup>) and carbonic acid (4&middot;3 &times; 10<sup>&minus;7</sup>): strong enough to react with the powerful base NaOH, too weak to push CO<sub>2</sub> out of bicarbonate. That single fact is the <b>standard test separating phenol from a carboxylic acid</b> &mdash; benzoic acid effervesces with NaHCO<sub>3</sub>, phenol does not."
+ },
+ {
+  "t": "acid",
+  "src": "Heritage 2016&ndash;17",
+  "q": "Unlike most phenolic compounds, one of the following <i>is</i> soluble in sodium bicarbonate solution, dissolving with brisk effervescence. Which one?",
+  "o": [
+   "Phenol",
+   "p-Cresol",
+   "2,4,6-Trinitrophenol",
+   "o-Cresol"
+  ],
+  "a": 2,
+  "e": "2,4,6-Trinitrophenol is <b>picric acid</b>. Its three &ndash;NO<sub>2</sub> groups withdraw so much electron density &mdash; two of them from the ortho and para positions, where resonance withdrawal reaches the oxygen directly &mdash; that the anion becomes exceptionally stable. Picric acid is therefore a <b>stronger acid than carbonic acid</b>, comparable with a carboxylic acid, and does liberate CO<sub>2</sub> from bicarbonate. The two cresols go the other way: &ndash;CH<sub>3</sub> releases electrons, making them even weaker acids than phenol itself."
+ },
+ {
+  "t": "acid",
+  "src": "Heritage 2024&ndash;25",
+  "q": "Which is the <b>less</b> acidic of o-cresol and m-cresol, and why?",
+  "o": [
+   "o-Cresol, because the +I effect of the methyl group falls off with distance and so is felt most strongly at the ortho position, destabilising the cresoxide ion most",
+   "m-Cresol, because from the meta position the methyl group can withdraw electrons by resonance",
+   "o-Cresol, because of intramolecular hydrogen bonding between the methyl group and the &ndash;OH",
+   "They are equally acidic, since the methyl group is in both cases attached to the same ring"
+  ],
+  "a": 0,
+  "e": "&ndash;CH<sub>3</sub> is electron <b>releasing</b>, so it works against ionisation, and an inductive effect weakens rapidly with distance. Being closest to the &ndash;OH, the ortho methyl group pushes the most charge back on to the oxygen and destabilises the anion most, so <b>o-cresol is the weakest acid</b> (pK<sub>a</sub> 10&middot;29 against 10&middot;09 for m-cresol). Option (b) is wrong on two counts: a methyl group releases rather than withdraws, and a meta substituent cannot reach the oxygen by resonance at all. Hydrogen bonding to a methyl group, as in (c), is not a real interaction."
+ },
+ {
+  "t": "rxn",
+  "src": "Specimen 2023 &middot; ISC 2023",
+  "q": "Ethanol is heated with concentrated sulphuric acid at <b>413 K</b>. The main product is:",
+  "o": [
+   "Ethene",
+   "Diethyl ether",
+   "Ethyl hydrogen sulphate",
+   "Acetaldehyde"
+  ],
+  "a": 1,
+  "steps": [
+   "2C₂H₅OH  —(conc. H₂SO₄, 413 K)→  C₂H₅–O–C₂H₅ + H₂O"
+  ],
+  "e": "One reagent, two products &mdash; the <b>temperature</b> chooses between them. At the lower temperature (413 K, 140 &deg;C) a second alcohol molecule acts as the nucleophile and the two combine, losing one water between them: this is <b>inter</b>molecular dehydration, giving the ether. At 443 K (170 &deg;C) elimination within a single molecule wins instead and ethene is formed. Remembering which temperature gives which product is worth a mark on its own."
+ },
+ {
+  "t": "rxn",
+  "src": "Specimen 2023 &middot; concept C14",
+  "q": "Ethanol is heated with concentrated sulphuric acid at <b>443 K</b>. The main product is:",
+  "o": [
+   "Ethene",
+   "Diethyl ether",
+   "Ethane",
+   "Ethyl hydrogen sulphate"
+  ],
+  "a": 0,
+  "steps": [
+   "C₂H₅OH  —(conc. H₂SO₄, 443 K)→  CH₂=CH₂ + H₂O"
+  ],
+  "e": "At the higher temperature <b>intra</b>molecular dehydration takes over and the alcohol loses water within one molecule to give the alkene. The mechanism is <b>E1</b>: protonation of the &ndash;OH, then slow loss of water to give a carbocation, then fast loss of a &beta;-proton. Because the slow step forms a carbocation, the ease of dehydration follows carbocation stability, <b>3&deg; &gt; 2&deg; &gt; 1&deg;</b>."
+ },
+ {
+  "t": "rxn",
+  "src": "Specimen 2023 &middot; Specimen 2027",
+  "q": "Sodium phenoxide is heated with carbon dioxide at 400 K under 4&ndash;7 atm pressure and the product is then acidified with dilute HCl. The product and the name of the reaction are:",
+  "o": [
+   "Salicylaldehyde &mdash; Reimer&ndash;Tiemann reaction",
+   "Salicylic acid &mdash; Kolbe&rsquo;s reaction",
+   "Picric acid &mdash; nitration",
+   "Benzoic acid &mdash; Kolbe&rsquo;s reaction"
+  ],
+  "a": 1,
+  "e": "Phenol itself is not nucleophilic enough to attack so weak an electrophile as CO<sub>2</sub>, which is why NaOH must first convert it to the far more reactive <b>phenoxide</b> ion. CO<sub>2</sub> is then attacked at the <b>ortho</b> position, giving sodium salicylate, and acidification liberates <b>salicylic acid</b> (2-hydroxybenzoic acid). Acetylating its phenolic &ndash;OH with acetic anhydride gives <b>aspirin</b>. Starting the equation from phenol rather than the phenoxide loses the mark."
+ },
+ {
+  "t": "rxn",
+  "src": "ISC 2019 &middot; ISC 2024 &middot; Specimen 2026",
+  "q": "Phenol is warmed with chloroform and aqueous sodium hydroxide at 340 K and the mixture is then acidified. The product and the name of the reaction are:",
+  "o": [
+   "Salicylic acid &mdash; Kolbe&rsquo;s reaction",
+   "Salicylaldehyde &mdash; Reimer&ndash;Tiemann reaction",
+   "Benzaldehyde &mdash; Gattermann reaction",
+   "Phenyl isocyanide &mdash; carbylamine reaction"
+  ],
+  "a": 1,
+  "e": "Chloroform and alkali generate <b>dichlorocarbene</b>, :CCl<sub>2</sub>, an electrophile. The alkali also converts phenol to the strongly activated phenoxide, which attacks the carbene at the ortho position; the resulting &ndash;CHCl<sub>2</sub> group is then hydrolysed by the alkali to &ndash;CHO. The product is <b>2-hydroxybenzaldehyde</b>:<span class=\"fig\"><svg class=\"struct\" viewBox=\"-22.19 -55.28 83.24 80.28\" height=\"81.9\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"0.00,-21.00 18.19,-10.50 18.19,10.50 0.00,21.00 -18.19,10.50 -18.19,-10.50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\"/><line x1=\"-1.02\" y1=\"-13.35\" x2=\"12.11\" y2=\"-5.76\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"12.07\" y1=\"5.79\" x2=\"-1.07\" y2=\"13.37\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"-11.05\" y1=\"7.56\" x2=\"-11.05\" y2=\"-7.61\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"0.00\" y1=\"-21.00\" x2=\"0.00\" y2=\"-35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"-41.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">OH</text><line x1=\"18.19\" y1=\"-10.50\" x2=\"30.55\" y2=\"-17.64\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"34.55\" y=\"-13.64\" text-anchor=\"start\" font-size=\"10.0\" fill=\"currentColor\">CHO</text></svg></span>Using CCl<sub>4</sub> in place of CHCl<sub>3</sub> gives salicylic acid instead, by the same chemistry."
+ },
+ {
+  "t": "rxn",
+  "src": "Specimen 2025 &middot; Specimen 2026 &middot; concept C10",
+  "q": "Phenol is treated with <b>bromine water</b> at room temperature. The product is:",
+  "o": [
+   "o-Bromophenol only",
+   "p-Bromophenol only",
+   "2,4,6-Tribromophenol, as a white precipitate",
+   "Bromobenzene"
+  ],
+  "a": 2,
+  "e": "The <b>solvent decides how far the substitution goes</b>. In water, phenol ionises slightly to phenoxide, which carries a full negative charge and is a far stronger activator than phenol itself, so bromination runs to completion at both ortho positions and the para position:<span class=\"fig\"><svg class=\"struct\" viewBox=\"-54.05 -55.28 108.11 110.56\" height=\"112.8\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"0.00,-21.00 18.19,-10.50 18.19,10.50 0.00,21.00 -18.19,10.50 -18.19,-10.50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\"/><line x1=\"-1.02\" y1=\"-13.35\" x2=\"12.11\" y2=\"-5.76\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"12.07\" y1=\"5.79\" x2=\"-1.07\" y2=\"13.37\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"-11.05\" y1=\"7.56\" x2=\"-11.05\" y2=\"-7.61\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"0.00\" y1=\"-21.00\" x2=\"0.00\" y2=\"-35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"-41.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">OH</text><line x1=\"18.19\" y1=\"-10.50\" x2=\"30.55\" y2=\"-17.64\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"34.55\" y=\"-13.64\" text-anchor=\"start\" font-size=\"10.0\" fill=\"currentColor\">Br</text><line x1=\"0.00\" y1=\"21.00\" x2=\"0.00\" y2=\"35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"47.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">Br</text><line x1=\"-18.19\" y1=\"-10.50\" x2=\"-30.55\" y2=\"-17.64\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"-34.55\" y=\"-13.64\" text-anchor=\"end\" font-size=\"10.0\" fill=\"currentColor\">Br</text></svg></span>In the non-polar solvent CS<sub>2</sub> at 273 K, by contrast, phenol stays un-ionised and gives only <b>mono</b>bromination &mdash; o- and p-bromophenol, with the para isomer predominating. The white precipitate makes this a useful test for phenol."
+ },
+ {
+  "t": "rxn",
+  "src": "ISC 2018 &middot; Specimen 2024 &middot; concept C11",
+  "q": "Picric acid is prepared from phenol by sulphonating it first and only then treating it with concentrated nitric acid. Why is the sulphonation step necessary?",
+  "o": [
+   "Concentrated HNO<sub>3</sub> alone would oxidise the highly activated ring to dark tarry products; the &ndash;SO<sub>3</sub>H groups deactivate the ring enough for it to survive nitration, and are then themselves displaced by nitro groups.",
+   "Phenol does not undergo nitration at all unless a sulphonic acid group is present to activate the ring.",
+   "The sulphonation step introduces the three nitro groups directly, nitric acid merely acting as a catalyst.",
+   "The &ndash;SO<sub>3</sub>H group is meta directing, and this is what produces the 2,4,6 substitution pattern."
+  ],
+  "a": 0,
+  "e": "Phenol is <i>so</i> activated that concentrated nitric acid, a strong oxidising agent, destroys it rather than nitrating it. The remedy is counter-intuitive but standard: <b>deactivate the ring deliberately</b>, nitrate it, and let the sulphonic acid groups be displaced in the process. The product is <b>2,4,6-trinitrophenol</b>:<span class=\"fig\"><svg class=\"struct\" viewBox=\"-58.25 -55.28 116.51 110.56\" height=\"112.8\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"0.00,-21.00 18.19,-10.50 18.19,10.50 0.00,21.00 -18.19,10.50 -18.19,-10.50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\"/><line x1=\"-1.02\" y1=\"-13.35\" x2=\"12.11\" y2=\"-5.76\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"12.07\" y1=\"5.79\" x2=\"-1.07\" y2=\"13.37\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"-11.05\" y1=\"7.56\" x2=\"-11.05\" y2=\"-7.61\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"0.00\" y1=\"-21.00\" x2=\"0.00\" y2=\"-35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"-41.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">OH</text><line x1=\"18.19\" y1=\"-10.50\" x2=\"30.55\" y2=\"-17.64\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"34.55\" y=\"-13.64\" text-anchor=\"start\" font-size=\"10.0\" fill=\"currentColor\">NO<tspan baseline-shift=\"-22%\" font-size=\"72%\">2</tspan></text><line x1=\"0.00\" y1=\"21.00\" x2=\"0.00\" y2=\"35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"47.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">NO<tspan baseline-shift=\"-22%\" font-size=\"72%\">2</tspan></text><line x1=\"-18.19\" y1=\"-10.50\" x2=\"-30.55\" y2=\"-17.64\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"-34.55\" y=\"-13.64\" text-anchor=\"end\" font-size=\"10.0\" fill=\"currentColor\">NO<tspan baseline-shift=\"-22%\" font-size=\"72%\">2</tspan></text></svg></span>Option (d) inverts the chemistry &mdash; the 2,4,6 pattern comes from the <b>&ndash;OH</b> group, which is activating and o/p directing."
+ },
+ {
+  "t": "rxn",
+  "src": "ISC 2020 &middot; concept C6",
+  "q": "Which reagent converts ethanol into chloroethane in high yield, with <b>only gaseous by-products</b> that escape from the reaction mixture?",
+  "o": [
+   "PCl<sub>5</sub>",
+   "PCl<sub>3</sub>",
+   "SOCl<sub>2</sub> in the presence of pyridine",
+   "Concentrated HCl with anhydrous ZnCl<sub>2</sub>"
+  ],
+  "a": 2,
+  "steps": [
+   "C₂H₅OH + SOCl₂  —(pyridine)→  C₂H₅Cl + SO₂↑ + HCl↑"
+  ],
+  "e": "Both by-products of the thionyl chloride reaction, <b>SO<sub>2</sub> and HCl</b>, are gases and simply leave, so the chloroethane is obtained pure with no separation needed. This is the Darzens procedure and it is the preferred method. With PCl<sub>5</sub> the by-product POCl<sub>3</sub> is a liquid that has to be separated; PCl<sub>3</sub> leaves H<sub>3</sub>PO<sub>3</sub> behind; and Lucas reagent works poorly on a primary alcohol at room temperature in any case."
+ },
+ {
+  "t": "rxn",
+  "src": "ISC 2020 &middot; concept C7",
+  "q": "Ethanol vapour is passed over copper at 573 K. The product is:",
+  "o": [
+   "Ethene",
+   "Acetaldehyde",
+   "Acetic acid",
+   "Diethyl ether"
+  ],
+  "a": 1,
+  "steps": [
+   "CH₃CH₂OH  —(Cu, 573 K)→  CH₃CHO + H₂↑"
+  ],
+  "e": "Hot copper <b>dehydrogenates</b> an alcohol &mdash; it removes H<sub>2</sub>, not water &mdash; provided there is a hydrogen on the carbinol carbon. So a 1&deg; alcohol gives an <b>aldehyde</b> and a 2&deg; alcohol gives a <b>ketone</b>. A 3&deg; alcohol has no such hydrogen, so copper can only <i>dehydrate</i> it, and an <b>alkene</b> is obtained instead &mdash; which makes this reaction a way of telling the three classes apart."
+ },
+ {
+  "t": "rxn",
+  "src": "Heritage 2016&ndash;17 &middot; type T6",
+  "q": "Which sequence correctly converts <b>benzoic acid into phenol</b>?",
+  "o": [
+   "Benzoic acid &rarr;(NH<sub>3</sub>, &Delta;) benzamide &rarr;(Br<sub>2</sub>/KOH) aniline &rarr;(NaNO<sub>2</sub>/dil. HCl, 273&ndash;278 K) benzene diazonium chloride &rarr;(warm H<sub>2</sub>O) phenol",
+   "Benzoic acid &rarr;(NaOH) sodium benzoate &rarr;(strong heating) phenol",
+   "Benzoic acid &rarr;(LiAlH<sub>4</sub>) benzyl alcohol &rarr;(&Delta;) phenol",
+   "Benzoic acid &rarr;(Zn dust, distil) benzene &rarr;(aqueous NaOH) phenol"
+  ],
+  "a": 0,
+  "e": "There is no direct way to replace &ndash;COOH by &ndash;OH on a ring, so the route runs through the <b>diazonium salt</b> &mdash; the universal gateway to almost any aromatic substituent. Get to the amine first (acid &rarr; amide &rarr; amine, losing one carbon by Hofmann degradation), diazotise it, then displace N<sub>2</sub> with water. <b>The general lesson:</b> any aromatic conversion that looks impossible &mdash; &ndash;COOH to &ndash;OH, &ndash;NO<sub>2</sub> to &ndash;OH, &ndash;NH<sub>2</sub> to &ndash;Cl or &ndash;CN &mdash; goes through the diazonium salt. Option (c) is wrong because benzyl alcohol's &ndash;OH is on the side chain and heating will not move it on to the ring."
+ },
+ {
+  "t": "rxn",
+  "src": "Specimen 2024",
+  "q": "What happens when ethyl alcohol is treated with methyl magnesium bromide?",
+  "o": [
+   "Propan-2-ol is formed after hydrolysis",
+   "Methane is evolved and ethoxymagnesium bromide is formed",
+   "Ethane is evolved and methoxymagnesium bromide is formed",
+   "There is no reaction, since alcohols are neutral towards Grignard reagents"
+  ],
+  "a": 1,
+  "steps": [
+   "C₂H₅OH + CH₃MgBr  →  CH₄↑ + C₂H₅OMgBr"
+  ],
+  "e": "A tempting trap. A Grignard reagent is a powerful <b>base</b> as well as a nucleophile, and an alcohol has an acidic O&ndash;H hydrogen. The acid&ndash;base reaction is far faster than any addition, so the Grignard reagent is simply <b>destroyed</b> and the hydrocarbon corresponding to its alkyl group is evolved &mdash; here CH<sub>3</sub>MgBr gives CH<sub>4</sub>. This is exactly why Grignard reagents must be prepared and used in perfectly <b>dry ether</b>: traces of water or alcohol ruin them."
+ },
+ {
+  "t": "ident",
+  "src": "Specimen 2025 &middot; concept C8",
+  "q": "Which of the following will <b>not</b> give a positive iodoform test?",
+  "o": [
+   "Ethanol",
+   "Propan-2-ol",
+   "Butan-2-ol",
+   "Propan-1-ol"
+  ],
+  "a": 3,
+  "e": "The iodoform test has one structural requirement: the molecule must contain a <b>CH<sub>3</sub>&ndash;CO&ndash;</b> group, or a <b>CH<sub>3</sub>&ndash;CH(OH)&ndash;</b> group that can be oxidised to it. Propan-1-ol is CH<sub>3</sub>CH<sub>2</sub><b>CH<sub>2</sub></b>OH: its carbinol carbon carries a CH<sub>2</sub>, not a CH<sub>3</sub>, so the CH<sub>3</sub>CO&ndash; fragment can never form. The same rule explains why <b>methanol</b> fails &mdash; it has only one carbon &mdash; which makes the ethanol / methanol pair a favourite way of setting this."
+ },
+ {
+  "t": "ident",
+  "src": "Specimen 2022 Sem 1 &middot; concept C7",
+  "q": "Lucas reagent, used to distinguish primary, secondary and tertiary alcohols, is:",
+  "o": [
+   "anhydrous ZnCl<sub>2</sub> in concentrated HCl",
+   "anhydrous AlCl<sub>3</sub> in concentrated HCl",
+   "anhydrous ZnCl<sub>2</sub> in concentrated H<sub>2</sub>SO<sub>4</sub>",
+   "anhydrous CaCl<sub>2</sub> in dilute HCl"
+  ],
+  "a": 0,
+  "e": "Lucas reagent is <b>concentrated HCl with anhydrous zinc chloride</b>, which acts as a Lewis acid. The test works because the reaction is <b>S<sub>N</sub>1</b>: the alcohol is protonated, loses water to give a carbocation, and the chloride is captured. The rate at which turbidity appears &mdash; the insoluble alkyl chloride separating from the aqueous reagent &mdash; is a direct read-out of carbocation stability: <b>3&deg; at once, 2&deg; in about five minutes, 1&deg; only on heating</b>."
+ },
+ {
+  "t": "ident",
+  "src": "ISC 2024 &middot; ISC 2025",
+  "q": "An alcohol [A] of formula C<sub>4</sub>H<sub>10</sub>O gives turbidity with Lucas reagent after about five minutes at room temperature. On oxidation it gives a compound that responds to the iodoform test but <b>not</b> to Tollens&rsquo; test. [A] is:",
+  "o": [
+   "Butan-1-ol",
+   "Butan-2-ol",
+   "2-Methylpropan-1-ol",
+   "2-Methylpropan-2-ol"
+  ],
+  "a": 1,
+  "steps": [
+   "turbidity in ~5 min  ⇒  secondary alcohol",
+   "oxidation of a 2° alcohol gives a ketone; no –CHO, so Tollens’ fails ✓",
+   "iodoform positive  ⇒  the ketone is a methyl ketone, CH₃CO–",
+   "[A] = butan-2-ol , product = butan-2-one"
+  ],
+  "e": "The <b>timing</b> of the Lucas test is the whole clue: instant turbidity means tertiary, about five minutes means <b>secondary</b>, and nothing at room temperature means primary. That rules out all three other options at once. Oxidation of butan-2-ol gives butan-2-one, which contains CH<sub>3</sub>CO&ndash; (so iodoform is positive) but has no &ndash;CHO group (so Tollens&rsquo; is negative) &mdash; both observations check out."
+ },
+ {
+  "t": "ident",
+  "src": "ISC 2025 &middot; concept C5",
+  "q": "Which test distinguishes phenol from benzoic acid by the <b>evolution of a gas</b>?",
+  "o": [
+   "Sodium bicarbonate solution &mdash; benzoic acid gives brisk effervescence of CO<sub>2</sub>, phenol gives none",
+   "Neutral ferric chloride solution &mdash; phenol gives a violet colour",
+   "Bromine water &mdash; phenol gives a white precipitate",
+   "Sodium metal &mdash; phenol effervesces but benzoic acid does not"
+  ],
+  "a": 0,
+  "e": "Only the bicarbonate test involves a gas. Benzoic acid is stronger than carbonic acid and so displaces CO<sub>2</sub> from the bicarbonate; phenol is weaker and cannot. Options (b) and (c) are perfectly good tests for this pair &mdash; they simply do not answer the question as asked, which is a reminder to read the wording. Option (d) is wrong on the chemistry: <b>both</b> compounds have an acidic hydrogen and both react with sodium, so that test would not distinguish them at all."
+ },
+ {
+  "t": "ident",
+  "src": "Problem type T11",
+  "q": "An aromatic compound [A], C<sub>7</sub>H<sub>8</sub>O, gives a violet colour with neutral FeCl<sub>3</sub>. It dissolves in NaOH but not in NaHCO<sub>3</sub>. On vigorous oxidation with alkaline KMnO<sub>4</sub>, followed by acidification, it gives 4-hydroxybenzoic acid. [A] is:",
+  "o": [
+   "o-Cresol",
+   "m-Cresol",
+   "p-Cresol",
+   "Benzyl alcohol"
+  ],
+  "a": 2,
+  "steps": [
+   "violet with neutral FeCl₃  ⇒  a phenol",
+   "soluble in NaOH but not NaHCO₃  ⇒  confirms phenol, not a carboxylic acid",
+   "C₇H₈O = phenol + CH₂  ⇒  a methylphenol (cresol)",
+   "oxidation gives the 4-hydroxy acid  ⇒  the methyl group was at position 4"
+  ],
+  "e": "Apply the clues as <b>filters</b>, in order. The FeCl<sub>3</sub> colour establishes a phenol, which eliminates benzyl alcohol immediately &mdash; its &ndash;OH is on the side chain, so it gives no colour. The formula fixes it as a cresol. The <b>position</b> of the &ndash;COOH in the oxidation product then tells you where the methyl group was, since oxidation converts &ndash;CH<sub>3</sub> to &ndash;COOH without moving it."
+ },
+ {
+  "t": "ident",
+  "src": "ISC 2024 &middot; type T12",
+  "q": "A compound [A] of formula C<sub>4</sub>H<sub>10</sub>O does <b>not</b> react with sodium metal. On prolonged heating with excess HI it gives a <b>single</b> organic product. [A] is:",
+  "o": [
+   "Butan-1-ol",
+   "Ethoxyethane (diethyl ether)",
+   "1-Methoxypropane",
+   "2-Methylpropan-2-ol"
+  ],
+  "a": 1,
+  "steps": [
+   "no reaction with Na  ⇒  no O–H bond  ⇒  an ether",
+   "a single product with excess HI  ⇒  the ether is symmetrical",
+   "[A] = C₂H₅–O–C₂H₅ , product = 2C₂H₅I"
+  ],
+  "e": "Two clues, each doing one job. <b>No reaction with sodium</b> means there is no acidic O&ndash;H hydrogen, which rules out both alcohols at once and leaves the two ethers. <b>A single product</b> with excess HI means both alkyl groups are the same, so the ether must be <b>symmetrical</b>: 1-methoxypropane would give CH<sub>3</sub>I and C<sub>3</sub>H<sub>7</sub>I, two products."
+ },
+ {
+  "t": "mech",
+  "src": "ISC 2024 &middot; concept C13",
+  "q": "Methoxyethane, CH<sub>3</sub>&ndash;O&ndash;C<sub>2</sub>H<sub>5</sub>, is heated with concentrated HI at 373 K. The products are:",
+  "o": [
+   "CH<sub>3</sub>OH and C<sub>2</sub>H<sub>5</sub>I",
+   "CH<sub>3</sub>I and C<sub>2</sub>H<sub>5</sub>OH",
+   "CH<sub>3</sub>I and C<sub>2</sub>H<sub>5</sub>I",
+   "CH<sub>3</sub>OH and C<sub>2</sub>H<sub>5</sub>OH"
+  ],
+  "a": 1,
+  "e": "HI first protonates the ether oxygen, converting it into a good leaving group. The iodide ion then attacks by <b>S<sub>N</sub>2</b>, and the deciding factor in an S<sub>N</sub>2 attack is <b>steric hindrance</b> at the carbon being attacked. Between &ndash;CH<sub>3</sub> and &ndash;C<sub>2</sub>H<sub>5</sub>, the methyl carbon is the less crowded, so attack occurs there: the <b>smaller group takes the iodine</b> and the larger one leaves as the alcohol. (With a large excess of hot HI the ethanol is converted further, and you end up with both iodides.)"
+ },
+ {
+  "t": "mech",
+  "src": "Specimen 2027 &middot; concept C13",
+  "q": "2-Methoxy-2-methylpropane, (CH<sub>3</sub>)<sub>3</sub>C&ndash;O&ndash;CH<sub>3</sub>, is treated with HI. The products are:",
+  "o": [
+   "(CH<sub>3</sub>)<sub>3</sub>C&ndash;I and CH<sub>3</sub>OH",
+   "(CH<sub>3</sub>)<sub>3</sub>C&ndash;OH and CH<sub>3</sub>I",
+   "(CH<sub>3</sub>)<sub>3</sub>C&ndash;I and CH<sub>3</sub>I",
+   "No reaction occurs, as tertiary ethers are inert to HI"
+  ],
+  "a": 0,
+  "e": "Here the rule <b>reverses</b>, and knowing why is the point. A tertiary carbon is far too crowded to be attacked from behind, so S<sub>N</sub>2 is impossible. Instead the protonated ether ionises to give the well-stabilised <b>tertiary carbocation</b>, which then captures the iodide: the mechanism is <b>S<sub>N</sub>1</b> and the <b>tertiary</b> group takes the iodine, leaving methanol behind. So: <b>S<sub>N</sub>2 &mdash; the small one gets the iodine; S<sub>N</sub>1 &mdash; the big one gets the iodine.</b>"
+ },
+ {
+  "t": "mech",
+  "src": "Heritage 2024&ndash;25 &middot; concept C2",
+  "q": "Anisole (methoxybenzene) is heated with concentrated HI. The products are:",
+  "o": [
+   "Iodobenzene and CH<sub>3</sub>OH",
+   "Phenol and CH<sub>3</sub>I",
+   "Iodobenzene and CH<sub>3</sub>I",
+   "Phenol and CH<sub>3</sub>OH"
+  ],
+  "a": 1,
+  "e": "For an aryl alkyl ether the rule is absolute: the <b>O&ndash;aryl bond is never broken</b>. Its carbon is sp<sup>2</sup> hybridised, the C&ndash;O bond has partial double bond character from resonance with the ring, and an sp<sup>2</sup> carbon cannot undergo S<sub>N</sub>2 attack. So only the alkyl side is cleaved, and the products are always <b>phenol plus the alkyl iodide</b>:<span class=\"fig\"><svg class=\"struct\" viewBox=\"-22.19 -55.28 44.37 80.28\" height=\"81.9\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"0.00,-21.00 18.19,-10.50 18.19,10.50 0.00,21.00 -18.19,10.50 -18.19,-10.50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\"/><line x1=\"-1.02\" y1=\"-13.35\" x2=\"12.11\" y2=\"-5.76\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"12.07\" y1=\"5.79\" x2=\"-1.07\" y2=\"13.37\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"-11.05\" y1=\"7.56\" x2=\"-11.05\" y2=\"-7.61\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"0.00\" y1=\"-21.00\" x2=\"0.00\" y2=\"-35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"-41.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">OCH<tspan baseline-shift=\"-22%\" font-size=\"72%\">3</tspan></text></svg> + HI &nbsp;&rarr;&nbsp; <svg class=\"struct\" viewBox=\"-22.19 -55.28 44.37 80.28\" height=\"81.9\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"0.00,-21.00 18.19,-10.50 18.19,10.50 0.00,21.00 -18.19,10.50 -18.19,-10.50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\"/><line x1=\"-1.02\" y1=\"-13.35\" x2=\"12.11\" y2=\"-5.76\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"12.07\" y1=\"5.79\" x2=\"-1.07\" y2=\"13.37\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"-11.05\" y1=\"7.56\" x2=\"-11.05\" y2=\"-7.61\" stroke=\"currentColor\" stroke-width=\"1.15\"/><line x1=\"0.00\" y1=\"-21.00\" x2=\"0.00\" y2=\"-35.28\" stroke=\"currentColor\" stroke-width=\"1.25\"/><text x=\"0.00\" y=\"-41.28\" text-anchor=\"middle\" font-size=\"10.0\" fill=\"currentColor\">OH</text></svg> + CH<sub>3</sub>I</span>Iodobenzene is never formed, however much HI you use."
+ },
+ {
+  "t": "mech",
+  "src": "Test paper Q15 &middot; mechanism M4",
+  "q": "Treating 2-bromo-2-methylpropane with sodium methoxide does not give the expected ether. Why not, and what is obtained instead?",
+  "o": [
+   "The methoxide ion is not nucleophilic enough to displace bromide, so no reaction takes place at all.",
+   "A tertiary carbon is too sterically hindered for S<sub>N</sub>2 attack, so the strongly basic methoxide abstracts a &beta;-hydrogen instead and E2 elimination gives 2-methylpropene.",
+   "Sodium methoxide decomposes at the reaction temperature, so methanol is the only product.",
+   "The bromide is oxidised by the methoxide ion to give propanone."
+  ],
+  "a": 1,
+  "steps": [
+   "(CH₃)₃C–Br + CH₃ONa  →  (CH₃)₂C=CH₂ + CH₃OH + NaBr"
+  ],
+  "e": "Williamson&rsquo;s synthesis is an <b>S<sub>N</sub>2</b> displacement, and an alkoxide is a strong base as well as a nucleophile. When backside attack is blocked by a tertiary carbon, the alkoxide does the other thing available to it and removes a &beta;-hydrogen. The remedy is to <b>reverse the pairing</b>: make the bulky group the <i>alkoxide</i> and the small group the <i>halide</i> &mdash; use (CH<sub>3</sub>)<sub>3</sub>C&ndash;ONa with CH<sub>3</sub>Br, so that the S<sub>N</sub>2 attack happens at the unhindered methyl carbon."
+ },
+ {
+  "t": "mech",
+  "src": "Specimen 2018 &middot; mechanism M1",
+  "q": "In the acid-catalysed dehydration of ethanol to ethene, which is the <b>rate-determining step</b>?",
+  "o": [
+   "Protonation of the hydroxyl oxygen by the acid",
+   "Heterolytic loss of a water molecule from the protonated alcohol, forming a carbocation",
+   "Loss of a &beta;-proton from the carbocation to form the &pi; bond",
+   "Attack of the hydrogen sulphate ion on the carbocation"
+  ],
+  "a": 1,
+  "e": "The mechanism is <b>E1</b> and runs in three steps: fast protonation, <b>slow</b> loss of water to give the carbocation, then fast loss of a &beta;-proton. The slow step is the one that breaks a bond to create a high-energy intermediate, and because it forms a <b>carbocation</b>, the ease of dehydration follows carbocation stability &mdash; <b>3&deg; &gt; 2&deg; &gt; 1&deg;</b>. Note also that the proton is regenerated in the final step, which is what makes the acid a catalyst rather than a reactant. Option (d) is not part of the mechanism at all: hydrogen sulphate acts as a <i>base</i> here, removing a proton."
+ }
+];
+
+var KEYS = ['A','B','C','D','E'];
+
+/* Escape a bare ampersand but leave a real character reference alone.
+   Note the difference from the Computers drills, whose regex is /&(?![a-z#]+;)/ —
+   lowercase letters only. That is fine for their content but would double-escape
+   &Delta; (uppercase) and &frac12; (contains digits), both of which appear here,
+   so those entities would show up as literal text. This form accepts named
+   references with any case and any trailing digits, plus decimal and hex
+   numeric references. */
+function esc(s){
+  return String(s).replace(
+    /&(?![A-Za-z][A-Za-z0-9]{1,9};|#\d{1,7};|#[xX][0-9A-Fa-f]{1,6};)/g, '&amp;');
+}
+function fmt(s){ return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>'); }
+
+/* Questions and options keep their source order in both versions, so the
+   option index is also its display slot. Nothing here shuffles. */
+function optionsHTML(q, qi){
+  return q.o.map(function(txt, j){
+    return '<button class="opt" type="button" data-qi="' + qi + '" data-oj="' + j + '">'
+         +   '<span class="key">' + KEYS[j] + '</span>'
+         +   '<span class="txt">' + fmt(txt) + '</span>'
+         +   '<span class="mark"></span>'
+         + '</button>';
+  }).join('');
+}
+
+function cardHTML(q, pos, qi){
+  return '<div class="q-head">'
+       +   '<span class="q-num">Q' + (pos + 1) + '</span>'
+       +   '<span class="q-topic">' + TOPICS[q.t] + '</span>'
+       +   '<span class="q-src">' + q.src + '</span>'
+       + '</div>'
+       + '<div class="stem">' + fmt(q.q) + '</div>'
+       + '<div class="opts">' + optionsHTML(q, qi) + '</div>';
+}
+
+function whyHTML(q, qi){
+  return '<div class="why" hidden>'
+       +   '<div class="verdict"></div>'
+       +   (q.steps ? '<ul class="steps">'
+             + q.steps.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('')
+             + '</ul>' : '')
+       +   (q.ow ? '<ul class="owhy">'
+             + q.o.map(function(_, j){
+                 return '<li data-oj="' + j + '"><span class="k">' + KEYS[j]
+                      + '</span><span>' + fmt(q.ow[j]) + '</span></li>';
+               }).join('')
+             + '</ul>' : '')
+       +   '<p>' + fmt(q.e) + '</p>'
+       + '</div>';
+}
+
+/* Show the worked solution on one card. `chosen` may be null — that is the
+   Learn case where the reader revealed without committing to an option. */
+function reveal(card, q, chosen){
+  card.querySelectorAll('.opt').forEach(function(o, j){
+    o.classList.remove('picked');
+    if (j === q.a){
+      o.classList.add('correct');
+      o.querySelector('.mark').textContent = 'Correct answer';
+    } else if (j === chosen){
+      o.classList.add('wrong');
+      o.querySelector('.mark').textContent = 'Your answer';
+    }
+  });
+
+  var why = card.querySelector('.why');
+  var verdict = why.querySelector('.verdict');
+  if (chosen === null || chosen === undefined){
+    verdict.textContent = 'Answer — (' + KEYS[q.a] + ')';
+    verdict.className = 'verdict';
+  } else if (chosen === q.a){
+    verdict.textContent = 'Correct';
+    verdict.className = 'verdict hit';
+  } else {
+    verdict.textContent = 'Not quite — the answer is (' + KEYS[q.a] + ')';
+    verdict.className = 'verdict miss';
+  }
+
+  /* Label each rationale: which option is right, and which one you took. */
+  why.querySelectorAll('.owhy li').forEach(function(li){
+    var oj = +li.dataset.oj;
+    var last = li.querySelector('span:last-child');
+    if (oj === q.a && !li.classList.contains('is-correct')){
+      li.classList.add('is-correct');
+      last.insertAdjacentHTML('afterbegin', '<b class="tag">Correct</b>');
+    }
+    if (oj === chosen && !li.classList.contains('is-chosen')){
+      li.classList.add('is-chosen');
+      if (oj !== q.a) last.insertAdjacentHTML('afterbegin', '<b class="tag">You chose this</b>');
+    }
+  });
+
+  why.hidden = false;
+  card.classList.add('open');
+}
+
+function unreveal(card){
+  card.querySelectorAll('.opt').forEach(function(o){
+    o.classList.remove('correct', 'wrong', 'picked');
+    o.disabled = false;
+    o.querySelector('.mark').textContent = '';
+  });
+  var why = card.querySelector('.why');
+  why.hidden = true;
+  why.querySelectorAll('.owhy li').forEach(function(li){
+    li.classList.remove('is-correct', 'is-chosen');
+    var t = li.querySelector('.tag');
+    if (t) t.remove();
+  });
+  card.classList.remove('open');
+}
+
+/* Chapter-and-topic table, used by the Test results and nowhere else in Learn. */
+function fillBreakdown(picked){
+  var per = {};
+  Object.keys(TOPICS).forEach(function(t){ per[t] = {hit:0, done:0, total:0}; });
+  Q.forEach(function(q, i){
+    per[q.t].total++;
+    if (picked[i] !== null && picked[i] !== undefined){
+      per[q.t].done++;
+      if (picked[i] === q.a) per[q.t].hit++;
+    }
+  });
+
+  var chapters = [];
+  Object.keys(TOPICS).forEach(function(t){
+    if (chapters.indexOf(CHAPTER[t]) < 0) chapters.push(CHAPTER[t]);
+  });
+
+  var rows = '';
+  chapters.forEach(function(ch){
+    var ct = {hit:0, done:0, total:0};
+    Object.keys(TOPICS).forEach(function(t){
+      if (CHAPTER[t] !== ch) return;
+      ct.hit += per[t].hit; ct.done += per[t].done; ct.total += per[t].total;
+    });
+    rows += '<tr class="chap"><td>' + ch + '</td><td class="n">' + ct.hit
+          + '</td><td class="n">' + ct.done + '</td><td class="n">' + ct.total + '</td></tr>';
+    Object.keys(TOPICS).forEach(function(t){
+      if (CHAPTER[t] !== ch) return;
+      var p = per[t], w = p.total ? (p.done / p.total * 100) : 0;
+      rows += '<tr><td>' + TOPICS[t]
+            + '<span class="meter"><i style="width:' + w + '%"></i></span></td>'
+            + '<td class="n">' + p.hit + '</td><td class="n">' + p.done
+            + '</td><td class="n">' + p.total + '</td></tr>';
+    });
+  });
+  document.getElementById('resRows').innerHTML = rows;
+}
+
+/* ---------------- theme ---------------- */
+function saveTheme(v){ try { localStorage.setItem(THEME_KEY, v); } catch(e){} }
+function currentDark(){
+  var set = document.documentElement.getAttribute('data-theme');
+  if (set) return set === 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function syncThemeBtn(){
+  document.getElementById('themeBtn').textContent = currentDark() ? 'Light' : 'Dark';
+}
+document.getElementById('themeBtn').addEventListener('click', function(){
+  var next = currentDark() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  saveTheme(next);
+  syncThemeBtn();
+});
+
+
+var picked = [], phase = 'idle', endAt = 0, ticker = null, startedAt = 0;
+var TOTAL_SEC = MINUTES * 60;
+
+function buildTest(){
+  var quiz = document.getElementById('quiz');
+  quiz.innerHTML = '';
+  picked = Q.map(function(){ return null; });
+
+  Q.forEach(function(q, i){
+    var art = document.createElement('article');
+    art.className = 'q';
+    art.dataset.qi = i;
+    art.id = 'q' + (i + 1);
+    art.innerHTML = cardHTML(q, i, i) + whyHTML(q, i);
+    quiz.appendChild(art);
+  });
+
+  var g = document.getElementById('navGrid');
+  g.innerHTML = '';
+  Q.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = i + 1;
+    b.dataset.qi = i;
+    b.addEventListener('click', function(){
+      document.getElementById('q' + (i + 1)).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+    g.appendChild(b);
+  });
+
+  refreshTest();
+}
+
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function fmtClock(s){
+  if (s < 0) s = 0;
+  return pad(Math.floor(s / 60)) + ':' + pad(s % 60);
+}
+
+function tickClock(){
+  var left = Math.ceil((endAt - Date.now()) / 1000);
+  if (left < 0) left = 0;
+  document.getElementById('clockT').textContent = fmtClock(left);
+  document.getElementById('clock').className =
+    'clock' + (left <= 60 ? ' crit' : (left <= 300 ? ' warn' : ''));
+  if (left <= 0) finish(true);
+}
+
+function startTest(){
+  if (phase !== 'idle') return;
+  phase = 'running';
+  document.getElementById('gate').hidden = true;
+  document.getElementById('quiz').hidden = false;
+  document.getElementById('navBox').hidden = false;
+  document.getElementById('railLive').hidden = false;
+  startedAt = Date.now();
+  endAt = startedAt + TOTAL_SEC * 1000;
+  ticker = setInterval(tickClock, 250);
+  tickClock();
+  refreshTest();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function refreshTest(){
+  var done = picked.filter(function(p){ return p !== null; }).length;
+  document.getElementById('tDone').textContent = done;
+  document.getElementById('tTotal').textContent = Q.length;
+  document.getElementById('barFill').style.width = (done / Q.length * 100) + '%';
+  document.getElementById('submitBtn').disabled = (phase !== 'running');
+
+  document.querySelectorAll('#navGrid button').forEach(function(b, i){
+    if (phase === 'done'){
+      b.classList.remove('done');
+      b.classList.toggle('hit', picked[i] === Q[i].a);
+      b.classList.toggle('miss', picked[i] !== null && picked[i] !== Q[i].a);
+    } else {
+      b.classList.toggle('done', picked[i] !== null);
+    }
+  });
+}
+
+function finish(auto){
+  if (phase !== 'running') return;
+  phase = 'done';
+  clearInterval(ticker);
+
+  var taken = Math.min(TOTAL_SEC, Math.round((Date.now() - startedAt) / 1000));
+  var hit = 0, done = 0;
+
+  Q.forEach(function(q, i){
+    var card = document.getElementById('q' + (i + 1));
+    card.querySelectorAll('.opt').forEach(function(o){ o.disabled = true; });
+    reveal(card, q, picked[i]);
+    if (picked[i] !== null){
+      done++;
+      if (picked[i] === q.a) hit++;
+    }
+  });
+
+  document.getElementById('resScore').textContent = hit;
+  document.getElementById('resOf').textContent = Q.length;
+  document.getElementById('resPct').textContent =
+    Math.round(hit / Q.length * 100) + '%';
+  document.getElementById('resTitle').textContent =
+    auto ? 'Time up — paper submitted' : 'Paper submitted';
+  document.getElementById('resTaken').innerHTML =
+    'Answered <b>' + done + '</b> of ' + Q.length
+    + ' &middot; left blank <b>' + (Q.length - done) + '</b>'
+    + ' &middot; time taken <b>' + fmtClock(taken) + '</b> of ' + fmtClock(TOTAL_SEC);
+
+  fillBreakdown(picked);
+  document.getElementById('resultBox').hidden = false;
+  /* The frozen clock still shows what was left on it, so say so plainly rather
+     than leaving a full-looking countdown next to a submitted paper. */
+  document.getElementById('clockLab').textContent = auto ? 'Time up' : 'Unused';
+  refreshTest();
+  document.getElementById('resultBox').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function retake(){
+  phase = 'idle';
+  clearInterval(ticker);
+  document.getElementById('resultBox').hidden = true;
+  document.getElementById('quiz').hidden = true;
+  document.getElementById('navBox').hidden = true;
+  document.getElementById('railLive').hidden = true;
+  document.getElementById('gate').hidden = false;
+  document.getElementById('clockLab').textContent = 'Time left';
+  document.getElementById('clockT').textContent = fmtClock(TOTAL_SEC);
+  document.getElementById('clock').className = 'clock';
+  buildTest();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.getElementById('quiz').addEventListener('click', function(ev){
+  if (phase !== 'running') return;
+  var o = ev.target.closest('.opt');
+  if (!o) return;
+  var qi = +o.dataset.qi, oj = +o.dataset.oj;
+  picked[qi] = (picked[qi] === oj) ? null : oj;    /* click again to clear */
+  o.closest('.q').querySelectorAll('.opt').forEach(function(b, j){
+    b.classList.toggle('picked', picked[qi] === j);
+  });
+  refreshTest();
+});
+
+document.getElementById('startBtn').addEventListener('click', startTest);
+document.getElementById('submitBtn').addEventListener('click', function(){
+  var un = picked.filter(function(p){ return p === null; }).length;
+  if (un > 0 && !window.confirm(
+        un + (un === 1 ? ' question is' : ' questions are')
+        + ' still unanswered. Submit anyway?')) return;
+  finish(false);
+});
+document.getElementById('retakeBtn').addEventListener('click', retake);
+document.getElementById('topBtn').addEventListener('click', function(){
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('clockT').textContent = fmtClock(TOTAL_SEC);
+buildTest();
+syncThemeBtn();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Chemistry &#8212; Physical Chemistry Test (40 marks)</title>
+<style>
+:root{
+  --bg:#EFF2F0; --surface:#FFFFFF; --surface-2:#F6F9F8;
+  --ink:#16211E; --muted:#5C6B67; --rule:#D3DBD8; --rule-strong:#9FAEA9;
+  --accent:#0F6E63; --accent-soft:#DDEEEB; --accent-ink:#0B4F47;
+  --ok:#16794C; --ok-soft:#DEF0E6; --bad:#B0271C; --bad-soft:#FAE3E0;
+  --warn:#A86400; --warn-soft:#FBF0DC; --warn-ink:#6B4409;
+  --shadow:0 1px 2px rgba(22,33,30,.05), 0 10px 28px -20px rgba(22,33,30,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6}
+sub,sup{line-height:0;font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+b,strong{font-weight:650}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.15rem 4rem}
+.hide{display:none !important}
+
+header.mast{border-bottom:1px solid var(--rule);background:var(--surface);
+  margin-bottom:1.4rem}
+header.mast .inner{max-width:50rem;margin:0 auto;padding:1.9rem 1.15rem 1.5rem}
+.kicker{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .4rem}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.15rem);
+  line-height:1.14;margin:0 0 .4rem;letter-spacing:-.012em}
+header.mast p.sub{margin:0;color:var(--muted);font-size:.95rem;max-width:60ch}
+header.mast a.back{font-size:.78rem;color:var(--muted);text-decoration:none;
+  display:inline-block;margin-bottom:.6rem}
+header.mast a.back:hover{color:var(--accent)}
+
+/* ---------------- instructions gate ---------------- */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.5rem 1.6rem}
+.card h2{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:0 0 .8rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:.55rem;
+  margin:0 0 1.2rem}
+.fact{border:1px solid var(--rule);border-radius:3px;background:var(--surface-2);
+  padding:.55rem .7rem}
+.fact .k{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block}
+.fact .v{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+ol.rules{margin:0 0 1.2rem;padding-left:1.3rem;font-size:.95rem}
+ol.rules li{margin-bottom:.4rem}
+.lockwarn{background:var(--bad-soft);border-left:3px solid var(--bad);border-radius:3px;
+  padding:.8rem 1rem;margin:0 0 1.2rem;font-size:.95rem}
+.lockwarn b:first-child{color:var(--bad)}
+.startbtn{font-family:var(--sans);font-size:.95rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.7rem 1.6rem;cursor:pointer}
+.startbtn:hover{background:var(--accent-ink)}
+
+/* ---------------- the running paper ---------------- */
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);
+  border-bottom:1px solid var(--rule);margin-bottom:1rem;
+  box-shadow:0 2px 12px -8px rgba(22,33,30,.35)}
+.topbar .inner{max-width:50rem;margin:0 auto;padding:.55rem 1.15rem;display:flex;
+  align-items:center;gap:.8rem;flex-wrap:wrap}
+#clock{font-family:var(--mono);font-size:1.15rem;font-weight:700;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+#clock.warn{color:var(--warn)} #clock.crit{color:var(--bad)}
+.clocklab{font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block;line-height:1.2}
+#answered{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.topbar .spacer{flex:1 1 auto}
+#submitbtn{font-family:var(--sans);font-size:.82rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.42rem 1rem;cursor:pointer}
+#submitbtn:hover{background:var(--accent-ink)}
+.livewarn{background:var(--warn-soft);border-left:3px solid var(--warn);
+  border-radius:3px;padding:.55rem .85rem;margin:0 0 1.2rem;font-size:.86rem;
+  color:var(--warn-ink)}
+.livewarn b{color:var(--warn-ink)}
+
+.qcard{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.1rem 1.3rem 1.2rem;margin:0 0 .9rem}
+.qhead{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;
+  font-size:.72rem}
+.qno{background:var(--accent);color:#fff;font-weight:700;border-radius:2px;
+  padding:.14rem .45rem}
+.qch{border:1px solid var(--rule);border-radius:2px;padding:.11rem .45rem;
+  color:var(--muted);font-weight:600}
+.qmk{margin-left:auto;color:var(--muted);font-weight:600}
+.qtext{font-family:var(--serif);font-size:1.05rem;line-height:1.6;margin-bottom:.85rem}
+.opts{display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;border:1px solid var(--rule);
+  border-radius:3px;padding:.55rem .8rem;cursor:pointer;background:var(--surface-2);
+  transition:border-color .14s,background .14s}
+.opt:hover{border-color:var(--rule-strong)}
+.opt input{margin:.28rem 0 0;accent-color:var(--accent);flex:0 0 auto}
+.opt .lab{font-weight:700;color:var(--accent);flex:0 0 1.1rem}
+.opt .txt{flex:1 1 auto;font-size:.96rem}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.paper.locked .opt{cursor:default}
+
+/* ---------------- the marked paper ---------------- */
+.scorecard{background:var(--surface);border:1px solid var(--accent);
+  border-left:3px solid var(--accent);border-radius:3px;box-shadow:var(--shadow);
+  padding:1.4rem 1.5rem;margin:0 0 1.2rem}
+.scorecard h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 .2rem}
+.bigscore{font-family:var(--serif);font-size:2.8rem;font-weight:600;line-height:1.05;
+  color:var(--accent);margin:.4rem 0 .1rem}
+.bigscore span{font-size:1.3rem;color:var(--muted)}
+.pct{font-size:.95rem;color:var(--muted);margin-bottom:1rem}
+.why{background:var(--warn-soft);border-left:3px solid var(--warn);border-radius:3px;
+  padding:.6rem .9rem;margin:0 0 1rem;font-size:.9rem;color:var(--warn-ink)}
+.brk{width:100%;border-collapse:collapse;font-size:.9rem;margin-bottom:.4rem}
+.brk th,.brk td{border:1px solid var(--rule);padding:.35rem .6rem;text-align:center}
+.brk th{background:var(--surface-2);font-size:.72rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);font-weight:700}
+.brk td.l,.brk th.l{text-align:left}
+.brk tfoot td{font-weight:700;background:var(--surface-2)}
+.again{font-family:var(--sans);font-size:.8rem;font-weight:600;background:none;
+  border:1px solid var(--rule);border-radius:3px;padding:.4rem .9rem;
+  color:var(--muted);cursor:pointer;margin-top:.9rem}
+.again:hover{border-color:var(--bad);color:var(--bad)}
+
+.qcard.right{border-left:3px solid var(--ok)}
+.qcard.wrong{border-left:3px solid var(--bad)}
+.qcard.blank{border-left:3px solid var(--rule-strong)}
+.verdict{font-size:.76rem;font-weight:700;border-radius:2px;padding:.14rem .5rem}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.no{background:var(--bad-soft);color:var(--bad)}
+.verdict.bl{background:var(--surface-2);color:var(--muted)}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.chosen-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt .tag{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;align-self:center}
+.opt.correct .tag{color:var(--ok)}
+.opt.chosen-wrong .tag{color:var(--bad)}
+.expl{margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.95rem;line-height:1.62}
+.expl .lab{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:.25rem}
+
+footer.foot{max-width:50rem;margin:0 auto;padding:1.6rem 1.15rem 2.5rem;
+  font-size:.78rem;color:var(--muted);line-height:1.65}
+footer.foot .rule{height:1px;background:var(--rule);margin-bottom:1rem}
+@media print{ .topbar,.startbtn,#submitbtn,.again{display:none !important} }
+</style>
+
+<header class="mast"><div class="inner">
+  <a class="back" href="index.html">&#8249; ISC Chemistry</a>
+  <p class="kicker">ISC Class 12 &middot; First Term &middot; Physical Chemistry</p>
+  <h1>Physical Chemistry Test</h1>
+  <p class="sub">Solutions, Electrochemistry and Chemical Kinetics &mdash; the three
+  Physical Chemistry chapters of the First Term. 40 multiple-choice questions,
+  1 mark each, 40 marks in 120 minutes.</p>
+</div></header>
+
+<div class="wrap">
+
+<!-- ============================ instructions ============================ -->
+<div id="gate">
+  <div class="card">
+    <h2>Before you begin</h2>
+    <div class="facts">
+      <div class="fact"><span class="k">Marks</span><span class="v">40</span></div>
+      <div class="fact"><span class="k">Time</span><span class="v">2 hours</span></div>
+      <div class="fact"><span class="k">Questions</span><span class="v">40</span></div>
+      <div class="fact"><span class="k">Each</span><span class="v">1 mark</span></div>
+    </div>
+
+    <div class="lockwarn"><b>The paper locks once you start.</b> If you close this
+      tab, reload the page or navigate away before submitting, <b>the paper is
+      submitted automatically</b> with the answers you have given so far. There is no
+      way back into a paper in progress &mdash; treat it as an examination hall.</div>
+
+    <ol class="rules">
+      <li>All 40 questions are compulsory. Each carries <b>1 mark</b>, and
+        there is <b>no negative marking</b> &mdash; a wrong answer scores zero, so
+        never leave a question blank.</li>
+      <li>Exactly one option is correct. You may change an answer freely until you
+        submit; nothing is marked before then.</li>
+      <li>The clock starts the moment you press <i>Start</i> and runs for
+        <b>120 minutes</b> (2 hours). When it reaches zero the paper submits
+        itself.</li>
+      <li>Your answers are saved as you go, so a crash will not lose them &mdash; but
+        reopening the page will show you the marked paper, not the paper again.</li>
+      <li>After submitting you will see your marks, a chapter-by-chapter breakdown,
+        and a worked explanation for every question.</li>
+      <li>Coverage: Solutions <b>14</b> &middot; Electrochemistry <b>14</b> &middot; Chemical Kinetics <b>12</b>.</li>
+    </ol>
+
+    <button class="startbtn" id="startbtn" type="button">Start the paper</button>
+  </div>
+</div>
+
+<!-- ============================ the paper ============================ -->
+<div id="paper" class="hide paper">
+  <div class="topbar"><div class="inner">
+    <div><span class="clocklab">Time left</span><span id="clock">--:--</span></div>
+    <span id="answered"></span>
+    <span class="spacer"></span>
+    <button id="submitbtn" type="button">Submit paper</button>
+  </div></div>
+  <div class="livewarn"><b>Do not close or reload this page.</b> Leaving it submits
+    your paper.</div>
+</div>
+
+<!-- ============================ the marked paper ============================ -->
+<div id="result" class="hide">
+  <div class="scorecard">
+    <h2>Your result</h2>
+    <div class="bigscore" id="score"></div>
+    <div class="pct" id="pct"></div>
+    <div class="why hide" id="why"></div>
+    <table class="brk">
+      <thead><tr><th class="l">Chapter</th><th>Correct</th><th>Marks</th></tr></thead>
+      <tbody id="brkbody"></tbody>
+      <tfoot id="brkfoot"></tfoot>
+    </table>
+    <button class="again" id="again" type="button">Clear this attempt and sit the
+      paper again</button>
+  </div>
+  <p class="livewarn" style="background:var(--accent-soft);border-color:var(--accent);
+    color:var(--accent-ink)"><b>Every question is worked below</b> &mdash; your answer,
+    the correct one, and why.</p>
+</div>
+
+<!-- the questions themselves live once and are used by both states -->
+<div id="questions" class="hide">
+<section class="qcard" id="c0"><div class="qhead"><span class="qno">Q1</span><span class="qch">Solutions</span><span class="verdict hide" id="v0"></span><span class="qmk">1 mark</span></div><div class="qtext">1&middot;8 g of a non-electrolyte dissolved in 90 g of water lowered the freezing point by 0&middot;465 K. The molar mass of the solute is (K<sub>f</sub> for water = 1&middot;86 K kg mol<sup>&minus;1</sup>):</div><div class="opts"><label class="opt" for="q0o0"><input type="radio" id="q0o0" name="q0" value="0"><span class="lab">A</span><span class="txt">80 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q0o1"><input type="radio" id="q0o1" name="q0" value="1"><span class="lab">B</span><span class="txt">60 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q0o2"><input type="radio" id="q0o2" name="q0" value="2"><span class="lab">C</span><span class="txt">100 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q0o3"><input type="radio" id="q0o3" name="q0" value="3"><span class="lab">D</span><span class="txt">120 g mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e0"><span class="lab">Explanation</span>M = K<sub>f</sub>&middot;w<sub>B</sub>&middot;1000 / (&Delta;T<sub>f</sub>&middot;w<sub>A</sub>) = (1&middot;86 &times; 1&middot;8 &times; 1000) / (0&middot;465 &times; 90) = 3348 / 41&middot;85 = <b>80 g mol<sup>&minus;1</sup></b>. Keep the solvent mass in grams and the factor of 1000 converts it to kilograms; dropping the 1000 gives 0&middot;08 and dropping the solvent mass gives 7200.</div></section>
+<section class="qcard" id="c1"><div class="qhead"><span class="qno">Q2</span><span class="qch">Solutions</span><span class="verdict hide" id="v1"></span><span class="qmk">1 mark</span></div><div class="qtext">A 0&middot;1 M solution of K<sub>3</sub>[Fe(CN)<sub>6</sub>] is 60% dissociated. Its van't Hoff factor is:</div><div class="opts"><label class="opt" for="q1o0"><input type="radio" id="q1o0" name="q1" value="0"><span class="lab">A</span><span class="txt">2&middot;8</span><span class="tag"></span></label><label class="opt" for="q1o1"><input type="radio" id="q1o1" name="q1" value="1"><span class="lab">B</span><span class="txt">2&middot;2</span><span class="tag"></span></label><label class="opt" for="q1o2"><input type="radio" id="q1o2" name="q1" value="2"><span class="lab">C</span><span class="txt">1&middot;6</span><span class="tag"></span></label><label class="opt" for="q1o3"><input type="radio" id="q1o3" name="q1" value="3"><span class="lab">D</span><span class="txt">3&middot;4</span><span class="tag"></span></label></div><div class="expl hide" id="e1"><span class="lab">Explanation</span>K<sub>3</sub>[Fe(CN)<sub>6</sub>] &rarr; 3K<sup>+</sup> + [Fe(CN)<sub>6</sub>]<sup>3&minus;</sup>, so <b>n = 4</b> particles &mdash; the complex ion counts as one, because ligands inside the coordination sphere do not ionise. Then i = 1 + (n &minus; 1)&alpha; = 1 + 3(0&middot;60) = <b>2&middot;8</b>. Taking n = 10 by splitting the complex gives 6&middot;4.</div></section>
+<section class="qcard" id="c2"><div class="qhead"><span class="qno">Q3</span><span class="qch">Solutions</span><span class="verdict hide" id="v2"></span><span class="qmk">1 mark</span></div><div class="qtext">The osmotic pressure of a 0&middot;02 M aqueous solution of K<sub>2</sub>SO<sub>4</sub> at 27 &deg;C, assuming complete dissociation, is (R = 0&middot;0821 L atm K<sup>&minus;1</sup> mol<sup>&minus;1</sup>):</div><div class="opts"><label class="opt" for="q2o0"><input type="radio" id="q2o0" name="q2" value="0"><span class="lab">A</span><span class="txt">0&middot;49 atm</span><span class="tag"></span></label><label class="opt" for="q2o1"><input type="radio" id="q2o1" name="q2" value="1"><span class="lab">B</span><span class="txt">2&middot;96 atm</span><span class="tag"></span></label><label class="opt" for="q2o2"><input type="radio" id="q2o2" name="q2" value="2"><span class="lab">C</span><span class="txt">1&middot;48 atm</span><span class="tag"></span></label><label class="opt" for="q2o3"><input type="radio" id="q2o3" name="q2" value="3"><span class="lab">D</span><span class="txt">4&middot;44 atm</span><span class="tag"></span></label></div><div class="expl hide" id="e2"><span class="lab">Explanation</span>K<sub>2</sub>SO<sub>4</sub> &rarr; 2K<sup>+</sup> + SO<sub>4</sub><sup>2&minus;</sup>, so i = 3 and T = 300 K. &pi; = iCRT = 3 &times; 0&middot;02 &times; 0&middot;0821 &times; 300 = <b>1&middot;48 atm</b>. Omitting i gives 0&middot;49 atm &mdash; exactly one third, and the commonest error in this question.</div></section>
+<section class="qcard" id="c3"><div class="qhead"><span class="qno">Q4</span><span class="qch">Solutions</span><span class="verdict hide" id="v3"></span><span class="qmk">1 mark</span></div><div class="qtext">30 g of urea (M = 60 g mol<sup>&minus;1</sup>) is dissolved in 846 g of water at 298 K. If the vapour pressure of pure water at 298 K is 23&middot;8 mm Hg, the vapour pressure of the solution is:</div><div class="opts"><label class="opt" for="q3o0"><input type="radio" id="q3o0" name="q3" value="0"><span class="lab">A</span><span class="txt">22&middot;80 mm Hg</span><span class="tag"></span></label><label class="opt" for="q3o1"><input type="radio" id="q3o1" name="q3" value="1"><span class="lab">B</span><span class="txt">23&middot;55 mm Hg</span><span class="tag"></span></label><label class="opt" for="q3o2"><input type="radio" id="q3o2" name="q3" value="2"><span class="lab">C</span><span class="txt">23&middot;68 mm Hg</span><span class="tag"></span></label><label class="opt" for="q3o3"><input type="radio" id="q3o3" name="q3" value="3"><span class="lab">D</span><span class="txt">24&middot;05 mm Hg</span><span class="tag"></span></label></div><div class="expl hide" id="e3"><span class="lab">Explanation</span>Urea is non-volatile, so p = x<sub>water</sub> &times; p&deg;. n(urea) = 30/60 = 0&middot;5 mol; n(water) = 846/18 = 47&middot;0 mol. x<sub>water</sub> = 47&middot;0 / 47&middot;5 = 0&middot;9895. p = 0&middot;9895 &times; 23&middot;8 = <b>23&middot;55 mm Hg</b>. Using the mole fraction of the <i>solute</i> gives 0&middot;25 mm Hg, which is the <i>lowering</i>, not the vapour pressure.</div></section>
+<section class="qcard" id="c4"><div class="qhead"><span class="qno">Q5</span><span class="qch">Solutions</span><span class="verdict hide" id="v4"></span><span class="qmk">1 mark</span></div><div class="qtext">Four aqueous solutions, each 0&middot;1 molal, are prepared from glucose, NaCl, BaCl<sub>2</sub> and AlCl<sub>3</sub>. The solution with the <b>highest boiling point</b> is that of:</div><div class="opts"><label class="opt" for="q4o0"><input type="radio" id="q4o0" name="q4" value="0"><span class="lab">A</span><span class="txt">glucose</span><span class="tag"></span></label><label class="opt" for="q4o1"><input type="radio" id="q4o1" name="q4" value="1"><span class="lab">B</span><span class="txt">NaCl</span><span class="tag"></span></label><label class="opt" for="q4o2"><input type="radio" id="q4o2" name="q4" value="2"><span class="lab">C</span><span class="txt">BaCl<sub>2</sub></span><span class="tag"></span></label><label class="opt" for="q4o3"><input type="radio" id="q4o3" name="q4" value="3"><span class="lab">D</span><span class="txt">AlCl<sub>3</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e4"><span class="lab">Explanation</span>Elevation of boiling point is colligative: &Delta;T<sub>b</sub> = i K<sub>b</sub> m. At equal molality the largest i wins. glucose 1 &lt; NaCl 2 &lt; BaCl<sub>2</sub> 3 &lt; <b>AlCl<sub>3</sub> 4</b>. Note the direction: the greatest elevation gives the <b>highest</b> boiling point, whereas the greatest depression gives the <b>lowest</b> freezing point &mdash; the same ordering read two opposite ways.</div></section>
+<section class="qcard" id="c5"><div class="qhead"><span class="qno">Q6</span><span class="qch">Solutions</span><span class="verdict hide" id="v5"></span><span class="qmk">1 mark</span></div><div class="qtext">Which pair of liquids shows a <b>negative</b> deviation from Raoult's law and forms a maximum boiling azeotrope?</div><div class="opts"><label class="opt" for="q5o0"><input type="radio" id="q5o0" name="q5" value="0"><span class="lab">A</span><span class="txt">Ethanol and water</span><span class="tag"></span></label><label class="opt" for="q5o1"><input type="radio" id="q5o1" name="q5" value="1"><span class="lab">B</span><span class="txt">Benzene and toluene</span><span class="tag"></span></label><label class="opt" for="q5o2"><input type="radio" id="q5o2" name="q5" value="2"><span class="lab">C</span><span class="txt">Chloroform and acetone</span><span class="tag"></span></label><label class="opt" for="q5o3"><input type="radio" id="q5o3" name="q5" value="3"><span class="lab">D</span><span class="txt"><i>n</i>-Hexane and <i>n</i>-heptane</span><span class="tag"></span></label></div><div class="expl hide" id="e5"><span class="lab">Explanation</span><b>Chloroform and acetone.</b> A hydrogen bond forms between the chloroform hydrogen and the acetone carbonyl oxygen &mdash; a new interaction <i>stronger</i> than those it replaces, so escaping tendency falls, the observed pressure is below the predicted one, &Delta;<sub>mix</sub>H is negative, and the mixture boils at a maximum. Ethanol + water deviates <i>positively</i> (minimum boiling, 95% azeotrope); the last two pairs are essentially ideal.</div></section>
+<section class="qcard" id="c6"><div class="qhead"><span class="qno">Q7</span><span class="qch">Solutions</span><span class="verdict hide" id="v6"></span><span class="qmk">1 mark</span></div><div class="qtext">The Henry's law constant for CO<sub>2</sub> in water at 298 K is 1&middot;67 &times; 10<sup>8</sup> Pa. The mole fraction of CO<sub>2</sub> in a soda water bottle in which the partial pressure of CO<sub>2</sub> is 2&middot;5 atm is (1 atm = 1&middot;013 &times; 10<sup>5</sup> Pa):</div><div class="opts"><label class="opt" for="q6o0"><input type="radio" id="q6o0" name="q6" value="0"><span class="lab">A</span><span class="txt">3&middot;00 &times; 10<sup>&minus;3</sup></span><span class="tag"></span></label><label class="opt" for="q6o1"><input type="radio" id="q6o1" name="q6" value="1"><span class="lab">B</span><span class="txt">1&middot;52 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label><label class="opt" for="q6o2"><input type="radio" id="q6o2" name="q6" value="2"><span class="lab">C</span><span class="txt">6&middot;60 &times; 10<sup>&minus;4</sup></span><span class="tag"></span></label><label class="opt" for="q6o3"><input type="radio" id="q6o3" name="q6" value="3"><span class="lab">D</span><span class="txt">1&middot;52 &times; 10<sup>&minus;3</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e6"><span class="lab">Explanation</span>p = K<sub>H</sub>x, so x = p/K<sub>H</sub>. Convert first: p = 2&middot;5 &times; 1&middot;013 &times; 10<sup>5</sup> = 2&middot;53 &times; 10<sup>5</sup> Pa. x = 2&middot;53 &times; 10<sup>5</sup> / 1&middot;67 &times; 10<sup>8</sup> = <b>1&middot;52 &times; 10<sup>&minus;3</sup></b>. The units of p and K<sub>H</sub> must match &mdash; using 2&middot;5 atm directly against a constant in pascals is the trap.</div></section>
+<section class="qcard" id="c7"><div class="qhead"><span class="qno">Q8</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v7"></span><span class="qmk">1 mark</span></div><div class="qtext">For the cell Zn(s) | Zn<sup>2+</sup>(0&middot;1 M) &#8214; Cu<sup>2+</sup>(0&middot;01 M) | Cu(s), for which E&deg;<sub>cell</sub> = 1&middot;10 V, the emf at 298 K is:</div><div class="opts"><label class="opt" for="q7o0"><input type="radio" id="q7o0" name="q7" value="0"><span class="lab">A</span><span class="txt">1&middot;04 V</span><span class="tag"></span></label><label class="opt" for="q7o1"><input type="radio" id="q7o1" name="q7" value="1"><span class="lab">B</span><span class="txt">1&middot;07 V</span><span class="tag"></span></label><label class="opt" for="q7o2"><input type="radio" id="q7o2" name="q7" value="2"><span class="lab">C</span><span class="txt">1&middot;13 V</span><span class="tag"></span></label><label class="opt" for="q7o3"><input type="radio" id="q7o3" name="q7" value="3"><span class="lab">D</span><span class="txt">1&middot;16 V</span><span class="tag"></span></label></div><div class="expl hide" id="e7"><span class="lab">Explanation</span>Cell reaction Zn + Cu<sup>2+</sup> &rarr; Zn<sup>2+</sup> + Cu, so n = 2 and Q = [Zn<sup>2+</sup>]/[Cu<sup>2+</sup>] = 0&middot;1/0&middot;01 = 10. E = 1&middot;10 &minus; (0&middot;0591/2) log 10 = 1&middot;10 &minus; 0&middot;0296 = <b>1&middot;07 V</b>. The anode ion goes on top of Q; inverting it gives 1&middot;13 V.</div></section>
+<section class="qcard" id="c8"><div class="qhead"><span class="qno">Q9</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v8"></span><span class="qmk">1 mark</span></div><div class="qtext">A galvanic cell has E&deg;<sub>cell</sub> = 0&middot;46 V and its cell reaction involves 2 electrons. &Delta;G&deg; for the reaction is (1 F = 96500 C):</div><div class="opts"><label class="opt" for="q8o0"><input type="radio" id="q8o0" name="q8" value="0"><span class="lab">A</span><span class="txt">&minus;88&middot;78 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q8o1"><input type="radio" id="q8o1" name="q8" value="1"><span class="lab">B</span><span class="txt">&minus;44&middot;39 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q8o2"><input type="radio" id="q8o2" name="q8" value="2"><span class="lab">C</span><span class="txt">&minus;177&middot;56 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q8o3"><input type="radio" id="q8o3" name="q8" value="3"><span class="lab">D</span><span class="txt">+88&middot;78 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e8"><span class="lab">Explanation</span>&Delta;G&deg; = &minus;nFE&deg;<sub>cell</sub> = &minus;2 &times; 96500 &times; 0&middot;46 = &minus;88780 J = <b>&minus;88&middot;78 kJ mol<sup>&minus;1</sup></b>. Negative, as it must be for a cell with a positive emf &mdash; a positive answer here means the sign of the formula was dropped.</div></section>
+<section class="qcard" id="c9"><div class="qhead"><span class="qno">Q10</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v9"></span><span class="qmk">1 mark</span></div><div class="qtext">Given &lambda;&deg;(Al<sup>3+</sup>) = 189 and &lambda;&deg;(SO<sub>4</sub><sup>2&minus;</sup>) = 160 S cm<sup>2</sup> mol<sup>&minus;1</sup>, the molar conductivity at infinite dilution of Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> is:</div><div class="opts"><label class="opt" for="q9o0"><input type="radio" id="q9o0" name="q9" value="0"><span class="lab">A</span><span class="txt">349 S cm<sup>2</sup> mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q9o1"><input type="radio" id="q9o1" name="q9" value="1"><span class="lab">B</span><span class="txt">508 S cm<sup>2</sup> mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q9o2"><input type="radio" id="q9o2" name="q9" value="2"><span class="lab">C</span><span class="txt">1027 S cm<sup>2</sup> mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q9o3"><input type="radio" id="q9o3" name="q9" value="3"><span class="lab">D</span><span class="txt">858 S cm<sup>2</sup> mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e9"><span class="lab">Explanation</span>By Kohlrausch's law each ion is counted as many times as the formula unit releases it: &Lambda;&deg; = 2&lambda;&deg;(Al<sup>3+</sup>) + 3&lambda;&deg;(SO<sub>4</sub><sup>2&minus;</sup>) = 2(189) + 3(160) = 378 + 480 = <b>858</b>. Simply adding 189 + 160 = 349 ignores the stoichiometry, which is the whole point of the law.</div></section>
+<section class="qcard" id="c10"><div class="qhead"><span class="qno">Q11</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v10"></span><span class="qmk">1 mark</span></div><div class="qtext">The molar conductivity of a 0&middot;001 M acetic acid solution is 39&middot;05 S cm<sup>2</sup> mol<sup>&minus;1</sup> and its molar conductivity at infinite dilution is 390&middot;5 S cm<sup>2</sup> mol<sup>&minus;1</sup>. Its degree of dissociation is:</div><div class="opts"><label class="opt" for="q10o0"><input type="radio" id="q10o0" name="q10" value="0"><span class="lab">A</span><span class="txt">0&middot;01</span><span class="tag"></span></label><label class="opt" for="q10o1"><input type="radio" id="q10o1" name="q10" value="1"><span class="lab">B</span><span class="txt">0&middot;20</span><span class="tag"></span></label><label class="opt" for="q10o2"><input type="radio" id="q10o2" name="q10" value="2"><span class="lab">C</span><span class="txt">0&middot;10</span><span class="tag"></span></label><label class="opt" for="q10o3"><input type="radio" id="q10o3" name="q10" value="3"><span class="lab">D</span><span class="txt">0&middot;39</span><span class="tag"></span></label></div><div class="expl hide" id="e10"><span class="lab">Explanation</span>&alpha; = &Lambda;<sub>m</sub> / &Lambda;&deg;<sub>m</sub> = 39&middot;05 / 390&middot;5 = <b>0&middot;10</b>, i.e. 10% dissociated. &Lambda;&deg;<sub>m</sub> for a weak electrolyte cannot be found by extrapolating its own graph &mdash; the curve rises too steeply near the axis &mdash; which is precisely why Kohlrausch's law is needed to supply it.</div></section>
+<section class="qcard" id="c11"><div class="qhead"><span class="qno">Q12</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v11"></span><span class="qmk">1 mark</span></div><div class="qtext">A current of 5 A is passed through molten AlCl<sub>3</sub> for 30 minutes. The mass of aluminium deposited is (Al = 27, 1 F = 96500 C):</div><div class="opts"><label class="opt" for="q11o0"><input type="radio" id="q11o0" name="q11" value="0"><span class="lab">A</span><span class="txt">0&middot;28 g</span><span class="tag"></span></label><label class="opt" for="q11o1"><input type="radio" id="q11o1" name="q11" value="1"><span class="lab">B</span><span class="txt">0&middot;84 g</span><span class="tag"></span></label><label class="opt" for="q11o2"><input type="radio" id="q11o2" name="q11" value="2"><span class="lab">C</span><span class="txt">1&middot;68 g</span><span class="tag"></span></label><label class="opt" for="q11o3"><input type="radio" id="q11o3" name="q11" value="3"><span class="lab">D</span><span class="txt">2&middot;52 g</span><span class="tag"></span></label></div><div class="expl hide" id="e11"><span class="lab">Explanation</span>Q = It = 5 &times; (30 &times; 60) = 9000 C. For Al<sup>3+</sup> + 3e<sup>&minus;</sup> &rarr; Al the equivalent weight is 27/3 = 9. w = (E/F)Q = (9 &times; 9000)/96500 = <b>0&middot;84 g</b>. Leaving the time as 30 instead of 1800 seconds, or forgetting to divide by 3, are the two ways this goes wrong.</div></section>
+<section class="qcard" id="c12"><div class="qhead"><span class="qno">Q13</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v12"></span><span class="qmk">1 mark</span></div><div class="qtext">Silver and copper voltameters are connected <b>in series</b> and a current is passed until 1&middot;08 g of silver is deposited. The mass of copper deposited is (Ag = 108, Cu = 63&middot;5):</div><div class="opts"><label class="opt" for="q12o0"><input type="radio" id="q12o0" name="q12" value="0"><span class="lab">A</span><span class="txt">0&middot;159 g</span><span class="tag"></span></label><label class="opt" for="q12o1"><input type="radio" id="q12o1" name="q12" value="1"><span class="lab">B</span><span class="txt">1&middot;270 g</span><span class="tag"></span></label><label class="opt" for="q12o2"><input type="radio" id="q12o2" name="q12" value="2"><span class="lab">C</span><span class="txt">0&middot;635 g</span><span class="tag"></span></label><label class="opt" for="q12o3"><input type="radio" id="q12o3" name="q12" value="3"><span class="lab">D</span><span class="txt">0&middot;318 g</span><span class="tag"></span></label></div><div class="expl hide" id="e12"><span class="lab">Explanation</span>In series the <b>same charge</b> passes through both &mdash; Faraday's second law. Moles of electrons = 1&middot;08/108 = 0&middot;01 (n = 1 for Ag<sup>+</sup>). For Cu<sup>2+</sup> + 2e<sup>&minus;</sup> &rarr; Cu, w = (63&middot;5/2) &times; 0&middot;01 = <b>0&middot;318 g</b>. Do not compute a fresh charge for the second cell.</div></section>
+<section class="qcard" id="c13"><div class="qhead"><span class="qno">Q14</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v13"></span><span class="qmk">1 mark</span></div><div class="qtext">Given E&deg;: Cu<sup>2+</sup>/Cu = +0&middot;34 V, Ag<sup>+</sup>/Ag = +0&middot;80 V, Zn<sup>2+</sup>/Zn = &minus;0&middot;76 V, Au<sup>3+</sup>/Au = +1&middot;50 V. Which metal will liberate H<sub>2</sub> gas from dilute HCl?</div><div class="opts"><label class="opt" for="q13o0"><input type="radio" id="q13o0" name="q13" value="0"><span class="lab">A</span><span class="txt">Cu</span><span class="tag"></span></label><label class="opt" for="q13o1"><input type="radio" id="q13o1" name="q13" value="1"><span class="lab">B</span><span class="txt">Ag</span><span class="tag"></span></label><label class="opt" for="q13o2"><input type="radio" id="q13o2" name="q13" value="2"><span class="lab">C</span><span class="txt">Zn</span><span class="tag"></span></label><label class="opt" for="q13o3"><input type="radio" id="q13o3" name="q13" value="3"><span class="lab">D</span><span class="txt">Au</span><span class="tag"></span></label></div><div class="expl hide" id="e13"><span class="lab">Explanation</span>Hydrogen is the zero of the scale, so only a metal with a <b>negative</b> standard reduction potential lies above it and can reduce H<sup>+</sup> to H<sub>2</sub>. Only <b>Zn</b> at &minus;0&middot;76 V qualifies: E&deg;<sub>cell</sub> = 0&middot;00 &minus; (&minus;0&middot;76) = +0&middot;76 V. Cu, Ag and Au all sit below hydrogen, which is why they do not dissolve in dilute HCl or dilute H<sub>2</sub>SO<sub>4</sub>.</div></section>
+<section class="qcard" id="c14"><div class="qhead"><span class="qno">Q15</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v14"></span><span class="qmk">1 mark</span></div><div class="qtext">The unit of the rate constant of a reaction is mol L<sup>&minus;1</sup> s<sup>&minus;1</sup>. The order of the reaction is:</div><div class="opts"><label class="opt" for="q14o0"><input type="radio" id="q14o0" name="q14" value="0"><span class="lab">A</span><span class="txt">zero</span><span class="tag"></span></label><label class="opt" for="q14o1"><input type="radio" id="q14o1" name="q14" value="1"><span class="lab">B</span><span class="txt">first</span><span class="tag"></span></label><label class="opt" for="q14o2"><input type="radio" id="q14o2" name="q14" value="2"><span class="lab">C</span><span class="txt">second</span><span class="tag"></span></label><label class="opt" for="q14o3"><input type="radio" id="q14o3" name="q14" value="3"><span class="lab">D</span><span class="txt">third</span><span class="tag"></span></label></div><div class="expl hide" id="e14"><span class="lab">Explanation</span>The unit of k is (mol L<sup>&minus;1</sup>)<sup>1&minus;n</sup> s<sup>&minus;1</sup>. Setting 1 &minus; n = 1 gives <b>n = 0</b>. Put another way, only for a zero order reaction is k numerically the rate itself, so the two share a unit. First order would be s<sup>&minus;1</sup> and second order L mol<sup>&minus;1</sup> s<sup>&minus;1</sup>.</div></section>
+<section class="qcard" id="c15"><div class="qhead"><span class="qno">Q16</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v15"></span><span class="qmk">1 mark</span></div><div class="qtext">For the reaction 2A + B &rarr; products, doubling [A] doubles the rate, and doubling [B] makes the rate four times. The overall order of the reaction is:</div><div class="opts"><label class="opt" for="q15o0"><input type="radio" id="q15o0" name="q15" value="0"><span class="lab">A</span><span class="txt">3</span><span class="tag"></span></label><label class="opt" for="q15o1"><input type="radio" id="q15o1" name="q15" value="1"><span class="lab">B</span><span class="txt">2</span><span class="tag"></span></label><label class="opt" for="q15o2"><input type="radio" id="q15o2" name="q15" value="2"><span class="lab">C</span><span class="txt">1</span><span class="tag"></span></label><label class="opt" for="q15o3"><input type="radio" id="q15o3" name="q15" value="3"><span class="lab">D</span><span class="txt">4</span><span class="tag"></span></label></div><div class="expl hide" id="e15"><span class="lab">Explanation</span>Rate &prop; [A]<sup>1</sup> because doubling gives 2<sup>1</sup>, and rate &prop; [B]<sup>2</sup> because doubling gives 4 = 2<sup>2</sup>. So rate = k[A][B]<sup>2</sup> and the overall order is 1 + 2 = <b>3</b>. Note that the coefficient 2 in front of A does <i>not</i> enter &mdash; order is experimental, not read off the balanced equation.</div></section>
+<section class="qcard" id="c16"><div class="qhead"><span class="qno">Q17</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v16"></span><span class="qmk">1 mark</span></div><div class="qtext">A first order reaction is 30% complete in 20 minutes. The time required for it to be 60% complete is approximately:</div><div class="opts"><label class="opt" for="q16o0"><input type="radio" id="q16o0" name="q16" value="0"><span class="lab">A</span><span class="txt">51&middot;4 min</span><span class="tag"></span></label><label class="opt" for="q16o1"><input type="radio" id="q16o1" name="q16" value="1"><span class="lab">B</span><span class="txt">40&middot;0 min</span><span class="tag"></span></label><label class="opt" for="q16o2"><input type="radio" id="q16o2" name="q16" value="2"><span class="lab">C</span><span class="txt">60&middot;0 min</span><span class="tag"></span></label><label class="opt" for="q16o3"><input type="radio" id="q16o3" name="q16" value="3"><span class="lab">D</span><span class="txt">68&middot;5 min</span><span class="tag"></span></label></div><div class="expl hide" id="e16"><span class="lab">Explanation</span>k = (2&middot;303/t) log[a/(a &minus; x)] = (2&middot;303/20) log(100/70) = (2&middot;303/20)(0&middot;1549) = 0&middot;01784 min<sup>&minus;1</sup>. Then t = (2&middot;303/k) log(100/40) = (2&middot;303/0&middot;01784)(0&middot;3979) = <b>51&middot;4 min</b>. Doubling the time because the percentage doubled gives 40 min, and is wrong &mdash; first order kinetics is logarithmic, not proportional.</div></section>
+<section class="qcard" id="c17"><div class="qhead"><span class="qno">Q18</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v17"></span><span class="qmk">1 mark</span></div><div class="qtext">For a first order reaction with k = 2&middot;303 &times; 10<sup>&minus;3</sup> s<sup>&minus;1</sup>, the time taken for the reactant concentration to fall to one tenth of its initial value is:</div><div class="opts"><label class="opt" for="q17o0"><input type="radio" id="q17o0" name="q17" value="0"><span class="lab">A</span><span class="txt">100 s</span><span class="tag"></span></label><label class="opt" for="q17o1"><input type="radio" id="q17o1" name="q17" value="1"><span class="lab">B</span><span class="txt">500 s</span><span class="tag"></span></label><label class="opt" for="q17o2"><input type="radio" id="q17o2" name="q17" value="2"><span class="lab">C</span><span class="txt">2303 s</span><span class="tag"></span></label><label class="opt" for="q17o3"><input type="radio" id="q17o3" name="q17" value="3"><span class="lab">D</span><span class="txt">1000 s</span><span class="tag"></span></label></div><div class="expl hide" id="e17"><span class="lab">Explanation</span>t = (2&middot;303/k) log([R]<sub>0</sub>/[R]) = (2&middot;303 / 2&middot;303 &times; 10<sup>&minus;3</sup>) log 10 = 1000 &times; 1 = <b>1000 s</b>. The 2&middot;303 cancels exactly, which is the hint that this is the intended route; note the answer is independent of the starting concentration, as it must be for first order.</div></section>
+<section class="qcard" id="c18"><div class="qhead"><span class="qno">Q19</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v18"></span><span class="qmk">1 mark</span></div><div class="qtext">The rate constant of a reaction doubles when the temperature is raised from 300 K to 310 K. The activation energy of the reaction is approximately (R = 8&middot;314 J K<sup>&minus;1</sup> mol<sup>&minus;1</sup>):</div><div class="opts"><label class="opt" for="q18o0"><input type="radio" id="q18o0" name="q18" value="0"><span class="lab">A</span><span class="txt">26&middot;8 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q18o1"><input type="radio" id="q18o1" name="q18" value="1"><span class="lab">B</span><span class="txt">214&middot;4 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q18o2"><input type="radio" id="q18o2" name="q18" value="2"><span class="lab">C</span><span class="txt">107&middot;2 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q18o3"><input type="radio" id="q18o3" name="q18" value="3"><span class="lab">D</span><span class="txt">53&middot;6 kJ mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e18"><span class="lab">Explanation</span>log(k<sub>2</sub>/k<sub>1</sub>) = E<sub>a</sub>(T<sub>2</sub> &minus; T<sub>1</sub>) / (2&middot;303 R T<sub>1</sub>T<sub>2</sub>). With k<sub>2</sub>/k<sub>1</sub> = 2, log 2 = 0&middot;3010: E<sub>a</sub> = (2&middot;303 &times; 8&middot;314 &times; 300 &times; 310 &times; 0&middot;3010)/10 = 53600 J = <b>53&middot;6 kJ mol<sup>&minus;1</sup></b>. This is the standard &lsquo;rate doubles per 10 &deg;C&rsquo; result, and it is worth remembering that it comes out near 50 kJ mol<sup>&minus;1</sup> around room temperature.</div></section>
+<section class="qcard" id="c19"><div class="qhead"><span class="qno">Q20</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v19"></span><span class="qmk">1 mark</span></div><div class="qtext">The experimentally determined rate law for a reaction is rate = k[A]<sup>1/2</sup>[B]<sup>3/2</sup>. Which statement is correct?</div><div class="opts"><label class="opt" for="q19o0"><input type="radio" id="q19o0" name="q19" value="0"><span class="lab">A</span><span class="txt">The order is 2 and the molecularity is 2</span><span class="tag"></span></label><label class="opt" for="q19o1"><input type="radio" id="q19o1" name="q19" value="1"><span class="lab">B</span><span class="txt">The order is 2 and the molecularity cannot be determined</span><span class="tag"></span></label><label class="opt" for="q19o2"><input type="radio" id="q19o2" name="q19" value="2"><span class="lab">C</span><span class="txt">The order is 1/2 and the molecularity is 3/2</span><span class="tag"></span></label><label class="opt" for="q19o3"><input type="radio" id="q19o3" name="q19" value="3"><span class="lab">D</span><span class="txt">The order is 3/2 and the molecularity is 2</span><span class="tag"></span></label></div><div class="expl hide" id="e19"><span class="lab">Explanation</span>Order is the sum of the exponents in the experimental rate law: &frac12; + 3/2 = <b>2</b>. Molecularity is the number of species colliding in an <b>elementary</b> step; it is a whole number and is defined only for a single step. Fractional orders are the signature of a <b>complex, multi-step</b> reaction, so <b>molecularity has no meaning for the overall reaction</b> here.</div></section>
+<section class="qcard" id="c20"><div class="qhead"><span class="qno">Q21</span><span class="qch">Solutions</span><span class="verdict hide" id="v20"></span><span class="qmk">1 mark</span></div><div class="qtext">Which of the following concentration terms is <b>independent of temperature</b>?</div><div class="opts"><label class="opt" for="q20o0"><input type="radio" id="q20o0" name="q20" value="0"><span class="lab">A</span><span class="txt">Molarity</span><span class="tag"></span></label><label class="opt" for="q20o1"><input type="radio" id="q20o1" name="q20" value="1"><span class="lab">B</span><span class="txt">Normality</span><span class="tag"></span></label><label class="opt" for="q20o2"><input type="radio" id="q20o2" name="q20" value="2"><span class="lab">C</span><span class="txt">Molality</span><span class="tag"></span></label><label class="opt" for="q20o3"><input type="radio" id="q20o3" name="q20" value="3"><span class="lab">D</span><span class="txt">Formality</span><span class="tag"></span></label></div><div class="expl hide" id="e20"><span class="lab">Explanation</span><b>Molality</b> is moles of solute per <b>kilogram of solvent</b> — both are masses, and mass does not change with temperature. Molarity, normality and formality are all defined per <b>litre of solution</b>, and volume expands on heating, so all three fall as the temperature rises. This is why molality is used in the colligative-property formulae.</div></section>
+<section class="qcard" id="c21"><div class="qhead"><span class="qno">Q22</span><span class="qch">Solutions</span><span class="verdict hide" id="v21"></span><span class="qmk">1 mark</span></div><div class="qtext">The vapour pressure of pure benzene at 300 K is 640 mm Hg. On dissolving 2&middot;5 g of a non-volatile solute in 39 g of benzene (M = 78 g mol<sup>&minus;1</sup>) it falls to 600 mm Hg. The molar mass of the solute is:</div><div class="opts"><label class="opt" for="q21o0"><input type="radio" id="q21o0" name="q21" value="0"><span class="lab">A</span><span class="txt">65 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q21o1"><input type="radio" id="q21o1" name="q21" value="1"><span class="lab">B</span><span class="txt">95 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q21o2"><input type="radio" id="q21o2" name="q21" value="2"><span class="lab">C</span><span class="txt">85 g mol<sup>&minus;1</sup></span><span class="tag"></span></label><label class="opt" for="q21o3"><input type="radio" id="q21o3" name="q21" value="3"><span class="lab">D</span><span class="txt">75 g mol<sup>&minus;1</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e21"><span class="lab">Explanation</span>Relative lowering = (p&deg; &minus; p)/p&deg; = 40/640 = 0&middot;0625, and by Raoult's law that equals the mole fraction of the <b>solute</b>. n(benzene) = 39/78 = 0&middot;5 mol. From x<sub>2</sub> = n<sub>2</sub>/(n<sub>1</sub> + n<sub>2</sub>): n<sub>2</sub> = 0&middot;0333 mol, so M = 2&middot;5/0&middot;0333 = <b>75 g mol<sup>&minus;1</sup></b>.</div></section>
+<section class="qcard" id="c22"><div class="qhead"><span class="qno">Q23</span><span class="qch">Solutions</span><span class="verdict hide" id="v22"></span><span class="qmk">1 mark</span></div><div class="qtext">Which solution is <b>isotonic</b> with 0&middot;1 M glucose at the same temperature? (Assume complete dissociation of the electrolytes.)</div><div class="opts"><label class="opt" for="q22o0"><input type="radio" id="q22o0" name="q22" value="0"><span class="lab">A</span><span class="txt">0&middot;05 M NaCl</span><span class="tag"></span></label><label class="opt" for="q22o1"><input type="radio" id="q22o1" name="q22" value="1"><span class="lab">B</span><span class="txt">0&middot;1 M NaCl</span><span class="tag"></span></label><label class="opt" for="q22o2"><input type="radio" id="q22o2" name="q22" value="2"><span class="lab">C</span><span class="txt">0&middot;1 M BaCl<sub>2</sub></span><span class="tag"></span></label><label class="opt" for="q22o3"><input type="radio" id="q22o3" name="q22" value="3"><span class="lab">D</span><span class="txt">0&middot;05 M glucose</span><span class="tag"></span></label></div><div class="expl hide" id="e22"><span class="lab">Explanation</span>Isotonic means equal osmotic pressure, and &pi; = iCRT, so the <b>effective</b> particle concentration must match. Glucose does not ionise, so 0&middot;1 M glucose gives 0&middot;1 M particles. <b>0&middot;05 M NaCl</b> gives i = 2, so 0&middot;05 &times; 2 = 0&middot;1 M particles. ✓ 0&middot;1 M NaCl gives 0&middot;2 M and 0&middot;1 M BaCl<sub>2</sub> gives 0&middot;3 M — both hypertonic.</div></section>
+<section class="qcard" id="c23"><div class="qhead"><span class="qno">Q24</span><span class="qch">Solutions</span><span class="verdict hide" id="v23"></span><span class="qmk">1 mark</span></div><div class="qtext">A mixture of ethanol and water containing 95% ethanol boils at a constant 351&middot;1 K and distils over unchanged in composition. This mixture is:</div><div class="opts"><label class="opt" for="q23o0"><input type="radio" id="q23o0" name="q23" value="0"><span class="lab">A</span><span class="txt">An ideal solution</span><span class="tag"></span></label><label class="opt" for="q23o1"><input type="radio" id="q23o1" name="q23" value="1"><span class="lab">B</span><span class="txt">A maximum boiling azeotrope</span><span class="tag"></span></label><label class="opt" for="q23o2"><input type="radio" id="q23o2" name="q23" value="2"><span class="lab">C</span><span class="txt">A minimum boiling azeotrope</span><span class="tag"></span></label><label class="opt" for="q23o3"><input type="radio" id="q23o3" name="q23" value="3"><span class="lab">D</span><span class="txt">A solution showing negative deviation</span><span class="tag"></span></label></div><div class="expl hide" id="e23"><span class="lab">Explanation</span>Ethanol and water deviate <b>positively</b> from Raoult's law — the ethanol&ndash;water hydrogen bonds are weaker than those they replace — so the observed vapour pressure is higher than predicted and the mixture boils at a <b>minimum</b>. Because the vapour has the same composition as the liquid, fractional distillation cannot enrich it further, which is why absolute alcohol cannot be made by distillation alone.</div></section>
+<section class="qcard" id="c24"><div class="qhead"><span class="qno">Q25</span><span class="qch">Solutions</span><span class="verdict hide" id="v24"></span><span class="qmk">1 mark</span></div><div class="qtext">Benzoic acid dissolved in benzene is <b>completely</b> associated into dimers. Its van't Hoff factor is:</div><div class="opts"><label class="opt" for="q24o0"><input type="radio" id="q24o0" name="q24" value="0"><span class="lab">A</span><span class="txt">0&middot;5</span><span class="tag"></span></label><label class="opt" for="q24o1"><input type="radio" id="q24o1" name="q24" value="1"><span class="lab">B</span><span class="txt">1&middot;0</span><span class="tag"></span></label><label class="opt" for="q24o2"><input type="radio" id="q24o2" name="q24" value="2"><span class="lab">C</span><span class="txt">2&middot;0</span><span class="tag"></span></label><label class="opt" for="q24o3"><input type="radio" id="q24o3" name="q24" value="3"><span class="lab">D</span><span class="txt">4&middot;0</span><span class="tag"></span></label></div><div class="expl hide" id="e24"><span class="lab">Explanation</span>For association into an n-mer, i = 1 &minus; &alpha; + &alpha;/n. With &alpha; = 1 and n = 2 this gives i = <b>0&middot;5</b>: two molecules become one particle, so the particle count halves. Association makes i &lt; 1, a smaller colligative effect and an <b>observed molar mass larger</b> than the true one — here twice it, 244 against 122.</div></section>
+<section class="qcard" id="c25"><div class="qhead"><span class="qno">Q26</span><span class="qch">Solutions</span><span class="verdict hide" id="v25"></span><span class="qmk">1 mark</span></div><div class="qtext">Which of the following is <b>not</b> a colligative property?</div><div class="opts"><label class="opt" for="q25o0"><input type="radio" id="q25o0" name="q25" value="0"><span class="lab">A</span><span class="txt">Osmotic pressure</span><span class="tag"></span></label><label class="opt" for="q25o1"><input type="radio" id="q25o1" name="q25" value="1"><span class="lab">B</span><span class="txt">Elevation of boiling point</span><span class="tag"></span></label><label class="opt" for="q25o2"><input type="radio" id="q25o2" name="q25" value="2"><span class="lab">C</span><span class="txt">Depression of freezing point</span><span class="tag"></span></label><label class="opt" for="q25o3"><input type="radio" id="q25o3" name="q25" value="3"><span class="lab">D</span><span class="txt">Viscosity of the solution</span><span class="tag"></span></label></div><div class="expl hide" id="e25"><span class="lab">Explanation</span>A colligative property depends only on the <b>number</b> of solute particles, not their nature. The four are relative lowering of vapour pressure, elevation of boiling point, depression of freezing point and osmotic pressure. <b>Viscosity</b> depends very much on what the solute is — glycerol and salt at the same molality behave quite differently — so it is not colligative.</div></section>
+<section class="qcard" id="c26"><div class="qhead"><span class="qno">Q27</span><span class="qch">Solutions</span><span class="verdict hide" id="v26"></span><span class="qmk">1 mark</span></div><div class="qtext">The molality of a solution containing 20% by mass of a solute of molar mass 40 g mol<sup>&minus;1</sup> is:</div><div class="opts"><label class="opt" for="q26o0"><input type="radio" id="q26o0" name="q26" value="0"><span class="lab">A</span><span class="txt">2&middot;5 m</span><span class="tag"></span></label><label class="opt" for="q26o1"><input type="radio" id="q26o1" name="q26" value="1"><span class="lab">B</span><span class="txt">5&middot;0 m</span><span class="tag"></span></label><label class="opt" for="q26o2"><input type="radio" id="q26o2" name="q26" value="2"><span class="lab">C</span><span class="txt">6&middot;25 m</span><span class="tag"></span></label><label class="opt" for="q26o3"><input type="radio" id="q26o3" name="q26" value="3"><span class="lab">D</span><span class="txt">12&middot;5 m</span><span class="tag"></span></label></div><div class="expl hide" id="e26"><span class="lab">Explanation</span>Take 100 g of <b>solution</b>: 20 g of solute and 80 g of <b>solvent</b>. Moles of solute = 20/40 = 0&middot;5. Mass of solvent = 0&middot;080 kg. m = 0&middot;5 / 0&middot;080 = <b>6&middot;25 molal</b>. Dividing by 0&middot;1 kg — i.e. using the mass of the solution instead of the solvent — gives 5&middot;0 and is the standard slip.</div></section>
+<section class="qcard" id="c27"><div class="qhead"><span class="qno">Q28</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v27"></span><span class="qmk">1 mark</span></div><div class="qtext">What happens to the voltage of a galvanic cell if the salt bridge is removed?</div><div class="opts"><label class="opt" for="q27o0"><input type="radio" id="q27o0" name="q27" value="0"><span class="lab">A</span><span class="txt">It falls to zero almost at once</span><span class="tag"></span></label><label class="opt" for="q27o1"><input type="radio" id="q27o1" name="q27" value="1"><span class="lab">B</span><span class="txt">It is unchanged</span><span class="tag"></span></label><label class="opt" for="q27o2"><input type="radio" id="q27o2" name="q27" value="2"><span class="lab">C</span><span class="txt">It rises sharply</span><span class="tag"></span></label><label class="opt" for="q27o3"><input type="radio" id="q27o3" name="q27" value="3"><span class="lab">D</span><span class="txt">It reverses in sign</span><span class="tag"></span></label></div><div class="expl hide" id="e27"><span class="lab">Explanation</span>The salt bridge completes the circuit and keeps each half cell electrically neutral. Remove it and charge builds up immediately — positive in the anode compartment as cations form, negative in the cathode compartment as they are consumed — which stops the electron flow. <b>The voltage falls to zero</b>.</div></section>
+<section class="qcard" id="c28"><div class="qhead"><span class="qno">Q29</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v28"></span><span class="qmk">1 mark</span></div><div class="qtext">On diluting an electrolyte solution, its <b>specific conductance</b> and its <b>molar conductivity</b> respectively:</div><div class="opts"><label class="opt" for="q28o0"><input type="radio" id="q28o0" name="q28" value="0"><span class="lab">A</span><span class="txt">increase, increase</span><span class="tag"></span></label><label class="opt" for="q28o1"><input type="radio" id="q28o1" name="q28" value="1"><span class="lab">B</span><span class="txt">decrease, increase</span><span class="tag"></span></label><label class="opt" for="q28o2"><input type="radio" id="q28o2" name="q28" value="2"><span class="lab">C</span><span class="txt">increase, decrease</span><span class="tag"></span></label><label class="opt" for="q28o3"><input type="radio" id="q28o3" name="q28" value="3"><span class="lab">D</span><span class="txt">decrease, decrease</span><span class="tag"></span></label></div><div class="expl hide" id="e28"><span class="lab">Explanation</span>Specific conductance &kappa; is the conductance of <b>1 cm<sup>3</sup></b> of solution: on dilution that fixed volume holds fewer ions, so &kappa; <b>decreases</b>. Molar conductivity &Lambda;<sub>m</sub> = 1000&kappa;/C is the conductance of the volume holding <b>one mole</b>: that volume grows, the ions move more freely, and for a weak electrolyte more of them form — so &Lambda;<sub>m</sub> <b>increases</b>.</div></section>
+<section class="qcard" id="c29"><div class="qhead"><span class="qno">Q30</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v29"></span><span class="qmk">1 mark</span></div><div class="qtext">The quantity of charge required to liberate one mole of hydrogen gas at the cathode is:</div><div class="opts"><label class="opt" for="q29o0"><input type="radio" id="q29o0" name="q29" value="0"><span class="lab">A</span><span class="txt">48250 C</span><span class="tag"></span></label><label class="opt" for="q29o1"><input type="radio" id="q29o1" name="q29" value="1"><span class="lab">B</span><span class="txt">193000 C</span><span class="tag"></span></label><label class="opt" for="q29o2"><input type="radio" id="q29o2" name="q29" value="2"><span class="lab">C</span><span class="txt">96500 C</span><span class="tag"></span></label><label class="opt" for="q29o3"><input type="radio" id="q29o3" name="q29" value="3"><span class="lab">D</span><span class="txt">289500 C</span><span class="tag"></span></label></div><div class="expl hide" id="e29"><span class="lab">Explanation</span>The cathode reaction is 2H<sup>+</sup> + 2e<sup>&minus;</sup> &rarr; H<sub>2</sub>, so <b>two</b> moles of electrons give one mole of H<sub>2</sub>: 2 &times; 96500 = <b>193000 C</b>. Note the question asks for a mole of the <b>gas</b>, not of H<sup>+</sup> ions — that distinction is the whole question.</div></section>
+<section class="qcard" id="c30"><div class="qhead"><span class="qno">Q31</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v30"></span><span class="qmk">1 mark</span></div><div class="qtext">For the cell Mg(s) | Mg<sup>2+</sup> &#8214; Ag<sup>+</sup> | Ag(s), given E&deg;(Mg<sup>2+</sup>/Mg) = &minus;2&middot;37 V and E&deg;(Ag<sup>+</sup>/Ag) = +0&middot;80 V, the standard cell potential is:</div><div class="opts"><label class="opt" for="q30o0"><input type="radio" id="q30o0" name="q30" value="0"><span class="lab">A</span><span class="txt">1&middot;57 V</span><span class="tag"></span></label><label class="opt" for="q30o1"><input type="radio" id="q30o1" name="q30" value="1"><span class="lab">B</span><span class="txt">3&middot;17 V</span><span class="tag"></span></label><label class="opt" for="q30o2"><input type="radio" id="q30o2" name="q30" value="2"><span class="lab">C</span><span class="txt">2&middot;37 V</span><span class="tag"></span></label><label class="opt" for="q30o3"><input type="radio" id="q30o3" name="q30" value="3"><span class="lab">D</span><span class="txt">&minus;3&middot;17 V</span><span class="tag"></span></label></div><div class="expl hide" id="e30"><span class="lab">Explanation</span>E&deg;<sub>cell</sub> = E&deg;<sub>cathode</sub> &minus; E&deg;<sub>anode</sub> = 0&middot;80 &minus; (&minus;2&middot;37) = <b>+3&middot;17 V</b>. Take both values as printed — they are standard <i>reduction</i> potentials — and subtract. Reversing the anode's sign first and then adding gives 1&middot;57 V, which is the commonest error in the chapter.</div></section>
+<section class="qcard" id="c31"><div class="qhead"><span class="qno">Q32</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v31"></span><span class="qmk">1 mark</span></div><div class="qtext">As a lead storage battery is discharged, the density of the sulphuric acid in it:</div><div class="opts"><label class="opt" for="q31o0"><input type="radio" id="q31o0" name="q31" value="0"><span class="lab">A</span><span class="txt">increases</span><span class="tag"></span></label><label class="opt" for="q31o1"><input type="radio" id="q31o1" name="q31" value="1"><span class="lab">B</span><span class="txt">first increases, then decreases</span><span class="tag"></span></label><label class="opt" for="q31o2"><input type="radio" id="q31o2" name="q31" value="2"><span class="lab">C</span><span class="txt">remains constant</span><span class="tag"></span></label><label class="opt" for="q31o3"><input type="radio" id="q31o3" name="q31" value="3"><span class="lab">D</span><span class="txt">decreases</span><span class="tag"></span></label></div><div class="expl hide" id="e31"><span class="lab">Explanation</span>On discharge both electrodes are converted to PbSO<sub>4</sub> and the overall reaction is Pb + PbO<sub>2</sub> + 2H<sub>2</sub>SO<sub>4</sub> &rarr; 2PbSO<sub>4</sub> + 2H<sub>2</sub>O. The acid is <b>consumed</b> and water is produced, so the density <b>decreases</b> — which is exactly why measuring the acid's density is the standard test of a car battery's charge. Recharging reverses it.</div></section>
+<section class="qcard" id="c32"><div class="qhead"><span class="qno">Q33</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v32"></span><span class="qmk">1 mark</span></div><div class="qtext">Blocks of magnesium are attached to the steel hull of a ship to prevent rusting. In this arrangement the magnesium acts as:</div><div class="opts"><label class="opt" for="q32o0"><input type="radio" id="q32o0" name="q32" value="0"><span class="lab">A</span><span class="txt">the cathode, and is protected</span><span class="tag"></span></label><label class="opt" for="q32o1"><input type="radio" id="q32o1" name="q32" value="1"><span class="lab">B</span><span class="txt">a catalyst for the reduction of oxygen</span><span class="tag"></span></label><label class="opt" for="q32o2"><input type="radio" id="q32o2" name="q32" value="2"><span class="lab">C</span><span class="txt">an inert electrode</span><span class="tag"></span></label><label class="opt" for="q32o3"><input type="radio" id="q32o3" name="q32" value="3"><span class="lab">D</span><span class="txt">a sacrificial anode, and corrodes instead</span><span class="tag"></span></label></div><div class="expl hide" id="e32"><span class="lab">Explanation</span>This is <b>cathodic protection</b>. Magnesium has the more negative electrode potential, so it is oxidised in preference to the iron: it becomes the <b>anode</b> and corrodes away, while the hull is forced to be the <b>cathode</b> and is protected. The block is replaced periodically, hence <b>sacrificial anode</b>. Zinc is used the same way, and galvanising works on the same principle.</div></section>
+<section class="qcard" id="c33"><div class="qhead"><span class="qno">Q34</span><span class="qch">Electrochemistry</span><span class="verdict hide" id="v33"></span><span class="qmk">1 mark</span></div><div class="qtext">Kohlrausch's law is <b>essential</b> for finding the molar conductivity at infinite dilution of:</div><div class="opts"><label class="opt" for="q33o0"><input type="radio" id="q33o0" name="q33" value="0"><span class="lab">A</span><span class="txt">a weak electrolyte such as CH<sub>3</sub>COOH</span><span class="tag"></span></label><label class="opt" for="q33o1"><input type="radio" id="q33o1" name="q33" value="1"><span class="lab">B</span><span class="txt">a strong electrolyte such as KCl</span><span class="tag"></span></label><label class="opt" for="q33o2"><input type="radio" id="q33o2" name="q33" value="2"><span class="lab">C</span><span class="txt">any electrolyte, strong or weak</span><span class="tag"></span></label><label class="opt" for="q33o3"><input type="radio" id="q33o3" name="q33" value="3"><span class="lab">D</span><span class="txt">a molten salt</span><span class="tag"></span></label></div><div class="expl hide" id="e33"><span class="lab">Explanation</span>For a <b>strong</b> electrolyte &Lambda;<sub>m</sub> varies almost linearly with &radic;C, so the plot can simply be extrapolated back to the axis. For a <b>weak</b> electrolyte the curve rises very steeply near infinite dilution and <b>cannot</b> be extrapolated — the ionisation is still changing fast. Kohlrausch's law supplies the value indirectly instead, by adding the ionic contributions or combining strong electrolytes.</div></section>
+<section class="qcard" id="c34"><div class="qhead"><span class="qno">Q35</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v34"></span><span class="qmk">1 mark</span></div><div class="qtext">Which of the following is an example of a <b>pseudo first order</b> reaction?</div><div class="opts"><label class="opt" for="q34o0"><input type="radio" id="q34o0" name="q34" value="0"><span class="lab">A</span><span class="txt">Decomposition of NH<sub>3</sub> on a hot platinum surface</span><span class="tag"></span></label><label class="opt" for="q34o1"><input type="radio" id="q34o1" name="q34" value="1"><span class="lab">B</span><span class="txt">Acidic hydrolysis of ethyl acetate</span><span class="tag"></span></label><label class="opt" for="q34o2"><input type="radio" id="q34o2" name="q34" value="2"><span class="lab">C</span><span class="txt">Decomposition of N<sub>2</sub>O<sub>5</sub></span><span class="tag"></span></label><label class="opt" for="q34o3"><input type="radio" id="q34o3" name="q34" value="3"><span class="lab">D</span><span class="txt">Reaction of NO with O<sub>2</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e34"><span class="lab">Explanation</span><b>Acidic hydrolysis of ethyl acetate</b>: CH<sub>3</sub>COOC<sub>2</sub>H<sub>5</sub> + H<sub>2</sub>O &rarr; CH<sub>3</sub>COOH + C<sub>2</sub>H<sub>5</sub>OH is genuinely second order, but the water is in such vast excess that its concentration is effectively constant, so the observed rate depends only on the ester and the reaction behaves as first order. Inversion of cane sugar is the other standard example. NH<sub>3</sub> on platinum is <b>zero</b> order, and N<sub>2</sub>O<sub>5</sub> decomposition is truly first order.</div></section>
+<section class="qcard" id="c35"><div class="qhead"><span class="qno">Q36</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v35"></span><span class="qmk">1 mark</span></div><div class="qtext">A catalyst increases the rate of a reaction because it:</div><div class="opts"><label class="opt" for="q35o0"><input type="radio" id="q35o0" name="q35" value="0"><span class="lab">A</span><span class="txt">increases the average kinetic energy of the molecules</span><span class="tag"></span></label><label class="opt" for="q35o1"><input type="radio" id="q35o1" name="q35" value="1"><span class="lab">B</span><span class="txt">increases the enthalpy change of the reaction</span><span class="tag"></span></label><label class="opt" for="q35o2"><input type="radio" id="q35o2" name="q35" value="2"><span class="lab">C</span><span class="txt">provides an alternative path of lower activation energy</span><span class="tag"></span></label><label class="opt" for="q35o3"><input type="radio" id="q35o3" name="q35" value="3"><span class="lab">D</span><span class="txt">shifts the equilibrium towards the products</span><span class="tag"></span></label></div><div class="expl hide" id="e35"><span class="lab">Explanation</span>A catalyst offers an <b>alternative mechanism with a lower E<sub>a</sub></b>, so a much larger fraction of collisions clears the barrier — by the Arrhenius equation k = Ae<sup>&minus;Ea/RT</sup>, a small fall in E<sub>a</sub> raises k sharply. It does <b>not</b> change &Delta;H, and it lowers the barrier for the forward and reverse reactions equally, so it <b>does not shift the equilibrium</b> — it only reaches it sooner.</div></section>
+<section class="qcard" id="c36"><div class="qhead"><span class="qno">Q37</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v36"></span><span class="qmk">1 mark</span></div><div class="qtext">The half-life of a first order reaction:</div><div class="opts"><label class="opt" for="q36o0"><input type="radio" id="q36o0" name="q36" value="0"><span class="lab">A</span><span class="txt">is directly proportional to the initial concentration</span><span class="tag"></span></label><label class="opt" for="q36o1"><input type="radio" id="q36o1" name="q36" value="1"><span class="lab">B</span><span class="txt">is independent of the initial concentration</span><span class="tag"></span></label><label class="opt" for="q36o2"><input type="radio" id="q36o2" name="q36" value="2"><span class="lab">C</span><span class="txt">is inversely proportional to the initial concentration</span><span class="tag"></span></label><label class="opt" for="q36o3"><input type="radio" id="q36o3" name="q36" value="3"><span class="lab">D</span><span class="txt">is proportional to the square of the initial concentration</span><span class="tag"></span></label></div><div class="expl hide" id="e36"><span class="lab">Explanation</span>For first order, t<sub>½</sub> = 0&middot;693/k — the initial concentration does not appear at all, so it is <b>independent</b> of it. That is the defining signature of first order kinetics, and it is why radioactive decay has a fixed half-life. For zero order t<sub>½</sub> = [R]<sub>0</sub>/2k, which <i>is</i> proportional to the initial concentration.</div></section>
+<section class="qcard" id="c37"><div class="qhead"><span class="qno">Q38</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v37"></span><span class="qmk">1 mark</span></div><div class="qtext">For a <b>zero order</b> reaction, a plot of the concentration of the reactant [R] against time t is:</div><div class="opts"><label class="opt" for="q37o0"><input type="radio" id="q37o0" name="q37" value="0"><span class="lab">A</span><span class="txt">a straight line of slope &minus;k/2&middot;303</span><span class="tag"></span></label><label class="opt" for="q37o1"><input type="radio" id="q37o1" name="q37" value="1"><span class="lab">B</span><span class="txt">a straight line of slope &minus;k</span><span class="tag"></span></label><label class="opt" for="q37o2"><input type="radio" id="q37o2" name="q37" value="2"><span class="lab">C</span><span class="txt">an exponential decay curve</span><span class="tag"></span></label><label class="opt" for="q37o3"><input type="radio" id="q37o3" name="q37" value="3"><span class="lab">D</span><span class="txt">a straight line passing through the origin</span><span class="tag"></span></label></div><div class="expl hide" id="e37"><span class="lab">Explanation</span>For zero order the integrated rate equation is [R] = [R]<sub>0</sub> &minus; kt — the equation of a straight line with intercept [R]<sub>0</sub> and <b>slope &minus;k</b>. The slope &minus;k/2&middot;303 belongs to the <b>log[R]</b> against t plot for a <i>first</i> order reaction, and the exponential curve is [R] against t for first order.</div></section>
+<section class="qcard" id="c38"><div class="qhead"><span class="qno">Q39</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v38"></span><span class="qmk">1 mark</span></div><div class="qtext">Threshold energy is related to activation energy as:</div><div class="opts"><label class="opt" for="q38o0"><input type="radio" id="q38o0" name="q38" value="0"><span class="lab">A</span><span class="txt">Threshold energy = activation energy</span><span class="tag"></span></label><label class="opt" for="q38o1"><input type="radio" id="q38o1" name="q38" value="1"><span class="lab">B</span><span class="txt">Threshold energy = activation energy &minus; average energy of the reactants</span><span class="tag"></span></label><label class="opt" for="q38o2"><input type="radio" id="q38o2" name="q38" value="2"><span class="lab">C</span><span class="txt">Threshold energy = activation energy + average energy of the reactants</span><span class="tag"></span></label><label class="opt" for="q38o3"><input type="radio" id="q38o3" name="q38" value="3"><span class="lab">D</span><span class="txt">Threshold energy = ½ × activation energy</span><span class="tag"></span></label></div><div class="expl hide" id="e38"><span class="lab">Explanation</span><b>Threshold energy</b> is the minimum <i>total</i> energy the colliding molecules must possess for a fruitful collision. <b>Activation energy</b> is the <i>extra</i> energy they must be given on top of what they already have. Hence E<sub>threshold</sub> = E<sub>activation</sub> + E<sub>average of reactants</sub>. On an energy-profile diagram the threshold is the height of the peak above the zero, and E<sub>a</sub> the height above the reactants.</div></section>
+<section class="qcard" id="c39"><div class="qhead"><span class="qno">Q40</span><span class="qch">Chemical Kinetics</span><span class="verdict hide" id="v39"></span><span class="qmk">1 mark</span></div><div class="qtext">The half-life of a first order reaction is 10 minutes. The time required for the reaction to be 75% complete is:</div><div class="opts"><label class="opt" for="q39o0"><input type="radio" id="q39o0" name="q39" value="0"><span class="lab">A</span><span class="txt">15 min</span><span class="tag"></span></label><label class="opt" for="q39o1"><input type="radio" id="q39o1" name="q39" value="1"><span class="lab">B</span><span class="txt">30 min</span><span class="tag"></span></label><label class="opt" for="q39o2"><input type="radio" id="q39o2" name="q39" value="2"><span class="lab">C</span><span class="txt">20 min</span><span class="tag"></span></label><label class="opt" for="q39o3"><input type="radio" id="q39o3" name="q39" value="3"><span class="lab">D</span><span class="txt">40 min</span><span class="tag"></span></label></div><div class="expl hide" id="e39"><span class="lab">Explanation</span>After one half-life 50% remains; after a second, half of that again, i.e. 25% remains and <b>75% has reacted</b>. So the time is exactly <b>two half-lives = 20 minutes</b>. Checking with the formula: t = (2&middot;303/k) log(100/25) with k = 0&middot;693/10 = 0&middot;0693 gives (2&middot;303/0&middot;0693)(0&middot;602) = 20 min. ✓</div></section>
+</div>
+
+</div>
+
+<footer class="foot"><div class="rule"></div>
+  <p>Questions are set to the standard of Section A of the ISC Chemistry Paper 1
+  board and CISCE specimen papers &mdash; a mixture of quick numericals, applied
+  concepts and the recall items the board sets at one mark.</p>
+</footer>
+<script>
+(function(){
+  var KEY = 'isc-chem-pc-test-v1';
+  var MINUTES = 120, MARKS = 1, N = 40;
+  var ANS = [0, 0, 2, 1, 3, 2, 3, 1, 0, 3, 2, 1, 3, 2, 0, 0, 0, 3, 3, 1, 2, 3, 0, 2, 0, 3, 2, 0, 1, 1, 1, 3, 3, 0, 1, 2, 1, 1, 2, 2];          // correct option index per question
+  var CH  = ["sol", "sol", "sol", "sol", "sol", "sol", "sol", "echem", "echem", "echem", "echem", "echem", "echem", "echem", "kin", "kin", "kin", "kin", "kin", "kin", "sol", "sol", "sol", "sol", "sol", "sol", "sol", "echem", "echem", "echem", "echem", "echem", "echem", "echem", "kin", "kin", "kin", "kin", "kin", "kin"];           // chapter key per question
+  var CHN = {"sol": "Solutions", "echem": "Electrochemistry", "kin": "Chemical Kinetics"};          // chapter key -> printed name
+  var LETTERS = ['A','B','C','D'];
+
+  var gate = document.getElementById('gate');
+  var paper = document.getElementById('paper');
+  var result = document.getElementById('result');
+  var qs = document.getElementById('questions');
+  var clockEl = document.getElementById('clock');
+  var answeredEl = document.getElementById('answered');
+  var tick = null, warned = false;
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+    catch(e){ return null; }
+  }
+  function save(s){
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){}
+  }
+  function clear(){ try { localStorage.removeItem(KEY); } catch(e){} }
+
+  /* ------------------------------------------------ starting */
+  function start(){
+    var s = { state:'running', endAt: Date.now() + MINUTES*60*1000, answers:{} };
+    save(s);
+    show(s);
+  }
+
+  function show(s){
+    if (!s) { gate.classList.remove('hide'); paper.classList.add('hide');
+              result.classList.add('hide'); qs.classList.add('hide'); return; }
+    if (s.state === 'submitted') { render(s); return; }
+    gate.classList.add('hide'); result.classList.add('hide');
+    paper.classList.remove('hide'); qs.classList.remove('hide');
+    restore(s);
+    armGuards();
+    tick = setInterval(clockTick, 250);
+    clockTick();
+  }
+
+  function restore(s){
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      if (pick === undefined) continue;
+      var input = document.getElementById('q'+i+'o'+pick);
+      if (input){ input.checked = true; input.closest('.opt').classList.add('sel'); }
+    }
+    countAnswered(s);
+  }
+
+  function countAnswered(s){
+    var n = Object.keys(s.answers).length;
+    answeredEl.textContent = n + ' of ' + N + ' answered';
+  }
+
+  /* ------------------------------------------------ the clock */
+  /* The deadline is read from storage on every tick rather than captured once,
+     so the clock always reflects the stored attempt -- and stops if the attempt
+     was finalised elsewhere (another tab, or the load-path recovery). */
+  function clockTick(){
+    var s = load();
+    if (!s || s.state !== 'running'){
+      if (tick) { clearInterval(tick); tick = null; }
+      return;
+    }
+    var left = Math.max(0, s.endAt - Date.now());
+    var m = Math.floor(left/60000), sec = Math.floor((left%60000)/1000);
+    clockEl.textContent = (m<10?'0':'') + m + ':' + (sec<10?'0':'') + sec;
+    clockEl.className = left <= 120000 ? 'crit' : (left <= 600000 ? 'warn' : '');
+    if (left <= 0) submit('time');
+  }
+
+  /* ------------------------------------- leaving the paper */
+  function armGuards(){
+    window.addEventListener('beforeunload', onBeforeUnload);
+    document.addEventListener('visibilitychange', persist);
+    window.addEventListener('pagehide', persist);
+  }
+  function disarmGuards(){
+    window.removeEventListener('beforeunload', onBeforeUnload);
+    document.removeEventListener('visibilitychange', persist);
+    window.removeEventListener('pagehide', persist);
+  }
+  function onBeforeUnload(e){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    persist();
+    e.preventDefault();
+    e.returnValue = '';        /* required by older browsers to raise the dialog */
+    return '';
+  }
+  /* Write the answers out whenever the page might be going away. This does NOT
+     submit: the submission is finalised on the next load, because pagehide and
+     beforeunload are both unreliable (mobile in particular) whereas the load path
+     always runs. */
+  function persist(){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    s.answers = collect();
+    s.leftAt = Date.now();
+    save(s);
+  }
+
+  function collect(){
+    var out = {};
+    for (var i = 0; i < N; i++){
+      var el = document.querySelector('input[name="q'+i+'"]:checked');
+      if (el) out[i] = parseInt(el.value, 10);
+    }
+    return out;
+  }
+
+  /* ------------------------------------------------ submitting */
+  function submit(reason){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    if (tick) { clearInterval(tick); tick = null; }
+    disarmGuards();
+    s.answers = (reason === 'left') ? (s.answers || {}) : collect();
+    s.state = 'submitted';
+    s.submittedAt = Date.now();
+    s.reason = reason;
+    save(s);
+    render(s);
+  }
+
+  /* ------------------------------------------------ the marked paper */
+  function render(s){
+    gate.classList.add('hide');
+    paper.classList.add('hide');
+    result.classList.remove('hide');
+    qs.classList.remove('hide');
+
+    var got = 0, right = 0, wrong = 0, blank = 0;
+    var per = {};
+    for (var k in CHN) per[k] = {n:0, r:0};
+
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      var ok = (pick === ANS[i]);
+      per[CH[i]].n++;
+      if (pick === undefined) blank++;
+      else if (ok) { right++; got += MARKS; per[CH[i]].r++; }
+      else wrong++;
+
+      var card = document.getElementById('c'+i);
+      card.className = 'qcard ' + (pick === undefined ? 'blank' : (ok ? 'right':'wrong'));
+      var v = document.getElementById('v'+i);
+      v.className = 'verdict ' + (pick === undefined ? 'bl' : (ok ? 'ok':'no'));
+      v.textContent = pick === undefined ? 'Not attempted'
+                    : (ok ? '+' + MARKS + ' mark' : '0 marks');
+      v.classList.remove('hide');
+
+      for (var j = 0; j < 4; j++){
+        var o = document.getElementById('q'+i+'o'+j);
+        var row = o.closest('.opt');
+        o.disabled = true;
+        row.classList.remove('sel');
+        var tag = row.querySelector('.tag');
+        if (j === ANS[i]) { row.classList.add('correct'); tag.textContent = 'Correct answer'; }
+        if (pick === j && j !== ANS[i]) {
+          row.classList.add('chosen-wrong'); tag.textContent = 'Your answer';
+        }
+        if (pick === j && j === ANS[i]) { tag.textContent = 'Your answer — correct'; }
+      }
+      document.getElementById('e'+i).classList.remove('hide');
+    }
+
+    document.getElementById('score').innerHTML =
+      got + '<span> / ' + (N*MARKS) + '</span>';
+    document.getElementById('pct').textContent =
+      Math.round(got/(N*MARKS)*1000)/10 + '%  ·  ' + right + ' correct, ' +
+      wrong + ' wrong, ' + blank + ' not attempted';
+
+    var why = document.getElementById('why');
+    if (s.reason === 'time') {
+      why.innerHTML = '<b>Time was up.</b> The paper submitted itself at the end of ' +
+        'the ' + MINUTES + ' minutes.';
+      why.classList.remove('hide');
+    } else if (s.reason === 'left') {
+      why.innerHTML = '<b>You left the paper.</b> Closing, reloading or navigating ' +
+        'away from a paper in progress submits it, so this was marked with the ' +
+        'answers you had given at that point.';
+      why.classList.remove('hide');
+    } else { why.classList.add('hide'); }
+
+    var rows = '';
+    for (var key in CHN){
+      rows += '<tr><td class="l">' + CHN[key] + '</td><td>' + per[key].r + ' / ' +
+              per[key].n + '</td><td>' + (per[key].r*MARKS) + ' / ' +
+              (per[key].n*MARKS) + '</td></tr>';
+    }
+    document.getElementById('brkbody').innerHTML = rows;
+    document.getElementById('brkfoot').innerHTML =
+      '<tr><td class="l">Total</td><td>' + right + ' / ' + N + '</td><td>' +
+      got + ' / ' + (N*MARKS) + '</td></tr>';
+    window.scrollTo(0,0);
+  }
+
+  /* ------------------------------------------------ wiring */
+  document.getElementById('startbtn').addEventListener('click', start);
+
+  document.getElementById('submitbtn').addEventListener('click', function(){
+    var a = collect(), n = Object.keys(a).length;
+    if (n < N && !confirm((N-n) + ' question' + (N-n===1?' is':'s are') +
+        ' still unanswered. Submit anyway?')) return;
+    submit('manual');
+  });
+
+  document.querySelectorAll('.opt input').forEach(function(inp){
+    inp.addEventListener('change', function(){
+      var s = load();
+      if (!s || s.state !== 'running') return;
+      inp.closest('.opts').querySelectorAll('.opt')
+         .forEach(function(o){ o.classList.remove('sel'); });
+      inp.closest('.opt').classList.add('sel');
+      s.answers = collect();
+      save(s);
+      countAnswered(s);
+    });
+  });
+
+  var again = document.getElementById('again');
+  if (again) again.addEventListener('click', function(){
+    if (!confirm('Clear this attempt and start the paper again from the beginning?'))
+      return;
+    clear();
+    location.reload();
+  });
+
+  /* ---- the load path, which is where a lock-in is actually enforced ---- */
+  var s0 = load();
+  if (s0 && s0.state === 'running'){
+    /* The student closed, reloaded or navigated away without submitting. Finalise
+       now with whatever was stored, and say which of the two reasons it was. */
+    var expired = Date.now() >= s0.endAt;
+    s0.state = 'submitted';
+    s0.submittedAt = Date.now();
+    s0.reason = expired ? 'time' : 'left';
+    save(s0);
+    render(s0);
+  } else {
+    show(s0);
+  }
+})();
+</script>

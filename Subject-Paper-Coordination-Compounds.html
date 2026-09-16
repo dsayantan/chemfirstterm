@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISC Chemistry &#8212; Coordination Compounds (25 marks)</title>
+<style>
+:root{
+  --bg:#EFF2F0; --surface:#FFFFFF; --surface-2:#F6F9F8;
+  --ink:#16211E; --muted:#5C6B67; --rule:#D3DBD8; --rule-strong:#9FAEA9;
+  --accent:#0F6E63; --accent-soft:#DDEEEB; --accent-ink:#0B4F47;
+  --ok:#16794C; --ok-soft:#DEF0E6; --bad:#B0271C; --bad-soft:#FAE3E0;
+  --warn:#A86400; --warn-soft:#FBF0DC; --warn-ink:#6B4409;
+  --shadow:0 1px 2px rgba(22,33,30,.05), 0 10px 28px -20px rgba(22,33,30,.4);
+  --serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6}
+sub,sup{line-height:0;font-size:74%}
+sup{vertical-align:.45em} sub{vertical-align:-.22em}
+b,strong{font-weight:650}
+.wrap{max-width:50rem;margin:0 auto;padding:0 1.15rem 4rem}
+.hide{display:none !important}
+
+header.mast{border-bottom:1px solid var(--rule);background:var(--surface);
+  margin-bottom:1.4rem}
+header.mast .inner{max-width:50rem;margin:0 auto;padding:1.9rem 1.15rem 1.5rem}
+.kicker{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 .4rem}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.15rem);
+  line-height:1.14;margin:0 0 .4rem;letter-spacing:-.012em}
+header.mast p.sub{margin:0;color:var(--muted);font-size:.95rem;max-width:60ch}
+header.mast a.back{font-size:.78rem;color:var(--muted);text-decoration:none;
+  display:inline-block;margin-bottom:.6rem}
+header.mast a.back:hover{color:var(--accent)}
+
+/* ---------------- instructions gate ---------------- */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.5rem 1.6rem}
+.card h2{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:0 0 .8rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:.55rem;
+  margin:0 0 1.2rem}
+.fact{border:1px solid var(--rule);border-radius:3px;background:var(--surface-2);
+  padding:.55rem .7rem}
+.fact .k{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block}
+.fact .v{font-family:var(--serif);font-size:1.15rem;font-weight:600}
+ol.rules{margin:0 0 1.2rem;padding-left:1.3rem;font-size:.95rem}
+ol.rules li{margin-bottom:.4rem}
+.lockwarn{background:var(--bad-soft);border-left:3px solid var(--bad);border-radius:3px;
+  padding:.8rem 1rem;margin:0 0 1.2rem;font-size:.95rem}
+.lockwarn b:first-child{color:var(--bad)}
+.startbtn{font-family:var(--sans);font-size:.95rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.7rem 1.6rem;cursor:pointer}
+.startbtn:hover{background:var(--accent-ink)}
+
+/* ---------------- the running paper ---------------- */
+.topbar{position:sticky;top:0;z-index:30;background:var(--surface);
+  border-bottom:1px solid var(--rule);margin-bottom:1rem;
+  box-shadow:0 2px 12px -8px rgba(22,33,30,.35)}
+.topbar .inner{max-width:50rem;margin:0 auto;padding:.55rem 1.15rem;display:flex;
+  align-items:center;gap:.8rem;flex-wrap:wrap}
+#clock{font-family:var(--mono);font-size:1.15rem;font-weight:700;
+  font-variant-numeric:tabular-nums;letter-spacing:.02em}
+#clock.warn{color:var(--warn)} #clock.crit{color:var(--bad)}
+.clocklab{font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;display:block;line-height:1.2}
+#answered{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.topbar .spacer{flex:1 1 auto}
+#submitbtn{font-family:var(--sans);font-size:.82rem;font-weight:650;color:#fff;
+  background:var(--accent);border:1px solid var(--accent);border-radius:3px;
+  padding:.42rem 1rem;cursor:pointer}
+#submitbtn:hover{background:var(--accent-ink)}
+.livewarn{background:var(--warn-soft);border-left:3px solid var(--warn);
+  border-radius:3px;padding:.55rem .85rem;margin:0 0 1.2rem;font-size:.86rem;
+  color:var(--warn-ink)}
+.livewarn b{color:var(--warn-ink)}
+
+.qcard{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  box-shadow:var(--shadow);padding:1.1rem 1.3rem 1.2rem;margin:0 0 .9rem}
+.qhead{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;
+  font-size:.72rem}
+.qno{background:var(--accent);color:#fff;font-weight:700;border-radius:2px;
+  padding:.14rem .45rem}
+.qch{border:1px solid var(--rule);border-radius:2px;padding:.11rem .45rem;
+  color:var(--muted);font-weight:600}
+.qmk{margin-left:auto;color:var(--muted);font-weight:600}
+.qtext{font-family:var(--serif);font-size:1.05rem;line-height:1.6;margin-bottom:.85rem}
+.opts{display:flex;flex-direction:column;gap:.4rem}
+.opt{display:flex;gap:.6rem;align-items:flex-start;border:1px solid var(--rule);
+  border-radius:3px;padding:.55rem .8rem;cursor:pointer;background:var(--surface-2);
+  transition:border-color .14s,background .14s}
+.opt:hover{border-color:var(--rule-strong)}
+.opt input{margin:.28rem 0 0;accent-color:var(--accent);flex:0 0 auto}
+.opt .lab{font-weight:700;color:var(--accent);flex:0 0 1.1rem}
+.opt .txt{flex:1 1 auto;font-size:.96rem}
+.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+.paper.locked .opt{cursor:default}
+
+/* ---------------- the marked paper ---------------- */
+.scorecard{background:var(--surface);border:1px solid var(--accent);
+  border-left:3px solid var(--accent);border-radius:3px;box-shadow:var(--shadow);
+  padding:1.4rem 1.5rem;margin:0 0 1.2rem}
+.scorecard h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 .2rem}
+.bigscore{font-family:var(--serif);font-size:2.8rem;font-weight:600;line-height:1.05;
+  color:var(--accent);margin:.4rem 0 .1rem}
+.bigscore span{font-size:1.3rem;color:var(--muted)}
+.pct{font-size:.95rem;color:var(--muted);margin-bottom:1rem}
+.why{background:var(--warn-soft);border-left:3px solid var(--warn);border-radius:3px;
+  padding:.6rem .9rem;margin:0 0 1rem;font-size:.9rem;color:var(--warn-ink)}
+.brk{width:100%;border-collapse:collapse;font-size:.9rem;margin-bottom:.4rem}
+.brk th,.brk td{border:1px solid var(--rule);padding:.35rem .6rem;text-align:center}
+.brk th{background:var(--surface-2);font-size:.72rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);font-weight:700}
+.brk td.l,.brk th.l{text-align:left}
+.brk tfoot td{font-weight:700;background:var(--surface-2)}
+.again{font-family:var(--sans);font-size:.8rem;font-weight:600;background:none;
+  border:1px solid var(--rule);border-radius:3px;padding:.4rem .9rem;
+  color:var(--muted);cursor:pointer;margin-top:.9rem}
+.again:hover{border-color:var(--bad);color:var(--bad)}
+
+.qcard.right{border-left:3px solid var(--ok)}
+.qcard.wrong{border-left:3px solid var(--bad)}
+.qcard.blank{border-left:3px solid var(--rule-strong)}
+.verdict{font-size:.76rem;font-weight:700;border-radius:2px;padding:.14rem .5rem}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.no{background:var(--bad-soft);color:var(--bad)}
+.verdict.bl{background:var(--surface-2);color:var(--muted)}
+.opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+.opt.chosen-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt .tag{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;align-self:center}
+.opt.correct .tag{color:var(--ok)}
+.opt.chosen-wrong .tag{color:var(--bad)}
+.expl{margin-top:.9rem;padding-top:.8rem;border-top:1px solid var(--rule);
+  font-size:.95rem;line-height:1.62}
+.expl .lab{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;display:block;margin-bottom:.25rem}
+
+footer.foot{max-width:50rem;margin:0 auto;padding:1.6rem 1.15rem 2.5rem;
+  font-size:.78rem;color:var(--muted);line-height:1.65}
+footer.foot .rule{height:1px;background:var(--rule);margin-bottom:1rem}
+@media print{ .topbar,.startbtn,#submitbtn,.again{display:none !important} }
+
+.srcline{display:block;margin-top:8px;font-size:.82rem;color:#7a7a7a;font-style:italic}
+.strikebanner{background:#fff3f0;border:1px solid #e9b8a8;border-left:4px solid #c0392b;
+  color:#7d2a1a;border-radius:6px;padding:10px 14px;margin:10px auto 0;
+  max-width:820px;font-size:.95rem}
+.strikebanner b{color:#a5301c}
+</style>
+
+<header class="mast"><div class="inner">
+  <a class="back" href="index.html">&#8249; ISC Chemistry</a>
+  <p class="kicker">ISC Class 12 &middot; First Term &middot; Subject paper</p>
+  <h1>Coordination Compounds</h1>
+  <p class="sub">The whole of Coordination Compounds &mdash; Werner's theory, nomenclature, isomerism, valence bond theory and crystal field theory &mdash; set from the ISC board, specimen and school papers. 25 multiple-choice questions,
+  1 mark each, 25 marks in 40 minutes.</p>
+</div></header>
+
+<div class="wrap">
+
+<!-- ============================ instructions ============================ -->
+<div id="gate">
+  <div class="card">
+    <h2>Before you begin</h2>
+    <div class="facts">
+      <div class="fact"><span class="k">Marks</span><span class="v">25</span></div>
+      <div class="fact"><span class="k">Time</span><span class="v">40 min</span></div>
+      <div class="fact"><span class="k">Questions</span><span class="v">25</span></div>
+      <div class="fact"><span class="k">Each</span><span class="v">1 mark</span></div>
+    </div>
+
+    <div class="lockwarn"><b>The paper locks once you start.</b> If you close this
+      tab, reload the page or navigate away before submitting, <b>the paper is
+      submitted automatically</b> with the answers you have given so far. There is no
+      way back into a paper in progress &mdash; treat it as an examination hall.</div>
+
+    <ol class="rules">
+      <li>All 25 questions are compulsory. Each carries <b>1 mark</b>, and
+        there is <b>no negative marking</b> &mdash; a wrong answer scores zero, so
+        never leave a question blank.</li>
+      <li>Exactly one option is correct. You may change an answer freely until you
+        submit; nothing is marked before then.</li>
+      <li>The clock starts the moment you press <i>Start</i> and runs for
+        <b>40 minutes</b> (40 min). When it reaches zero the paper submits
+        itself.</li>
+      <li>Your answers are saved as you go, so a crash will not lose them &mdash; but
+        reopening the page will show you the marked paper, not the paper again.</li>
+      <li>After submitting you will see your marks, a chapter-by-chapter breakdown,
+        and a worked explanation for every question.</li>
+      <li>Coverage: Coordination Compounds <b>25</b>.</li>
+    </ol>
+
+    <button class="startbtn" id="startbtn" type="button">Start the paper</button>
+  </div>
+</div>
+
+<!-- ============================ the paper ============================ -->
+<div id="paper" class="hide paper">
+  <div class="topbar"><div class="inner">
+    <div><span class="clocklab">Time left</span><span id="clock">--:--</span></div>
+    <span id="answered"></span>
+    <span class="spacer"></span>
+    <button id="submitbtn" type="button">Submit paper</button>
+  </div></div>
+  <div class="livewarn"><b>Do not close or reload this page.</b> Leaving it submits
+    your paper.</div>
+  <div id="strike" class="hide strikebanner"></div>
+</div>
+
+<!-- ============================ the marked paper ============================ -->
+<div id="result" class="hide">
+  <div class="scorecard">
+    <h2>Your result</h2>
+    <div class="bigscore" id="score"></div>
+    <div class="pct" id="pct"></div>
+    <div class="why hide" id="why"></div>
+    <table class="brk">
+      <thead><tr><th class="l">Chapter</th><th>Correct</th><th>Marks</th></tr></thead>
+      <tbody id="brkbody"></tbody>
+      <tfoot id="brkfoot"></tfoot>
+    </table>
+    <button class="again" id="again" type="button">Clear this attempt and sit the
+      paper again</button>
+  </div>
+  <p class="livewarn" style="background:var(--accent-soft);border-color:var(--accent);
+    color:var(--accent-ink)"><b>Every question is worked below</b> &mdash; your answer,
+    the correct one, and why.</p>
+</div>
+
+<!-- the questions themselves live once and are used by both states -->
+<div id="questions" class="hide">
+<section class="qcard" id="c0"><div class="qhead"><span class="qno">Q1</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v0"></span><span class="qmk">1 mark</span></div><div class="qtext">The geometries of [Ni(CN)<sub>4</sub>]<sup>2&minus;</sup> and [NiCl<sub>4</sub>]<sup>2&minus;</sup> are respectively:</div><div class="opts"><label class="opt" for="q0o0"><input type="radio" id="q0o0" name="q0" value="0"><span class="lab">A</span><span class="txt">square planar and tetrahedral</span><span class="tag"></span></label><label class="opt" for="q0o1"><input type="radio" id="q0o1" name="q0" value="1"><span class="lab">B</span><span class="txt">tetrahedral and square planar</span><span class="tag"></span></label><label class="opt" for="q0o2"><input type="radio" id="q0o2" name="q0" value="2"><span class="lab">C</span><span class="txt">both square planar</span><span class="tag"></span></label><label class="opt" for="q0o3"><input type="radio" id="q0o3" name="q0" value="3"><span class="lab">D</span><span class="txt">both tetrahedral</span><span class="tag"></span></label></div><div class="expl hide" id="e0"><span class="lab">Explanation</span>Both are Ni(II), d<sup>8</sup>. CN<sup>&minus;</sup> is a <b>strong-field</b> ligand: it pairs the two unpaired electrons, freeing one 3d orbital for <b>dsp<sup>2</sup></b> &mdash; square planar and diamagnetic. Cl<sup>&minus;</sup> is weak-field and cannot force pairing, so the metal falls back on <b>sp<sup>3</sup></b> &mdash; tetrahedral and paramagnetic. Same metal, same oxidation state, same coordination number; the ligand decides everything.<span class="srcline">Source &middot; Heritage 2024-25 Q1(A)(ii)</span></div></section>
+<section class="qcard" id="c1"><div class="qhead"><span class="qno">Q2</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v1"></span><span class="qmk">1 mark</span></div><div class="qtext">Which of the following will <b>not</b> show geometrical isomerism?</div><div class="opts"><label class="opt" for="q1o0"><input type="radio" id="q1o0" name="q1" value="0"><span class="lab">A</span><span class="txt">[Pt(NH<sub>3</sub>)<sub>2</sub>Cl<sub>2</sub>]</span><span class="tag"></span></label><label class="opt" for="q1o1"><input type="radio" id="q1o1" name="q1" value="1"><span class="lab">B</span><span class="txt">[Co(NH<sub>3</sub>)<sub>5</sub>NO<sub>2</sub>]Cl<sub>2</sub></span><span class="tag"></span></label><label class="opt" for="q1o2"><input type="radio" id="q1o2" name="q1" value="2"><span class="lab">C</span><span class="txt">[Cr(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>]Cl</span><span class="tag"></span></label><label class="opt" for="q1o3"><input type="radio" id="q1o3" name="q1" value="3"><span class="lab">D</span><span class="txt">[Co(en)<sub>2</sub>Cl<sub>2</sub>]Cl</span><span class="tag"></span></label></div><div class="expl hide" id="e1"><span class="lab">Explanation</span>Geometrical isomerism needs <b>at least two of each of two kinds</b> of ligand, so they can sit <i>cis</i> or <i>trans</i>. The complex with five ammines and one nitro is MA<sub>5</sub>B: with only one odd ligand there is nothing for it to be cis or trans to, and all six octahedral positions are equivalent. The others are MA<sub>4</sub>B<sub>2</sub>, M(AA)<sub>2</sub>B<sub>2</sub> and square planar MA<sub>2</sub>B<sub>2</sub>, which all have cis and trans forms.<span class="srcline">Source &middot; Heritage 2024-25 Q1(B)(v)</span></div></section>
+<section class="qcard" id="c2"><div class="qhead"><span class="qno">Q3</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v2"></span><span class="qmk">1 mark</span></div><div class="qtext">[Cr(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>] gives no precipitate with AgNO<sub>3</sub>. The reason is that:</div><div class="opts"><label class="opt" for="q2o0"><input type="radio" id="q2o0" name="q2" value="0"><span class="lab">A</span><span class="txt">chromium(III) does not form ionic chlorides</span><span class="tag"></span></label><label class="opt" for="q2o1"><input type="radio" id="q2o1" name="q2" value="1"><span class="lab">B</span><span class="txt">AgCl is soluble in ammonia solution</span><span class="tag"></span></label><label class="opt" for="q2o2"><input type="radio" id="q2o2" name="q2" value="2"><span class="lab">C</span><span class="txt">all three chlorides are inside the coordination sphere</span><span class="tag"></span></label><label class="opt" for="q2o3"><input type="radio" id="q2o3" name="q2" value="3"><span class="lab">D</span><span class="txt">the complex contains only neutral ligands</span><span class="tag"></span></label></div><div class="expl hide" id="e2"><span class="lab">Explanation</span>Only ions <b>outside</b> the square brackets are free in solution and can be precipitated. Here all three Cl are bonded to chromium, so there is no free Cl<sup>&minus;</sup> and no AgCl. Note the common distractor: the complex does <b>not</b> contain neutral ligands only &mdash; the three chlorides are anionic ligands, which is what makes it neutral overall.<span class="srcline">Source &middot; Heritage 2024-25 Q1(B)(vii)</span></div></section>
+<section class="qcard" id="c3"><div class="qhead"><span class="qno">Q4</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v3"></span><span class="qmk">1 mark</span></div><div class="qtext">Arrange in <b>increasing</b> order of molar conductivity: [Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>], [Co(en)<sub>3</sub>]Cl<sub>3</sub>, [Co(NH<sub>3</sub>)<sub>5</sub>Cl]Cl<sub>2</sub>, [Co(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>]Cl</div><div class="opts"><label class="opt" for="q3o0"><input type="radio" id="q3o0" name="q3" value="0"><span class="lab">A</span><span class="txt">[Co(en)<sub>3</sub>]Cl<sub>3</sub> &lt; [Co(NH<sub>3</sub>)<sub>5</sub>Cl]Cl<sub>2</sub> &lt; [Co(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>]Cl &lt; [Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q3o1"><input type="radio" id="q3o1" name="q3" value="1"><span class="lab">B</span><span class="txt">[Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>] &lt; [Co(NH<sub>3</sub>)<sub>5</sub>Cl]Cl<sub>2</sub> &lt; [Co(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>]Cl &lt; [Co(en)<sub>3</sub>]Cl<sub>3</sub></span><span class="tag"></span></label><label class="opt" for="q3o2"><input type="radio" id="q3o2" name="q3" value="2"><span class="lab">C</span><span class="txt">all four have the same molar conductivity</span><span class="tag"></span></label><label class="opt" for="q3o3"><input type="radio" id="q3o3" name="q3" value="3"><span class="lab">D</span><span class="txt">[Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>] &lt; [Co(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>]Cl &lt; [Co(NH<sub>3</sub>)<sub>5</sub>Cl]Cl<sub>2</sub> &lt; [Co(en)<sub>3</sub>]Cl<sub>3</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e3"><span class="lab">Explanation</span>Conductivity follows the <b>number of ions</b> the compound gives, which is the count of groups outside the brackets plus the complex ion itself: 0, 2, 3 and 4 respectively. The first is a neutral non-electrolyte and does not conduct at all.<span class="srcline">Source &middot; Heritage 2024-25 Q7(ii)</span></div></section>
+<section class="qcard" id="c4"><div class="qhead"><span class="qno">Q5</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v4"></span><span class="qmk">1 mark</span></div><div class="qtext">For [Fe(CN)<sub>6</sub>]<sup>4&minus;</sup>, the oxidation number of iron, the number of unpaired electrons and the hybridisation are:</div><div class="opts"><label class="opt" for="q4o0"><input type="radio" id="q4o0" name="q4" value="0"><span class="lab">A</span><span class="txt">+2, zero, d<sup>2</sup>sp<sup>3</sup></span><span class="tag"></span></label><label class="opt" for="q4o1"><input type="radio" id="q4o1" name="q4" value="1"><span class="lab">B</span><span class="txt">+3, one, d<sup>2</sup>sp<sup>3</sup></span><span class="tag"></span></label><label class="opt" for="q4o2"><input type="radio" id="q4o2" name="q4" value="2"><span class="lab">C</span><span class="txt">+2, four, sp<sup>3</sup>d<sup>2</sup></span><span class="tag"></span></label><label class="opt" for="q4o3"><input type="radio" id="q4o3" name="q4" value="3"><span class="lab">D</span><span class="txt">+3, five, sp<sup>3</sup>d<sup>2</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e4"><span class="lab">Explanation</span>Charge balance: <i>x</i> + 6(&minus;1) = &minus;4 gives Fe as <b>+2</b>, which is d<sup>6</sup>. CN<sup>&minus;</sup> is strong field, so all six electrons pair into the three t<sub>2g</sub> orbitals &mdash; <b>no unpaired electrons</b>, hence diamagnetic &mdash; and two inner 3d orbitals are freed for <b>d<sup>2</sup>sp<sup>3</sup></b>, an inner orbital octahedral complex.<span class="srcline">Source &middot; Heritage 2024-25 Q15(i)</span></div></section>
+<section class="qcard" id="c5"><div class="qhead"><span class="qno">Q6</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v5"></span><span class="qmk">1 mark</span></div><div class="qtext">On the basis of crystal field theory, the configuration of a d<sup>4</sup> ion when &Delta;<sub>o</sub> &gt; P is:</div><div class="opts"><label class="opt" for="q5o0"><input type="radio" id="q5o0" name="q5" value="0"><span class="lab">A</span><span class="txt">t<sub>2g</sub><sup>4</sup> e<sub>g</sub><sup>0</sup>, no unpaired</span><span class="tag"></span></label><label class="opt" for="q5o1"><input type="radio" id="q5o1" name="q5" value="1"><span class="lab">B</span><span class="txt">t<sub>2g</sub><sup>4</sup> e<sub>g</sub><sup>0</sup>, two unpaired</span><span class="tag"></span></label><label class="opt" for="q5o2"><input type="radio" id="q5o2" name="q5" value="2"><span class="lab">C</span><span class="txt">t<sub>2g</sub><sup>3</sup> e<sub>g</sub><sup>1</sup>, four unpaired</span><span class="tag"></span></label><label class="opt" for="q5o3"><input type="radio" id="q5o3" name="q5" value="3"><span class="lab">D</span><span class="txt">t<sub>2g</sub><sup>2</sup> e<sub>g</sub><sup>2</sup>, four unpaired</span><span class="tag"></span></label></div><div class="expl hide" id="e5"><span class="lab">Explanation</span>&Delta;<sub>o</sub> &gt; P means <b>pairing is cheaper than climbing</b>, so the fourth electron pairs in t<sub>2g</sub> rather than going up to e<sub>g</sub>. That gives t<sub>2g</sub><sup>4</sup>: one orbital holds a pair and two hold single electrons, so <b>two</b> are unpaired &mdash; the low-spin case. With &Delta;<sub>o</sub> &lt; P the electron climbs instead, giving t<sub>2g</sub><sup>3</sup>e<sub>g</sub><sup>1</sup> and four unpaired.<span class="srcline">Source &middot; Heritage 2024-25 Q15(ii)</span></div></section>
+<section class="qcard" id="c6"><div class="qhead"><span class="qno">Q7</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v6"></span><span class="qmk">1 mark</span></div><div class="qtext">EDTA is used in the treatment of lead poisoning because it:</div><div class="opts"><label class="opt" for="q6o0"><input type="radio" id="q6o0" name="q6" value="0"><span class="lab">A</span><span class="txt">is monodentate and binds lead loosely so it can be flushed out</span><span class="tag"></span></label><label class="opt" for="q6o1"><input type="radio" id="q6o1" name="q6" value="1"><span class="lab">B</span><span class="txt">reduces Pb<sup>2+</sup> to metallic lead</span><span class="tag"></span></label><label class="opt" for="q6o2"><input type="radio" id="q6o2" name="q6" value="2"><span class="lab">C</span><span class="txt">is hexadentate and forms a very stable, water-soluble chelate with Pb<sup>2+</sup></span><span class="tag"></span></label><label class="opt" for="q6o3"><input type="radio" id="q6o3" name="q6" value="3"><span class="lab">D</span><span class="txt">oxidises lead to an insoluble salt that is excreted</span><span class="tag"></span></label></div><div class="expl hide" id="e6"><span class="lab">Explanation</span>EDTA<sup>4&minus;</sup> binds through <b>four carboxylate oxygens and two nitrogens</b> &mdash; hexadentate. Wrapping six donor atoms round one ion gives a large positive entropy of chelation and so an exceptionally large stability constant. The lead is locked into a water-soluble complex and excreted by the kidneys instead of binding to enzymes.<span class="srcline">Source &middot; Heritage 2024-25 Q20(i)-(iii)</span></div></section>
+<section class="qcard" id="c7"><div class="qhead"><span class="qno">Q8</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v7"></span><span class="qmk">1 mark</span></div><div class="qtext">CoBr<sub>3</sub>&middot;4NH<sub>3</sub>&middot;2H<sub>2</sub>O has a molar conductivity corresponding to four ions. Its formula is:</div><div class="opts"><label class="opt" for="q7o0"><input type="radio" id="q7o0" name="q7" value="0"><span class="lab">A</span><span class="txt">[Co(NH<sub>3</sub>)<sub>4</sub>Br<sub>2</sub>]Br&middot;2H<sub>2</sub>O</span><span class="tag"></span></label><label class="opt" for="q7o1"><input type="radio" id="q7o1" name="q7" value="1"><span class="lab">B</span><span class="txt">[Co(NH<sub>3</sub>)<sub>4</sub>(H<sub>2</sub>O)Br]Br<sub>2</sub>&middot;H<sub>2</sub>O</span><span class="tag"></span></label><label class="opt" for="q7o2"><input type="radio" id="q7o2" name="q7" value="2"><span class="lab">C</span><span class="txt">[Co(NH<sub>3</sub>)<sub>3</sub>(H<sub>2</sub>O)<sub>2</sub>Br]Br<sub>2</sub>&middot;NH<sub>3</sub></span><span class="tag"></span></label><label class="opt" for="q7o3"><input type="radio" id="q7o3" name="q7" value="3"><span class="lab">D</span><span class="txt">[Co(NH<sub>3</sub>)<sub>4</sub>(H<sub>2</sub>O)<sub>2</sub>]Br<sub>3</sub></span><span class="tag"></span></label></div><div class="expl hide" id="e7"><span class="lab">Explanation</span>Four ions means one complex cation and three bromides, so <b>all three Br are outside</b> the coordination sphere and the complex ion carries +3. Everything else &mdash; four NH<sub>3</sub> and two H<sub>2</sub>O &mdash; must be inside, giving a coordination number of 6, which is what cobalt(III) prefers. The name is tetraamminediaquacobalt(III) bromide.<span class="srcline">Source &middot; Heritage 2024-25 Q20(iv)</span></div></section>
+<section class="qcard" id="c8"><div class="qhead"><span class="qno">Q9</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v8"></span><span class="qmk">1 mark</span></div><div class="qtext">The IUPAC name of [Pt(NH<sub>3</sub>)<sub>4</sub>Cl<sub>2</sub>][PtCl<sub>4</sub>] is:</div><div class="opts"><label class="opt" for="q8o0"><input type="radio" id="q8o0" name="q8" value="0"><span class="lab">A</span><span class="txt">tetraamminedichloridoplatinum(IV) tetrachloridoplatinate(II)</span><span class="tag"></span></label><label class="opt" for="q8o1"><input type="radio" id="q8o1" name="q8" value="1"><span class="lab">B</span><span class="txt">tetraamminedichloridoplatinum(II) tetrachloridoplatinate(IV)</span><span class="tag"></span></label><label class="opt" for="q8o2"><input type="radio" id="q8o2" name="q8" value="2"><span class="lab">C</span><span class="txt">dichloridotetraammineplatinum(IV) tetrachloroplatinum(II)</span><span class="tag"></span></label><label class="opt" for="q8o3"><input type="radio" id="q8o3" name="q8" value="3"><span class="lab">D</span><span class="txt">tetrachloridoplatinate(II) tetraamminedichloridoplatinum(IV)</span><span class="tag"></span></label></div><div class="expl hide" id="e8"><span class="lab">Explanation</span>The cation is named first, then the anion. In the cation <i>x</i> + 0 + 2(&minus;1) = +2 gives Pt(<b>IV</b>); in the anion <i>x</i> + 4(&minus;1) = &minus;2 gives Pt(<b>II</b>). Ligands are named alphabetically &mdash; <i>ammine</i> before <i>chlorido</i> &mdash; and the anionic complex takes the <i>-ate</i> ending.<span class="srcline">Source &middot; Heritage 2024-25 Q20 OR (ii)</span></div></section>
+<section class="qcard" id="c9"><div class="qhead"><span class="qno">Q10</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v9"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(NH<sub>3</sub>)<sub>5</sub>Cl]SO<sub>4</sub> and [Co(NH<sub>3</sub>)<sub>5</sub>SO<sub>4</sub>]Cl are examples of:</div><div class="opts"><label class="opt" for="q9o0"><input type="radio" id="q9o0" name="q9" value="0"><span class="lab">A</span><span class="txt">hydrate isomerism</span><span class="tag"></span></label><label class="opt" for="q9o1"><input type="radio" id="q9o1" name="q9" value="1"><span class="lab">B</span><span class="txt">ionisation isomerism</span><span class="tag"></span></label><label class="opt" for="q9o2"><input type="radio" id="q9o2" name="q9" value="2"><span class="lab">C</span><span class="txt">linkage isomerism</span><span class="tag"></span></label><label class="opt" for="q9o3"><input type="radio" id="q9o3" name="q9" value="3"><span class="lab">D</span><span class="txt">coordination isomerism</span><span class="tag"></span></label></div><div class="expl hide" id="e9"><span class="lab">Explanation</span>The chloride and the sulphate have <b>swapped places</b> between the coordination sphere and the counter-ion, so the two give different ions in solution &mdash; <b>ionisation isomerism</b>. The test distinguishes them: the first gives a white precipitate with BaCl<sub>2</sub> (free sulphate), the second with AgNO<sub>3</sub> (free chloride).<span class="srcline">Source &middot; Heritage 2024-25 Q20 OR (iii)</span></div></section>
+<section class="qcard" id="c10"><div class="qhead"><span class="qno">Q11</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v10"></span><span class="qmk">1 mark</span></div><div class="qtext">For [Ni(CO)<sub>4</sub>], the oxidation state of nickel, its hybridisation and its magnetic behaviour are:</div><div class="opts"><label class="opt" for="q10o0"><input type="radio" id="q10o0" name="q10" value="0"><span class="lab">A</span><span class="txt">0, dsp<sup>2</sup>, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q10o1"><input type="radio" id="q10o1" name="q10" value="1"><span class="lab">B</span><span class="txt">+2, sp<sup>3</sup>, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q10o2"><input type="radio" id="q10o2" name="q10" value="2"><span class="lab">C</span><span class="txt">0, sp<sup>3</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q10o3"><input type="radio" id="q10o3" name="q10" value="3"><span class="lab">D</span><span class="txt">+2, dsp<sup>2</sup>, diamagnetic</span><span class="tag"></span></label></div><div class="expl hide" id="e10"><span class="lab">Explanation</span>CO is neutral and the complex is neutral, so nickel is in oxidation state <b>zero</b>. Ni(0) is 3d<sup>8</sup>4s<sup>2</sup>; CO is a very strong field ligand, so the 4s electrons move into 3d, filling it to 3d<sup>10</sup>. With no unpaired electrons it is <b>diamagnetic</b>, and with 3d full the metal must bond using 4s and 4p &mdash; <b>sp<sup>3</sup></b>, tetrahedral.<span class="srcline">Source &middot; Heritage 2024-25 Q20 OR (i)</span></div></section>
+<section class="qcard" id="c11"><div class="qhead"><span class="qno">Q12</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v11"></span><span class="qmk">1 mark</span></div><div class="qtext">FeSO<sub>4</sub> with (NH<sub>4</sub>)<sub>2</sub>SO<sub>4</sub> in 1:1 ratio gives the test for Fe<sup>2+</sup>, but CuSO<sub>4</sub> with aqueous NH<sub>3</sub> in 1:4 ratio does not give the test for Cu<sup>2+</sup>, because:</div><div class="opts"><label class="opt" for="q11o0"><input type="radio" id="q11o0" name="q11" value="0"><span class="lab">A</span><span class="txt">the first is a complex and the second is a double salt</span><span class="tag"></span></label><label class="opt" for="q11o1"><input type="radio" id="q11o1" name="q11" value="1"><span class="lab">B</span><span class="txt">copper(II) is reduced by ammonia to copper(I)</span><span class="tag"></span></label><label class="opt" for="q11o2"><input type="radio" id="q11o2" name="q11" value="2"><span class="lab">C</span><span class="txt">iron(II) is more electropositive than copper(II)</span><span class="tag"></span></label><label class="opt" for="q11o3"><input type="radio" id="q11o3" name="q11" value="3"><span class="lab">D</span><span class="txt">the first is a double salt that dissociates completely, the second a complex whose complex ion does not dissociate</span><span class="tag"></span></label></div><div class="expl hide" id="e11"><span class="lab">Explanation</span>Mohr's salt is a <b>double salt</b>: it exists only in the solid and in water gives free Fe<sup>2+</sup>, NH<sub>4</sub><sup>+</sup> and SO<sub>4</sub><sup>2&minus;</sup>. [Cu(NH<sub>3</sub>)<sub>4</sub>]SO<sub>4</sub> is a <b>coordination compound</b>: it does ionise, into [Cu(NH<sub>3</sub>)<sub>4</sub>]<sup>2+</sup> and sulphate, but the <b>complex ion itself does not dissociate</b>, so no free Cu<sup>2+</sup> is available to test for.<span class="srcline">Source &middot; Heritage 2024-25 Q7(i)</span></div></section>
+<section class="qcard" id="c12"><div class="qhead"><span class="qno">Q13</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v12"></span><span class="qmk">1 mark</span></div><div class="qtext">The number of unpaired electrons in [CoF<sub>6</sub>]<sup>3&minus;</sup> is:</div><div class="opts"><label class="opt" for="q12o0"><input type="radio" id="q12o0" name="q12" value="0"><span class="lab">A</span><span class="txt">4</span><span class="tag"></span></label><label class="opt" for="q12o1"><input type="radio" id="q12o1" name="q12" value="1"><span class="lab">B</span><span class="txt">2</span><span class="tag"></span></label><label class="opt" for="q12o2"><input type="radio" id="q12o2" name="q12" value="2"><span class="lab">C</span><span class="txt">3</span><span class="tag"></span></label><label class="opt" for="q12o3"><input type="radio" id="q12o3" name="q12" value="3"><span class="lab">D</span><span class="txt">0</span><span class="tag"></span></label></div><div class="expl hide" id="e12"><span class="lab">Explanation</span>Charge balance gives Co(III), which is d<sup>6</sup>. F<sup>&minus;</sup> is a <b>weak-field</b> ligand, so &Delta;<sub>o</sub> &lt; P and the electrons spread out before pairing: t<sub>2g</sub><sup>4</sup>e<sub>g</sub><sup>2</sup>, leaving <b>four</b> unpaired. The complex is high spin, outer orbital (sp<sup>3</sup>d<sup>2</sup>) and paramagnetic. With a strong-field ligand the same d<sup>6</sup> ion would be t<sub>2g</sub><sup>6</sup> and diamagnetic.<span class="srcline">Source &middot; Heritage 2016-17 Q1(d)(i)</span></div></section>
+<section class="qcard" id="c13"><div class="qhead"><span class="qno">Q14</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v13"></span><span class="qmk">1 mark</span></div><div class="qtext">Using crystal field theory, the number of unpaired electrons in [FeCl<sub>4</sub>]<sup>&minus;</sup> is:</div><div class="opts"><label class="opt" for="q13o0"><input type="radio" id="q13o0" name="q13" value="0"><span class="lab">A</span><span class="txt">0</span><span class="tag"></span></label><label class="opt" for="q13o1"><input type="radio" id="q13o1" name="q13" value="1"><span class="lab">B</span><span class="txt">5</span><span class="tag"></span></label><label class="opt" for="q13o2"><input type="radio" id="q13o2" name="q13" value="2"><span class="lab">C</span><span class="txt">1</span><span class="tag"></span></label><label class="opt" for="q13o3"><input type="radio" id="q13o3" name="q13" value="3"><span class="lab">D</span><span class="txt">3</span><span class="tag"></span></label></div><div class="expl hide" id="e13"><span class="lab">Explanation</span>Charge balance: <i>x</i> + 4(&minus;1) = &minus;1 gives Fe(III), which is <b>d<sup>5</sup></b>. The complex is <b>tetrahedral</b>, and in a tetrahedral field &Delta;<sub>t</sub> is only about 4/9 of &Delta;<sub>o</sub> &mdash; always smaller than the pairing energy. So tetrahedral complexes are <b>invariably high spin</b> and all five electrons stay unpaired. Cl<sup>&minus;</sup> being weak-field points the same way.<span class="srcline">Source &middot; Heritage 2016-17 Q5(b)</span></div></section>
+<section class="qcard" id="c14"><div class="qhead"><span class="qno">Q15</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v14"></span><span class="qmk">1 mark</span></div><div class="qtext">The formula of potassium trioxalatoaluminate(III) is:</div><div class="opts"><label class="opt" for="q14o0"><input type="radio" id="q14o0" name="q14" value="0"><span class="lab">A</span><span class="txt">[Al(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]K<sub>3</sub></span><span class="tag"></span></label><label class="opt" for="q14o1"><input type="radio" id="q14o1" name="q14" value="1"><span class="lab">B</span><span class="txt">Al<sub>3</sub>[K(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q14o2"><input type="radio" id="q14o2" name="q14" value="2"><span class="lab">C</span><span class="txt">K<sub>3</sub>[Al(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label><label class="opt" for="q14o3"><input type="radio" id="q14o3" name="q14" value="3"><span class="lab">D</span><span class="txt">K[Al(C<sub>2</sub>O<sub>4</sub>)<sub>3</sub>]</span><span class="tag"></span></label></div><div class="expl hide" id="e14"><span class="lab">Explanation</span>The <i>-ate</i> ending means the complex is the <b>anion</b>, so potassium sits outside the brackets and is written first. Aluminium is +3 and three oxalates give 3 &times; (&minus;2) = &minus;6, so the complex ion is &minus;3 overall and needs three K<sup>+</sup>.<span class="srcline">Source &middot; Heritage 2016-17 Q5(a)</span></div></section>
+<section class="qcard" id="c15"><div class="qhead"><span class="qno">Q16</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v15"></span><span class="qmk">1 mark</span></div><div class="qtext">The IUPAC name of [Co(NH<sub>3</sub>)<sub>6</sub>]<sup>3+</sup> and its magnetic behaviour are:</div><div class="opts"><label class="opt" for="q15o0"><input type="radio" id="q15o0" name="q15" value="0"><span class="lab">A</span><span class="txt">hexaamminecobalt(II) ion, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q15o1"><input type="radio" id="q15o1" name="q15" value="1"><span class="lab">B</span><span class="txt">hexaammonianecobalt(III) ion, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q15o2"><input type="radio" id="q15o2" name="q15" value="2"><span class="lab">C</span><span class="txt">cobalt(III) hexaammine ion, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q15o3"><input type="radio" id="q15o3" name="q15" value="3"><span class="lab">D</span><span class="txt">hexaamminecobalt(III) ion, diamagnetic</span><span class="tag"></span></label></div><div class="expl hide" id="e15"><span class="lab">Explanation</span>NH<sub>3</sub> as a ligand is named <b>ammine</b> (two m's &mdash; one m is the organic amine), and the ion carries +3 with six neutral ligands, so cobalt is <b>+3</b>. Co(III) is d<sup>6</sup> and NH<sub>3</sub> is strong field for cobalt(III), so all six electrons pair: no unpaired electrons, hence <b>diamagnetic</b>, with d<sup>2</sup>sp<sup>3</sup> hybridisation.<span class="srcline">Source &middot; ISC specimen &middot; nomenclature</span></div></section>
+<section class="qcard" id="c16"><div class="qhead"><span class="qno">Q17</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v16"></span><span class="qmk">1 mark</span></div><div class="qtext">[Cu(NH<sub>3</sub>)<sub>4</sub>][PtCl<sub>4</sub>] and [Pt(NH<sub>3</sub>)<sub>4</sub>][CuCl<sub>4</sub>] are related as:</div><div class="opts"><label class="opt" for="q16o0"><input type="radio" id="q16o0" name="q16" value="0"><span class="lab">A</span><span class="txt">coordination isomers</span><span class="tag"></span></label><label class="opt" for="q16o1"><input type="radio" id="q16o1" name="q16" value="1"><span class="lab">B</span><span class="txt">ionisation isomers</span><span class="tag"></span></label><label class="opt" for="q16o2"><input type="radio" id="q16o2" name="q16" value="2"><span class="lab">C</span><span class="txt">linkage isomers</span><span class="tag"></span></label><label class="opt" for="q16o3"><input type="radio" id="q16o3" name="q16" value="3"><span class="lab">D</span><span class="txt">hydrate isomers</span><span class="tag"></span></label></div><div class="expl hide" id="e16"><span class="lab">Explanation</span>Both the cation and the anion are complex ions, and the <b>ligands have been exchanged between the two metal centres</b>. That is the definition of <b>coordination isomerism</b>, and it can only arise when both ions of a salt are complexes.<span class="srcline">Source &middot; School worksheet &middot; Q1(i)</span></div></section>
+<section class="qcard" id="c17"><div class="qhead"><span class="qno">Q18</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v17"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(NH<sub>3</sub>)<sub>5</sub>NO<sub>2</sub>]Cl<sub>2</sub> can exist in two forms, one binding through N and the other through O. This is:</div><div class="opts"><label class="opt" for="q17o0"><input type="radio" id="q17o0" name="q17" value="0"><span class="lab">A</span><span class="txt">coordination isomerism</span><span class="tag"></span></label><label class="opt" for="q17o1"><input type="radio" id="q17o1" name="q17" value="1"><span class="lab">B</span><span class="txt">linkage isomerism</span><span class="tag"></span></label><label class="opt" for="q17o2"><input type="radio" id="q17o2" name="q17" value="2"><span class="lab">C</span><span class="txt">ionisation isomerism</span><span class="tag"></span></label><label class="opt" for="q17o3"><input type="radio" id="q17o3" name="q17" value="3"><span class="lab">D</span><span class="txt">geometrical isomerism</span><span class="tag"></span></label></div><div class="expl hide" id="e17"><span class="lab">Explanation</span>NO<sub>2</sub><sup>&minus;</sup> is an <b>ambidentate</b> ligand: it has two different donor atoms and can attach either way round. Bound through nitrogen it is <i>nitrito-N</i> (nitro); through oxygen it is <i>nitrito-O</i>. Two compounds differing only in which atom is used are <b>linkage isomers</b>.<span class="srcline">Source &middot; School worksheet &middot; Q3</span></div></section>
+<section class="qcard" id="c18"><div class="qhead"><span class="qno">Q19</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v18"></span><span class="qmk">1 mark</span></div><div class="qtext">For [Cr(H<sub>2</sub>O)<sub>2</sub>(C<sub>2</sub>O<sub>4</sub>)<sub>2</sub>]<sup>&minus;</sup>, the hybridisation and magnetic behaviour are:</div><div class="opts"><label class="opt" for="q18o0"><input type="radio" id="q18o0" name="q18" value="0"><span class="lab">A</span><span class="txt">sp<sup>3</sup>d<sup>2</sup>, diamagnetic</span><span class="tag"></span></label><label class="opt" for="q18o1"><input type="radio" id="q18o1" name="q18" value="1"><span class="lab">B</span><span class="txt">dsp<sup>2</sup>, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q18o2"><input type="radio" id="q18o2" name="q18" value="2"><span class="lab">C</span><span class="txt">d<sup>2</sup>sp<sup>3</sup>, paramagnetic</span><span class="tag"></span></label><label class="opt" for="q18o3"><input type="radio" id="q18o3" name="q18" value="3"><span class="lab">D</span><span class="txt">d<sup>2</sup>sp<sup>3</sup>, diamagnetic</span><span class="tag"></span></label></div><div class="expl hide" id="e18"><span class="lab">Explanation</span>Charge balance: <i>x</i> + 2(0) + 2(&minus;2) = &minus;1 gives Cr(III), which is <b>d<sup>3</sup></b>. Three electrons occupy the three t<sub>2g</sub> orbitals singly whatever the ligand strength, so <b>two inner 3d orbitals are always vacant</b> and the complex is d<sup>2</sup>sp<sup>3</sup>. Three unpaired electrons make it <b>paramagnetic</b>. d<sup>3</sup> is the case where high and low spin coincide.<span class="srcline">Source &middot; School worksheet &middot; Q2(i)</span></div></section>
+<section class="qcard" id="c19"><div class="qhead"><span class="qno">Q20</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v19"></span><span class="qmk">1 mark</span></div><div class="qtext">[Co(NH<sub>3</sub>)<sub>3</sub>Cl<sub>3</sub>] exists as two geometrical isomers known as:</div><div class="opts"><label class="opt" for="q19o0"><input type="radio" id="q19o0" name="q19" value="0"><span class="lab">A</span><span class="txt">cis and trans</span><span class="tag"></span></label><label class="opt" for="q19o1"><input type="radio" id="q19o1" name="q19" value="1"><span class="lab">B</span><span class="txt">dextro and laevo</span><span class="tag"></span></label><label class="opt" for="q19o2"><input type="radio" id="q19o2" name="q19" value="2"><span class="lab">C</span><span class="txt">syn and anti</span><span class="tag"></span></label><label class="opt" for="q19o3"><input type="radio" id="q19o3" name="q19" value="3"><span class="lab">D</span><span class="txt">facial and meridional</span><span class="tag"></span></label></div><div class="expl hide" id="e19"><span class="lab">Explanation</span>For an MA<sub>3</sub>B<sub>3</sub> octahedral complex the three like ligands can occupy one triangular <b>face</b> of the octahedron &mdash; the <i>fac</i> isomer &mdash; or lie around a <b>meridian</b>, the <i>mer</i> isomer. <i>cis</i> and <i>trans</i> is the naming used for MA<sub>4</sub>B<sub>2</sub> and square planar MA<sub>2</sub>B<sub>2</sub> instead.<span class="srcline">Source &middot; School worksheet &middot; Q4</span></div></section>
+<section class="qcard" id="c20"><div class="qhead"><span class="qno">Q21</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v20"></span><span class="qmk">1 mark</span></div><div class="qtext">According to Werner's theory, the secondary valency of a metal in a complex corresponds to its:</div><div class="opts"><label class="opt" for="q20o0"><input type="radio" id="q20o0" name="q20" value="0"><span class="lab">A</span><span class="txt">coordination number, and is directional and non-ionisable</span><span class="tag"></span></label><label class="opt" for="q20o1"><input type="radio" id="q20o1" name="q20" value="1"><span class="lab">B</span><span class="txt">oxidation number, and is ionisable</span><span class="tag"></span></label><label class="opt" for="q20o2"><input type="radio" id="q20o2" name="q20" value="2"><span class="lab">C</span><span class="txt">atomic number, and is non-directional</span><span class="tag"></span></label><label class="opt" for="q20o3"><input type="radio" id="q20o3" name="q20" value="3"><span class="lab">D</span><span class="txt">primary valency, and is satisfied by negative ions only</span><span class="tag"></span></label></div><div class="expl hide" id="e20"><span class="lab">Explanation</span>Werner distinguished two valencies. The <b>primary</b> valency is the oxidation number, is satisfied by negative ions, is <b>ionisable</b> and is non-directional. The <b>secondary</b> valency is the <b>coordination number</b>, is satisfied by ligands, is <b>non-ionisable</b> and is <b>directional</b> &mdash; which is why it gives the complex a definite geometry.<span class="srcline">Source &middot; ISC board &middot; Werner's theory</span></div></section>
+<section class="qcard" id="c21"><div class="qhead"><span class="qno">Q22</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v21"></span><span class="qmk">1 mark</span></div><div class="qtext">[Ti(H<sub>2</sub>O)<sub>6</sub>]<sup>3+</sup> is violet while [Sc(H<sub>2</sub>O)<sub>6</sub>]<sup>3+</sup> is colourless because:</div><div class="opts"><label class="opt" for="q21o0"><input type="radio" id="q21o0" name="q21" value="0"><span class="lab">A</span><span class="txt">Sc<sup>3+</sup> has a completely filled d subshell</span><span class="tag"></span></label><label class="opt" for="q21o1"><input type="radio" id="q21o1" name="q21" value="1"><span class="lab">B</span><span class="txt">Ti<sup>3+</sup> is d<sup>1</sup> and can undergo a d&ndash;d transition, while Sc<sup>3+</sup> is d<sup>0</sup> and cannot</span><span class="tag"></span></label><label class="opt" for="q21o2"><input type="radio" id="q21o2" name="q21" value="2"><span class="lab">C</span><span class="txt">Ti<sup>3+</sup> is larger than Sc<sup>3+</sup></span><span class="tag"></span></label><label class="opt" for="q21o3"><input type="radio" id="q21o3" name="q21" value="3"><span class="lab">D</span><span class="txt">water is a strong field ligand for titanium but not for scandium</span><span class="tag"></span></label></div><div class="expl hide" id="e21"><span class="lab">Explanation</span>Colour comes from an electron being promoted from t<sub>2g</sub> to e<sub>g</sub> &mdash; a <b>d&ndash;d transition</b> &mdash; which needs a <b>partially filled</b> d subshell. Ti<sup>3+</sup> is 3d<sup>1</sup> and qualifies; Sc<sup>3+</sup> is 3d<sup>0</sup> with no d electron at all. Note Sc<sup>3+</sup> is <i>empty</i>, not full &mdash; a full d<sup>10</sup> ion such as Zn<sup>2+</sup> is colourless for the opposite reason.<span class="srcline">Source &middot; Competency booklet &middot; colour</span></div></section>
+<section class="qcard" id="c22"><div class="qhead"><span class="qno">Q23</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v22"></span><span class="qmk">1 mark</span></div><div class="qtext">Which lists ligands in order of <b>increasing</b> field strength?</div><div class="opts"><label class="opt" for="q22o0"><input type="radio" id="q22o0" name="q22" value="0"><span class="lab">A</span><span class="txt">H<sub>2</sub>O &lt; I<sup>&minus;</sup> &lt; Cl<sup>&minus;</sup> &lt; CO &lt; NH<sub>3</sub> &lt; CN<sup>&minus;</sup></span><span class="tag"></span></label><label class="opt" for="q22o1"><input type="radio" id="q22o1" name="q22" value="1"><span class="lab">B</span><span class="txt">NH<sub>3</sub> &lt; H<sub>2</sub>O &lt; CN<sup>&minus;</sup> &lt; CO &lt; Cl<sup>&minus;</sup> &lt; I<sup>&minus;</sup></span><span class="tag"></span></label><label class="opt" for="q22o2"><input type="radio" id="q22o2" name="q22" value="2"><span class="lab">C</span><span class="txt">I<sup>&minus;</sup> &lt; Cl<sup>&minus;</sup> &lt; H<sub>2</sub>O &lt; NH<sub>3</sub> &lt; CN<sup>&minus;</sup> &lt; CO</span><span class="tag"></span></label><label class="opt" for="q22o3"><input type="radio" id="q22o3" name="q22" value="3"><span class="lab">D</span><span class="txt">CO &lt; CN<sup>&minus;</sup> &lt; NH<sub>3</sub> &lt; H<sub>2</sub>O &lt; Cl<sup>&minus;</sup> &lt; I<sup>&minus;</sup></span><span class="tag"></span></label></div><div class="expl hide" id="e22"><span class="lab">Explanation</span>The spectrochemical series runs weak field to strong field. The two ends are what must be remembered: the <b>halides and water are weak</b> (small splitting, so complexes tend to be high spin and paramagnetic), while <b>CN<sup>&minus;</sup> and CO are strong</b> (large &Delta;, low spin, often diamagnetic). NH<sub>3</sub> sits in the middle and counts as strong field for cobalt(III) and nickel(II).<span class="srcline">Source &middot; ISC board &middot; spectrochemical series</span></div></section>
+<section class="qcard" id="c23"><div class="qhead"><span class="qno">Q24</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v23"></span><span class="qmk">1 mark</span></div><div class="qtext">[Ni(en)<sub>3</sub>]<sup>2+</sup> is more stable than [Ni(NH<sub>3</sub>)<sub>6</sub>]<sup>2+</sup> mainly because:</div><div class="opts"><label class="opt" for="q23o0"><input type="radio" id="q23o0" name="q23" value="0"><span class="lab">A</span><span class="txt">en is a stronger field ligand than NH<sub>3</sub></span><span class="tag"></span></label><label class="opt" for="q23o1"><input type="radio" id="q23o1" name="q23" value="1"><span class="lab">B</span><span class="txt">en carries a negative charge and NH<sub>3</sub> does not</span><span class="tag"></span></label><label class="opt" for="q23o2"><input type="radio" id="q23o2" name="q23" value="2"><span class="lab">C</span><span class="txt">nickel has a higher coordination number with en</span><span class="tag"></span></label><label class="opt" for="q23o3"><input type="radio" id="q23o3" name="q23" value="3"><span class="lab">D</span><span class="txt">en is a chelating ligand and forms rings with the metal</span><span class="tag"></span></label></div><div class="expl hide" id="e23"><span class="lab">Explanation</span>Both complexes give nickel six nitrogen donors, so the bonding is very similar. What differs is that ethane-1,2-diamine is <b>bidentate</b> and closes a five-membered <b>chelate ring</b>. Releasing six NH<sub>3</sub> and binding three en increases the number of free particles, so entropy favours the chelate strongly &mdash; the <b>chelate effect</b>. Note en is neutral, like NH<sub>3</sub>.<span class="srcline">Source &middot; ISC specimen &middot; chelate effect</span></div></section>
+<section class="qcard" id="c24"><div class="qhead"><span class="qno">Q25</span><span class="qch">Coordination Compounds</span><span class="verdict hide" id="v24"></span><span class="qmk">1 mark</span></div><div class="qtext">Which of the following shows optical isomerism?</div><div class="opts"><label class="opt" for="q24o0"><input type="radio" id="q24o0" name="q24" value="0"><span class="lab">A</span><span class="txt"><i>cis</i>-[CoCl<sub>2</sub>(en)<sub>2</sub>]<sup>+</sup></span><span class="tag"></span></label><label class="opt" for="q24o1"><input type="radio" id="q24o1" name="q24" value="1"><span class="lab">B</span><span class="txt"><i>trans</i>-[CoCl<sub>2</sub>(en)<sub>2</sub>]<sup>+</sup></span><span class="tag"></span></label><label class="opt" for="q24o2"><input type="radio" id="q24o2" name="q24" value="2"><span class="lab">C</span><span class="txt">[Co(NH<sub>3</sub>)<sub>6</sub>]<sup>3+</sup></span><span class="tag"></span></label><label class="opt" for="q24o3"><input type="radio" id="q24o3" name="q24" value="3"><span class="lab">D</span><span class="txt"><i>trans</i>-[Pt(NH<sub>3</sub>)<sub>2</sub>Cl<sub>2</sub>]</span><span class="tag"></span></label></div><div class="expl hide" id="e24"><span class="lab">Explanation</span>Optical isomerism needs the ion to have <b>no plane of symmetry</b>, so it is not superimposable on its mirror image. The <i>trans</i> isomer of the bis-en complex does have such a plane and is optically inactive; the <b><i>cis</i></b> isomer does not, so it exists as non-superimposable <i>d</i> and <i>l</i> forms. The fully symmetrical hexaammine and the square planar trans complex are both achiral.<span class="srcline">Source &middot; ISC board &middot; optical isomerism</span></div></section>
+</div>
+
+</div>
+
+<footer class="foot"><div class="rule"></div>
+  <p>Questions are set to the standard of Section A of the ISC Chemistry Paper 1
+  board and CISCE specimen papers &mdash; a mixture of quick numericals, applied
+  concepts and the recall items the board sets at one mark.</p>
+</footer>
+<script>
+(function(){
+  var KEY = 'isc-chem-subj-coord-v1';
+  var MINUTES = 40, MARKS = 1, N = 25;
+  var ANS = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 0];          // correct option index per question
+  var CH  = ["coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord", "coord"];           // chapter key per question
+  var CHN = {"coord": "Coordination Compounds"};          // chapter key -> printed name
+  var LETTERS = ['A','B','C','D'];
+
+  var gate = document.getElementById('gate');
+  var paper = document.getElementById('paper');
+  var result = document.getElementById('result');
+  var qs = document.getElementById('questions');
+  var clockEl = document.getElementById('clock');
+  var answeredEl = document.getElementById('answered');
+  var tick = null, warned = false;
+
+  /* ---------------- strict mode: leaving the page is a strike ----------------
+     A web page cannot actually stop someone minimising a window -- no page can.
+     What it can do is notice and act, which is what this does: every time the
+     document becomes hidden while the paper is running (tab switch, minimise,
+     app switch on a phone) a strike is recorded in the stored attempt, so it
+     survives a reload. The first strikes warn on return; the last one submits
+     the paper. The count is shown on the marked paper. */
+  var STRIKE_LIMIT = 3;
+  var banner = document.getElementById('strike');
+
+  function strikeNow(){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    s.answers = collect();
+    s.strikes = (s.strikes || 0) + 1;
+    save(s);
+    if (s.strikes >= STRIKE_LIMIT) submit('strikes');
+  }
+  function showStrikeBanner(){
+    var s = load();
+    if (!s || s.state !== 'running' || !s.strikes || !banner) return;
+    var left = STRIKE_LIMIT - s.strikes;
+    banner.innerHTML = '<b>You left the paper.</b> That is warning ' + s.strikes +
+      ' of ' + STRIKE_LIMIT + '. ' + (left > 0
+        ? 'Leaving ' + left + ' more time' + (left === 1 ? '' : 's') +
+          ' will submit the paper automatically.'
+        : '');
+    banner.classList.remove('hide');
+  }
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) strikeNow();
+    else showStrikeBanner();
+  });
+  window.addEventListener('blur', function(){
+    /* blur without the document being hidden is an alt-tab on some platforms */
+    setTimeout(function(){ if (!document.hasFocus() && !document.hidden) strikeNow(); }, 120);
+  });
+
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || 'null'); }
+    catch(e){ return null; }
+  }
+  function save(s){
+    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){}
+  }
+  function clear(){ try { localStorage.removeItem(KEY); } catch(e){} }
+
+  /* ------------------------------------------------ starting */
+  function start(){
+    var s = { state:'running', endAt: Date.now() + MINUTES*60*1000, answers:{} };
+    save(s);
+    show(s);
+  }
+
+  function show(s){
+    if (!s) { gate.classList.remove('hide'); paper.classList.add('hide');
+              result.classList.add('hide'); qs.classList.add('hide'); return; }
+    if (s.state === 'submitted') { render(s); return; }
+    gate.classList.add('hide'); result.classList.add('hide');
+    paper.classList.remove('hide'); qs.classList.remove('hide');
+    restore(s);
+    armGuards();
+    tick = setInterval(clockTick, 250);
+    clockTick();
+  }
+
+  function restore(s){
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      if (pick === undefined) continue;
+      var input = document.getElementById('q'+i+'o'+pick);
+      if (input){ input.checked = true; input.closest('.opt').classList.add('sel'); }
+    }
+    countAnswered(s);
+  }
+
+  function countAnswered(s){
+    var n = Object.keys(s.answers).length;
+    answeredEl.textContent = n + ' of ' + N + ' answered';
+  }
+
+  /* ------------------------------------------------ the clock */
+  /* The deadline is read from storage on every tick rather than captured once,
+     so the clock always reflects the stored attempt -- and stops if the attempt
+     was finalised elsewhere (another tab, or the load-path recovery). */
+  function clockTick(){
+    var s = load();
+    if (!s || s.state !== 'running'){
+      if (tick) { clearInterval(tick); tick = null; }
+      return;
+    }
+    var left = Math.max(0, s.endAt - Date.now());
+    var m = Math.floor(left/60000), sec = Math.floor((left%60000)/1000);
+    clockEl.textContent = (m<10?'0':'') + m + ':' + (sec<10?'0':'') + sec;
+    clockEl.className = left <= 120000 ? 'crit' : (left <= 600000 ? 'warn' : '');
+    if (left <= 0) submit('time');
+  }
+
+  /* ------------------------------------- leaving the paper */
+  function armGuards(){
+    window.addEventListener('beforeunload', onBeforeUnload);
+    document.addEventListener('visibilitychange', persist);
+    window.addEventListener('pagehide', persist);
+  }
+  function disarmGuards(){
+    window.removeEventListener('beforeunload', onBeforeUnload);
+    document.removeEventListener('visibilitychange', persist);
+    window.removeEventListener('pagehide', persist);
+  }
+  function onBeforeUnload(e){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    persist();
+    e.preventDefault();
+    e.returnValue = '';        /* required by older browsers to raise the dialog */
+    return '';
+  }
+  /* Write the answers out whenever the page might be going away. This does NOT
+     submit: the submission is finalised on the next load, because pagehide and
+     beforeunload are both unreliable (mobile in particular) whereas the load path
+     always runs. */
+  function persist(){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    s.answers = collect();
+    s.leftAt = Date.now();
+    save(s);
+  }
+
+  function collect(){
+    var out = {};
+    for (var i = 0; i < N; i++){
+      var el = document.querySelector('input[name="q'+i+'"]:checked');
+      if (el) out[i] = parseInt(el.value, 10);
+    }
+    return out;
+  }
+
+  /* ------------------------------------------------ submitting */
+  function submit(reason){
+    var s = load();
+    if (!s || s.state !== 'running') return;
+    if (tick) { clearInterval(tick); tick = null; }
+    disarmGuards();
+    s.answers = (reason === 'left') ? (s.answers || {}) : collect();
+    s.state = 'submitted';
+    s.submittedAt = Date.now();
+    s.reason = reason;
+    save(s);
+    render(s);
+  }
+
+  /* ------------------------------------------------ the marked paper */
+  function render(s){
+    gate.classList.add('hide');
+    paper.classList.add('hide');
+    result.classList.remove('hide');
+    qs.classList.remove('hide');
+
+    var got = 0, right = 0, wrong = 0, blank = 0;
+    var per = {};
+    for (var k in CHN) per[k] = {n:0, r:0};
+
+    for (var i = 0; i < N; i++){
+      var pick = s.answers[i];
+      var ok = (pick === ANS[i]);
+      per[CH[i]].n++;
+      if (pick === undefined) blank++;
+      else if (ok) { right++; got += MARKS; per[CH[i]].r++; }
+      else wrong++;
+
+      var card = document.getElementById('c'+i);
+      card.className = 'qcard ' + (pick === undefined ? 'blank' : (ok ? 'right':'wrong'));
+      var v = document.getElementById('v'+i);
+      v.className = 'verdict ' + (pick === undefined ? 'bl' : (ok ? 'ok':'no'));
+      v.textContent = pick === undefined ? 'Not attempted'
+                    : (ok ? '+' + MARKS + ' mark' : '0 marks');
+      v.classList.remove('hide');
+
+      for (var j = 0; j < 4; j++){
+        var o = document.getElementById('q'+i+'o'+j);
+        var row = o.closest('.opt');
+        o.disabled = true;
+        row.classList.remove('sel');
+        var tag = row.querySelector('.tag');
+        if (j === ANS[i]) { row.classList.add('correct'); tag.textContent = 'Correct answer'; }
+        if (pick === j && j !== ANS[i]) {
+          row.classList.add('chosen-wrong'); tag.textContent = 'Your answer';
+        }
+        if (pick === j && j === ANS[i]) { tag.textContent = 'Your answer — correct'; }
+      }
+      document.getElementById('e'+i).classList.remove('hide');
+    }
+
+    document.getElementById('score').innerHTML =
+      got + '<span> / ' + (N*MARKS) + '</span>';
+    document.getElementById('pct').textContent =
+      Math.round(got/(N*MARKS)*1000)/10 + '%  ·  ' + right + ' correct, ' +
+      wrong + ' wrong, ' + blank + ' not attempted';
+
+    var why = document.getElementById('why');
+    if (s.reason === 'time') {
+      why.innerHTML = '<b>Time was up.</b> The paper submitted itself at the end of ' +
+        'the ' + MINUTES + ' minutes.';
+      why.classList.remove('hide');
+    } else if (s.reason === 'left') {
+      why.innerHTML = '<b>You left the paper.</b> Closing, reloading or navigating ' +
+        'away from a paper in progress submits it, so this was marked with the ' +
+        'answers you had given at that point.';
+      why.classList.remove('hide');
+    } else { why.classList.add('hide'); }
+
+    var rows = '';
+    for (var key in CHN){
+      rows += '<tr><td class="l">' + CHN[key] + '</td><td>' + per[key].r + ' / ' +
+              per[key].n + '</td><td>' + (per[key].r*MARKS) + ' / ' +
+              (per[key].n*MARKS) + '</td></tr>';
+    }
+    document.getElementById('brkbody').innerHTML = rows;
+    document.getElementById('brkfoot').innerHTML =
+      '<tr><td class="l">Total</td><td>' + right + ' / ' + N + '</td><td>' +
+      got + ' / ' + (N*MARKS) + '</td></tr>';
+    window.scrollTo(0,0);
+  }
+
+  /* ------------------------------------------------ wiring */
+  document.getElementById('startbtn').addEventListener('click', start);
+
+  document.getElementById('submitbtn').addEventListener('click', function(){
+    var a = collect(), n = Object.keys(a).length;
+    if (n < N && !confirm((N-n) + ' question' + (N-n===1?' is':'s are') +
+        ' still unanswered. Submit anyway?')) return;
+    submit('manual');
+  });
+
+  document.querySelectorAll('.opt input').forEach(function(inp){
+    inp.addEventListener('change', function(){
+      var s = load();
+      if (!s || s.state !== 'running') return;
+      inp.closest('.opts').querySelectorAll('.opt')
+         .forEach(function(o){ o.classList.remove('sel'); });
+      inp.closest('.opt').classList.add('sel');
+      s.answers = collect();
+      save(s);
+      countAnswered(s);
+    });
+  });
+
+  var again = document.getElementById('again');
+  if (again) again.addEventListener('click', function(){
+    if (!confirm('Clear this attempt and start the paper again from the beginning?'))
+      return;
+    clear();
+    location.reload();
+  });
+
+  /* ---- the load path, which is where a lock-in is actually enforced ---- */
+  var s0 = load();
+  if (s0 && s0.state === 'running'){
+    /* The student closed, reloaded or navigated away without submitting. Finalise
+       now with whatever was stored, and say which of the two reasons it was. */
+    var expired = Date.now() >= s0.endAt;
+    s0.state = 'submitted';
+    s0.submittedAt = Date.now();
+    s0.reason = expired ? 'time' : 'left';
+    save(s0);
+    render(s0);
+  } else {
+    show(s0);
+  }
+})();
+</script>
