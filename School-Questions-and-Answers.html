@@ -161,11 +161,11 @@ footer{max-width:900px;margin:0 auto;padding:0 22px 60px;color:var(--muted);
   function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
   var shown = load();
 
-  // The solution is emitted exactly as the PDF has it; the reveal is added
-  // here so there is only one source of markup. The whole .sol block is
-  // hidden -- formula, working, drawing and Answer box alike -- because the
-  // working gives the answer away. .q, which carries the question and its
-  // data table, is never touched.
+  // The builder emits each solution once; the reveal is added here rather
+  // than in the markup, so a page and any printed version of it stay one
+  // source. The whole .sol block is hidden -- formula, working, drawing and
+  // Answer box alike -- because the working gives the answer away. .q, which
+  // carries the question and its data table, is never touched.
   var cards = document.querySelectorAll('.qa');
   function set(card, on){
     var sol = card.querySelector('.sol');
